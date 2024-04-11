@@ -1,0 +1,40 @@
+main #tutor, main #administrador{
+    display:none;
+}
+
+main #tutor:target, main #administrador:target{
+    display: inherit;
+}
+
+.inicioSesionTutor{
+    background-color:dodgerblue;
+    color:white;
+}
+
+.inicioSesionAdmin{
+    background-color: red;
+    color:white;
+}
+
+.inicioSesionTutor:hover{
+    background-color: rgb(0, 72, 226);
+}
+
+.inicioSesionAdmin:hover{
+    background-color: rgb(175, 0, 0);
+}
+
+.inicioSesionTutor, .inicioSesionAdmin{
+    flex: 1 1 50%;
+    text-align: center;
+}
+
+.inicioSesionTutor:hover, .inicioSesionAdmin:hover{
+    font-weight: bold;
+}
+
+.mainTutor{
+    background-image: url(../IMG/FondoTutor.jpg);
+    background-repeat: no-repeat;
+    
+}
