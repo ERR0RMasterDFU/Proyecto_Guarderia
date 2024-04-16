@@ -1,3 +1,6 @@
-.a:hover{
-    background-color: rgb(249, 99, 99);
-}
+
+.fondo{
+        background-image: url(https://img.freepik.com/vector-gratis/tema-dibujado-mano-patron-regreso-escuela_23-2148605117.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
