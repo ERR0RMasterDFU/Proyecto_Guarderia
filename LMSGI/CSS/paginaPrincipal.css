@@ -4,3 +4,7 @@
         background-repeat: no-repeat;
         background-size: cover;
     }
+
+h1, .fuenteNav{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
