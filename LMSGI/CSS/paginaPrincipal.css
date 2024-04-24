@@ -5,6 +5,11 @@
         background-size: cover;
     }
 
-h1, .fuenteNav{
+h1, .estiloNavItem{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.estiloNavItem:hover{
+    background-color: white;
+    text-decoration: underline;
 }
