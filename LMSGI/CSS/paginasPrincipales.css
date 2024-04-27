@@ -1,6 +1,5 @@
-
 .fondo{
-        background-image: url(../IMG/paginaPrincipal/fondoPaginaPrincipal.jpg);
+        background-image: url(../IMG/paginasPrincipales/fondoPaginasPrincipales.jpg);
         background-repeat: no-repeat;
         background-size: cover;
     }
@@ -11,5 +10,4 @@ h1, .estiloNavItem{
 
 .estiloNavItem:hover{
     background-color: white;
-    text-decoration: underline;
 }
