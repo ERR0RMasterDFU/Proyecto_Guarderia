@@ -1,0 +1,13 @@
+.fondo{
+        background-image: url(../IMG/general/fondoPaginas.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+h1, .estiloNavItem{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.estiloNavItem:hover{
+    background-color: white;
+}
