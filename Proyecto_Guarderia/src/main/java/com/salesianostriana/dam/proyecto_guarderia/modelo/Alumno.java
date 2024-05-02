@@ -1,4 +1,4 @@
-package com.salesianostriana.dam.proyecto_guarderia.model;
+package com.salesianostriana.dam.proyecto_guarderia.modelo;
 
 import java.time.LocalDate;
 
@@ -24,9 +24,8 @@ public class Alumno {
 	private String direccion;
 	
 	
-	public Alumno(long codAlumno, String nombre, String apellido1, int edad, int curso, 
+	public Alumno(String nombre, String apellido1, int edad, int curso, 
 				  LocalDate fechaNacimiento, String direccion) {
-		this.codAlumno = codAlumno;
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
 		this.edad = edad;

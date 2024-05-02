@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Relleno y envío de matrícula</title>
-        <link rel="stylesheet" type="text/css" href="../CSS/paginasPrincipales.css">
+        <link rel="stylesheet" type="text/css" href="../static/css/paginasPrincipales.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -14,7 +14,7 @@
 <!---- CABECERA / HEADER -------------------------------------------->
 
         <header id="inicio">
-            <img src="../IMG/general/headerParenteller.png" alt="Cabecera de la página" class="img-fluid w-100">
+            <img src="../static/img/general/headerParenteller.png" alt="Cabecera de la página" class="img-fluid w-100">
         </header>
 
 <!------------------------------------------------------------------->
@@ -23,12 +23,12 @@
     
         <nav class="navbar navbar-expand-sm bg-warning sticky-top border border-2 border-start-0 border-end-0 border-black">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#inicio"><img src="../IMG/general/logoParenteller.png" width="160px" alt="Logo de Parenteller"></a>
+                <a class="navbar-brand" href="#inicio"><img src="../static/img/general/logoParenteller.png" width="160px" alt="Logo de Parenteller"></a>
                 <ul class="nav justify-content-end align-items-center" style="font-size: 18px;">
-                    <li class="nav-item"><a class="nav-link text-black fw-bold estiloNavItem" href="../HTML/alumnosUsuario.html"><i class="bi bi-person-fill"></i>&ensp;ALUMNOS</a></li>
-                    <li class="nav-item"><a class="nav-link text-black fw-bold estiloNavItem" href="../HTML/formularioEnvioDeDatos.html"><i class="bi bi-file-earmark-arrow-up-fill"></i>&ensp;RELLENAR Y ENVÍAR MATRÍCULA</a></li>
-                    <li class="nav-item"><a class="nav-link text-black fw-bold estiloNavItem" href="../HTML/paginaPrincipalNormasYSeguridad.html"><i class="bi bi-heart-pulse-fill"></i>&ensp;MI PERFIL</a></li>
-                    <li class="nav-item flex-fill text-center"><a href="../HTML/inicioDeSesion.html"><button type="button" class="btn btn-info text-dark border-dark border-2 fw-bold ms-3">INICIAR SESIÓN</button></a></li>
+                    <li class="nav-item"><a class="nav-link text-black fw-bold estiloNavItem" href="alumnosUsuario.html"><i class="bi bi-person-fill"></i>&ensp;ALUMNOS</a></li>
+                    <li class="nav-item"><a class="nav-link text-black fw-bold estiloNavItem" href="formularioEnvioDeDatos.html"><i class="bi bi-file-earmark-arrow-up-fill"></i>&ensp;RELLENAR Y ENVÍAR MATRÍCULA</a></li>
+                    <li class="nav-item"><a class="nav-link text-black fw-bold estiloNavItem" href=""><i class="bi bi-heart-pulse-fill"></i>&ensp;MI PERFIL</a></li>
+                    <li class="nav-item flex-fill text-center"><a href="inicioDeSesion.html"><button type="button" class="btn btn-info text-dark border-dark border-2 fw-bold ms-3">INICIAR SESIÓN</button></a></li>
                 </ul>
             </div>
         </nav>
@@ -151,6 +151,15 @@
                         <div class="mt-3">
                             <p class="m-0 fw-bold">HORARIO</p>
                             <div class="d-flex w-100 mt-1">
+
+                                <!--label for="horario" class="fw-bold">HORARIO<span class="text-danger"> *</span></label><br>
+                                <select class="form-select form-select-sm" name="horario" id="horario">
+                                    <option value="guarderia">Guardería</option>
+                                    <option value="aulaMatinal">Aula matinal</option>
+                                    <option value="comedor">Comedor</option>
+                                    <option value="siesta">Siesta</option>
+                                    <option value="extraescolares">Extraescolares</option>
+                                </select-->
                                 <input type="checkbox" name="guarderia" checked disabled value="guarderia"><label class="ps-1" for="guarderia" style="flex: 1 1 20%;">Guardería</label>
                                 <input type="checkbox" name="aulaMatinal" value="aulaMatinal"><label class="ps-1" for="aulaMatinal" style="flex: 1 1 20%;">Aula matinal</label>
                                 <input type="checkbox" name="comedor" value="comedor"><label class="ps-1" for="comedor" style="flex: 1 1 20%;">Comedor</label>
@@ -196,16 +205,21 @@
         <!---- TELÉFONO, CORREO Y NÚMERO DE HIJOS --------------------------->
 
                         <div class="d-flex mt-3 w-100">
-                            <div class="me-3" style="flex: 1 1 33%;">
-                                <label for="telefonoMadre" class="form-label m-0 fw-bold">TELÉFONO<span class="text-danger"> *</span></label><br>
-                                <input type="text" class="form-control" name="telefonoMadre" id="telefonoMadre" placeholder="Introduzca el número de teléfono" required pattern="^[9|6|7][0-9]{8}$">
+                            <div class="me-3" style="flex: 1 1 17%;">
+                                <label for="dniMadre" class="form-label m-0 fw-bold">DNI<span class="text-danger"> *</span></label><br>
+                                <input type="text" class="form-control w-100" name="dniMadre" id="dniMadre" placeholder="Introduzca el DNI" required pattern="^[9|6|7][0-9]{8}$">
                             </div>
 
-                            <div class="mx-3" style="flex: 1 1 33%;">
-                                <label for="correoMadre" class="form-label m-0 fw-bold">CORREO<span class="text-danger"> *</span></label><br>
-                                <input type="text" class="form-control" name="correoMadre" id="correoMadre" placeholder="Introduzca el correo electrónico" required>
+                            <div class="mx-3" style="flex: 1 1 25%;">
+                                <label for="telefonoMadre" class="form-label m-0 fw-bold">TELÉFONO<span class="text-danger"> *</span></label><br>
+                                <input type="text" class="form-control w-100" name="telefonoMadre" id="telefonoMadre" placeholder="Introduzca el nº de teléfono" required pattern="^[9|6|7][0-9]{8}$">
                             </div>
-                            <div class="ms-3" style="flex: 1 1 33%;">
+
+                            <div class="mx-3" style="flex: 1 1 40%;">
+                                <label for="correoMadre" class="form-label m-0 fw-bold">CORREO<span class="text-danger"> *</span></label><br>
+                                <input type="text" class="form-control w-100" name="correoMadre" id="correoMadre" placeholder="Introduzca el correo electrónico" required>
+                            </div>
+                            <div class="ms-3" style="flex: 1 1 18%;">
                                 <label for="numHijosMadre" class="form-label m-0 fw-bold">NÚMERO DE HIJOS</label><br>
                                 <input class="w-100" style="height: 37px;" type="number" name="numHijosMadre" id="numHijosMadre" min="1" step="1" value="1">
                             </div>
@@ -248,16 +262,21 @@
         <!---- TELÉFONO, CORREO Y NÚMERO DE HIJOS --------------------------->
 
                         <div class="d-flex mt-3 w-100">
-                            <div class="me-3" style="flex: 1 1 33%;">
-                                <label for="telefonoPadre" class="form-label m-0 fw-bold">TELÉFONO<span class="text-danger"> *</span></label><br>
-                                <input type="text" class="form-control" name="telefonoPadre" id="telefonoPadre" placeholder="Introduzca el número de teléfono" required pattern="^[9|6|7][0-9]{8}$">
+                            <div class="me-3" style="flex: 1 1 17%;">
+                                <label for="dniPadre" class="form-label m-0 fw-bold">DNI<span class="text-danger"> *</span></label><br>
+                                <input type="text" class="form-control w-100" name="dniPadre" id="dniPadre" placeholder="Introduzca el DNI" required pattern="^[9|6|7][0-9]{8}$">
                             </div>
 
-                            <div class="mx-3" style="flex: 1 1 33%;">
-                                <label for="correoPadre" class="form-label m-0 fw-bold">CORREO<span class="text-danger"> *</span></label><br>
-                                <input type="text" class="form-control" name="correoPadre" id="correoPadre" placeholder="Introduzca el correo electrónico" required>
+                            <div class="mx-3" style="flex: 1 1 25%;">
+                                <label for="telefonoPadre" class="form-label m-0 fw-bold">TELÉFONO<span class="text-danger"> *</span></label><br>
+                                <input type="text" class="form-control w-100" name="telefonoPadre" id="telefonoPadre" placeholder="Introduzca el nº de teléfono" required pattern="^[9|6|7][0-9]{8}$">
                             </div>
-                            <div class="ms-3" style="flex: 1 1 33%;">
+
+                            <div class="mx-3" style="flex: 1 1 40%;">
+                                <label for="correoPadre" class="form-label m-0 fw-bold">CORREO<span class="text-danger"> *</span></label><br>
+                                <input type="text" class="form-control w-100" name="correoPadre" id="correoPadre" placeholder="Introduzca el correo electrónico" required>
+                            </div>
+                            <div class="ms-3" style="flex: 1 1 18%;">
                                 <label for="numHijosPadre" class="form-label m-0 fw-bold">NÚMERO DE HIJOS</label><br>
                                 <input class="w-100" style="height: 37px;" type="number" name="numHijosPadre" id="numHijosPadre" min="1" step="1" value="1">
                             </div>
@@ -300,16 +319,21 @@
         <!---- TELÉFONO, CORREO Y NÚMERO DE HIJOS --------------------------->
 
                         <div class="d-flex mt-3 w-100">
-                            <div class="me-3" style="flex: 1 1 33%;">
-                                <label for="telefonoTutor" class="form-label m-0 fw-bold">TELÉFONO<span class="text-danger"> *</span></label><br>
-                                <input type="text" class="form-control" name="telefonoTutor" id="telefonoTutor" placeholder="Introduzca el número de teléfono" required pattern="^[9|6|7][0-9]{8}$">
+                            <div class="me-3" style="flex: 1 1 17%;">
+                                <label for="dniTutor" class="form-label m-0 fw-bold">DNI<span class="text-danger"> *</span></label><br>
+                                <input type="text" class="form-control w-100" name="dniTutor" id="dniTutor" placeholder="Introduzca el DNI" required pattern="^[9|6|7][0-9]{8}$">
                             </div>
 
-                            <div class="mx-3" style="flex: 1 1 33%;">
-                                <label for="correoTutor" class="form-label m-0 fw-bold">CORREO<span class="text-danger"> *</span></label><br>
-                                <input type="text" class="form-control" name="correoTutor" id="correoTutor" placeholder="Introduzca el correo electrónico" required>
+                            <div class="mx-3" style="flex: 1 1 25%;">
+                                <label for="telefonoTutor" class="form-label m-0 fw-bold">TELÉFONO<span class="text-danger"> *</span></label><br>
+                                <input type="text" class="form-control w-100" name="telefonoTutor" id="telefonoTutor" placeholder="Introduzca el nº de teléfono" required pattern="^[9|6|7][0-9]{8}$">
                             </div>
-                            <div class="ms-3" style="flex: 1 1 33%;">
+
+                            <div class="mx-3" style="flex: 1 1 40%;">
+                                <label for="correoTutor" class="form-label m-0 fw-bold">CORREO<span class="text-danger"> *</span></label><br>
+                                <input type="text" class="form-control w-100" name="correoTutor" id="correoTutor" placeholder="Introduzca el correo electrónico" required>
+                            </div>
+                            <div class="ms-3" style="flex: 1 1 18%;">
                                 <label for="numHijosTutor" class="form-label m-0 fw-bold">NÚMERO DE HIJOS</label><br>
                                 <input class="w-100" style="height: 37px;" type="number" name="numHijosTutor" id="numHijosTutor" min="0" step="1" value="0">
                             </div>
@@ -350,10 +374,10 @@
              
                         <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
                             <h6 class="text-uppercase mb-4 font-weight-bold">Enlaces de interés</h6>
-                            <p><a href="../HTML/paginaPrincipalHistoria.html" class="text-white">Historia</a></p>
-                            <p><a href="../HTML/paginaPrincipalEmplazamiento.html" class="text-white">Emplazamiento</a></p>
-                            <p><a href="../HTML/paginaPrincipalNormasYSeguridad.html" class="text-white">Normas y seguridad</a></p>
-                            <p><a href="../HTML/inicioDeSesion.html" class="text-white">INICIO DE SESIÓN</a></p>
+                            <p><a href="paginaPrincipalHistoria.html" class="text-white">Historia</a></p>
+                            <p><a href="paginaPrincipalEmplazamiento.html" class="text-white">Emplazamiento</a></p>
+                            <p><a href="paginaPrincipalNormasYSeguridad.html" class="text-white">Normas y seguridad</a></p>
+                            <p><a href="inicioDeSesion.html" class="text-white">INICIO DE SESIÓN</a></p>
                         </div>
 
                         <hr class="w-100 clearfix d-md-none" />
@@ -376,7 +400,7 @@
                     <div class="row d-flex align-items-center">
              
                         <div class="col-md-7 col-lg-8 text-center text-md-start">
-                            <div class="p-3">© 2024 Copyright: <a class="text-white" href="../HTML/paginaPrincipalHistoria.html">PARENTELLER</a></div>
+                            <div class="p-3">© 2024 Copyright: <a class="text-white" href="paginaPrincipalHistoria.html">PARENTELLER</a></div>
                         </div>
                           
                         <div class="col-md-5 col-lg-4 ml-lg-0 text-center text-md-end">
