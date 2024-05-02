@@ -35,11 +35,11 @@
 
 <!------------------------------------------------------------------->
 
-        <div class="container-fluid d-flex p-0">
+        <div class="container-fluid d-flex w-100 p-0">
 
 <!---- SECCIÓN DE ANUNCIOS / ASIDE ---------------------------------->
 
-            <aside class="m-3 border border-3 border-white" style="flex: 1 1 15%; background-color: grey; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
+            <aside class="m-3 border border-3 border-white" style="flex: 1 1 19%; background-color: grey; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
 
                 <div class="container-fluid p-2 my-3 border border-3 border-white" style="width: 90%; background-color: darkred;">
                     <p class="m-0 text-center fw-bold text-center text-white" style="font-size: 20px;">OBSERVACIONES</p>
@@ -71,14 +71,14 @@
 
 <!---- CONTENIDO PRINCIPAL / MAIN ----------------------------------->
 
-            <main class="m-3 p-5 bg-white" style="flex: 1 1 85%; width: 75%; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
+            <main class="m-3 p-5 bg-white" style="flex: 1 1 81%; width: 75%; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
                 
-                <h1 class="fw-bold display-5 text-warning mb-5" id="matricula">MATRÍCULA&ensp;</h1>
+                <h1 class="fw-bold display-5 text-warning mb-5 bg-black pt-2 pb-1 ps-3" id="matricula"><i class="bi bi-file-earmark-arrow-up-fill"></i>&ensp;MATRÍCULA&ensp;<i class="bi bi-file-earmark-arrow-up-fill"></i></h1>
 
     <!---- DATOS DEL ALUMNO --------------------------------------------->
     
-                <fieldset class="justify-content-center border border-dark border-3">
-                    <legend class="fw-bold border border-dark border-3 border-start-0 border-end-0 border-top-0 px-2 mb-3 bg-warning">DATOS DEL ALUMNO</legend>
+                <fieldset class="justify-content-center border border-black border-3">
+                    <legend class="fw-bold border border-black border-3 border-start-0 border-end-0 border-top-0 text-black px-2 mb-3 bg-warning">DATOS DEL ALUMNO</legend>
                     <div class="mx-3 mb-3">
 
         <!---- NOMBRE Y APELLIDOS ------------------------------------------->
@@ -170,8 +170,8 @@
 
     <!---- DATOS DE LA MADRE -------------------------------------------->
     
-                <fieldset class="justify-content-center border border-dark border-3">
-                    <legend class="fw-bold border border-dark border-3 border-start-0 border-end-0 border-top-0 px-2 mb-3 bg-opacity-50 bg-danger">DATOS DE LA MADRE</legend>
+                <fieldset class="justify-content-center border border-black border-3">
+                    <legend class="fw-bold border border-black border-3 border-start-0 border-end-0 border-top-0 text-black px-2 mb-3 bg-opacity-50 bg-danger">DATOS DE LA MADRE</legend>
                     <div class="mx-3 mb-3">
 
         <!---- NOMBRE Y APELLIDOS ------------------------------------------->
@@ -222,8 +222,8 @@
 
     <!---- DATOS DEL PADRE ---------------------------------------------->
     
-                <fieldset class="justify-content-center border border-dark border-3">
-                    <legend class="fw-bold border border-dark border-3 border-start-0 border-end-0 border-top-0 px-2 mb-3 bg-info">DATOS DEL PADRE</legend>
+                <fieldset class="justify-content-center border border-black border-3">
+                    <legend class="fw-bold border border-black border-3 border-start-0 border-end-0 border-top-0 text-black px-2 mb-3 bg-info">DATOS DEL PADRE</legend>
                     <div class="mx-3 mb-3">
 
         <!---- NOMBRE Y APELLIDOS ------------------------------------------->
@@ -274,8 +274,8 @@
 
     <!---- DATOS DEL TUTOR LEGAL ---------------------------------------->
     
-                <fieldset class="justify-content-center border border-dark border-3">
-                    <legend class="fw-bold border border-dark border-3 border-start-0 border-end-0 border-top-0 px-2 mb-3 bg-opacity-50 bg-secondary">DATOS DEL TUTOR LEGAL</legend>
+                <fieldset class="justify-content-center border border-black border-3">
+                    <legend class="fw-bold border border-black border-3 border-start-0 border-end-0 border-top-0 px-2 mb-3 text-black bg-opacity-50 bg-secondary">DATOS DEL TUTOR LEGAL</legend>
                     <div class="mx-3 mb-3">
 
         <!---- NOMBRE Y APELLIDOS ------------------------------------------->
@@ -311,7 +311,7 @@
                             </div>
                             <div class="ms-3" style="flex: 1 1 33%;">
                                 <label for="numHijosTutor" class="form-label m-0 fw-bold">NÚMERO DE HIJOS</label><br>
-                                <input class="w-100" style="height: 37px;" type="number" name="numHijosTutor" id="numHijosTutor" min="1" step="1" value="1">
+                                <input class="w-100" style="height: 37px;" type="number" name="numHijosTutor" id="numHijosTutor" min="0" step="1" value="0">
                             </div>
                         </div>
 
@@ -322,9 +322,9 @@
 
 <!------------------------------------------------------------------->
 
-                        <div class="container mt-3 px-0">
-                            <button type="submit" class="btn btn-warning w-100 mt-2 mb-1">ENVIAR DATOS</button>
-                        </div>
+                <div class="mt-5 px-0 w-100">
+                    <button type="submit" class="btn border border-2 border-black btn-warning w-100 mt-2 mb-1 fw-bold" style="font-size: 23px;">ENVIAR DATOS</button>
+                </div>
 
             </main>
 
