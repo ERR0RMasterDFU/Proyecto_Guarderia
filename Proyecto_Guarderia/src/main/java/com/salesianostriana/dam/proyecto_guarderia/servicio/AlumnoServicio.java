@@ -4,9 +4,9 @@ import org.springframework.stereotype.Service;
 
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Alumno;
 import com.salesianostriana.dam.proyecto_guarderia.repositorio.AlumnoRepositorio;
-import com.salesianostriana.dam.proyecto_guarderia.servicio.base.ServicioBaseImp;
+import com.salesianostriana.dam.proyecto_guarderia.servicio.base.ServicioBaseImpl;
 
 @Service
-public class AlumnoServicio extends ServicioBaseImp<Alumno, Long, AlumnoRepositorio>{ 
+public class AlumnoServicio extends ServicioBaseImpl<Alumno, Long, AlumnoRepositorio>{ 
 
 }

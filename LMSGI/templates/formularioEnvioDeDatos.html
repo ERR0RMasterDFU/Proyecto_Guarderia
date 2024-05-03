@@ -177,121 +177,7 @@
 
             <br><br>
 
-    <!---- DATOS DE LA MADRE -------------------------------------------->
-    
-                <fieldset class="justify-content-center border border-black border-3">
-                    <legend class="fw-bold border border-black border-3 border-start-0 border-end-0 border-top-0 text-black px-2 mb-3 bg-opacity-50 bg-danger">DATOS DE LA MADRE</legend>
-                    <div class="mx-3 mb-3">
-
-        <!---- NOMBRE Y APELLIDOS ------------------------------------------->
-
-                        <div class="d-flex w-100">
-                            <div class="me-3" style="flex: 1 1 33%;">
-                                <label for="nombreMadre" class="form-label m-0 fw-bold">NOMBRE<span class="text-danger"> *</span></label><br>
-                                <input type="text" class="form-control" name="nombreMadre" id="nombreMadre" placeholder="Introduzca el nombre" required maxlength="100" size="50">
-                            </div>
-                            <div class="mx-3" style="flex: 1 1 33%;">
-                                <label for="apellido1Madre" class="form-label m-0 fw-bold">PRIMER APELLIDO<span class="text-danger"> *</span></label><br>
-                                <input type="text" class="form-control" name="apellido1Madre" id="apellido1Madre" placeholder="Introduzca el primer apellido" required maxlength="100" size="50">
-                            </div>
-                            <div class="ms-3" style="flex: 1 1 33%;">
-                                <label for="apellido2Madre" class="form-label m-0 fw-bold">SEGUNDO APELLIDO</label><br>
-                                <input type="text" class="form-control" name="apellido2Madre" id="apellido2Madre" placeholder="Introduzca el segundo apellido" maxlength="100" size="50">
-                            </div>
-                        </div>
-
-        <!------------------------------------------------------------------->
-
-        <!---- TELÉFONO, CORREO Y NÚMERO DE HIJOS --------------------------->
-
-                        <div class="d-flex mt-3 w-100">
-                            <div class="me-3" style="flex: 1 1 17%;">
-                                <label for="dniMadre" class="form-label m-0 fw-bold">DNI<span class="text-danger"> *</span></label><br>
-                                <input type="text" class="form-control w-100" name="dniMadre" id="dniMadre" placeholder="Introduzca el DNI" required pattern="^[9|6|7][0-9]{8}$">
-                            </div>
-
-                            <div class="mx-3" style="flex: 1 1 25%;">
-                                <label for="telefonoMadre" class="form-label m-0 fw-bold">TELÉFONO<span class="text-danger"> *</span></label><br>
-                                <input type="text" class="form-control w-100" name="telefonoMadre" id="telefonoMadre" placeholder="Introduzca el nº de teléfono" required pattern="^[9|6|7][0-9]{8}$">
-                            </div>
-
-                            <div class="mx-3" style="flex: 1 1 40%;">
-                                <label for="correoMadre" class="form-label m-0 fw-bold">CORREO<span class="text-danger"> *</span></label><br>
-                                <input type="text" class="form-control w-100" name="correoMadre" id="correoMadre" placeholder="Introduzca el correo electrónico" required>
-                            </div>
-                            <div class="ms-3" style="flex: 1 1 18%;">
-                                <label for="numHijosMadre" class="form-label m-0 fw-bold">NÚMERO DE HIJOS</label><br>
-                                <input class="w-100" style="height: 37px;" type="number" name="numHijosMadre" id="numHijosMadre" min="1" step="1" value="1">
-                            </div>
-                        </div>
-
-        <!------------------------------------------------------------------->
-
-                    </div>
-                </fieldset>
-
-    <!------------------------------------------------------------------->
-
-            <br><br>
-
-    <!---- DATOS DEL PADRE ---------------------------------------------->
-    
-                <fieldset class="justify-content-center border border-black border-3">
-                    <legend class="fw-bold border border-black border-3 border-start-0 border-end-0 border-top-0 text-black px-2 mb-3 bg-info">DATOS DEL PADRE</legend>
-                    <div class="mx-3 mb-3">
-
-        <!---- NOMBRE Y APELLIDOS ------------------------------------------->
-
-                        <div class="d-flex w-100">
-                            <div class="me-3" style="flex: 1 1 33%;">
-                                <label for="nombrePadre" class="form-label m-0 fw-bold">NOMBRE<span class="text-danger"> *</span></label><br>
-                                <input type="text" class="form-control" name="nombrePadre" id="nombrePadre" placeholder="Introduzca el nombre" required maxlength="100" size="50">
-                            </div>
-                            <div class="mx-3" style="flex: 1 1 33%;">
-                                <label for="apellido1Padre" class="form-label m-0 fw-bold">PRIMER APELLIDO<span class="text-danger"> *</span></label><br>
-                                <input type="text" class="form-control" name="apellido1Padre" id="apellido1Padre" placeholder="Introduzca el primer apellido" required maxlength="100" size="50">
-                            </div>
-                            <div class="ms-3" style="flex: 1 1 33%;">
-                                <label for="apellido2Padre" class="form-label m-0 fw-bold">SEGUNDO APELLIDO</label><br>
-                                <input type="text" class="form-control" name="apellido2Padre" id="apellido2Padre" placeholder="Introduzca el segundo apellido" maxlength="100" size="50">
-                            </div>
-                        </div>
-
-        <!------------------------------------------------------------------->
-
-        <!---- TELÉFONO, CORREO Y NÚMERO DE HIJOS --------------------------->
-
-                        <div class="d-flex mt-3 w-100">
-                            <div class="me-3" style="flex: 1 1 17%;">
-                                <label for="dniPadre" class="form-label m-0 fw-bold">DNI<span class="text-danger"> *</span></label><br>
-                                <input type="text" class="form-control w-100" name="dniPadre" id="dniPadre" placeholder="Introduzca el DNI" required pattern="^[9|6|7][0-9]{8}$">
-                            </div>
-
-                            <div class="mx-3" style="flex: 1 1 25%;">
-                                <label for="telefonoPadre" class="form-label m-0 fw-bold">TELÉFONO<span class="text-danger"> *</span></label><br>
-                                <input type="text" class="form-control w-100" name="telefonoPadre" id="telefonoPadre" placeholder="Introduzca el nº de teléfono" required pattern="^[9|6|7][0-9]{8}$">
-                            </div>
-
-                            <div class="mx-3" style="flex: 1 1 40%;">
-                                <label for="correoPadre" class="form-label m-0 fw-bold">CORREO<span class="text-danger"> *</span></label><br>
-                                <input type="text" class="form-control w-100" name="correoPadre" id="correoPadre" placeholder="Introduzca el correo electrónico" required>
-                            </div>
-                            <div class="ms-3" style="flex: 1 1 18%;">
-                                <label for="numHijosPadre" class="form-label m-0 fw-bold">NÚMERO DE HIJOS</label><br>
-                                <input class="w-100" style="height: 37px;" type="number" name="numHijosPadre" id="numHijosPadre" min="1" step="1" value="1">
-                            </div>
-                        </div>
-
-        <!------------------------------------------------------------------->
-
-                    </div>
-                </fieldset>
-
-    <!------------------------------------------------------------------->
-
-            <br><br>
-
-    <!---- DATOS DEL TUTOR LEGAL ---------------------------------------->
+    <!---- DATOS DEL PROGENITOR ----------------------------------------->
     
                 <fieldset class="justify-content-center border border-black border-3">
                     <legend class="fw-bold border border-black border-3 border-start-0 border-end-0 border-top-0 px-2 mb-3 text-black bg-opacity-50 bg-secondary">DATOS DEL TUTOR LEGAL</legend>
@@ -300,18 +186,27 @@
         <!---- NOMBRE Y APELLIDOS ------------------------------------------->
 
                         <div class="d-flex w-100">
-                            <div class="me-3" style="flex: 1 1 33%;">
+                            <div class="me-3" style="flex: 1 1 29%;">
                                 <label for="nombreTutor" class="form-label m-0 fw-bold">NOMBRE<span class="text-danger"> *</span></label><br>
                                 <input type="text" class="form-control" name="nombreTutor" id="nombreTutor" placeholder="Introduzca el nombre" required maxlength="100" size="50">
                             </div>
-                            <div class="mx-3" style="flex: 1 1 33%;">
+                            <div class="mx-3" style="flex: 1 1 29%;">
                                 <label for="apellido1Tutor" class="form-label m-0 fw-bold">PRIMER APELLIDO<span class="text-danger"> *</span></label><br>
                                 <input type="text" class="form-control" name="apellido1Tutor" id="apellido1Tutor" placeholder="Introduzca el primer apellido" required maxlength="100" size="50">
                             </div>
-                            <div class="ms-3" style="flex: 1 1 33%;">
+                            <div class="mx-3" style="flex: 1 1 29%;">
                                 <label for="apellido2Tutor" class="form-label m-0 fw-bold">SEGUNDO APELLIDO</label><br>
                                 <input type="text" class="form-control" name="apellido2Tutor" id="apellido2Tutor" placeholder="Introduzca el segundo apellido" maxlength="100" size="50">
                             </div>
+                            <div class="ms-3" style="flex: 1 1 13%;">
+                                <label for="tipo" class="fw-bold">PROGENITOR<span class="text-danger"> *</span></label><br>
+                                <select class="form-select form-select-sm" name="tipo" id="tipo">
+                                    <option value="madre">Madre</option>
+                                    <option value="padre">Padre</option>
+                                    <option value="tutorlegal">Tutor legal</option>
+                                </select>
+                            </div>
+
                         </div>
 
         <!------------------------------------------------------------------->

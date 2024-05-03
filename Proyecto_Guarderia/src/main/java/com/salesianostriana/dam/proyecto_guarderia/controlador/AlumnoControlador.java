@@ -23,6 +23,9 @@ public class AlumnoControlador {
 		Alumno alumno = new Alumno();
 		model.addAttribute("formularioEnvioDeDatos", alumno);
 		
+		Alumno TutorLegal = new TutorLegal();
+		model.addAttribute("formularioEnvioDeDatos", tutorLegal);
+		
 		return "formularioEnvioDeDatos";
 	}
 	
