@@ -27,7 +27,7 @@
                 <ul class="nav justify-content-end align-items-center" style="font-size: 18px;">
                     <li class="nav-item"><a class="nav-link text-black fw-bold estiloNavItem" href="alumnosUsuario.html"><i class="bi bi-person-fill"></i>&ensp;ALUMNOS</a></li>
                     <li class="nav-item"><a class="nav-link text-black fw-bold estiloNavItem" href="formularioEnvioDeDatos.html"><i class="bi bi-file-earmark-arrow-up-fill"></i>&ensp;RELLENAR Y ENVÍAR MATRÍCULA</a></li>
-                    <li class="nav-item"><a class="nav-link text-black fw-bold estiloNavItem" href=""><i class="bi bi-heart-pulse-fill"></i>&ensp;MI PERFIL</a></li>
+                    <li class="nav-item"><a class="nav-link text-black fw-bold estiloNavItem" href="perfilUsuario.html"><i class="bi bi-file-earmark-bar-graph-fill"></i>&ensp;MI PERFIL</a></li>
                     <li class="nav-item flex-fill text-center"><a href="inicioDeSesion.html"><button type="button" class="btn btn-info text-dark border-dark border-2 fw-bold ms-3">INICIAR SESIÓN</button></a></li>
                 </ul>
             </div>
@@ -73,114 +73,101 @@
 
             <main class="m-3 p-5 bg-white" style="flex: 1 1 81%; width: 75%; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
                 
-                <h1 class="fw-bold display-5 text-warning mb-4 bg-black pt-2 pb-1 ps-3" id="matricula"><i class="bi bi-file-earmark-arrow-up-fill"></i>&ensp;MATRÍCULA&ensp;<i class="bi bi-file-earmark-arrow-up-fill"></i></h1>
+                <h1 class="fw-bold display-5 text-warning mb-4 bg-black pt-2 pb-1 ps-3" id="matricula"><i class="bi bi-file-earmark-bar-graph-fill"></i>&ensp;MI PERFIL&ensp;<i class="bi bi-file-earmark-bar-graph-fill"></i></h1>
 
-    <!---- DATOS DEL ALUMNO --------------------------------------------->
+                <div class="py-2 mb-3 w-100">
+                    <a type="button" href="" class="btn btn-success text-white fw-bold py-1 w-100" style="font-size: 25px;"><i class="bi bi-gear-fill"></i>&ensp;MODIFICAR DATOS</a>
+                </div>
+
+    <!---- DATOS DEL PROGENITOR ----------------------------------------->
     
                 <form action="pantallaInicio.html" class="w-100">
                     <fieldset class="justify-content-center border border-black border-3">
-                        <legend class="fw-bold border border-black border-3 border-start-0 border-end-0 border-top-0 text-black px-2 mb-3 bg-warning">DATOS DEL ALUMNO</legend>
+                        <legend class="fw-bold border border-black border-3 border-start-0 border-end-0 border-top-0 px-2 mb-3 text-black bg-opacity-50 bg-secondary">DATOS PERSONALES</legend>
                         <div class="mx-3 mb-3">
 
         <!---- NOMBRE Y APELLIDOS ------------------------------------------->
-
+                        
                             <div class="d-flex w-100">
+
                                 <div class="me-3" style="flex: 1 1 33%;">
-                                    <label for="nombreAlumno" class="form-label m-0 fw-bold">NOMBRE<span class="text-danger"> *</span></label><br>
-                                    <input type="text" class="form-control" name="nombreAlumno" id="nombreAlumno" placeholder="Introduzca el nombre" required maxlength="100" size="50">
+                                    <label for="nombreTutor" class="form-label m-0 fw-bold">NOMBRE<span class="text-danger"> *</span></label><br>
+                                    <input type="text" class="form-control" name="nombreTutor" id="nombreTutor" placeholder="Introduzca su nombre" required maxlength="100" size="50">
                                 </div>
+
                                 <div class="mx-3" style="flex: 1 1 33%;">
-                                    <label for="apellido1Alumno" class="form-label m-0 fw-bold">PRIMER APELLIDO<span class="text-danger"> *</span></label><br>
-                                    <input type="text" class="form-control" style="width: 100%;" name="apellido1Alumno" id="apellido1Alumno" placeholder="Introduzca el primer apellido" required maxlength="100" size="50">
+                                    <label for="apellido1Tutor" class="form-label m-0 fw-bold">PRIMER APELLIDO<span class="text-danger"> *</span></label><br>
+                                    <input type="text" class="form-control" name="apellido1Tutor" id="apellido1Tutor" placeholder="Introduzca su primer apellido" required maxlength="100" size="50">
                                 </div>
+
                                 <div class="ms-3" style="flex: 1 1 33%;">
-                                    <label for="apellido2Alumno" class="form-label m-0 fw-bold">SEGUNDO APELLIDO</label><br>
-                                    <input type="text" class="form-control" style="width: 100%;" name="apellido2Alumno" id="apellido2Alumno" placeholder="Introduzca el segundo apellido" maxlength="100" size="50">
-                                </div>
+                                    <label for="apellido2Tutor" class="form-label m-0 fw-bold">SEGUNDO APELLIDO</label><br>
+                                    <input type="text" class="form-control" name="apellido2Tutor" id="apellido2Tutor" placeholder="Introduzca su segundo apellido" maxlength="100" size="50">
+                                </div>    
+                        
                             </div>
-
+                        
         <!------------------------------------------------------------------->
-
-        <!---- FECHA DE NACIMIENTO Y DIRECCIÓN ------------------------------>
-
+                            
+        <!---- TELÉFONO, TIPO DE PROGENITOR Y NÚMERO DE HIJOS --------------->
+                        
                             <div class="d-flex mt-3 w-100">
-                                <div class="pe-3" style="flex: 1 1 33%;">
-                                    <label for="fnac" class="fw-bold">FECHA DE NACIMIENTO<span class="text-danger"> *</span></label><br>
-                                    <input class="w-100" style="height: 37px;" type="date" name="fnac" id="fnac" min="2018-01-01" max="today" required>
+                        
+                                <div class="me-3" style="flex: 1 1 33%;">
+                                    <label for="telefonoTutor" class="form-label m-0 fw-bold">TELÉFONO<span class="text-danger"> *</span></label><br>
+                                    <input type="text" class="form-control w-100" name="telefonoTutor" id="telefonoTutor" placeholder="Introduzca el nº su teléfono" required pattern="^[9|6|7][0-9]{8}$">
                                 </div>
-                                <div class="ms-3" style="flex: 1 1 66%;">
-                                    <label for="direccion" class="form-label m-0 fw-bold">DIRECCIÓN<span class="text-danger"> *</span></label><br>
-                                    <input type="text" class="form-control" name="direccion" id="direccion" placeholder="Introduzca su dirección" required maxlength="200" size="60">
-                                </div>
-                            </div>
 
-        <!------------------------------------------------------------------->
-
-        <!---- EDAD Y CURSO ------------------------------------------------->
-
-                            <div class="d-flex mt-3 w-100">
-                                <div class="pe-3" style="flex: 1 1 33%;">
-                                    <label for="edad" class="fw-bold">EDAD<span class="text-danger"> *</span></label><br>
-                                    <select class="form-select form-select-sm" name="edad" id="edad">
-                                        <option value="0">Menos de un año</option>
-                                        <option value="1">1 año</option>
-                                        <option value="2">2 años</option>
-                                        <option value="3">3 años</option>
-                                        <option value="4">4 años</option>
-                                        <option value="5">5 años</option>
-                                        <option value="6">6 años</option>
+                                <div class="mx-3" style="flex: 1 1 33%;">
+                                    <label for="tipo" class="fw-bold">PROGENITOR<span class="text-danger"> *</span></label><br>
+                                    <select class="form-select form-select-sm" style="height: 37px;"  name="tipo" id="tipo">
+                                        <option value="madre">Madre</option>
+                                        <option value="padre">Padre</option>
+                                        <option value="tutorlegal">Tutor legal</option>
                                     </select>
+                                </div>        
+
+                                <div class="ms-3" style="flex: 1 1 33%;">
+                                    <label for="numHijosTutor" class="form-label m-0 fw-bold">NÚMERO DE HIJOS</label><br>
+                                    <input class="w-100" style="height: 37px;" type="number" name="numHijosTutor" id="numHijosTutor" min="0" step="1" value="0">
                                 </div>
 
-                                <div class="ms-3" style="flex: 1 1 66%;">
-                                    <label for="curso" id="curso" class="fw-bold">CURSO<span class="text-danger"> *</span></label><br>
-                                    <div class="d-flex w-100 mt-1">
-                                        <div style="flex: 1 1 50%">
-                                            <input type="radio" name="curso" value="curso1"> Primer ciclo (0-3)
-                                        </div>
-                                        <div style="flex: 1 1 50%">
-                                            <input type="radio" name="curso" value="curso2"> Segundo ciclo (3-6)
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
 
-        <!------------------------------------------------------------------->
+    <!------------------------------------------------------------------->
+                        
+    <!---- DNI (NOMBRE DE USUARIO), CONTRASEÑA Y CORREO ----------------->
 
-        <!---- HORARIO ------------------------------------------------------>
+                            <div class="d-flex mt-3 w-100">
 
-                            <div class="mt-3">
-                                <p class="m-0 fw-bold">HORARIO</p>
-                                <div class="d-flex w-100 mt-1">
-
-                                    <!--label for="horario" class="fw-bold">HORARIO<span class="text-danger"> *</span></label><br>
-                                    <select class="form-select form-select-sm" name="horario" id="horario">
-                                        <option value="guarderia">Guardería</option>
-                                        <option value="aulaMatinal">Aula matinal</option>
-                                        <option value="comedor">Comedor</option>
-                                        <option value="siesta">Siesta</option>
-                                        <option value="extraescolares">Extraescolares</option>
-                                    </select-->
-                                    <input type="checkbox" name="guarderia" checked disabled value="guarderia"><label class="ps-1" for="guarderia" style="flex: 1 1 20%;">Guardería</label>
-                                    <input type="checkbox" name="aulaMatinal" value="aulaMatinal"><label class="ps-1" for="aulaMatinal" style="flex: 1 1 20%;">Aula matinal</label>
-                                    <input type="checkbox" name="comedor" value="comedor"><label class="ps-1" for="comedor" style="flex: 1 1 20%;">Comedor</label>
-                                    <input type="checkbox" name="siesta" value="siesta"><label class="ps-1" for="siesta" style="flex: 1 1 20%;">Siesta</label>
-                                    <input type="checkbox" name="extraescolares" value="extraescolares"><label class="ps-1" for="extraescolares" style="flex: 1 1 20%;">Extraescolares</label>
+                                <div class="me-3" style="flex: 1 1 32%;">
+                                    <label for="dniTutor" class="form-label text-warning mb-1 px-2 pb-0 fw-bold bg-black rounded-2"><i class="bi bi-person-fill"></i>&ensp;DNI (NOMBRE DE USUARIO)<span class="text-danger"> *</span></label><br>
+                                    <input type="text" class="form-control w-100" name="dniTutor" id="dniTutor" placeholder="Introduzca su DNI" required pattern="^[9|6|7][0-9]{8}$">
                                 </div>
-                            </div>
 
-        <!------------------------------------------------------------------->
+                                <div class="mx-3" style="flex: 1 1 28%;">
+                                    <label for="contraseniaTutor" class="form-label text-warning mb-1 px-2 pb-0 fw-bold bg-black rounded-2"><i class="bi bi-shield-lock-fill"></i>&ensp;CONTRASEÑA<span class="text-danger"> *</span></label><br>
+                                    <input type="password" class="form-control" name="contraseniaTutor" id="contraseniaTutor" placeholder="Introduzca su contraseña" required maxlength="20" size="20">
+                                </div>
+
+                                <div class="ms-3" style="flex: 1 1 40%;">
+                                    <label for="correoTutor" class="form-label text-warning mb-1 px-2 pb-0 fw-bold bg-black rounded-2"><i class="bi bi-envelope-fill"></i>&ensp;CORREO ELECTRÓNICO<span class="text-danger"> *</span></label><br>
+                                    <input type="text" class="form-control w-100" name="correoTutor" id="correoTutor" placeholder="Introduzca su correo electrónico" required>
+                                </div>
+
+                            </div>
+                        
+    <!------------------------------------------------------------------->
 
                         </div>
                     </fieldset>
-
-    <!------------------------------------------------------------------->
-
-                    <div class="mt-3 px-0 w-100">
-                        <button type="submit" class="btn border border-2 border-black btn-warning w-100 mt-2 mb-1 fw-bold" style="font-size: 23px;">ENVIAR DATOS</button>
-                    </div>
-
                 </form>
+
+<!------------------------------------------------------------------->
+
+                <!--div class="mt-5 px-0 w-100">
+                    <button type="submit" class="btn border border-2 border-black btn-warning w-100 mt-2 mb-1 fw-bold" style="font-size: 23px;">ENVIAR DATOS</button>
+                </div-->
 
             </main>
 
