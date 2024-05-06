@@ -2,6 +2,8 @@ package com.salesianostriana.dam.proyecto_guarderia.modelo;
 
 import java.time.LocalDate;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -20,7 +22,10 @@ public class Alumno {
 	private String apellido2;
 	private int edad;
 	private int curso;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate fechaNacimiento;
+	
 	private String direccion;
 	
 	

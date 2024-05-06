@@ -4,48 +4,110 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Registro</title>
-        <link rel="stylesheet" type="text/css" href="../CSS/inicioDeSesion.css">
+        <link rel="stylesheet" type="text/css" href="../static/css/inicioDeSesionYRegistro.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </head>
     <body class="fondo">
-        <div class="container-fluid my-5 col-4">
+        <div class="container-fluid my-5 col-9">
             <div class="row d-flex justify-content-center">
-                <div class="col">
 
 <!---- LOGO DE LA PÁGINA -------------------------------------------->
-                    
-                    <img src="../IMG/inicioDeSesion/logoParenteller.png" alt="Logo de Parenteller" class="img-fluid p-0 border border-2 border-secondary w-100">
-                    
+                <div class="d-flex col-6 align-middle justify-content-around">
+                    <img src="../static/img/general/logoParenteller.png" alt="Logo de Parenteller" class="img-fluid p-0 border border-2 border-black w-100">
+                </div>
 <!------------------------------------------------------------------->
 
 <!---- FORMULARIO DE REGISTRO --------------------------------------->
 
-                    <form action="pantallaInicio.html" class="container-fluid w-100">
-                        <fieldset class="row d-flex justify-content-center">
-                            <legend class="fw-bold text-white bg-warning border-top-0 border-2 border-secondary my-3 px-0 py-1 text-center" style="--bs-bg-opacity:.100; font-size: 35px;">REGISTRO</legend>
-                            <div class="p-3 border border-2 border-secondary bg-white pb-4">
+                <form action="pantallaInicio.html" class="container-fluid w-100">
+                    <fieldset class="row d-flex justify-content-center">
+                        <legend class="fw-bold text-white bg-warning border-top-0 border-2 border-black my-3 px-0 py-1 text-center" style="--bs-bg-opacity:.100; font-size: 35px;">REGISTRO</legend>
+                        <div class="p-4 border border-2 border-black bg-white pb-4 col-10">
 
-                                <label for="usuarioRegistro" class="form-label text-warning mb-1 px-2 pb-0 fw-bold bg-black rounded-2"><i class="bi bi-person-fill"></i>&ensp;USUARIO</label>
-                                <input type="text" class="form-control" name="usuarioRegistro" id="usuarioRegistro" placeholder="Usuario" required maxlenght="50" size="50">
+    <!---- NOMBRE Y APELLIDOS ------------------------------------------->
+                        
+                            <div class="d-flex w-100">
 
-                                <label for="contraseniaRegistro" class="form-label text-warning mb-1 px-2 mt-3 pb-0 fw-bold bg-black rounded-2"><i class="bi bi-shield-lock-fill"></i>&ensp;CONTRASEÑA</label>
-                                <input type="password" class="form-control" name="contraseniaRegistro" id="contraseniaRegistro" placeholder="Contraseña" required maxlength="20" size="20">
-
-                                <label for="correoRegistro" class="form-label text-warning mb-1 px-2 mt-3 pb-0 fw-bold bg-black rounded-2"><i class="bi bi-envelope-fill"></i>&ensp;CORREO ELECTRÓNICO</label>
-                                <input type="mail" class="form-control" name="correoRegistro" id="correoRegistro" placeholder="Correo electrónico" required>
-
-                                <div class="container mt-3 px-0">
-                                    <button type="submit" class="btn btn-warning w-100 mt-2 mb-1 fw-bold">REGISTRARME</button>
+                                <div class="me-3" style="flex: 1 1 33%;">
+                                    <label for="nombreTutor" class="form-label m-0 fw-bold">NOMBRE<span class="text-danger"> *</span></label><br>
+                                    <input type="text" class="form-control" name="nombreTutor" id="nombreTutor" placeholder="Introduzca su nombre" required maxlength="100" size="50">
                                 </div>
-                            </div>        
-                        </fieldset>
-                    </form>
+
+                                <div class="mx-3" style="flex: 1 1 33%;">
+                                    <label for="apellido1Tutor" class="form-label m-0 fw-bold">PRIMER APELLIDO<span class="text-danger"> *</span></label><br>
+                                    <input type="text" class="form-control" name="apellido1Tutor" id="apellido1Tutor" placeholder="Introduzca su primer apellido" required maxlength="100" size="50">
+                                </div>
+
+                                <div class="ms-3" style="flex: 1 1 33%;">
+                                    <label for="apellido2Tutor" class="form-label m-0 fw-bold">SEGUNDO APELLIDO</label><br>
+                                    <input type="text" class="form-control" name="apellido2Tutor" id="apellido2Tutor" placeholder="Introduzca su segundo apellido" maxlength="100" size="50">
+                                </div>    
+                        
+                            </div>
+                        
+    <!------------------------------------------------------------------->
+                        
+    <!---- TELÉFONO, TIPO DE PROGENITOR Y NÚMERO DE HIJOS --------------->
+                        
+                            <div class="d-flex mt-3 w-100">
+                        
+                                <div class="me-3" style="flex: 1 1 33%;">
+                                    <label for="telefonoTutor" class="form-label m-0 fw-bold">TELÉFONO<span class="text-danger"> *</span></label><br>
+                                    <input type="text" class="form-control w-100" name="telefonoTutor" id="telefonoTutor" placeholder="Introduzca el nº su teléfono" required pattern="^[9|6|7][0-9]{8}$">
+                                </div>
+
+                                <div class="mx-3" style="flex: 1 1 33%;">
+                                    <label for="tipo" class="fw-bold">PROGENITOR<span class="text-danger"> *</span></label><br>
+                                    <select class="form-select form-select-sm" style="height: 37px;"  name="tipo" id="tipo">
+                                        <option value="madre">Madre</option>
+                                        <option value="padre">Padre</option>
+                                        <option value="tutorlegal">Tutor legal</option>
+                                    </select>
+                                </div>        
+
+                                <div class="ms-3" style="flex: 1 1 33%;">
+                                    <label for="numHijosTutor" class="form-label m-0 fw-bold">NÚMERO DE HIJOS</label><br>
+                                    <input class="w-100" style="height: 37px;" type="number" name="numHijosTutor" id="numHijosTutor" min="0" step="1" value="0">
+                                </div>
+
+                            </div>
+
+    <!------------------------------------------------------------------->
+                        
+    <!---- DNI (NOMBRE DE USUARIO), CONTRASEÑA Y CORREO ----------------->
+
+                            <div class="d-flex mt-3 w-100">
+
+                                <div class="me-3" style="flex: 1 1 32%;">
+                                    <label for="dniTutor" class="form-label text-warning mb-1 px-2 pb-0 fw-bold bg-black rounded-2"><i class="bi bi-person-fill"></i>&ensp;DNI (NOMBRE DE USUARIO)<span class="text-danger"> *</span></label><br>
+                                    <input type="text" class="form-control w-100" name="dniTutor" id="dniTutor" placeholder="Introduzca su DNI" required pattern="^[9|6|7][0-9]{8}$">
+                                </div>
+
+                                <div class="mx-3" style="flex: 1 1 28%;">
+                                    <label for="contraseniaTutor" class="form-label text-warning mb-1 px-2 pb-0 fw-bold bg-black rounded-2"><i class="bi bi-shield-lock-fill"></i>&ensp;CONTRASEÑA<span class="text-danger"> *</span></label><br>
+                                    <input type="password" class="form-control" name="contraseniaTutor" id="contraseniaTutor" placeholder="Introduzca su contraseña" required maxlength="20" size="20">
+                                </div>
+
+                                <div class="ms-3" style="flex: 1 1 40%;">
+                                    <label for="correoTutor" class="form-label text-warning mb-1 px-2 pb-0 fw-bold bg-black rounded-2"><i class="bi bi-envelope-fill"></i>&ensp;CORREO ELECTRÓNICO<span class="text-danger"> *</span></label><br>
+                                    <input type="text" class="form-control w-100" name="correoTutor" id="correoTutor" placeholder="Introduzca su correo electrónico" required>
+                                </div>
+
+                            </div>
+                        
+    <!------------------------------------------------------------------->
+
+                            <div class="container mt-3 px-0">
+                                <button type="submit" class="btn btn-warning w-100 mt-2 mb-1 fw-bold">REGISTRARME</button>
+                            </div>
+                        </div>        
+                    </fieldset>
+                </form>
                     
 <!------------------------------------------------------------------->
 
-                </div>
             </div>
         </div>
     </body>
