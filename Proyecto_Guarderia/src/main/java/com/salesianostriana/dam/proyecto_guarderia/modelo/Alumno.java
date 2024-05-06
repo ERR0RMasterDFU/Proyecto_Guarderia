@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class Alumno {
 
 	@Id @GeneratedValue
-	private long codAlumno;
+	private long idAlumno;
 	
 	private String nombre;
 	private String apellido1;

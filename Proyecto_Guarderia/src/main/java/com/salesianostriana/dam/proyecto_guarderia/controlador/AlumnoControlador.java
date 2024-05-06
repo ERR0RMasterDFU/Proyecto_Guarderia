@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Alumno;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.AlumnoServicio;
 
-
-
 @Controller
 public class AlumnoControlador {
 
@@ -23,10 +21,23 @@ public class AlumnoControlador {
 		Alumno alumno = new Alumno();
 		model.addAttribute("formularioEnvioDeDatos", alumno);
 		
-		Alumno TutorLegal = new TutorLegal();
-		model.addAttribute("formularioEnvioDeDatos", tutorLegal);
-		
 		return "formularioEnvioDeDatos";
+	}
+	
+	@GetMapping("/formulario") {
+		
+		
+		
+	}
+	
+	
+	@PostMapping("/agegar")
+	public String loquesea(@ModelAttribute("usuario") Usuario usuario){
+		
+		usuario.setNombreUsuario(usuario.getDni)
+		
+		
+		
 	}
 	
 	

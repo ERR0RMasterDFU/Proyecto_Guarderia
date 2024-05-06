@@ -28,7 +28,7 @@
                     <li class="nav-item"><a class="nav-link text-black fw-bold estiloNavItem" href="alumnosUsuario.html"><i class="bi bi-person-fill"></i>&ensp;ALUMNOS</a></li>
                     <li class="nav-item"><a class="nav-link text-black fw-bold estiloNavItem" href="formularioEnvioDeDatos.html"><i class="bi bi-file-earmark-arrow-up-fill"></i>&ensp;RELLENAR Y ENVÍAR MATRÍCULA</a></li>
                     <li class="nav-item"><a class="nav-link text-black fw-bold estiloNavItem" href=""><i class="bi bi-heart-pulse-fill"></i>&ensp;MI PERFIL</a></li>
-                    <li class="nav-item flex-fill text-center"><a href="inicioDeSesion.html"><button type="button" class="btn btn-info text-dark border-dark border-2 fw-bold ms-3">INICIAR SESIÓN</button></a></li>
+                    <li class="nav-item flex-fill text-center"><a href="paginaPrincipalHistoria.html"><button type="button" class="btn btn-info text-dark border-dark border-2 fw-bold ms-3">CERRAR SESIÓN</button></a></li>
                 </ul>
             </div>
         </nav>
@@ -73,43 +73,38 @@
 
             <main class="m-3 px-5 pt-4 pb-5 bg-white" style="flex: 1 1 81%; width: 75%; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
                 
-                <div class="w-100 d-flex mb-4">
-                    <div class="py-0 me-4" style="flex: 1 1 33%;">
-                        <a type="button" href="" class="btn btn-success text-white fw-bold py-1 w-100"><h2 class="bi bi-person-fill-add m-0"></h2>&ensp;AÑADIR ALUMNO</a>
-                    </div>
-
-                    <div class="py-0 mx-4" style="flex: 1 1 33%;">
-                        <a type="button" href="" class="btn btn-success text-white fw-bold py-1 w-100"><h2 class="bi bi-person-fill-gear m-0"></h2>&ensp;MODIFICAR ALUMNO</a>
-                    </div>
-
-                    <div class="py-0 ms-4" style="flex: 1 1 33%;">
-                        <a type="button" href="" class="btn btn-success text-white fw-bold py-1 w-100"><h2 class="bi bi-person-fill-dash m-0"></h2>&ensp;ELIMINAR ALUMNO</a>
-                    </div>
+                <div class="py-0 my-4 w-100 ">
+                    <a type="button" href="" class="btn btn-success text-white fw-bold py-2 w-100" style="font-size: 25px;"><i class="bi bi-person-fill-add m-0"></i>&ensp;AÑADIR ALUMNO</a>
                 </div>
 
-                <table class="border border-2 border-dark w-100 text-center rounded-3">
+                <table class="border border-2 border-black w-100 text-center rounded-3">
                     <thead class="bg-warning">
-                        <tr class="fw-bold border border-2 border-dark text-black" style="font-size: 15px;">
-                            <th class="py-3 px-2" style="width: 5%;">FOTO</th>
-                            <th style="width: 13%;">NOMBRE</th>
-                            <th style="width: 13%;">PRIMER<br>APELLIDO</th>
-                            <th style="width: 13%;">SEGUNDO<br>APELLIDO</th>
+                        <tr class="fw-bold border border-2 border-black text-black" style="font-size: 15px;">
+                            <th class="border border-black border-2" style="width: 3%;">ID</th>
+                            <!--th class="py-3 px-2" style="width: 5%;">FOTO</th-->
+                            <th style="width: 10%;">NOMBRE</th>
+                            <th style="width: 10%;">PRIMER<br>APELLIDO</th>
+                            <th style="width: 10%;">SEGUNDO<br>APELLIDO</th>
                             <th style="width: 8%;">EDAD</th>
                             <th style="width: 8%;">CURSO</th>
+                            <th style="width: 14%;">FECHA DE<br>NACIMIENTO</th>
                             <th style="width: auto">DIRECCIÓN</th>
-                            <th style="width: 20%;">INFORMACIÓN EXTRA</th>
+                            <th class="border border-black border-2 py-3" style="width: 20%;">INFORMACIÓN EXTRA</th>
+                            <th class="border border-black border-2" style="width: 5%;">ADMIN</th>
                         </tr>
                     </thead>
                     <tbody style="font-size: 15px; background-color: rgb(252, 244, 199);">
-                        <tr>
-                            <td class="py-2 px-3"><img src="../static/img/alumno/fotoAlumnoRelleno.png"></td>
+                        <tr class="border-2 border-bottom border-black">
+                            <td class="border border-black border-2">1</td>
+                            <!--td class="py-2 px-3"><img src="../static/img/alumno/fotoAlumnoRelleno.png"></td-->
                             <td class="py-3 px-2">Luchintus Teofristastus</td>
                             <td class="py-3 px-2">Falla</td>
                             <td class="py-3 px-2">Urtiaga</td>
                             <td class="py-3 px-2">1 año</td>
                             <td class="py-3 px-2">1er Ciclo</td>
+                            <td class="py-3 px-2">30/06/1997</td>
                             <td class="py-3 px-2">ebveyvbeygvufbvetrbrfjngfj</td>
-                            <td class="py-2 px-3">
+                            <td class="py-2 px-3 border border-black border-2">
                                 <div class="py-0">
                                     <a type="button" href="../templates/formularioEnvioDeDatos.html" class="btn btn-primary text-white fw-bold w-100">HORARIO</a>
                                 </div>
@@ -117,16 +112,26 @@
                                     <a type="button" href="../templates/formularioEnvioDeDatos.html" class="btn btn-danger text-white fw-bold w-100">TUTOR LEGAL</a>
                                 </div>
                             </td>
+                            <td class="py-2 px-3 border border-black border-2 bg-opacity-25 bg-black">
+                                <div class="py-0">
+                                    <a type="button" href="../templates/formularioEnvioDeDatos.html" class="btn btn-success text-white fw-bold w-100"><i class="bi bi-person-fill-gear m-0" style="font-size: 20px;"></i></a>
+                                </div>
+                                <div class="mt-2 py-0">
+                                    <a type="button" href="../templates/formularioEnvioDeDatos.html" class="btn btn-success text-white fw-bold w-100"><i class="bi bi-person-fill-dash m-0" style="font-size: 20px;"></i></a>
+                                </div>
+                            </td>
                         </tr>
-                        <tr class="border border-2 border-dark">
-                            <td class="py-2 px-3"><img src="../static/img/alumno/fotoAlumnoRelleno.png"></td>
+                        <tr class="border-2 border-bottom border-black">
+                            <td class="border border-black border-2">1</td>
+                           <!--td class="py-2 px-3"><img src="../static/img/alumno/fotoAlumnoRelleno.png"></td-->
                             <td class="py-3 px-2">Luchintus Teofristastus</td>
                             <td class="py-3 px-2">Falla</td>
                             <td class="py-3 px-2">Urtiaga</td>
                             <td class="py-3 px-2">1 año</td>
-                            <td class="py-3 px-2">1ºDAM</td>
+                            <td class="py-3 px-2">1er Ciclo</td>
+                            <td class="py-3 px-2">30/06/1997</td>
                             <td class="py-3 px-2">ebveyvbeygvufbvetrbrfjngfj</td>
-                            <td class="py-2 px-3">
+                            <td class="py-2 px-3 border border-black border-2">
                                 <div class="py-0">
                                     <a type="button" href="../templates/formularioEnvioDeDatos.html" class="btn btn-primary text-white fw-bold w-100">HORARIO</a>
                                 </div>
@@ -134,21 +139,39 @@
                                     <a type="button" href="../templates/formularioEnvioDeDatos.html" class="btn btn-danger text-white fw-bold w-100">TUTOR LEGAL</a>
                                 </div>
                             </td>
+                            <td class="py-2 px-3 border border-black border-2 bg-opacity-25 bg-black">
+                                <div class="py-0">
+                                    <a type="button" href="../templates/formularioEnvioDeDatos.html" class="btn btn-success text-white fw-bold w-100"><i class="bi bi-person-fill-gear m-0" style="font-size: 20px;"></i></a>
+                                </div>
+                                <div class="mt-2 py-0">
+                                    <a type="button" href="../templates/formularioEnvioDeDatos.html" class="btn btn-success text-white fw-bold w-100"><i class="bi bi-person-fill-dash m-0" style="font-size: 20px;"></i></a>
+                                </div>
+                            </td>
                         </tr>
-                        <tr class="border border-2 border-dark">
-                            <td class="py-2 px-3"><img src="../static/img/alumno/fotoAlumnoRelleno.png"></td>
+                        <tr class="border-2 border-bottom border-black">
+                            <td class="border border-black border-2">1</td>
+                            <!--td class="py-2 px-3"><img src="../static/img/alumno/fotoAlumnoRelleno.png"></td-->
                             <td class="py-3 px-2">Luchintus Teofristastus</td>
                             <td class="py-3 px-2">Falla</td>
                             <td class="py-3 px-2">Urtiaga</td>
                             <td class="py-3 px-2">1 año</td>
-                            <td class="py-3 px-2">1ºDAM</td>
+                            <td class="py-3 px-2">1er Ciclo</td>
+                            <td class="py-3 px-2">30/06/1997</td>
                             <td class="py-3 px-2">ebveyvbeygvufbvetrbrfjngfj</td>
-                            <td class="py-2 px-3">
+                            <td class="py-2 px-3 border border-black border-2">
                                 <div class="py-0">
                                     <a type="button" href="../templates/formularioEnvioDeDatos.html" class="btn btn-primary text-white fw-bold w-100">HORARIO</a>
                                 </div>
                                 <div class="mt-2 py-0">
                                     <a type="button" href="../templates/formularioEnvioDeDatos.html" class="btn btn-danger text-white fw-bold w-100">TUTOR LEGAL</a>
+                                </div>
+                            </td>
+                            <td class="py-2 px-3 border border-black border-2 bg-opacity-25 bg-black">
+                                <div class="py-0">
+                                    <a type="button" href="../templates/formularioEnvioDeDatos.html" class="btn btn-success text-white fw-bold w-100"><i class="bi bi-person-fill-gear m-0" style="font-size: 20px;"></i></a>
+                                </div>
+                                <div class="mt-2 py-0">
+                                    <a type="button" href="../templates/formularioEnvioDeDatos.html" class="btn btn-success text-white fw-bold w-100"><i class="bi bi-person-fill-dash m-0" style="font-size: 20px;"></i></a>
                                 </div>
                             </td>
                         </tr>
@@ -163,7 +186,7 @@
 
 <!---- PIE DE PÁGINA / FOOTER --------------------------------------->
 
-        <footer class="text-center text-lg-start text-white" style="background-color: rgb(255, 140, 0);">
+        <footer class="text-center text-lg-start text-white w-100" style="background-color: rgb(255, 140, 0);">
 
             <div class="container p-4 pb-0">
                 <section>   
