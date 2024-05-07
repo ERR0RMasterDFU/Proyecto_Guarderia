@@ -36,9 +36,11 @@ public class AlumnoControlador {
 //ENVIAMOS LOS DATOS DEL FORMULARIO A LA BASE DE DATOS ---------------------------------------------
 	
 	@PostMapping("/envioMatriculaAlumno")
-	public String submit(@ModelAttribute("formularioEnvioDeDatos") Alumno alumno, Model model) {
+	public String submit(@ModelAttribute("formularioEnvioDeDatos") Alumno alumno) {
 		
-			model.addAttribute("alumno", alumno);			
+			servicio.save(alumno);		
+			
+		return "redirect:/matriculaAlumno";
 	}
 	
 //--------------------------------------------------------------------------------------------------
@@ -68,5 +70,3 @@ public class AlumnoControlador {
 	
 	
 	
-	
-}
