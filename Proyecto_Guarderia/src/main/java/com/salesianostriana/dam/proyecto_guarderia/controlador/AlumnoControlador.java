@@ -46,6 +46,19 @@ public class AlumnoControlador {
 //--------------------------------------------------------------------------------------------------
 	
 	
+//FORMULARIO DE MATRÍCULA RELLENO ------------------------------------------------------------------
+	
+	@GetMapping("matricularAlumno")
+	public String mostrarMatriculaRellena(Model model) {
+
+		model.addAttribute("matricularAlumnosAdmin", servicio.findAll());
+		
+		return "matricularAlumnosAdmin";
+	}
+	
+	
+	
+}
 	
 	
 	/*@PostMapping("/agregar")
@@ -53,19 +66,8 @@ public class AlumnoControlador {
 		
 		usuario.setNombreUsuario(usuario.getDni)*/
 		
-		
-		
-	}
 	
 	
-	/*@PostMapping("/addAlumno")
-	public String submit showMatricula(Model model) {
-		
-		Alumno alumno = new Alumno();
-		model.addAttribute("formularioEnvioDeDatos", alumno);
-		
-		return "formularioEnvioDeDatos";
-	}*/
 	
 	
 	
