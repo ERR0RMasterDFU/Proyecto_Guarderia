@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="es">
-    <head xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Profesores</title>
@@ -96,8 +96,8 @@
                             <td th:text="${profesor.nombre}" class="py-3 px-2"></td>
                             <td	th:text="${profesor.apellido1}" class="py-3 px-2"></td>
                             <td th:text="${profesor.apellido2}" class="py-3 px-2"></td>
-                            <td th:text="${profesor.curso}" class="py-3 px-2"></td>
-                            <td th:text="${profesor.encargado}" class="py-3 px-2"></td>
+                            <td th:text="${profesor.curso == 1} ? 'Primer ciclo (0-3)' : 'Segundo ciclo (3-6)'" class="py-3 px-2"></td>
+							<td th:text="${profesor.encargado}" class="py-3 px-2"></td>
                             <td class="py-2 px-3 border border-black border-2">
                                 <div class="py-0">
                                     <a type="button" href="@{ -- }" class="btn btn-dark text-white fw-bold w-100">LISTA DE ALUMNOS</a>

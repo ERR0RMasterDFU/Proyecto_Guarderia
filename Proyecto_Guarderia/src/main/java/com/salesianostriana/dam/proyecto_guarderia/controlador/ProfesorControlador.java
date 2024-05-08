@@ -40,7 +40,7 @@ public class ProfesorControlador {
 	public String mostrarFormularioProfesor(Model model) {
 		
 		Profesor profesor = new Profesor();
-		model.addAttribute("profesor", profesor );
+		model.addAttribute("profesor", profesor);
 		
 		return "admin/agregarProfesoresAdmin";
 	}	
@@ -54,7 +54,7 @@ public class ProfesorControlador {
 		
 			servicio.save(profesor);		
 			
-		return "redirect:/profesores";
+		return "redirect:/admin/profesores";
 	} 
 
 	
@@ -70,7 +70,7 @@ public class ProfesorControlador {
 			return "admin/agregarProfesoresAdmin";
 		} else {
 			
-			return "redirect:/Profesores";
+			return "redirect:/admin/profesores";
 		}
 	}
 	
@@ -83,7 +83,7 @@ public class ProfesorControlador {
 			
 		servicio.edit(profesor);		
 				
-		return "redirect:/profesores";
+		return "redirect:/admin/profesores";
 	} 
 	
 	
@@ -95,7 +95,7 @@ public class ProfesorControlador {
 		
 		servicio.deleteById(id);
 		
-		return "redirect:/profesores";
+		return "redirect:/admin/profesores";
 	}
 	
 	//----------------------------------------------------------------------------------------------
