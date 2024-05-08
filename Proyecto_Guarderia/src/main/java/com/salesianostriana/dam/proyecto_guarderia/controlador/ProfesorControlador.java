@@ -27,9 +27,9 @@ public class ProfesorControlador {
 	@GetMapping("/profesores")
 	public String mostrarProfesores(Model model) {
 		
-		model.addAttribute("profesor", servicio.findAll());
+		model.addAttribute("listaProfesores", servicio.findAll());
 	
-		return "profesoresAdmin";
+		return "admin/profesoresAdmin";
 	}
 
 
@@ -42,7 +42,7 @@ public class ProfesorControlador {
 		Profesor profesor = new Profesor();
 		model.addAttribute("agregarProfesoresAdmin", profesor );
 		
-		return "agregarProfesoresAdmin";
+		return "admin/agregarProfesoresAdmin";
 	}	
 
 	
@@ -67,7 +67,7 @@ public class ProfesorControlador {
 		if(servicio.findById(id)!= null) {
 			
 			model.addAttribute("profesor");
-			return "agregarProfesoresAdmin";
+			return "admin/agregarProfesoresAdmin";
 		} else {
 			
 			return "redirect:/Profesores";

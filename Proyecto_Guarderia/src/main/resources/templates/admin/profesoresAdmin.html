@@ -74,7 +74,7 @@
             <main class="m-3 px-5 pt-4 pb-5 bg-white" style="flex: 1 1 81%; width: 75%; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
                 
                 <div class="py-0 my-4 w-100 ">
-                    <a type="button" href="agregarProfesoresAdmin.html" class="btn btn-success text-white fw-bold py-2 w-100" style="font-size: 25px;"><i class="bi bi-person-fill-add m-0"></i>&ensp;AÑADIR PROFESOR</a>
+                    <a type="button" th:href="@{/nuevoProfesor}" class="btn btn-success text-white fw-bold py-2 w-100" style="font-size: 25px;"><i class="bi bi-person-fill-add m-0"></i>&ensp;AÑADIR PROFESOR</a>
                 </div>
 
                 <table class="border border-2 border-black w-100 text-center rounded-3">
@@ -91,16 +91,16 @@
                         </tr>
                     </thead>
                     <tbody style="font-size: 15px; background-color: rgb(252, 244, 199);">
-                        <tr class="border-2 border-bottom border-black">
-                            <td class="border border-black border-2">1</td>
-                            <td class="py-3 px-2">Luigi</td>
-                            <td class="py-3 px-2">Crocantini</td>
-                            <td class="py-3 px-2">Pistachionne</td>
-                            <td class="py-3 px-2">1er Ciclo</td>
-                            <td class="py-3 px-2">Siesta</td>
+                        <tr th:each="profesor : ${listaProfesores}" class="border-2 border-bottom border-black">
+                            <td th:text="${profesor.idProfesor}" class="border border-black border-2">1</td>
+                            <td th:text="${profesor.nombre}" class="py-3 px-2">Luigi</td>
+                            <td	th:text="${profesor.apellido1}" class="py-3 px-2">Crocantini</td	th:text="${profesor.apellido1}">
+                            <td th:text="${profesor.apellido2}" class="py-3 px-2">Pistachionne</td>
+                            <td th:text="${profesor.curso}" class="py-3 px-2">1er Ciclo</td>
+                            <td th:text="${profesor.encargado}" class="py-3 px-2">Siesta</td>
                             <td class="py-2 px-3 border border-black border-2">
                                 <div class="py-0">
-                                    <a type="button" href="" class="btn btn-dark text-white fw-bold w-100">LISTA DE ALUMNOS</a>
+                                    <a type="button" href="@{/}" class="btn btn-dark text-white fw-bold w-100">LISTA DE ALUMNOS</a>
                                 </div>
                             </td>
                             <td class="py-2 px-3 border border-black border-2 bg-opacity-25 bg-black">
@@ -117,11 +117,11 @@
 
             </main>
 
-<!------------------------------------------------------------------->
+<!-------------------------------------------------------------------->
 
         </div>
 
-<!---- PIE DE PÁGINA / FOOTER --------------------------------------->
+<!---- PIE DE PÁGINA / FOOTER ---------------------------------------->
 
         <footer class="text-center text-lg-start text-white w-100" style="background-color: rgb(255, 140, 0);">
 
@@ -182,7 +182,7 @@
 
         </footer>
 
-<!------------------------------------------------------------------->
+<!-------------------------------------------------------------------->
 
     </body>
 </html>
