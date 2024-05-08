@@ -40,7 +40,7 @@ public class ProfesorControlador {
 	public String mostrarFormularioProfesor(Model model) {
 		
 		Profesor profesor = new Profesor();
-		model.addAttribute("agregarProfesoresAdmin", profesor );
+		model.addAttribute("profesor", profesor );
 		
 		return "admin/agregarProfesoresAdmin";
 	}	
@@ -50,7 +50,7 @@ public class ProfesorControlador {
 // AÑADE EL NUEVO PROFESOR A LA BASE DE DATOS --------------------------------------------------
 	
 	@PostMapping("/nuevoProfesor/submit")
-	public String registrarNuevoProfesor(@ModelAttribute("agregarProfesoresAdmin") Profesor profesor) {
+	public String registrarNuevoProfesor(@ModelAttribute("profesor") Profesor profesor) {
 		
 			servicio.save(profesor);		
 			

@@ -22,5 +22,5 @@ public class Profesor {
 	private String curso; 
 	private String encargado;
 	
-	private List Alumno;
+	//private List Alumno;
 }
