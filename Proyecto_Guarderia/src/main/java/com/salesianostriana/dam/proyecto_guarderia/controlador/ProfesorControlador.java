@@ -1,5 +1,7 @@
 package com.salesianostriana.dam.proyecto_guarderia.controlador;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -62,38 +64,41 @@ public class ProfesorControlador {
 // MUESTRA EL FORMULARIO PARA AÑADIR PROFESORES RELLENO ----------------------------------------
 
 	@GetMapping("/editarProfesor/{id}")
-	public String mostrarFormularioEdicion(@PathVariable("id") long id, Model model) {
+	public String mostrarFormularioEdicion(@PathVariable("id") long idProfesor, Model model) {
 		
-		if(servicio.findById(id)!= null) {
+		Optional <Profesor> profesorEditar = servicio.findById(idProfesor);
+		
+		if(profesorEditar!= null) {
 			
-			model.addAttribute("profesor");
-			return "admin/agregarProfesoresAdmin";
+			model.addAttribute("profesor", profesorEditar);
+			return "admin/editarProfesoresAdmin";
 		} else {
 			
 			return "redirect:/admin/profesores";
 		}
 	}
 	
-
-		
+	
+	
 // GUARDA LOS NUEVOS CAMBIOS AL PROFESOR -------------------------------------------------------
 	
 	@PostMapping("/editarProfesor/submit")
-	public String registrarProfesorEditado(@ModelAttribute("agregarProfesoresAdmin") Profesor profesor) {
-			
-		servicio.edit(profesor);		
-				
+	public String registrarProfesorEditado(@ModelAttribute("profesor") Profesor profesor) {
+		
+		servicio.save(profesor);
+		
 		return "redirect:/admin/profesores";
-	} 
+		
+	}
 	
 	
 	
 // BORRA AL PROFESOR ELGIDO POR ID -------------------------------------------------------------
 
 	@GetMapping("/borrarProfesor/{id}")
-	public String borrarProfesor(@PathVariable("id") long id) {
+	public String borrarProfesor(@PathVariable("id") long idProfesor) {
 		
-		servicio.deleteById(id);
+		servicio.deleteById(idProfesor);
 		
 		return "redirect:/admin/profesores";
 	}
