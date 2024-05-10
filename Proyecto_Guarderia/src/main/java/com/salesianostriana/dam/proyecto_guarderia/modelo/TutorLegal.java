@@ -1,6 +1,7 @@
 package com.salesianostriana.dam.proyecto_guarderia.modelo;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -36,7 +37,7 @@ public class TutorLegal extends Usuario {
 	@EqualsAndHashCode.Exclude
 	@OneToMany(mappedBy="tutorLegal", fetch = FetchType.EAGER)
 	@Builder.Default
-	private List<Alumno> hijos; //= new ArrayList<>();
+	private List<Alumno> hijos = new ArrayList<>();
 		
 
 	// CONSTRUCTOR -------------------------------------------------------------------------------------------
@@ -57,7 +58,7 @@ public class TutorLegal extends Usuario {
 	
 	// CONSTRUCTOR SIN SEGUNDO APELLIDO ----------------------------------------------------------------------
 	
-	public TutorLegal(String nombre, String primerApellido, String dni, String numTelefono, int numHijos,
+	/*public TutorLegal(String nombre, String primerApellido, String dni, String numTelefono, int numHijos,
 			Progenitor progenitor, List<Alumno> hijos) {
 		super();
 		this.nombre = nombre;
@@ -72,7 +73,7 @@ public class TutorLegal extends Usuario {
 
 	public TutorLegal() {
 		super();
-	}
+	}*/
 	
 
 }

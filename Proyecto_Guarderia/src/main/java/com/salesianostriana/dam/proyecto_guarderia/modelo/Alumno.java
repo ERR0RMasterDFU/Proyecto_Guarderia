@@ -40,7 +40,7 @@ public class Alumno {
 	
 	// CONSTRUCTOR SIN SEGUNDO APELLIDO ------------------------------------------------------------------------------------------------------------
 	
-	public Alumno(String nombre, String apellido1, int edad, int curso, 
+	/*public Alumno(String nombre, String apellido1, int edad, int curso, 
 				  LocalDate fechaNacimiento, String direccion, TutorLegal tutorLegal) {
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
@@ -49,7 +49,7 @@ public class Alumno {
 		this.fechaNacimiento = fechaNacimiento;
 		this.direccion = direccion;
 		this.tutorLegal = tutorLegal;
-	}
+	}*/
 	
 	
 	// MÉTODOS HELPER ------------------------------------------------------------------------------------------------------------------------------
