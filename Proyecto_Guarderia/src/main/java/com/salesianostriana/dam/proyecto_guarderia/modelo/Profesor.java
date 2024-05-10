@@ -19,7 +19,7 @@ public class Profesor {
 	private String nombre;
 	private String apellido1;
 	private String apellido2;
-	private int curso; 
+	private boolean curso; 
 	private String encargado;
 	
 	//private List Alumno;

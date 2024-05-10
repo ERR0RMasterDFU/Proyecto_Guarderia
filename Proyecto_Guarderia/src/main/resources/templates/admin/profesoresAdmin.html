@@ -96,7 +96,7 @@
                             <td th:text="${profesor.nombre}" class="py-3 px-2"></td>
                             <td	th:text="${profesor.apellido1}" class="py-3 px-2"></td>
                             <td th:text="${profesor.apellido2}" class="py-3 px-2"></td>
-                            <td th:text="${profesor.curso == 1} ? 'Primer ciclo' : 'Segundo ciclo'" class="py-3 px-2"></td>
+                            <td th:text="${profesor.curso} ? 'Segundo ciclo' : 'Primer ciclo'" class="py-3 px-2"></td>
 							<td th:text="${profesor.encargado}" class="py-3 px-2"></td>
                             <td class="py-2 px-3 border border-black border-2">
                                 <div class="py-0">
