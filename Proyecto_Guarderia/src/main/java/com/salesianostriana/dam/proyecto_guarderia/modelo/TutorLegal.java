@@ -33,13 +33,28 @@ public class TutorLegal extends Usuario {
 	private int numHijos;
 	private Progenitor progenitor;
 	
+	
+	// ONE TO MANY (ALUMNO) -----------------------------------------------------------------------------------------------------------------
+
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
 	@OneToMany(mappedBy="tutorLegal", fetch = FetchType.EAGER)
 	@Builder.Default
 	private List<Alumno> hijos = new ArrayList<>();
+
+	
+	// ONE TO MANY (HORARIO) ----------------------------------------------------------------------------------------------------------------
+
+	@ToString.Exclude
+	@EqualsAndHashCode.Exclude
+	@OneToMany(mappedBy="tutorLegal", fetch = FetchType.EAGER)
+	@Builder.Default
+	private List<Horario> horarios = new ArrayList<>();
 		
 
+}
+	
+	
 	// CONSTRUCTOR -------------------------------------------------------------------------------------------
 	
 	/*public TutorLegal(long idUsuario, String username, String password, String email, String nombre,
@@ -74,6 +89,3 @@ public class TutorLegal extends Usuario {
 	public TutorLegal() {
 		super();
 	}*/
-	
-
-}

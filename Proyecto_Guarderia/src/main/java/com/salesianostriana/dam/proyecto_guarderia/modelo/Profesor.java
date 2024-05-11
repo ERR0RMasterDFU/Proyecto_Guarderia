@@ -10,7 +10,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity @Data @NoArgsConstructor @AllArgsConstructor @Builder
+@Entity 
+@Data 
+@NoArgsConstructor 
+@AllArgsConstructor 
+@Builder
 public class Profesor {
 
 	@Id @GeneratedValue

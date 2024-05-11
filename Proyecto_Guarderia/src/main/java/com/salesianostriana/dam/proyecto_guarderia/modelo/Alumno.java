@@ -7,6 +7,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,8 +36,18 @@ public class Alumno {
 	
 	private String direccion;
 	
+	
+	// MANY TO ONE (TUTOR LEGAL) ----------------------------------------------------------------------------------------------------------------
+	
 	@ManyToOne
 	private TutorLegal tutorLegal;
+	
+	
+	// MANY TO ONE (HORARIO) ----------------------------------------------------------------------------------------------------------------
+
+	@ManyToOne 
+    @JoinColumn(foreignKey = @ForeignKey(name="fk_alumno_horario"))
+    private Horario horario;
 	
 	
 	// CONSTRUCTOR SIN SEGUNDO APELLIDO ------------------------------------------------------------------------------------------------------------
@@ -54,14 +66,25 @@ public class Alumno {
 	
 	// MÉTODOS HELPER ------------------------------------------------------------------------------------------------------------------------------
 	
-	public void addToCurso(TutorLegal tutorLegal) {
+	public void agregarATutorLegal(TutorLegal tutorLegal) {
 		this.tutorLegal = tutorLegal;
 		tutorLegal.getHijos().add(this);
 	}
 	
-	public void removeFromCurso(TutorLegal tutorLegal) {
+	public void eliminarDeTutorLegal(TutorLegal tutorLegal) {
 		tutorLegal.getHijos().remove(this);
 		this.tutorLegal = null;		
+	}
+	
+	
+	public void agregarAHorario(Horario horario) {
+		this.horario = horario;
+		horario.getAlumnos().add(this);
+	}
+		
+	public void eliminarDeHorario(Horario horario) {
+		horario.getAlumnos().remove(this);
+		this.horario = null;		
 	}
 	
 }
