@@ -3,6 +3,7 @@ package com.salesianostriana.dam.proyecto_guarderia.modelo;
 import java.util.List;
 import java.util.ArrayList;
 
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinTable;
@@ -18,7 +19,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter @Setter
+@Getter 
+@Setter
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 @NoArgsConstructor
@@ -26,12 +28,12 @@ import lombok.ToString;
 @Entity
 @Builder
 @Data
+//@DiscriminatorValue("TutorLegal")
 public class TutorLegal extends Usuario {
 
 	private String nombre;
 	private String primerApellido;
 	private String segundoApellido;
-	private String dni;
 	private String numTelefono;
 	private int numHijos;
 	private Progenitor progenitor;
@@ -79,7 +81,7 @@ public class TutorLegal extends Usuario {
 	}
 
 
-}
+
 	
 	
 	// CONSTRUCTOR -------------------------------------------------------------------------------------------
@@ -91,13 +93,12 @@ public class TutorLegal extends Usuario {
 		this.nombre = nombre;
 		this.primerApellido = primerApellido;
 		this.segundoApellido = segundoApellido;
-		this.dni = dni;
 		this.numTelefono = numTelefono;
 		this.numHijos = numHijos;
 		this.progenitor = progenitor;
 	}*/
 	
-	
+}
 	// CONSTRUCTOR SIN SEGUNDO APELLIDO ----------------------------------------------------------------------
 	
 	/*public TutorLegal(String nombre, String primerApellido, String dni, String numTelefono, int numHijos,
@@ -111,6 +112,8 @@ public class TutorLegal extends Usuario {
 		this.progenitor = progenitor;
 		this.hijos = hijos;
 	}
+	
+	
 
 
 	public TutorLegal() {

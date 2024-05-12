@@ -72,6 +72,7 @@ public class ProfesorControlador {
 			
 			model.addAttribute("profesor", profesorEditar);
 			return "admin/editarProfesoresAdmin";
+			
 		} else {
 			
 			return "redirect:/admin/profesores";
