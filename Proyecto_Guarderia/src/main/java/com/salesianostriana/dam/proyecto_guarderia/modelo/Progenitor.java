@@ -6,7 +6,7 @@ public enum Progenitor {
 	
 	private final String displayValue;
 
-    Progenitor (String displayValue) {
+    private Progenitor (String displayValue) {
         this.displayValue = displayValue;
     }
 

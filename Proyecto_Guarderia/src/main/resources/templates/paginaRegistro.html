@@ -60,7 +60,7 @@
 
                                 <div class="mx-3" style="flex: 1 1 33%;">
                                     <label for="tipo" class="fw-bold">PROGENITOR<span class="text-danger"> *</span></label><br>
-                                    <select class="form-select form-select-sm" style="height: 37px;"  name="tipo" id="tipo">
+                                    <select class="form-select form-select-sm" style="height: 37px;"  name="progenitor" id="progenitor">
                                         <option th:each="progenitor : ${T(com.salesianostriana.dam.proyecto_guarderia.modelo.Progenitor).values()}" th:value="${progenitor}" th:text="${progenitor.displayValue}"></option>
                                     </select>
                                 </div>        

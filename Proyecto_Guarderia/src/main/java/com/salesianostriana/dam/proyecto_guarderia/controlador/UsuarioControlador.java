@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Usuario;
+import com.salesianostriana.dam.proyecto_guarderia.modelo.Profesor;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.TutorLegal;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.UsuarioServicio;
 
@@ -62,8 +63,8 @@ public class UsuarioControlador {
 	
 	@GetMapping("/miPerfil")
 	public String mostrarPerfilUsuarioTL(long idUsuario, Model model) {
-			
-		Optional <Usuario> tutorLegalEditar = servicio.findById(idUsuario);
+		
+		Optional<TutorLegal> tutorLegalEditar = servicio.findById(idUsuario);
 			
 		return "perfilUsuario";
 	}	
@@ -74,17 +75,29 @@ public class UsuarioControlador {
 	@GetMapping("/editarDatosTutorLegal/{id}")
 	public String mostrarFormularioEdicionUsuarioTL(@PathVariable("id") long idUsuario, Model model) {
 			
-		Optional <Usuario> tutorLegalEditar = servicio.findById(idUsuario);
+		Optional <TutorLegal> tutorLegalEditar = servicio.findById(idUsuario);
 		
-		if(tutorLegalEditar!= null) {
+		if(tutorLegalEditar.isPresent(){
 				
-			model.addAttribute("tutorlegal", tutorLegalEditar);
+			model.addAttribute("tutorlegal", tutorLegalEditar.get());
 			return "modificarPerfilUsuario";
 				
 		} else {
 				
-			return "perfilUsuario";
+			return "redirect:/usuario/miPerfil";
 		}
+	}
+	
+	Optional<Profesor> profesorEditar = servicio.findById(idProfesor);
+	
+	if(profesorEditar.isPresent()) {
+		
+		model.addAttribute("profesor", profesorEditar.get());
+		return "admin/agregarEditarProfesoresAdmin";
+		
+	} else {
+		
+		return "redirect:/admin/profesores";
 	}
 		
 		
