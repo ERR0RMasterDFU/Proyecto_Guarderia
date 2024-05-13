@@ -80,8 +80,6 @@ public class TutorLegal extends Usuario {
 		this.observaciones.remove(o);
 	}
 
-
-
 	
 	
 	// CONSTRUCTOR -------------------------------------------------------------------------------------------
@@ -98,6 +96,9 @@ public class TutorLegal extends Usuario {
 		this.progenitor = progenitor;
 	}*/
 	
+	
+	
+	
 }
 	// CONSTRUCTOR SIN SEGUNDO APELLIDO ----------------------------------------------------------------------
 	
@@ -113,9 +114,5 @@ public class TutorLegal extends Usuario {
 		this.hijos = hijos;
 	}
 	
-	
 
-
-	public TutorLegal() {
-		super();
 	}*/

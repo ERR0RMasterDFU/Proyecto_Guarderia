@@ -28,6 +28,8 @@ public abstract class Usuario {
 	private String password;
 	private String email;
 	
+	
+	
 }
 	
 

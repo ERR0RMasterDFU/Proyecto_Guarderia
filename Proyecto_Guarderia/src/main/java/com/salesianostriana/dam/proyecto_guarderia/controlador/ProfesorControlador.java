@@ -44,7 +44,7 @@ public class ProfesorControlador {
 		Profesor profesor = new Profesor();
 		model.addAttribute("profesor", profesor);
 		
-		return "admin/agregarProfesoresAdmin";
+		return "admin/agregarEditarProfesoresAdmin";
 	}	
 
 	
@@ -66,17 +66,18 @@ public class ProfesorControlador {
 	@GetMapping("/editarProfesor/{id}")
 	public String mostrarFormularioEdicion(@PathVariable("id") long idProfesor, Model model) {
 		
-		Optional <Profesor> profesorEditar = servicio.findById(idProfesor);
+		Optional<Profesor> profesorEditar = servicio.findById(idProfesor);
 		
-		if(profesorEditar!= null) {
+		if(profesorEditar.isPresent()) {
 			
-			model.addAttribute("profesor", profesorEditar);
-			return "admin/editarProfesoresAdmin";
+			model.addAttribute("profesor", profesorEditar.get());
+			return "admin/agregarEditarProfesoresAdmin";
 			
 		} else {
 			
 			return "redirect:/admin/profesores";
 		}
+		
 	}
 	
 	
@@ -84,12 +85,11 @@ public class ProfesorControlador {
 // GUARDA LOS NUEVOS CAMBIOS AL PROFESOR -------------------------------------------------------
 	
 	@PostMapping("/editarProfesor/submit")
-	public String registrarProfesorEditado(@ModelAttribute("profesor") Profesor profesor) {
+	public String registrarProfesorEditado (@ModelAttribute("profesor") Profesor profesor) {
 		
 		servicio.save(profesor);
 		
-		return "redirect:/admin/profesores";
-		
+		return "redirect:/admin/profesores";	
 	}
 	
 	

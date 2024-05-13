@@ -11,7 +11,7 @@ import com.salesianostriana.dam.proyecto_guarderia.modelo.Usuario;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.ProfesorServicio;
 
 @Controller
-//@RequestMapping("/admin")
+//@RequestMapping("/")
 public class InicioDeSesionControlador {
 
 	

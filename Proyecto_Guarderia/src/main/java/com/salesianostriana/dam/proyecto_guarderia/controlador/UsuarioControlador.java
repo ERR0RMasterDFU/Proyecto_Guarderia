@@ -50,7 +50,7 @@ public class UsuarioControlador {
 	// AÑADE EL NUEVO USUARIO / TUTOR LEGAL A LA BASE DE DATOS ----------------------------------------------------------------------------
 		
 	@PostMapping("nuevoUsuario/submit")
-	public String registrarNuevoUsuarioTL(@ModelAttribute("tutorLegal") Usuario utl) {
+	public String registrarNuevoUsuarioTL(@ModelAttribute("tutorLegal") TutorLegal utl) {
 			
 			servicio.save(utl);		
 				
