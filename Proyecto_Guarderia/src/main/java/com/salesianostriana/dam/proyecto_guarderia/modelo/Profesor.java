@@ -30,8 +30,7 @@ public class Profesor {
 	private String apellido2;
 	private boolean curso; 
 	private String encargado;
-	
-	//private List Alumno;
+	private List Alumno = new ArrayList();
 
 	// ONE TO MANY (ALUMNO) ----------------------------------------------------------------------------------------------------------------
 	

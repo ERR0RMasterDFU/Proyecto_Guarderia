@@ -12,13 +12,13 @@ import com.salesianostriana.dam.proyecto_guarderia.servicio.ProfesorServicio;
 
 @Controller
 //@RequestMapping("/")
-public class InicioDeSesionControlador {
+public class LoginControlador {
 
 	
 	// MUESTRA LA PÁGINA DE INICIO DE SESIÓN -------------------------------------------------------------------------------------
 	
-	@GetMapping("/inicioDeSesion")
-	public String mostrarProfesores() {
+	@GetMapping("/login")
+	public String mostrarPaginaLogin() {
 		
 		return "inicioDeSesion";
 	}

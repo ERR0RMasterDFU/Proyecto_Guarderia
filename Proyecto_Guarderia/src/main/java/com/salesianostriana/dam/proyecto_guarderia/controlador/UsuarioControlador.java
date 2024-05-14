@@ -17,7 +17,7 @@ import com.salesianostriana.dam.proyecto_guarderia.modelo.TutorLegal;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.UsuarioServicio;
 
 @Controller
-@RequestMapping("/usuario")
+@RequestMapping("/user")
 public class UsuarioControlador {
 
 
@@ -55,13 +55,13 @@ public class UsuarioControlador {
 			
 			servicio.save(utl);		
 				
-		return "redirect:/inicioDeSesion";
+		return "redirect:/login";
 	} 
 
 	
 	//MUESTRA LA PÁGINA DE LOS DATOS DE USUARIO (MI PERFIL) ---------------------------------------------------------------------
 	
-	@GetMapping("/miPerfil")
+	/*@GetMapping("/miPerfil")
 	public String mostrarPerfilUsuarioTL(long idUsuario, Model model) {
 		
 		Optional<TutorLegal> tutorLegalEditar = servicio.findById(idUsuario);
@@ -84,21 +84,10 @@ public class UsuarioControlador {
 				
 		} else {
 				
-			return "redirect:/usuario/miPerfil";
+			return "redirect:/user/miPerfil";
 		}
-	}
+	}*/
 	
-	Optional<Profesor> profesorEditar = servicio.findById(idProfesor);
-	
-	if(profesorEditar.isPresent()) {
-		
-		model.addAttribute("profesor", profesorEditar.get());
-		return "admin/agregarEditarProfesoresAdmin";
-		
-	} else {
-		
-		return "redirect:/admin/profesores";
-	}
 		
 		
 		

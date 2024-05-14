@@ -52,7 +52,7 @@ public class SeguridadConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		
 		http.authorizeHttpRequests(
-				(authz) -> authz.anyRequest().authenticated())
+				(authz) -> authz.requestMatchers("/css/**", "/js/**").permitAll().anyRequest().authenticated())
 			.formLogin((loginz) -> loginz
 					.loginPage("/login").permitAll());
 
