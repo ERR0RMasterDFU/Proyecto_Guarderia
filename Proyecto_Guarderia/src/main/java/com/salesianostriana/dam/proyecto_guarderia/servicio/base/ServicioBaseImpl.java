@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.salesianostriana.dam.proyecto_guarderia.repositorio.UsuarioRepositorio;
+
 public abstract class ServicioBaseImpl<T, ID, R extends JpaRepository<T, ID>> 
 implements ServicioBase<T, ID> { 
 
@@ -13,6 +15,10 @@ implements ServicioBase<T, ID> {
 	protected R repository;
 	
 	
+	public ServicioBaseImpl(UsuarioRepositorio repo) {
+		
+	}
+
 	@Override
 	public List<T> findAll() {
 		return repository.findAll();

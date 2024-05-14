@@ -1,7 +1,13 @@
 package com.salesianostriana.dam.proyecto_guarderia.modelo;
 
 import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
@@ -23,12 +29,11 @@ import lombok.ToString;
 @Setter
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Builder
 @Data
-//@DiscriminatorValue("TutorLegal")
 public class TutorLegal extends Usuario {
 
 	private String nombre;
@@ -37,6 +42,24 @@ public class TutorLegal extends Usuario {
 	private String numTelefono;
 	private int numHijos;
 	private Progenitor progenitor;
+	
+	
+	//CONSTRUCTOR ---------------------------------------------------------------------------------------------------------------
+	
+	public TutorLegal(long idUsuario, String dni, String password, String email, String nombre, String primerApellido,
+			String segundoApellido, String numTelefono, int numHijos, Progenitor progenitor, List<Alumno> hijos,
+			List<Horario> horarios, List<Observacion> observaciones) {
+		super(idUsuario, dni, password, email);
+		this.nombre = nombre;
+		this.primerApellido = primerApellido;
+		this.segundoApellido = segundoApellido;
+		this.numTelefono = numTelefono;
+		this.numHijos = numHijos;
+		this.progenitor = progenitor;
+		this.hijos = hijos;
+		this.horarios = horarios;
+		this.observaciones = observaciones;
+	}
 	
 	
 	// ONE TO MANY (ALUMNO) -----------------------------------------------------------------------------------------------------------------
@@ -81,38 +104,15 @@ public class TutorLegal extends Usuario {
 	}
 
 	
+	//SEGURIDAD (HERENCIA CON ROL USUARIO) --------------------------------------------------------------------------------------
 	
-	// CONSTRUCTOR -------------------------------------------------------------------------------------------
-	
-	/*public TutorLegal(long idUsuario, String username, String password, String email, String nombre,
-			String primerApellido, String segundoApellido, String dni, String numTelefono, int numHijos,
-			Progenitor progenitor) {
-		super(idUsuario, username, password, email);
-		this.nombre = nombre;
-		this.primerApellido = primerApellido;
-		this.segundoApellido = segundoApellido;
-		this.numTelefono = numTelefono;
-		this.numHijos = numHijos;
-		this.progenitor = progenitor;
-	}*/
-	
-	
-	
-	
-}
-	// CONSTRUCTOR SIN SEGUNDO APELLIDO ----------------------------------------------------------------------
-	
-	/*public TutorLegal(String nombre, String primerApellido, String dni, String numTelefono, int numHijos,
-			Progenitor progenitor, List<Alumno> hijos) {
-		super();
-		this.nombre = nombre;
-		this.primerApellido = primerApellido;
-		this.dni = dni;
-		this.numTelefono = numTelefono;
-		this.numHijos = numHijos;
-		this.progenitor = progenitor;
-		this.hijos = hijos;
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
 	}
 	
+}
 
-	}*/
+	
+
+	

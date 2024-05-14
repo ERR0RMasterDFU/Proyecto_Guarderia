@@ -17,11 +17,11 @@ public class LoginControlador {
 	
 	// MUESTRA LA PÁGINA DE INICIO DE SESIÓN -------------------------------------------------------------------------------------
 	
-	@GetMapping("/login")
+	/*@GetMapping("/login")
 	public String mostrarPaginaLogin() {
 		
 		return "inicioDeSesion";
-	}
+	}*/
 	
 }
 

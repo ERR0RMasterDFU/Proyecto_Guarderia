@@ -1,5 +1,11 @@
 package com.salesianostriana.dam.proyecto_guarderia.modelo;
 
+import java.util.Arrays;
+import java.util.Collection;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import lombok.EqualsAndHashCode;
@@ -15,9 +21,18 @@ import lombok.ToString;
 @Entity
 @DiscriminatorValue("Admin")
 public class Administrador extends Usuario {
-	
+
+
 	public Administrador(long idUsuario, String username, String password, String email) {
 		super(idUsuario, username, password, email);
+	}
+
+	
+	//SEGURIDAD (HERENCIA CON ROL ADMIN) -----------------------------------------------------------------------------------------
+	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
 	}
 	
 }
