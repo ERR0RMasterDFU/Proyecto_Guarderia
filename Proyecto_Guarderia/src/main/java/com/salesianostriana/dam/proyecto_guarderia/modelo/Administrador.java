@@ -8,11 +8,13 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
 @Getter @Setter
 @EqualsAndHashCode(callSuper = true)
@@ -20,6 +22,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @Entity
 @DiscriminatorValue("Admin")
+@SuperBuilder
+@Data
 public class Administrador extends Usuario {
 
 
@@ -34,5 +38,6 @@ public class Administrador extends Usuario {
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
 	}
-	
+
+
 }

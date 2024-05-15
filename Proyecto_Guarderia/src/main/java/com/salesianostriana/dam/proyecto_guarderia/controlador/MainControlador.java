@@ -35,4 +35,55 @@ public class MainControlador {
 		return "paginaPrincipalNormasYSeguridad";
 	}
 	
+	
+	/* 
+	 
+	EN REPOSITORIO -------------------------------------------------------------------------------------------------------------------
+	 
+	@Query("""
+	SELECT p
+	FROM Producto p
+	WHERE p.genero = :genero)
+	List<Producto> filtrarProductoPorGenero(@Param("genero") String genero);
+	 
+	@Query("""
+	SELECT p
+	FROM Producto p
+	WHERE p.genero = :genero AND p.categoria = :categoria)
+	List<Producto> filtrarProductoPorCategoria(@Param("genero") String genero, @Param("categoria") String categoria;
+	 
+	
+	
+	EN SERVICIO ----------------------------------------------------------------------------------------------------------------------
+	 
+	List <Producto> FiltrarProductoPorGenero (String genero){
+		List <Producto> obtenerPorductosfiltGen = repo.filtrarProductoPorGenero;
+		return obtenerPorductosfiltGen;
+	}
+	 
+	 
+	List <Producto> FiltrarProductoPorGenero (String genero, String categoria){
+		List <Producto> obtenerPorductosfiltCat = repo.filtrarProductoPorCategoria;
+		return obtenerPorductosfiltCat;
+	}
+	 
+	 
+	*/
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -10,9 +10,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
@@ -20,6 +22,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
+@Data
+@SuperBuilder
 public abstract class Usuario implements UserDetails {
 
 	/**
@@ -32,17 +36,12 @@ public abstract class Usuario implements UserDetails {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long idUsuario;
 	
-	@Column(unique = true)
-	private String dni;
+	//@Column(unique = true)
+	private String username;
 	
 	private String password;
 	private String email;
 	
-	
-	@Override
-	public String getUsername() {
-		return dni;
-	}
 
 	@Override
 	public boolean isAccountNonExpired() {
@@ -63,7 +62,7 @@ public abstract class Usuario implements UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
-	
+
 }
 	
 

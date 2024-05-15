@@ -24,7 +24,15 @@ public class UsuarioControlador {
 	@Autowired
 	private UsuarioServicio servicio;		
 
-		
+	// MUESTRA LA PÁGINA DE BIENVENIDA (USUARIO) -------------------------------------------------------------------------------------------------------------------------------
+	
+	@GetMapping("/")
+	public String muestraBienvenidaUsuario() {
+				
+		return "bienvenida";
+	}	
+	
+	
 	/* MUESTRA LA PÁGINA DE PROFESORES -------------------------------------------------------------
 		
 	@GetMapping("/profesores")

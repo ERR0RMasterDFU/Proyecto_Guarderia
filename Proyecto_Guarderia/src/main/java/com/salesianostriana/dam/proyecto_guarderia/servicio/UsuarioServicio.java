@@ -15,8 +15,8 @@ public class UsuarioServicio extends ServicioBaseImpl<Usuario, Long, UsuarioRepo
 		super(repo);
 	}
 	
-	public Optional<Usuario> buscarPorEmail(String dni) {
-		return repository.findFirstByDni(dni);
+	public Optional<Usuario> buscarPorDni(String username) {
+		return repository.findFirstByUsername(username);
 	}
 }
 
