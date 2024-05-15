@@ -11,33 +11,46 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.savedrequest.NullRequestCache;
+import org.springframework.security.web.savedrequest.RequestCache;
 
 import lombok.RequiredArgsConstructor;
 
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class SeguridadConfig extends WebSecurityConfiguration{
+public class SecurityConfig{
 
 		
 	private final UserDetailsService userDetailsService;
 	private final PasswordEncoder passwordEncoder;
-		
+	private final AuthenticationSuccessHandler authenticationSuccessHandler;
+
 	
-	/*@Bean
-    public InMemoryUserDetailsManager userDetailsService() {
-        UserDetails user = User.builder()
-        		.username("admin")
-        		.password("{noop}admin")
-        		.roles("ADMIN")
-            .build();
-        return new InMemoryUserDetailsManager(user);
-    }*/
+	@Bean
+	InMemoryUserDetailsManager userDetailsService() {
+		UserDetails admin = User.builder()
+				.username("admin")
+				.password("{noop}admin")
+				.roles("ADMIN", "USER").build();
+		
+		UserDetails user = User.builder()
+				.username("user")
+				.password("{noop}1234")
+				.roles("USER").build();
+		
+		UserDetails user2 = User.builder()
+				.username("user2")
+				.password("{noop}5678")
+				.roles("OTHER").build();
+		
+		
+		return new InMemoryUserDetailsManager(user, admin, user2);
+	}
 	
 	
 	
@@ -46,9 +59,7 @@ public class SeguridadConfig extends WebSecurityConfiguration{
 		
 		AuthenticationManagerBuilder authBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
 		
-		return authBuilder
-			.authenticationProvider(daoAuthenticationProvider())
-			.build();
+		return authBuilder.authenticationProvider(daoAuthenticationProvider()).build();
 	}
 	
 	
@@ -62,27 +73,39 @@ public class SeguridadConfig extends WebSecurityConfiguration{
 	}
 	
 	
+	
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http.authorizeHttpRequests(
-				(authz) -> authz.requestMatchers("/css/**", "/js/**", "/h2-console/**").permitAll()
+			
+			
+		// Establecemos como caché de petición NullRequestCache
+		// porque no nos interesa a qué URL iba el usuario, ya que
+		// con el mecanismo de redirección por rol estamos forzando
+		// que vaya a la página inicial según su tipo de rol.
+		//
+		// ROLE_USER -> /web/index
+		// ROLE_ADMIN -> /admin/index
+		//
+		RequestCache requestCache = new NullRequestCache();
+
+		http.authorizeHttpRequests((authz) -> authz
+				.requestMatchers("/css/**", "/js/**").permitAll()
 				.requestMatchers("/admin/**").hasRole("ADMIN")
 				.anyRequest().authenticated())
-		.formLogin((loginz) -> loginz
-				.loginPage("/login").permitAll())
-		.logout((logoutz) -> logoutz
-				.logoutUrl("/logout")
-				.logoutSuccessUrl("/login")
-				.permitAll());
+				.requestCache(cache -> cache.requestCache(requestCache))
+				.formLogin((loginz) -> loginz
+						.loginPage("/login")
+						.successHandler(authenticationSuccessHandler)
+						.permitAll());
 
-		// Añadimos esto para poder seguir accediendo a la consola de H2con Spring Security habilitado.
+		// Añadimos esto para poder seguir accediendo a la consola de H2 con Spring Security habilitado.
 		
 		http.csrf(csrfz -> csrfz.disable());
 		http.headers(headersz -> headersz
 			.frameOptions(frameOptionsz -> frameOptionsz.disable()));
-
-		return http.build();
-	}
 	
+			return http.build();
+	
+	}	
 	
 }

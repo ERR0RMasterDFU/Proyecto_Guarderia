@@ -7,13 +7,18 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
 
+	
+	//CAMBIAR SI HAY FALLO ----------------------------------------------------------------------------------------------------
+	
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/login");
 		registry.addViewController("/bienvenida");
-		registry.addViewController("/accesoDenegado");
+		registry.addViewController("/admin/bienvenidaAdmin");
 		
 	}
+	
+	//------------------------------------------------------------------------------------------------------------------------
 	
 	
 	//PARA GUARDAR USUARIO EN EL PERFIL ------------------------------------------------------------------------
