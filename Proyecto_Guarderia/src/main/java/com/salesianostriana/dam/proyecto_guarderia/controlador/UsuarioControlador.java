@@ -17,7 +17,7 @@ import com.salesianostriana.dam.proyecto_guarderia.modelo.TutorLegal;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.UsuarioServicio;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/usuario")
 public class UsuarioControlador {
 
 
@@ -26,11 +26,11 @@ public class UsuarioControlador {
 
 	// MUESTRA LA PÁGINA DE BIENVENIDA (USUARIO) -------------------------------------------------------------------------------------------------------------------------------
 	
-	@GetMapping("/")
+	/*@GetMapping("/")
 	public String muestraBienvenidaUsuario() {
 				
 		return "bienvenida";
-	}	
+	}*/
 	
 	
 	/* MUESTRA LA PÁGINA DE PROFESORES -------------------------------------------------------------

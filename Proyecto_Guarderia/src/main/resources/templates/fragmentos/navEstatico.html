@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+	<body>
+		
+		<nav class="navbar navbar-expand-sm bg-warning sticky-top border border-2 border-start-0 border-end-0 border-black">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#inicio"><img src="../static/img/general/logoParenteller.png" th:src="@{/img/general/logoParenteller.png}" width="160px" alt="Logo de Parenteller"></a>
+				<ul class="nav justify-content-end align-items-center" style="font-size: 18px;">
+		      		<li class="nav-item"><a class="nav-link text-black fw-bold estiloNavItem" href="paginaPrincipalHistoria.html" th:href="@{/}"><i class="bi bi-book-half"></i>&ensp;HISTORIA</a></li>
+		         	<li class="nav-item"><a class="nav-link text-black fw-bold estiloNavItem" href="paginaPrincipalEmplazamiento.html" th:href="@{/emplazamiento}"><i class="bi bi-house-heart"></i>&ensp;EMPLAZAMIENTO</a></li>
+		       		<li class="nav-item"><a class="nav-link text-black fw-bold estiloNavItem" href="paginaPrincipalNormasYSeguridad.html" th:href="@{/normas}"><i class="bi bi-heart-pulse-fill"></i>&ensp;NORMAS Y SEGURIDAD</a></li>
+		         	<li class="nav-item flex-fill text-center"><a href="inicioDeSesion.html" th:href="@{/login}"><button type="button" class="btn btn-info text-dark border-dark border-2 fw-bold ms-3">INICIAR SESIÓN</button></a></li>
+				</ul>
+			</div>
+		</nav>
+		
+	</body>
+</html>

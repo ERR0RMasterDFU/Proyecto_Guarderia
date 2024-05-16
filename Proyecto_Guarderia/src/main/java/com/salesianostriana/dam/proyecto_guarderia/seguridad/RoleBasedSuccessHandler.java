@@ -27,7 +27,7 @@ public class RoleBasedSuccessHandler implements AuthenticationSuccessHandler {
 	
 	//CAMBIAR SI HAY FALLO ----------------------------------------------------------------------------------------------------
 	
-	private final String ROLE_USER_URL = "bienvenida";
+	private final String ROLE_USER_URL = "/usuario/bienvenida";
 	private final String ROLE_ADMIN_URL = "/admin/bienvenidaAdmin";
 	private final String ROLE_DEFAULT_URL = "/login?error=Error en el rol asignado";
 	

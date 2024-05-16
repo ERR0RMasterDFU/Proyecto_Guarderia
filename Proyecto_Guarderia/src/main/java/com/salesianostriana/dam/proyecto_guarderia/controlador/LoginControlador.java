@@ -10,8 +10,8 @@ import com.salesianostriana.dam.proyecto_guarderia.modelo.TutorLegal;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Usuario;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.ProfesorServicio;
 
-@Controller
-//@RequestMapping("/")
+/*@Controller
+@RequestMapping("/")
 public class LoginControlador {
 
 	
@@ -26,4 +26,4 @@ public class LoginControlador {
 }
 
 
-}
+}*/

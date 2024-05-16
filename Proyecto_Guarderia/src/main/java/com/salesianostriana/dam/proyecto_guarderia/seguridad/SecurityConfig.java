@@ -89,14 +89,15 @@ public class SecurityConfig{
 		RequestCache requestCache = new NullRequestCache();
 
 		http.authorizeHttpRequests((authz) -> authz
-				.requestMatchers("/css/**", "/js/**").permitAll()
+				.requestMatchers("/css/**", "/img/**", "/js/**", "/", "/emplazamiento", "/normas").permitAll()
 				.requestMatchers("/admin/**").hasRole("ADMIN")
 				.anyRequest().authenticated())
 				.requestCache(cache -> cache.requestCache(requestCache))
 				.formLogin((loginz) -> loginz
 						.loginPage("/login")
 						.successHandler(authenticationSuccessHandler)
-						.permitAll());
+						.permitAll())
+				.logout((logout) -> logout.permitAll());
 
 		// Añadimos esto para poder seguir accediendo a la consola de H2 con Spring Security habilitado.
 		
