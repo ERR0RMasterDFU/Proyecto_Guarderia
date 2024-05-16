@@ -103,11 +103,16 @@ public class TutorLegal extends Usuario {
 	
 	//SEGURIDAD (HERENCIA CON ROL USUARIO) --------------------------------------------------------------------------------------
 	
-	@Override
+	/*@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
-	}
+	}*/
 	
+	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+	}
 	
 }
 

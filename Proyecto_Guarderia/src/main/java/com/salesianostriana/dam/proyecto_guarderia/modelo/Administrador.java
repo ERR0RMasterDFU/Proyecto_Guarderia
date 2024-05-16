@@ -2,6 +2,7 @@ package com.salesianostriana.dam.proyecto_guarderia.modelo;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -34,10 +35,15 @@ public class Administrador extends Usuario {
 	
 	//SEGURIDAD (HERENCIA CON ROL ADMIN) -----------------------------------------------------------------------------------------
 	
-	@Override
+	/*@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
+	}*/
+	
+	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
 	}
-
 
 }
