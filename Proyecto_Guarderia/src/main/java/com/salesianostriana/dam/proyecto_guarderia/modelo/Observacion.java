@@ -26,6 +26,7 @@ import lombok.ToString;
 public class Observacion {
 
 	@EmbeddedId
+	@Builder.Default
 	private ObservacionPK observacionPK = new ObservacionPK();
 		
 		

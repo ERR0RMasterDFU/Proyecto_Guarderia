@@ -94,7 +94,7 @@ public class ProfesorControlador {
 	
 	
 	
-// BORRA AL PROFESOR ELGIDO POR ID -------------------------------------------------------------
+	//BORRA AL PROFESOR ELGIDO POR ID -------------------------------------------------------------
 
 	@GetMapping("/borrarProfesor/{id}")
 	public String borrarProfesor(@PathVariable("id") long idProfesor) {
@@ -106,4 +106,30 @@ public class ProfesorControlador {
 	
 	//----------------------------------------------------------------------------------------------
 	
-}
+	
+	
+	//MODAL ELIMINAR -------------------------------------------------------------------------------------------------------------------------------------------------------
+	
+	/*@GetMapping("/borrarProfesor/{id}")
+	public String borrarProfesor(@PathVariable("id") long idProfesor, Model model) {
+		
+		Optional<Profesor> profesor = servicio.findById(idProfesor);
+		model.addAttribute("profesor", profesor);
+		
+		return "redirect:/admin/profesores";
+	
+	/*@GetMapping(value="/delete-student/{id}")
+	public String deleteStudentConfirmation(@PathVariable("id") long id, ModelMap model) {
+		Student student = studentService.getOneStudentById(id);
+		model.addAttribute("student", student);
+		return "modal/delete-student :: delete-student";*/
+	}
+	
+	
+	//MODAL ELIMINAR -------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	
+	
+
+	
+	

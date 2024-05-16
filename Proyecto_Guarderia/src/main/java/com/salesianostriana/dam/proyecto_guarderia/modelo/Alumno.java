@@ -30,11 +30,10 @@ public class Alumno {
 	private String apellido2;
 	private int edad;
 	private int curso;
+	private String direccion;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate fechaNacimiento;
-	
-	private String direccion;
 	
 	
 	// MANY TO ONE (TUTOR LEGAL) ----------------------------------------------------------------------------------------------------------------
@@ -48,20 +47,6 @@ public class Alumno {
 	@ManyToOne 
     @JoinColumn(foreignKey = @ForeignKey(name="fk_alumno_horario"))
     private Horario horario;
-	
-	
-	// CONSTRUCTOR SIN SEGUNDO APELLIDO ------------------------------------------------------------------------------------------------------------
-	
-	/*public Alumno(String nombre, String apellido1, int edad, int curso, 
-				  LocalDate fechaNacimiento, String direccion, TutorLegal tutorLegal) {
-		this.nombre = nombre;
-		this.apellido1 = apellido1;
-		this.edad = edad;
-		this.curso = curso;
-		this.fechaNacimiento = fechaNacimiento;
-		this.direccion = direccion;
-		this.tutorLegal = tutorLegal;
-	}*/
 	
 	
 	// MÉTODOS HELPER ------------------------------------------------------------------------------------------------------------------------------
