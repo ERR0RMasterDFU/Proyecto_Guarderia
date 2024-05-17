@@ -56,7 +56,7 @@ public class Observacion {
 	@Builder.Default
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
-	private List<TutorLegal> tutoresLegales = new ArrayList<>();
+	private List<Usuario> usuarios = new ArrayList<>();
 	
 	
 	// MÉTODOS HELPER ------------------------------------------------------------------------------------------------------------------------------

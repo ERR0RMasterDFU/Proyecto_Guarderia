@@ -1,6 +1,6 @@
 package com.salesianostriana.dam.proyecto_guarderia.servicio;
 
-import org.springframework.stereotype.Service;
+/*import org.springframework.stereotype.Service;
 
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Administrador;
 import com.salesianostriana.dam.proyecto_guarderia.repositorio.AdministradorRepositorio;
@@ -15,4 +15,4 @@ public class AdministradorServicio extends ServicioBaseImpl<Administrador, Long,
 		// TODO Auto-generated constructor stub
 	}
 
-}
+}*/

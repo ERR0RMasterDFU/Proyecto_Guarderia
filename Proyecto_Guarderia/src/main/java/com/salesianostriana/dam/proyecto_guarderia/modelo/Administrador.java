@@ -17,7 +17,7 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
-@Getter @Setter
+/*@Getter @Setter
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 @NoArgsConstructor
@@ -38,7 +38,7 @@ public class Administrador extends Usuario {
 	/*@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
-	}*/
+	}
 	
 	
 	@Override
@@ -46,4 +46,4 @@ public class Administrador extends Usuario {
 		return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
 	}
 
-}
+}*/

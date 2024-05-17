@@ -1,3 +1,3 @@
 
-let logoutBoton = document.getElementById('logoutForm');
-logoutBoton.submit();
+//let logoutBoton = document.getElementById('logoutForm');
+//logoutBoton.submit();

@@ -1,6 +1,6 @@
 package com.salesianostriana.dam.proyecto_guarderia.servicio;
 
-import java.util.List;
+/*import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -19,4 +19,4 @@ public class TutorLegalServicio extends ServicioBaseImpl<TutorLegal, Long, Tutor
 	}
 
 	List <Progenitor> lista;
-}
+}*/

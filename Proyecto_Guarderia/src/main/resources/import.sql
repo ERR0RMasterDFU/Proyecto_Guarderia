@@ -1,0 +1,1 @@
+INSERT INTO Usuario(id, username, dni, password, email, nombre, primerApellido, segundoApellido, numTelefono, numHijos, progenitor, admin) VALUES (1, 'admin', '30320264P', 'admin, admin@gmail.com', 'adminNombre', 'adminApellido1', 'adminApellido2', 676002840, 34, "Padre", 'true');

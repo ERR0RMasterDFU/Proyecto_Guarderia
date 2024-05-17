@@ -7,16 +7,9 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.security.web.savedrequest.NullRequestCache;
-import org.springframework.security.web.savedrequest.RequestCache;
 
 import lombok.RequiredArgsConstructor;
 
@@ -28,10 +21,10 @@ public class SecurityConfig{
 		
 	private final UserDetailsService userDetailsService;
 	private final PasswordEncoder passwordEncoder;
-	private final AuthenticationSuccessHandler authenticationSuccessHandler;
+	//private final AuthenticationSuccessHandler authenticationSuccessHandler;
 
 	
-	@Bean
+	/*@Bean
 	InMemoryUserDetailsManager userDetailsService() {
 		UserDetails admin = User.builder()
 				.username("admin")
@@ -50,7 +43,7 @@ public class SecurityConfig{
 		
 		
 		return new InMemoryUserDetailsManager(user, admin, user2);
-	}
+	}*/
 	
 	
 	
@@ -73,40 +66,24 @@ public class SecurityConfig{
 	}
 	
 	
-	
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-			
-			
-		// Establecemos como caché de petición NullRequestCache
-		// porque no nos interesa a qué URL iba el usuario, ya que
-		// con el mecanismo de redirección por rol estamos forzando
-		// que vaya a la página inicial según su tipo de rol.
-		//
-		// ROLE_USER -> /web/index
-		// ROLE_ADMIN -> /admin/index
-		//
-		RequestCache requestCache = new NullRequestCache();
+		http.authorizeHttpRequests(
+				(authz) -> authz.requestMatchers("/css/**", "/img/**", "/js/**", "/h2-console/**", "/", "/emplazamiento", "/normas").permitAll()
+					.requestMatchers("/admin/**").hasRole("ADMIN").anyRequest().authenticated())
+			.formLogin((loginz) -> loginz.loginPage("/login").defaultSuccessUrl("/usuario/bienvenida").permitAll())
+			.logout((logoutz) -> logoutz.logoutUrl("/logout").logoutSuccessUrl("/").permitAll());
 
-		http.authorizeHttpRequests((authz) -> authz
-				.requestMatchers("/css/**", "/img/**", "/js/**", "/", "/emplazamiento", "/normas").permitAll()
-				.requestMatchers("/admin/**").hasRole("ADMIN")
-				.anyRequest().authenticated())
-				.requestCache(cache -> cache.requestCache(requestCache))
-				.formLogin((loginz) -> loginz
-						.loginPage("/login")
-						.successHandler(authenticationSuccessHandler)
-						.permitAll())
-				.logout((logout) -> logout.permitAll());
-
-		// Añadimos esto para poder seguir accediendo a la consola de H2 con Spring Security habilitado.
 		
-		http.csrf(csrfz -> csrfz.disable());
-		http.headers(headersz -> headersz
-			.frameOptions(frameOptionsz -> frameOptionsz.disable()));
-	
-			return http.build();
-	
-	}	
-	
+	        // Añadimos esto para poder seguir accediendo a la consola de H2
+	        // con Spring Security habilitado.
+		
+	        http.csrf(csrfz -> csrfz.disable());
+	        http.headers(headersz -> headersz
+	                .frameOptions(frameOptionsz -> frameOptionsz.disable()));
+
+	        return http.build();
+	    }
+
+	    
 }

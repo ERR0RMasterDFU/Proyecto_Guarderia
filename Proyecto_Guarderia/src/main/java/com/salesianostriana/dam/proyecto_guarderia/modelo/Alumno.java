@@ -39,7 +39,7 @@ public class Alumno {
 	// MANY TO ONE (TUTOR LEGAL) ----------------------------------------------------------------------------------------------------------------
 	
 	@ManyToOne
-	private TutorLegal tutorLegal;
+	private Usuario usuario;
 	
 	
 	// MANY TO ONE (HORARIO) ----------------------------------------------------------------------------------------------------------------
@@ -51,14 +51,14 @@ public class Alumno {
 	
 	// MÉTODOS HELPER ------------------------------------------------------------------------------------------------------------------------------
 	
-	public void agregarATutorLegal(TutorLegal tutorLegal) {
-		this.tutorLegal = tutorLegal;
-		tutorLegal.getHijos().add(this);
+	public void agregarATutorLegal(Usuario usuario) {
+		this.usuario = usuario;
+		usuario.getHijos().add(this);
 	}
 	
-	public void eliminarDeTutorLegal(TutorLegal tutorLegal) {
-		tutorLegal.getHijos().remove(this);
-		this.tutorLegal = null;		
+	public void eliminarDeTutorLegal(Usuario usuario) {
+		usuario.getHijos().remove(this);
+		this.usuario = null;		
 	}
 	
 	

@@ -1,65 +1,168 @@
 package com.salesianostriana.dam.proyecto_guarderia.modelo;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
-@Getter
+@Getter 
 @Setter
-@Entity
+/*@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)*/
 @AllArgsConstructor
 @NoArgsConstructor
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+//@SuperBuilder
+@Builder
 @Data
-@SuperBuilder
-public abstract class Usuario implements UserDetails {
+public class Usuario implements UserDetails {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long idUsuario;
+	@Id @GeneratedValue
+	private long id;
 	
-	//@Column(unique = true)
 	private String username;
-	
+	private String dni;
 	private String password;
 	private String email;
 	
+	private String nombre;
+	private String primerApellido;
+	private String segundoApellido;
+	private String numTelefono;
+	private int numHijos;
+	private Progenitor progenitor;
+	
+	private boolean admin;
+	
+	
+	//CONSTRUCTOR ---------------------------------------------------------------------------------------------------------------
+	
+	/*public TutorLegal(long idUsuario, String dni, String password, String email, String nombre, String primerApellido,
+			String segundoApellido, String numTelefono, int numHijos, Progenitor progenitor, List<Alumno> hijos,
+			List<Horario> horarios, List<Observacion> observaciones) {
+		super(idUsuario, dni, password, email);
+		this.nombre = nombre;
+		this.primerApellido = primerApellido;
+		this.segundoApellido = segundoApellido;
+		this.numTelefono = numTelefono;
+		this.numHijos = numHijos;
+		this.progenitor = progenitor;
+		this.hijos = hijos;
+		this.horarios = horarios;
+		this.observaciones = observaciones;
+	}*/
+	
+	
+	// ONE TO MANY (ALUMNO) -----------------------------------------------------------------------------------------------------------------
+
+	@ToString.Exclude
+	@EqualsAndHashCode.Exclude
+	@OneToMany(mappedBy="usuario", fetch = FetchType.EAGER)
+	@Builder.Default
+	private List<Alumno> hijos = new ArrayList<>();
+
+	
+	// ONE TO MANY (HORARIO) ----------------------------------------------------------------------------------------------------------------
+
+	@ToString.Exclude
+	@EqualsAndHashCode.Exclude
+	@OneToMany(mappedBy="usuario", fetch = FetchType.EAGER)
+	@Builder.Default
+	private List<Horario> horarios = new ArrayList<>();
+	
+	
+	// MANY TO MANY (OBSERVACIÓN) ----------------------------------------------------------------------------------------------------------------
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	/*@JoinTable(
+		name = "matricula",
+		joinColumns = @JoinColumn(name="tutor_legal_id"),
+		inverseJoinColumns = @JoinColumn(name="observacion_id")
+	)*/
+	@Builder.Default
+	private List<Observacion> observaciones = new ArrayList<>();
+
+	
+	// Alumno - Asignaturas
+	public void agregarObservacion(Observacion o) {
+		this.observaciones.add(o);
+		o.getUsuarios().add(this);
+	}
+	
+	public void removeAsignatura(Observacion o) {
+		o.getUsuarios().remove(this);
+		this.observaciones.remove(o);
+	}
+
+	
+	//SEGURIDAD (HERENCIA CON ROL USUARIO) --------------------------------------------------------------------------------------
+	
+	/*@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+	}*/
+	
+	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		String role = "ROLE_";
+		role += (admin) ? "ADMIN" : "USER";
+		return List.of(new SimpleGrantedAuthority(role));
+	}	
+
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
 	public boolean isAccountNonExpired() {
-		return true;
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		return true;
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		return true;
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	@Override
 	public boolean isEnabled() {
-		return true;
+		// TODO Auto-generated method stub
+		return false;
 	}
-
+	
 }
+
 	
 
-
-
-
+	

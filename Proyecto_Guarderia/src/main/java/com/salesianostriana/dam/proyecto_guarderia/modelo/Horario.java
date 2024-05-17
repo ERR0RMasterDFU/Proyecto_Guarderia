@@ -37,7 +37,7 @@ public class Horario {
 	// MANY TO ONE (TUTOR LEGAL) ----------------------------------------------------------------------------------------------------------------
 
 	@ManyToOne
-	private TutorLegal tutorLegal;
+	private Usuario usuario;
 
 	
 	// ONE TO MANY (ALUMNO) ----------------------------------------------------------------------------------------------------------------
@@ -52,14 +52,14 @@ public class Horario {
 	
 	// MÉTODOS HELPER ------------------------------------------------------------------------------------------------------------------------------
 
-	public void agregarATutorLegal(TutorLegal tutorLegal) {
-		this.tutorLegal = tutorLegal;
-		tutorLegal.getHorarios().add(this);
+	public void agregarATutorLegal(Usuario usuario) {
+		this.usuario = usuario;
+		usuario.getHorarios().add(this);
 	}
 	
-	public void eliminarDeTutorLegal(TutorLegal tutorLegal) {
-		tutorLegal.getHorarios().remove(this);
-		this.tutorLegal = null;		
+	public void eliminarDeTutorLegal(Usuario usuario) {
+		usuario.getHorarios().remove(this);
+		this.usuario = null;		
 	}
 }
 
