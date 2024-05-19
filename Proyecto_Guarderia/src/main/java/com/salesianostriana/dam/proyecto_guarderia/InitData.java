@@ -1,4 +1,4 @@
-package com.salesianostriana.dam.proyecto_guarderia;
+/*package com.salesianostriana.dam.proyecto_guarderia;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Usuario;
-/*import com.salesianostriana.dam.proyecto_guarderia.modelo.TutorLegal;
-import com.salesianostriana.dam.proyecto_guarderia.repositorio.TutorLegalRepositorio;*/
+//import com.salesianostriana.dam.proyecto_guarderia.modelo.TutorLegal;
+//import com.salesianostriana.dam.proyecto_guarderia.repositorio.TutorLegalRepositorio;
 import com.salesianostriana.dam.proyecto_guarderia.repositorio.UsuarioRepositorio;
 
 import jakarta.annotation.PostConstruct;
@@ -40,4 +40,4 @@ public class InitData {
 		
 	}
 
-}
+}*/

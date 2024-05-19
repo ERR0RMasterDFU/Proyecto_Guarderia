@@ -11,6 +11,26 @@
     </head>
     <body class="fondo">
 
+<!---- CABECERA / HEADER -------------------------------------------->
+		
+		<header th:replace="~{fragmentos/header::header}"></header>
+		
+<!------------------------------------------------------------------->
+		
+<!---- MENÚ NAVEGABLE / NAVBAR -------------------------------------->
+		    
+		<nav th:replace="~{fragmentos/navUsuario::nav}"></nav>
+		
+<!-------------------------------------------------------------------->
+		
+		<div class="container-fluid w-100 d-flex p-0">
+		
+<!---- SECCIÓN DE ANUNCIOS / ASIDE ---------------------------------->
+		
+			<aside th:replace="~{fragmentos/asideUsuario::aside}"></aside>
+		
+<!------------------------------------------------------------------->
+		
 <!---- CONTENIDO DE LA PÁGINA --------------------------------------->
 
         <div class="container col-8 justify-content-center mt-5 bg-white p-5 border border-1 border-black">
@@ -103,7 +123,7 @@
                     <button type="submit" class="btn border border-2 border-black btn-success text-white w-100 mt-2 mb-1 fw-bold" style="font-size: 23px;">GUARDAR CAMBIOS</button>
                 </div>
 
-<!------------------------------------------------------------------->
+<!-------------------------------------------------------------------->
 
         </div>
 

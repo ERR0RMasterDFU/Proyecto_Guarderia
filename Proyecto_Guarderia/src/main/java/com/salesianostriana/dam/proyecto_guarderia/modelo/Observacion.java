@@ -50,7 +50,7 @@ public class Observacion {
 	private String mensaje;
 
 	
-	// MANY TO MANY (TUTOR LEGAL) ----------------------------------------------------------------------------------------------------------------
+	// MANY TO MANY (TUTOR LEGAL) -------------------------------------------------------------------------------------
 
 	@ManyToMany(mappedBy="observaciones", fetch = FetchType.EAGER)
 	@Builder.Default
@@ -59,7 +59,7 @@ public class Observacion {
 	private List<Usuario> usuarios = new ArrayList<>();
 	
 	
-	// MÉTODOS HELPER ------------------------------------------------------------------------------------------------------------------------------
+	// MÉTODOS HELPER -------------------------------------------------------------------------------------------------
 
 	public void agregarAProfesor(Profesor p) {
 		p.getObservaciones().add(this);

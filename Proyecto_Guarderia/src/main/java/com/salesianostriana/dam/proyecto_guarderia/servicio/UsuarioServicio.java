@@ -14,7 +14,7 @@ public class UsuarioServicio extends ServicioBaseImpl<Usuario, Long, UsuarioRepo
 	public UsuarioServicio(UsuarioRepositorio repo) {
 		super(repo);
 	}
-	
+
 	public Optional<Usuario> buscarPorDni(String username) {
 		return repository.findFirstByUsername(username);
 	}

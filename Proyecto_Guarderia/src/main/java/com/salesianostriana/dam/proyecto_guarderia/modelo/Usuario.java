@@ -5,9 +5,9 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import org.springframework.security.core.GrantedAuthority;
+/*import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetails;*/
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -35,7 +35,7 @@ import lombok.experimental.SuperBuilder;
 //@SuperBuilder
 @Builder
 @Data
-public class Usuario implements UserDetails {
+public class Usuario /*implements UserDetails*/ {
 
 	@Id @GeneratedValue
 	private long id;
@@ -53,24 +53,6 @@ public class Usuario implements UserDetails {
 	private Progenitor progenitor;
 	
 	private boolean admin;
-	
-	
-	//CONSTRUCTOR ---------------------------------------------------------------------------------------------------------------
-	
-	/*public TutorLegal(long idUsuario, String dni, String password, String email, String nombre, String primerApellido,
-			String segundoApellido, String numTelefono, int numHijos, Progenitor progenitor, List<Alumno> hijos,
-			List<Horario> horarios, List<Observacion> observaciones) {
-		super(idUsuario, dni, password, email);
-		this.nombre = nombre;
-		this.primerApellido = primerApellido;
-		this.segundoApellido = segundoApellido;
-		this.numTelefono = numTelefono;
-		this.numHijos = numHijos;
-		this.progenitor = progenitor;
-		this.hijos = hijos;
-		this.horarios = horarios;
-		this.observaciones = observaciones;
-	}*/
 	
 	
 	// ONE TO MANY (ALUMNO) -----------------------------------------------------------------------------------------------------------------
@@ -123,7 +105,7 @@ public class Usuario implements UserDetails {
 	}*/
 	
 	
-	@Override
+	/*@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		String role = "ROLE_";
 		role += (admin) ? "ADMIN" : "USER";
@@ -159,7 +141,7 @@ public class Usuario implements UserDetails {
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
 		return false;
-	}
+	}*/
 	
 }
 

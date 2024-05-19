@@ -24,7 +24,7 @@ public class ProfesorControlador {
 	
 
 	
-// MUESTRA LA PÁGINA DE PROFESORES -------------------------------------------------------------
+// MUESTRA LA PÁGINA DE PROFESORES -----------------------------------------------------------------------------------
 	
 	@GetMapping("/profesores")
 	public String mostrarProfesores(Model model) {
@@ -36,7 +36,7 @@ public class ProfesorControlador {
 
 
 	
-// MUESTRA EL FORMULARIO PARA AÑADIR PROFESORES VACÍO ------------------------------------------
+// MUESTRA EL FORMULARIO PARA AÑADIR PROFESORES VACÍO ----------------------------------------------------------------
 	
 	@GetMapping("/nuevoProfesor")
 	public String mostrarFormularioProfesor(Model model) {
@@ -49,7 +49,7 @@ public class ProfesorControlador {
 
 	
 	
-// AÑADE EL NUEVO PROFESOR A LA BASE DE DATOS --------------------------------------------------
+// AÑADE EL NUEVO PROFESOR A LA BASE DE DATOS ------------------------------------------------------------------------
 	
 	@PostMapping("/nuevoProfesor/submit")
 	public String registrarNuevoProfesor(@ModelAttribute("profesor") Profesor profesor) {
@@ -61,7 +61,7 @@ public class ProfesorControlador {
 
 	
 	
-// MUESTRA EL FORMULARIO PARA AÑADIR PROFESORES RELLENO ----------------------------------------
+// MUESTRA EL FORMULARIO PARA AÑADIR PROFESORES RELLENO --------------------------------------------------------------
 
 	@GetMapping("/editarProfesor/{id}")
 	public String mostrarFormularioEdicion(@PathVariable("id") long idProfesor, Model model) {
@@ -82,7 +82,7 @@ public class ProfesorControlador {
 	
 	
 	
-// GUARDA LOS NUEVOS CAMBIOS AL PROFESOR -------------------------------------------------------
+// GUARDA LOS NUEVOS CAMBIOS AL PROFESOR -----------------------------------------------------------------------------
 	
 	@PostMapping("/editarProfesor/submit")
 	public String registrarProfesorEditado (@ModelAttribute("profesor") Profesor profesor) {
@@ -94,7 +94,7 @@ public class ProfesorControlador {
 	
 	
 	
-	//BORRA AL PROFESOR ELGIDO POR ID -------------------------------------------------------------
+//BORRA AL PROFESOR ELGIDO POR ID ------------------------------------------------------------------------------------
 
 	@GetMapping("/borrarProfesor/{id}")
 	public String borrarProfesor(@PathVariable("id") long idProfesor) {
@@ -106,30 +106,5 @@ public class ProfesorControlador {
 	
 	//----------------------------------------------------------------------------------------------
 	
-	
-	
-	//MODAL ELIMINAR -------------------------------------------------------------------------------------------------------------------------------------------------------
-	
-	/*@GetMapping("/borrarProfesor/{id}")
-	public String borrarProfesor(@PathVariable("id") long idProfesor, Model model) {
-		
-		Optional<Profesor> profesor = servicio.findById(idProfesor);
-		model.addAttribute("profesor", profesor);
-		
-		return "redirect:/admin/profesores";
-	
-	/*@GetMapping(value="/delete-student/{id}")
-	public String deleteStudentConfirmation(@PathVariable("id") long id, ModelMap model) {
-		Student student = studentService.getOneStudentById(id);
-		model.addAttribute("student", student);
-		return "modal/delete-student :: delete-student";*/
-	}
-	
-	
-	//MODAL ELIMINAR -------------------------------------------------------------------------------------------------------------------------------------------------------
 
-	
-	
-
-	
-	
+}

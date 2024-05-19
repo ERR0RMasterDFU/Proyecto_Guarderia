@@ -1,6 +1,6 @@
 package com.salesianostriana.dam.proyecto_guarderia.seguridad;
 
-import org.springframework.context.annotation.Bean;
+/*import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -43,7 +43,7 @@ public class SecurityConfig{
 		
 		
 		return new InMemoryUserDetailsManager(user, admin, user2);
-	}*/
+	}
 	
 	
 	
@@ -69,8 +69,9 @@ public class SecurityConfig{
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests(
-				(authz) -> authz.requestMatchers("/css/**", "/img/**", "/js/**", "/h2-console/**", "/", "/emplazamiento", "/normas").permitAll()
-					.requestMatchers("/admin/**").hasRole("ADMIN").anyRequest().authenticated())
+				(authz) -> authz.requestMatchers("/css/**", "/img/**", "/js/**", "/h2-console/**", "/", "/emplazamiento", "/normas", "/usuario/registro").permitAll()
+					.requestMatchers("/admin/**").hasRole("ADMIN").anyRequest().authenticated()
+					.requestMatchers("/usario/**").hasRole("USER").anyRequest().authenticated())
 			.formLogin((loginz) -> loginz.loginPage("/login").defaultSuccessUrl("/usuario/bienvenida").permitAll())
 			.logout((logoutz) -> logoutz.logoutUrl("/logout").logoutSuccessUrl("/").permitAll());
 
@@ -86,4 +87,4 @@ public class SecurityConfig{
 	    }
 
 	    
-}
+}*/

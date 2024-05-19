@@ -11,19 +11,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.salesianostriana.dam.proyecto_guarderia.modelo.Progenitor;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Usuario;
-import com.salesianostriana.dam.proyecto_guarderia.modelo.Profesor;
-//import com.salesianostriana.dam.proyecto_guarderia.modelo.TutorLegal;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.UsuarioServicio;
+
+
 
 @Controller
 @RequestMapping("/usuario")
 public class UsuarioControlador {
 
-
 	@Autowired
-	private UsuarioServicio servicio;		
-
+	private UsuarioServicio servicio;
 	
 	/* MUESTRA LA PÁGINA DE PROFESORES -------------------------------------------------------------
 		
@@ -98,9 +97,12 @@ public class UsuarioControlador {
 			@GetMapping("/registro")
 			public String mostrarFormularioRegistro(Model model) {
 					
+				model.addAttribute("listaTipoProgenitor", Progenitor.values());	
+				
 				Usuario utl = new Usuario();
 				model.addAttribute("usuario", utl);
-					
+				
+				
 				return "paginaRegistro";
 			}
 	
@@ -108,7 +110,7 @@ public class UsuarioControlador {
 	
 	// AÑADE EL NUEVO USUARIO / TUTOR LEGAL A LA BASE DE DATOS ----------------------------------------------------------------------------
 		
-		@PostMapping("nuevoUsuario/submit")
+		@PostMapping("/nuevoUsuario/submit")
 		public String registrarNuevoUsuarioTL(@ModelAttribute("usuario") Usuario utl) {
 				
 				servicio.save(utl);		
@@ -126,7 +128,7 @@ public class UsuarioControlador {
 				
 				Optional<Usuario> usuario = servicio.findById(id);
 					
-				return "perfilUsuario";
+				return "usuario/perfilUsuario";
 			}
 		
 

@@ -1,4 +1,4 @@
-package com.salesianostriana.dam.proyecto_guarderia.modelo;
+/*package com.salesianostriana.dam.proyecto_guarderia.modelo;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -17,7 +17,7 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
-/*@Getter @Setter
+@Getter @Setter
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 @NoArgsConstructor
@@ -35,7 +35,7 @@ public class Administrador extends Usuario {
 	
 	//SEGURIDAD (HERENCIA CON ROL ADMIN) -----------------------------------------------------------------------------------------
 	
-	/*@Override
+	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
 	}
