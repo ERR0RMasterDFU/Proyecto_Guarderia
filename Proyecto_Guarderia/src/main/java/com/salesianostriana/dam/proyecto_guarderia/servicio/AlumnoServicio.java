@@ -12,6 +12,7 @@ public class AlumnoServicio extends ServicioBaseImpl<Alumno, Long, AlumnoReposit
 
 	public AlumnoServicio(UsuarioRepositorio repo) {
 		super(repo);
-	} 
+		// TODO Auto-generated constructor stub
+	}
 
 }

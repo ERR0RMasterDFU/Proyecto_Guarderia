@@ -52,48 +52,13 @@ public class Usuario /*implements UserDetails*/ {
 	private Progenitor progenitor;
 	
 	
+// OTM (ALUMNOS) --------------------------------------------------------	
 	
-// ONE TO MANY (ALUMNO) -----------------------------------------------------------------------------------------------------------------
-
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
-	@OneToMany(mappedBy="usuario", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="progenitor", fetch = FetchType.EAGER)
 	@Builder.Default
 	private List<Alumno> hijos = new ArrayList<>();
-
-	
-// ONE TO MANY (HORARIO) ----------------------------------------------------------------------------------------------------------------
-
-	@ToString.Exclude
-	@EqualsAndHashCode.Exclude
-	@OneToMany(mappedBy="usuario", fetch = FetchType.EAGER)
-	@Builder.Default
-	private List<Periodo> horario = new ArrayList<>();
-	
-	
-// MANY TO MANY (OBSERVACIÓN) ----------------------------------------------------------------------------------------------------------------
-	
-	@ManyToMany(fetch = FetchType.EAGER)
-	/*@JoinTable(
-		name = "matricula",
-		joinColumns = @JoinColumn(name="tutor_legal_id"),
-		inverseJoinColumns = @JoinColumn(name="observacion_id")
-	)*/
-	@Builder.Default
-	private List<Observacion> observaciones = new ArrayList<>();
-
-	
-// MÉTODOS HELPER ------------------------------------------------------------------------------------------------------------------------------
-
-	public void agregarObservacion(Observacion o) {
-		this.observaciones.add(o);
-		o.getUsuarios().add(this);
-	}
-	
-	public void eliminarObservacion(Observacion o) {
-		o.getUsuarios().remove(this);
-		this.observaciones.remove(o);
-	}
 
 	
 /*SEGURIDAD ----------------------------------------------------------------------------------------------------------------------------------

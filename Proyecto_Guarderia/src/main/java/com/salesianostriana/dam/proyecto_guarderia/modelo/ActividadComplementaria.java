@@ -8,21 +8,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Entity 
 @Data 
 @NoArgsConstructor 
 @AllArgsConstructor 
 @Builder
-public class Profesor {
+public class ActividadComplementaria {
 
 	@Id @GeneratedValue
 	private long id;
 	
 	private String nombre;
-	private String primerApellido;
-	private String segundoApellido;
-	private String dni;
-	private String numTelefono;
-
+	private double precio;
 }
