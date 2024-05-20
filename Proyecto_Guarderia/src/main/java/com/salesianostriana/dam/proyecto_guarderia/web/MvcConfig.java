@@ -13,9 +13,7 @@ public class MvcConfig implements WebMvcConfigurer {
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/login").setViewName("login");
-		registry.addViewController("/usuario/bienvenida");
-		registry.addViewController("/admin/bienvenidaAdmin");
-		registry.addViewController("/logout");
+		registry.addViewController("/logout").setViewName("login");
 		
 	}
 	
@@ -25,7 +23,7 @@ public class MvcConfig implements WebMvcConfigurer {
 	//PARA GUARDAR USUARIO EN EL PERFIL ------------------------------------------------------------------------
 	
 	/*@GetMapping("/me")
-	publlic String perfil(Model model, @AuthenticationPrincipal Usuario, usuario) {
+	public String perfil(Model model, @AuthenticationPrincipal Usuario, usuario) {
 		model.addAtribute(método que trae usuario)
 		
 		return "profile";

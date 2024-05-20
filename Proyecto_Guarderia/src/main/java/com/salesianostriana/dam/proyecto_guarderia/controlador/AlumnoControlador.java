@@ -12,7 +12,6 @@ import com.salesianostriana.dam.proyecto_guarderia.modelo.Alumno;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.AlumnoServicio;
 
 @Controller
-@RequestMapping("/usuario")
 public class AlumnoControlador {
 
 	@Autowired
@@ -21,8 +20,8 @@ public class AlumnoControlador {
 	
 //MOSTRAR LA LISTA DE ALUMNOS DEL USUARIO -----------------------------------------------------------------------------
 	
-	@GetMapping("/alumnos")
-	public String mostrarProfesores(Model model) {
+	@GetMapping("/usuario/alumnos")
+	public String mostrarAlumnosUsuario(Model model) {
 		
 		model.addAttribute("listaAlumnos", servicio);
 	
@@ -30,9 +29,21 @@ public class AlumnoControlador {
 	}
 	
 	
+		
+//MOSTRAR LA LISTA DE ALUMNOS DEL USUARIO -----------------------------------------------------------------------------
+	
+	@GetMapping("/admin/alumnos")
+	public String mostrarAlumnosAdmin(Model model) {
+			
+		model.addAttribute("listaAlumnos", servicio.findAll());
+		
+		return "admin/alumnosAdmin";
+	}
+	
+	
 //FORMULARIO DE MATRÍCULA VACÍA ---------------------------------------------------------------------------------------
 
-	@GetMapping("/rellenarMatriculaAlumno")
+	@GetMapping("/usuario/rellenarMatriculaAlumno")
 	public String mostrarMatricula(Model model) {
 		
 		Alumno alumno = new Alumno();
@@ -46,7 +57,7 @@ public class AlumnoControlador {
 	
 //ENVIAMOS LOS DATOS DEL FORMULARIO A LA BASE DE DATOS ---------------------------------------------
 	
-	@PostMapping("/envioMatriculaAlumno")
+	@PostMapping("/usuario/envioMatriculaAlumno")
 	public String registroFormulario(@ModelAttribute("alumno") Alumno alumno) {
 		
 			servicio.save(alumno);		
@@ -59,7 +70,7 @@ public class AlumnoControlador {
 	
 //FORMULARIO DE MATRÍCULA RELLENO ------------------------------------------------------------------
 	
-	@GetMapping("matricularAlumno")
+	@GetMapping("/usuario/matricularAlumno")
 	public String mostrarMatriculaRellena(Model model) {
 
 		model.addAttribute("matricularAlumnosAdmin", servicio.findAll());

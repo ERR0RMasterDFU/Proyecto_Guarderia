@@ -6,8 +6,8 @@
 			<div class="container-fluid">
 				<a class="navbar-brand" href="#inicio"><img src="../static/img/general/logoParenteller.png" th:src="@{/img/general/logoParenteller.png}" width="160px" alt="Logo de Parenteller"></a>
 		    	<ul class="nav justify-content-end align-items-center" style="font-size: 18px;">
-		        	<li class="nav-item"><a class="nav-link text-black fw-bold estiloNavItem" href="alumnosUsuario.html" th:href="@{/usuario/alumnos}"><i class="bi bi-person-fill"></i>&ensp;ALUMNOS</a></li>
-		        	<li class="nav-item"><a class="nav-link text-black fw-bold estiloNavItem" href="formularioEnvioDeDatos.html" th:href="@{/usuario/rellenarMatriculaAlumno}"><i class="bi bi-file-earmark-arrow-up-fill"></i>&ensp;RELLENAR Y ENVÍAR MATRÍCULA</a></li>
+					<li class="nav-item"><a class="nav-link text-black fw-bold estiloNavItem" href="alumnosAdmin.html" th:href="@{/admin/alumnos}"><i class="bi bi-person-fill"></i>&ensp;ALUMNOS</a></li>
+					<li class="nav-item"><a class="nav-link text-black fw-bold estiloNavItem" href="profesoresAdmin.html" th:href="@{/admin/profesores}"><i class="bi bi-mortarboard-fill"></i>&ensp;PROFESORES</a></li>
 		        	<!--li class="nav-item"><a class="nav-link text-black fw-bold estiloNavItem me-3" href="perfilUsuario.html" th:href="@{/usuario/miPerfil}"><i class="bi bi-file-earmark-bar-graph-fill"></i>&ensp;MI PERFIL</a></li-->
 		        	<!--li class="nav-item flex-fill text-center"><a href="inicioDeSesion.html"><button type="button" class="btn btn-info text-dark border-dark border-2 fw-bold ms-3">CERRAR SESIÓN</button></a></li-->
 		   		
@@ -16,11 +16,10 @@
 				
 						<ul class="dropdown-menu dropdown-menu-end border border-2 border-black">
 							<div class="mb-4 mt-2 px-3"><!--div sec:authorize="isAuthenticated()"-->
-								<h5 class="text-center">¡Hola, Luismi!<!--span sec:authentication="username"></span--></h5> 
+								<h5 class="text-center">¡Hola, Ángel!<!--span sec:authentication="username"></span--></h5> 
 							</div>	
 								
-							<li style="width: 350px;"><a class="dropdown-item flex-fill text-center" href="perfilUsuario.html" th:href="@{/usuario/miPerfil}"><button type="button" class="btn btn-success text-white border-dark border-2 fw-bold w-100"><i class="bi bi-person-vcard-fill"></i>&ensp;MI PERFIL</button></a></li>
-							<li><form th:action="@{/logout}" method="POST" id="logoutForm"><a class="dropdown-item flex-fill text-center"><button type="button" class="btn btn-info text-dark border-dark border-2 fw-bold w-100"><i class="bi bi-door-open-fill"></i>&ensp;CERRAR SESIÓN</button></a></form></li>
+							<li style="width: 350px;"><form th:action="@{/logout}" method="POST" id="logoutForm"><a class="dropdown-item flex-fill text-center"><button type="button" class="btn btn-info text-dark border-dark border-2 fw-bold w-100"><i class="bi bi-door-open-fill"></i>&ensp;CERRAR SESIÓN</button></a></form></li>
 						</ul>
 					</div>
 			

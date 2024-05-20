@@ -1,15 +1,20 @@
 package com.salesianostriana.dam.proyecto_guarderia.modelo;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 /*import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;*/
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -35,7 +40,7 @@ import lombok.experimental.SuperBuilder;
 //@SuperBuilder
 @Builder
 @Data
-public class Usuario /*implements UserDetails*/ {
+public class Usuario implements UserDetails {
 
 	@Id @GeneratedValue
 	private long id;
@@ -50,6 +55,8 @@ public class Usuario /*implements UserDetails*/ {
 	private String segundoApellido;
 	private String numTelefono;
 	private int numHijos;
+	
+	@Enumerated(EnumType.STRING)
 	private Progenitor progenitor;
 	
 	private boolean admin;
@@ -105,7 +112,7 @@ public class Usuario /*implements UserDetails*/ {
 	}*/
 	
 	
-	/*@Override
+	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		String role = "ROLE_";
 		role += (admin) ? "ADMIN" : "USER";
@@ -141,7 +148,7 @@ public class Usuario /*implements UserDetails*/ {
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
 		return false;
-	}*/
+	}
 	
 }
 

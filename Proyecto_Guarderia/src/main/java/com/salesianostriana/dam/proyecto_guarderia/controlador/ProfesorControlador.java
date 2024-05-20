@@ -85,7 +85,7 @@ public class ProfesorControlador {
 // GUARDA LOS NUEVOS CAMBIOS AL PROFESOR -----------------------------------------------------------------------------
 	
 	@PostMapping("/editarProfesor/submit")
-	public String registrarProfesorEditado (@ModelAttribute("profesor") Profesor profesor) {
+	public String registrarProfesorEditado(@ModelAttribute("profesor") Profesor profesor) {
 		
 		servicio.save(profesor);
 		
