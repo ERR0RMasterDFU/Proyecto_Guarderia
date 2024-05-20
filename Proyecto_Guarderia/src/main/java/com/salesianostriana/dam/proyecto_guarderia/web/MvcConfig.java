@@ -1,4 +1,4 @@
-package com.salesianostriana.dam.proyecto_guarderia.web;
+/*package com.salesianostriana.dam.proyecto_guarderia.web;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -27,6 +27,6 @@ public class MvcConfig implements WebMvcConfigurer {
 		model.addAtribute(método que trae usuario)
 		
 		return "profile";
-	}*/
+	}
 	
-}
+}*/

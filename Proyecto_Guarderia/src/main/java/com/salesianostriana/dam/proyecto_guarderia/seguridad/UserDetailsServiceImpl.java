@@ -1,4 +1,4 @@
-package com.salesianostriana.dam.proyecto_guarderia.seguridad;
+/*package com.salesianostriana.dam.proyecto_guarderia.seguridad;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,4 +21,4 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 				.orElseThrow(() -> new UsernameNotFoundException("Error al buscar el usuario"));
 	}
 
-}
+}*/

@@ -1,4 +1,4 @@
-package com.salesianostriana.dam.proyecto_guarderia.seguridad;
+/*package com.salesianostriana.dam.proyecto_guarderia.seguridad;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,4 +13,4 @@ public class PasswordEncoderConfig {
 		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
 	}
 
-}
+}*/

@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 /*import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;*/
@@ -28,41 +24,36 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import lombok.experimental.SuperBuilder;
 
 @Getter 
 @Setter
-/*@EqualsAndHashCode(callSuper = true)
-@ToString(callSuper = true)*/
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-//@SuperBuilder
 @Builder
 @Data
-public class Usuario implements UserDetails {
+public class Usuario /*implements UserDetails*/ {
 
 	@Id @GeneratedValue
 	private long id;
 	
 	private String username;
-	private String dni;
 	private String password;
-	private String email;
-	
 	private String nombre;
 	private String primerApellido;
 	private String segundoApellido;
+	private String dni;
+	private String email;
 	private String numTelefono;
 	private int numHijos;
+	private boolean admin;
 	
 	@Enumerated(EnumType.STRING)
 	private Progenitor progenitor;
 	
-	private boolean admin;
 	
 	
-	// ONE TO MANY (ALUMNO) -----------------------------------------------------------------------------------------------------------------
+// ONE TO MANY (ALUMNO) -----------------------------------------------------------------------------------------------------------------
 
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
@@ -71,16 +62,16 @@ public class Usuario implements UserDetails {
 	private List<Alumno> hijos = new ArrayList<>();
 
 	
-	// ONE TO MANY (HORARIO) ----------------------------------------------------------------------------------------------------------------
+// ONE TO MANY (HORARIO) ----------------------------------------------------------------------------------------------------------------
 
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
 	@OneToMany(mappedBy="usuario", fetch = FetchType.EAGER)
 	@Builder.Default
-	private List<Horario> horarios = new ArrayList<>();
+	private List<Periodo> horario = new ArrayList<>();
 	
 	
-	// MANY TO MANY (OBSERVACIÓN) ----------------------------------------------------------------------------------------------------------------
+// MANY TO MANY (OBSERVACIÓN) ----------------------------------------------------------------------------------------------------------------
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	/*@JoinTable(
@@ -92,25 +83,20 @@ public class Usuario implements UserDetails {
 	private List<Observacion> observaciones = new ArrayList<>();
 
 	
-	// Alumno - Asignaturas
+// MÉTODOS HELPER ------------------------------------------------------------------------------------------------------------------------------
+
 	public void agregarObservacion(Observacion o) {
 		this.observaciones.add(o);
 		o.getUsuarios().add(this);
 	}
 	
-	public void removeAsignatura(Observacion o) {
+	public void eliminarObservacion(Observacion o) {
 		o.getUsuarios().remove(this);
 		this.observaciones.remove(o);
 	}
 
 	
-	//SEGURIDAD (HERENCIA CON ROL USUARIO) --------------------------------------------------------------------------------------
-	
-	/*@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
-	}*/
-	
+/*SEGURIDAD ----------------------------------------------------------------------------------------------------------------------------------
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -148,10 +134,6 @@ public class Usuario implements UserDetails {
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
 		return false;
-	}
+	}*/
 	
 }
-
-	
-
-	

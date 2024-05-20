@@ -23,11 +23,11 @@ import lombok.NoArgsConstructor;
 public class Alumno {
 
 	@Id @GeneratedValue
-	private long idAlumno;
+	private long id;
 	
 	private String nombre;
-	private String apellido1;
-	private String apellido2;
+	private String primerApellido;
+	private String segundoApellido;
 	private int edad;
 	private int curso;
 	private String direccion;
@@ -36,38 +36,38 @@ public class Alumno {
 	private LocalDate fechaNacimiento;
 	
 	
-	// MANY TO ONE (TUTOR LEGAL) ----------------------------------------------------------------------------------------------------------------
+// MANY TO ONE (USUARIO) ----------------------------------------------------------------------------------------------------------------
 	
 	@ManyToOne
 	private Usuario usuario;
 	
 	
-	// MANY TO ONE (HORARIO) ----------------------------------------------------------------------------------------------------------------
+// MANY TO ONE (HORARIO) ----------------------------------------------------------------------------------------------------------------
 
 	@ManyToOne 
     @JoinColumn(foreignKey = @ForeignKey(name="fk_alumno_horario"))
-    private Horario horario;
+    private Periodo horario;
 	
 	
-	// MÉTODOS HELPER ------------------------------------------------------------------------------------------------------------------------------
+// MÉTODOS HELPER ------------------------------------------------------------------------------------------------------------------------------
 	
-	public void agregarATutorLegal(Usuario usuario) {
+	public void agregarAUsuario(Usuario usuario) {
 		this.usuario = usuario;
 		usuario.getHijos().add(this);
 	}
 	
-	public void eliminarDeTutorLegal(Usuario usuario) {
+	public void eliminarDeUsuario(Usuario usuario) {
 		usuario.getHijos().remove(this);
 		this.usuario = null;		
 	}
 	
 	
-	public void agregarAHorario(Horario horario) {
+	public void agregarAHorario(Periodo horario) {
 		this.horario = horario;
 		horario.getAlumnos().add(this);
 	}
 		
-	public void eliminarDeHorario(Horario horario) {
+	public void eliminarDeHorario(Periodo horario) {
 		horario.getAlumnos().remove(this);
 		this.horario = null;		
 	}
