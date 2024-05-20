@@ -4,14 +4,14 @@ public enum Progenitor {
 	MADRE("Madre"), PADRE("Padre"), TUTORLEGAL("Tutor legal");
 	
 	
-	private final String displayValue;
+	private final String tipoProgenitor;
 
-    private Progenitor (String displayValue) {
-        this.displayValue = displayValue;
+    private Progenitor (String tipoProgenitor) {
+        this.tipoProgenitor = tipoProgenitor;
     }
 
-    public String getDisplayValue() {
-        return displayValue;
+    public String getTipoProgenitor() {
+        return tipoProgenitor;
     }
     
 }

@@ -11,98 +11,84 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.salesianostriana.dam.proyecto_guarderia.modelo.Progenitor;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Usuario;
-import com.salesianostriana.dam.proyecto_guarderia.modelo.Profesor;
-import com.salesianostriana.dam.proyecto_guarderia.modelo.TutorLegal;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.UsuarioServicio;
+
+
 
 @Controller
 @RequestMapping("/usuario")
 public class UsuarioControlador {
 
-
 	@Autowired
-	private UsuarioServicio servicio;		
-
-		
-	/* MUESTRA LA PÁGINA DE PROFESORES -------------------------------------------------------------
-		
-	@GetMapping("/profesores")
-	public String mostrarProfesores(Model model) {
-			
-		model.addAttribute("listaProfesores", servicio.findAll());
-		
-		return "admin/profesoresAdmin";
-	}*/
-
+	private UsuarioServicio servicio;
 	
-	// MUESTRA EL FORMULARIO DE REGISTRO (PARA AÑADIR USUARIO / TUTOR LEGAL) VACÍO --------------------------------------------------------
-		
+// MUESTRA EL FORMULARIO DE REGISTRO (PARA AÑADIR USUARIO / TUTOR LEGAL) VACÍO --------------------------------------------------------
+	
 	@GetMapping("/registro")
 	public String mostrarFormularioRegistro(Model model) {
-			
-		Usuario utl = new TutorLegal();
-		model.addAttribute("tutorLegal", utl);
-			
-		return "paginaRegistro";
-	}	
-
-		
-	// AÑADE EL NUEVO USUARIO / TUTOR LEGAL A LA BASE DE DATOS ----------------------------------------------------------------------------
-		
-	@PostMapping("nuevoUsuario/submit")
-	public String registrarNuevoUsuarioTL(@ModelAttribute("tutorLegal") TutorLegal utl) {
-			
-			servicio.save(utl);		
+					
+		model.addAttribute("listaTipoProgenitor", Progenitor.values());	
 				
-		return "redirect:/inicioDeSesion";
-	} 
+		Usuario usuario = new Usuario();
+		model.addAttribute("usuario", usuario);
+						
+		return "paginaRegistro";
+	}
+	
+	
+	
+// AÑADE EL NUEVO USUARIO / TUTOR LEGAL A LA BASE DE DATOS ----------------------------------------------------------------------------
+		
+	@PostMapping("/nuevoUsuario/submit")
+	public String registrarNuevoUsuario(@ModelAttribute("usuario") Usuario usuario) {
+				
+		servicio.save(usuario);		
+					
+		return "redirect:/login";
+	}
+		
+		
+		
+
+//MUESTRA LA PÁGINA DE LOS DATOS DE USUARIO (MI PERFIL) ---------------------------------------------------------------------
+		
+	@GetMapping("/miPerfil")
+	public String mostrarPerfilUsuario(long id, Model model) {
+				
+		Optional<Usuario> usuario = servicio.findById(id);
+					
+		return "usuario/perfilUsuario";
+	}
+		
 
 	
-	//MUESTRA LA PÁGINA DE LOS DATOS DE USUARIO (MI PERFIL) ---------------------------------------------------------------------
 	
-	@GetMapping("/miPerfil")
-	public String mostrarPerfilUsuarioTL(long idUsuario, Model model) {
-		
-		Optional<TutorLegal> tutorLegalEditar = servicio.findById(idUsuario);
-			
-		return "perfilUsuario";
-	}	
-	
-		
-	// MUESTRA EL FORMULARIO DE REGISTRO (PARA AÑADIR USUARIO / TUTOR LEGAL) RELLENO --------------------------------------------
+// MUESTRA EL FORMULARIO DE REGISTRO (PARA AÑADIR USUARIO / TUTOR LEGAL) RELLENO --------------------------------------------
 
 	@GetMapping("/editarDatosTutorLegal/{id}")
-	public String mostrarFormularioEdicionUsuarioTL(@PathVariable("id") long idUsuario, Model model) {
-			
-		Optional <TutorLegal> tutorLegalEditar = servicio.findById(idUsuario);
-		
-		if(tutorLegalEditar.isPresent(){
+	public String mostrarFormularioEdicionUsuarioTL(@PathVariable("id") long id, Model model) {
+					
+		Optional <Usuario> usuarioEditar = servicio.findById(id);
 				
-			model.addAttribute("tutorlegal", tutorLegalEditar.get());
+		if(usuarioEditar.isPresent()){
+						
+			model.addAttribute("tutorlegal", usuarioEditar.get());
 			return "modificarPerfilUsuario";
-				
+						
 		} else {
-				
+						
 			return "redirect:/usuario/miPerfil";
 		}
 	}
+		
 	
-	Optional<Profesor> profesorEditar = servicio.findById(idProfesor);
 	
-	if(profesorEditar.isPresent()) {
-		
-		model.addAttribute("profesor", profesorEditar.get());
-		return "admin/agregarEditarProfesoresAdmin";
-		
-	} else {
-		
-		return "redirect:/admin/profesores";
-	}
 		
 		
 		
-	// GUARDA LOS NUEVOS CAMBIOS AL PROFESOR ----------------------------------------------------------------------------------------------
+	/* GUARDA LOS NUEVOS CAMBIOS AL PROFESOR ----------------------------------------------------------------------------------------------
 		
 		@PostMapping("/editarDatosTutorLegal/submit")
 		public String registrarProfesorEditado(@ModelAttribute("tutorlegal") TutorLegal tl) {
@@ -125,7 +111,7 @@ public class UsuarioControlador {
 			return "redirect:/admin/profesores";
 		}
 		
-		//---------------------------------------------------------------------------------------------------------------------------------
+		//---------------------------------------------------------------------------------------------------------------------------------*/
 		
 
 }

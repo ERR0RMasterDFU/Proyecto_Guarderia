@@ -26,6 +26,7 @@ import lombok.ToString;
 public class Observacion {
 
 	@EmbeddedId
+	@Builder.Default
 	private ObservacionPK observacionPK = new ObservacionPK();
 		
 		
@@ -49,16 +50,16 @@ public class Observacion {
 	private String mensaje;
 
 	
-	// MANY TO MANY (TUTOR LEGAL) ----------------------------------------------------------------------------------------------------------------
+	// MANY TO MANY (TUTOR LEGAL) -------------------------------------------------------------------------------------
 
 	@ManyToMany(mappedBy="observaciones", fetch = FetchType.EAGER)
 	@Builder.Default
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
-	private List<TutorLegal> tutoresLegales = new ArrayList<>();
+	private List<Usuario> usuarios = new ArrayList<>();
 	
 	
-	// MÉTODOS HELPER ------------------------------------------------------------------------------------------------------------------------------
+	// MÉTODOS HELPER -------------------------------------------------------------------------------------------------
 
 	public void agregarAProfesor(Profesor p) {
 		p.getObservaciones().add(this);

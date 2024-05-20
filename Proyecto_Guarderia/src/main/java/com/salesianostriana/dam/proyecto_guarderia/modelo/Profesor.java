@@ -1,7 +1,7 @@
 package com.salesianostriana.dam.proyecto_guarderia.modelo;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -30,8 +30,7 @@ public class Profesor {
 	private String apellido2;
 	private boolean curso; 
 	private String encargado;
-	
-	//private List Alumno;
+	/*private List<Alumno> Alumno = new ArrayList<>();*/
 
 	// ONE TO MANY (ALUMNO) ----------------------------------------------------------------------------------------------------------------
 	
