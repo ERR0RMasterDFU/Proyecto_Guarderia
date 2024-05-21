@@ -1,7 +1,6 @@
 package com.salesianostriana.dam.proyecto_guarderia.modelo;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /*import org.springframework.security.core.GrantedAuthority;
@@ -14,6 +13,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
@@ -59,6 +60,36 @@ public class Usuario /*implements UserDetails*/ {
 	@OneToMany(mappedBy="progenitor", fetch = FetchType.EAGER)
 	@Builder.Default
 	private List<Alumno> hijos = new ArrayList<>();
+	
+	
+	
+// MTM (OBSERVACION) --------------------------------------------------------	
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(
+			name = "observacion",
+			joinColumns = @JoinColumn(name="usuario_id"),
+			inverseJoinColumns = @JoinColumn(name="observacion_id")
+	)
+	@Builder.Default
+	private List<Observacion> observaciones = new ArrayList<>();
+
+	
+	
+	
+	
+	
+// MÉTODOS HELPER ----------------------------------------------------------------------------	
+	
+	public void agregarObservacion(Observacion o) {
+		this.observaciones.add(o);
+		o.getUsuarios().add(this);
+	}
+		
+	public void eliminarObservacion(Observacion o) {
+		o.getUsuarios().remove(this);
+		this.observaciones.remove(o);
+	}
 
 	
 /*SEGURIDAD ----------------------------------------------------------------------------------------------------------------------------------
