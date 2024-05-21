@@ -41,12 +41,12 @@ public class UsuarioControlador {
 	
 // AÑADE EL NUEVO USUARIO / TUTOR LEGAL A LA BASE DE DATOS ----------------------------------------------------------------------------
 		
-	@PostMapping("/nuevoUsuario/submit")
+	@PostMapping("/registro/submit")
 	public String registrarNuevoUsuario(@ModelAttribute("usuario") Usuario usuario) {
 				
 		servicio.save(usuario);		
 					
-		return "redirect:/login";
+		return "redirect:/";
 	}
 		
 		
