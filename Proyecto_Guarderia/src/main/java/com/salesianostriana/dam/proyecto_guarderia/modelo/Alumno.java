@@ -28,7 +28,7 @@ public class Alumno {
 	private String nombre;
 	private String primerApellido;
 	private String segundoApellido;
-	private int edad;
+	private boolean edad;
 	private int curso;
 	private String direccion;
 	
