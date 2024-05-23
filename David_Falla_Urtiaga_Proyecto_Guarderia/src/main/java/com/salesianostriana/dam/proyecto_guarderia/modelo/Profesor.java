@@ -63,13 +63,13 @@ public class Profesor {
 	
 // OTO (CURSO) ------------------------------------------------------------------------	
 
-	@OneToOne(mappedBy = "profesor", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+	@OneToOne(mappedBy = "profesor", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private Curso curso;
 	
 	
 // OTO (ACTIVIDAD COMPLEMENTARIA) ------------------------------------------------------------------------	
 
-	@OneToOne(mappedBy = "profesor", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+	@OneToOne(mappedBy = "profesor", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	private ActividadComplementaria encargado;
 	
 	

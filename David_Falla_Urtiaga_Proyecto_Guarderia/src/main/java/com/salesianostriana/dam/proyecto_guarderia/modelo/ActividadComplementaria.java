@@ -45,7 +45,7 @@ public class ActividadComplementaria {
 // OTO (PROFESOR) ---------------------------------------------------------------------
 	
     @JoinColumn(name = "profesor_id")
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     private Profesor profesor;	
 	
 	

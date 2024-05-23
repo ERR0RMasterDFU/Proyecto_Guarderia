@@ -43,7 +43,7 @@ public class Curso {
 // OTO (PROFESOR) ---------------------------------------------------------------------
 	
     @JoinColumn(name = "profesor_id")
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     private Profesor profesor;	
     
 }
