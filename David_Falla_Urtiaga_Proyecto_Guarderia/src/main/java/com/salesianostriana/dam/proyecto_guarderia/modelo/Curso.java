@@ -40,10 +40,12 @@ public class Curso {
 	
 	
 
-// OTO (PROFESOR) ---------------------------------------------------------------------
+// OTM (PROFESOR) ---------------------------------------------------------------------
 	
-    @JoinColumn(name = "profesor_id")
-    @OneToOne(fetch = FetchType.EAGER)
-    private Profesor profesor;	
+	@ToString.Exclude
+	@EqualsAndHashCode.Exclude
+	@OneToMany(mappedBy="curso", fetch = FetchType.EAGER)
+	@Builder.Default
+	private List<Profesor> profesores = new ArrayList<>();
     
 }

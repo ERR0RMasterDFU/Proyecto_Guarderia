@@ -43,7 +43,7 @@ public class AlumnoControlador {
 	
 //FORMULARIO DE MATRÍCULA VACÍA ---------------------------------------------------------------------------------------
 
-	@GetMapping("/usuario/rellenarMatriculaAlumno")
+	@GetMapping("/usuario/matricula")
 	public String mostrarMatricula(Model model) {
 		
 		Alumno alumno = new Alumno();
@@ -57,7 +57,7 @@ public class AlumnoControlador {
 	
 //ENVIAMOS LOS DATOS DEL FORMULARIO A LA BASE DE DATOS ---------------------------------------------
 	
-	@PostMapping("/usuario/envioMatriculaAlumno")
+	@PostMapping("/usuario/matricula/submit")
 	public String registroFormulario(@ModelAttribute("alumno") Alumno alumno) {
 		
 			servicio.save(alumno);		
