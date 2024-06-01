@@ -96,7 +96,7 @@
             <main class="m-3 px-5 pt-4 pb-5 bg-white" style="flex: 1 1 81%; width: 75%; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
                 
                 <div class="py-0 my-4 w-100 ">
-                    <a type="button" th:href="@{/admin/nuevoCurso}" href="agregarEditarCursosAdmin.html" class="btn btn-success text-white fw-bold py-2 w-100" style="font-size: 25px;"><i class="bi bi-sign-intersection-fill m-0"></i>&ensp;AÑADIR CURSO</a>
+                    <a type="button" th:href="@{/admin/cursos/nuevoCurso}" href="agregarEditarCursosAdmin.html" class="btn btn-success text-white fw-bold py-2 w-100" style="font-size: 25px;"><i class="bi bi-sign-intersection-fill m-0"></i>&ensp;AÑADIR CURSO</a>
                 </div>
 
                 <table class="border border-2 border-black w-100 text-center rounded-3">
@@ -125,10 +125,10 @@
                             <td class="py-2 px-3 border border-black border-2 bg-opacity-25 bg-black">
 								<div class="d-flex w-100">
 	                                <div class="py-0" style="flex: 1 1 50%">
-	                                    <a type="button" href="agregarEditarCursosAdmin.html" th:href="@{/admin/editarCurso/{id}(id=${curso.id})}" class="btn text-white fw-bold w-100" style="background-color: rgb(210, 122, 2);"><i class="bi bi-gear-fill" style="font-size: 20px;"></i></a>
+	                                    <a type="button" href="agregarEditarCursosAdmin.html" th:href="@{/admin/cursos/editarCurso/{id}(id=${curso.id})}" class="btn text-white fw-bold w-100" style="background-color: rgb(210, 122, 2);"><i class="bi bi-gear-fill" style="font-size: 20px;"></i></a>
 	                                </div>
 	                                <div class="py-0 ms-2" style="flex: 1 1 50%;">
-	                                    <a type="button" href="cursosAdmin.html" th:href="@{/admin/borrarCurso/{id}(id=${curso.id})}" class="btn text-white fw-bold w-100" style="background-color: rgb(218, 63, 3);"><i class="bi bi-trash-fill" style="font-size: 20px;"></i></a>
+	                                    <a type="button" href="cursosAdmin.html" th:href="@{/admin/cursos/borrarCurso/{id}(id=${curso.id})}" class="btn text-white fw-bold w-100" style="background-color: rgb(218, 63, 3);"><i class="bi bi-trash-fill" style="font-size: 20px;"></i></a>
 	                                </div>
 								</div>
                             </td>

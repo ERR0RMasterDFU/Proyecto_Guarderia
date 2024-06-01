@@ -15,7 +15,7 @@ import com.salesianostriana.dam.proyecto_guarderia.modelo.ActividadComplementari
 import com.salesianostriana.dam.proyecto_guarderia.servicio.ActividadComplementariaServicio;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/admin/actividades")
 public class ActividadComplementariaControlador {
 	
 	@Autowired
@@ -24,7 +24,7 @@ public class ActividadComplementariaControlador {
 	
 	//MOSTRAR LA LISTA DE ACTIVIDADES COMPLEMENTARIAS -----------------------------------------------------------------------------
 	
-	@GetMapping("/actividades")
+	@GetMapping("")
 	public String mostrarActividades(Model model) {
 			
 		model.addAttribute("listaActividades", servicio.findAll());

@@ -98,7 +98,7 @@
 
     <!---- FORMULARIO DE AGREGAR / EDITAR -------------------------------->
 
-                <form method="post" th:action="${curso.id!=0} ? @{/admin/editarCurso/submit} : @{/admin/nuevoCurso/submit}" th:object="${curso}" class="w-100">
+                <form method="post" th:action="${curso.id!=0} ? @{/admin/cursos/editarCurso/submit} : @{/admin/cursos/nuevoCurso/submit}" th:object="${curso}" class="w-100">
                     <fieldset class="justify-content-center border border-black border-3">
                         <legend class="fw-bold border border-black border-3 border-start-0 border-end-0 border-top-0 text-white px-2 mb-3 bg-success">DATOS DEL CURSO</legend>
                         <div class="mx-3 mb-3">

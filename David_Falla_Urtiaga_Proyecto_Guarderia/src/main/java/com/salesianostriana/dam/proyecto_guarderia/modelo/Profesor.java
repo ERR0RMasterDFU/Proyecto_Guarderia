@@ -63,14 +63,14 @@ public class Profesor {
 	
 	
 	
-// 	MTO (CURSO) ------------------------------------------------------------------------	
+// MTO (CURSO) ------------------------------------------------------------------------	
 
 	@ManyToOne
     @JoinColumn(foreignKey = @ForeignKey(name="fk_curso_profesor"))
 	private Curso curso;
 	
 	
-// OTO (ACTIVIDAD COMPLEMENTARIA) ------------------------------------------------------------------------	
+// MTO (ACTIVIDAD COMPLEMENTARIA) ------------------------------------------------------------------------	
 
 	@ManyToOne
     @JoinColumn(foreignKey = @ForeignKey(name="fk_encargo_profesor"))

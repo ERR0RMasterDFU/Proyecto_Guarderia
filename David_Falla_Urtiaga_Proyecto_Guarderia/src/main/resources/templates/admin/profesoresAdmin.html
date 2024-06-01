@@ -36,7 +36,7 @@
             <main class="m-3 px-5 pt-4 pb-5 bg-white" style="flex: 1 1 81%; width: 75%; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
                 
                 <div class="py-0 my-4 w-100 ">
-                    <a type="button" th:href="@{/admin/nuevoProfesor}" class="btn btn-success text-white fw-bold py-2 w-100" style="font-size: 25px;"><i class="bi bi-sign-intersection-fill m-0"></i>&ensp;AÑADIR PROFESOR</a>
+                    <a type="button" th:href="@{/admin/profesores/nuevoProfesor}" class="btn btn-success text-white fw-bold py-2 w-100" style="font-size: 25px;"><i class="bi bi-sign-intersection-fill m-0"></i>&ensp;AÑADIR PROFESOR</a>
                 </div>
 
                 <table class="border border-2 border-black w-100 text-center rounded-3">
@@ -62,23 +62,23 @@
                             <td th:text="${profesor.segundoApellido}" class="py-3 px-2"></td>
                             <td th:text="${profesor.dni}" class="py-3 px-2"></td>
                             <td th:text="${profesor.numTelefono}" class="py-3 px-2"></td>
-                            <td th:text="${profesor.curso} ? 'Segundo ciclo' : 'Primer ciclo'" class="py-3 px-2"></td>
-							<td th:text="${profesor.encargado}" class="py-3 px-2"></td>
+                            <td th:text="${profesor.curso.nombre}" class="py-3 px-2"></td>
+							<td th:text="${profesor.encargado.nombre}" class="py-3 px-2"></td>
                             <td class="py-2 px-3 border border-black border-2">
 								<div class="py-0">
-									<a type="button" href="@{ -- }" class="btn btn-primary text-white fw-bold w-100">ALUMNOS</a>
+									<a type="button" th:href="@{ -- }" class="btn btn-primary text-white fw-bold w-100">ALUMNOS</a>
 								</div>
 								
 								<div class="mt-2 py-0">
-                                    <a type="button" href="@{ -- }" class="btn btn-danger text-white fw-bold w-100">OBSERVACIONES</a>
+                                    <a type="button" th:href="@{ -- }" class="btn btn-danger text-white fw-bold w-100">OBSERVACIONES</a>
                                 </div>
                             </td>
                             <td class="py-2 px-3 border border-black border-2 bg-opacity-25 bg-black">
                                 <div class="py-0">
-                                    <a type="button" href="editarProfesoresAdmin.html" th:href="@{/admin/editarProfesor/{id}(id=${profesor.idProfesor})}" class="btn text-white fw-bold w-100" style="background-color: rgb(210, 122, 2);"><i class="bi bi-gear-fill"></i></a>
+                                    <a type="button" href="agregarEditarProfesoresAdmin.html" th:href="@{/admin/profesores/editarProfesor/{id}(id=${profesor.id})}" class="btn text-white fw-bold w-100" style="background-color: rgb(210, 122, 2);"><i class="bi bi-gear-fill"></i></a>
                                 </div>
                                 <div class="mt-2 py-0">
-                                    <a type="button" href="profesoresAdmin.html" th:href="@{/admin/borrarProfesor/{id}(id=${profesor.idProfesor})}" class="btn text-white fw-bold w-100" style="background-color: rgb(218, 63, 3);"><i class="bi bi-trash-fill"></i></a>
+                                    <a type="button" href="profesoresAdmin.html" th:href="@{/admin/profesores/borrarProfesor/{id}(id=${profesor.id})}" class="btn text-white fw-bold w-100" style="background-color: rgb(218, 63, 3);"><i class="bi bi-trash-fill"></i></a>
                                 </div>
                             </td>
                         </tr>

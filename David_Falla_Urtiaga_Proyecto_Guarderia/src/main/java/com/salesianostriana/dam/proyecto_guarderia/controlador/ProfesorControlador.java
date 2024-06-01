@@ -19,7 +19,7 @@ import com.salesianostriana.dam.proyecto_guarderia.servicio.ProfesorServicio;
 
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/admin/profesores")
 public class ProfesorControlador {
 
 	@Autowired
@@ -28,11 +28,13 @@ public class ProfesorControlador {
 	@Autowired
 	private CursoServicio CursoServicio;
 	
+	@Autowired
+	private ActividadComplementariaServicio ActServicio;
 
 	
-// MUESTRA LA PÁGINA DE PROFESORES -----------------------------------------------------------------------------------
+	// MUESTRA LA PÁGINA DE PROFESORES -----------------------------------------------------------------------------------
 	
-	@GetMapping("/profesores")
+	@GetMapping("")
 	public String mostrarProfesores(Model model) {
 		
 		model.addAttribute("listaProfesores", servicio.findAll());
@@ -42,7 +44,7 @@ public class ProfesorControlador {
 
 
 	
-// MUESTRA EL FORMULARIO PARA AÑADIR PROFESORES VACÍO ----------------------------------------------------------------
+	// MUESTRA EL FORMULARIO PARA AÑADIR PROFESORES VACÍO ----------------------------------------------------------------
 	
 	@GetMapping("/nuevoProfesor")
 	public String mostrarFormularioProfesor(Model model) {
@@ -50,14 +52,15 @@ public class ProfesorControlador {
 		Profesor profesor = new Profesor();
 		model.addAttribute("profesor", profesor);
 		
-		model.addAttribute("listaCursos", CursoServicio.findAll()); 	//LISTA DE CURSOS PARA PROFESOR
+		model.addAttribute("listaCursos", CursoServicio.findAll()); 		//LISTA DE CURSOS PARA PROFESOR
+		model.addAttribute("listaActividades", ActServicio.findAll()); 		//LISTA DE ACTIVIDADES PARA PROFESOR
 		
 		return "admin/agregarEditarProfesoresAdmin";
 	}	
 
 	
 	
-// AÑADE EL NUEVO PROFESOR A LA BASE DE DATOS ------------------------------------------------------------------------
+	// AÑADE EL NUEVO PROFESOR A LA BASE DE DATOS ------------------------------------------------------------------------
 	
 	@PostMapping("/nuevoProfesor/submit")
 	public String registrarNuevoProfesor(@ModelAttribute("profesor") Profesor profesor) {
@@ -69,7 +72,7 @@ public class ProfesorControlador {
 
 	
 	
-// MUESTRA EL FORMULARIO PARA AÑADIR PROFESORES RELLENO --------------------------------------------------------------
+	// MUESTRA EL FORMULARIO PARA AÑADIR PROFESORES RELLENO --------------------------------------------------------------
 
 	@GetMapping("/editarProfesor/{id}")
 	public String mostrarFormularioEdicion(@PathVariable("id") long idProfesor, Model model) {
@@ -80,7 +83,8 @@ public class ProfesorControlador {
 			
 			model.addAttribute("profesor", profesorEditar.get());
 			
-			model.addAttribute("listaCursos", CursoServicio.findAll()); 	//LISTA DE CURSOS PARA PROFESOR
+			model.addAttribute("listaCursos", CursoServicio.findAll()); 		//LISTA DE CURSOS PARA PROFESOR
+			model.addAttribute("listaActividades", ActServicio.findAll()); 		//LISTA DE ACTIVIDADES PARA PROFESOR
 
 			return "admin/agregarEditarProfesoresAdmin";
 			
@@ -93,7 +97,7 @@ public class ProfesorControlador {
 	
 	
 	
-// GUARDA LOS NUEVOS CAMBIOS AL PROFESOR -----------------------------------------------------------------------------
+	// GUARDA LOS NUEVOS CAMBIOS AL PROFESOR -----------------------------------------------------------------------------
 	
 	@PostMapping("/editarProfesor/submit")
 	public String registrarProfesorEditado(@ModelAttribute("profesor") Profesor profesor) {
@@ -105,7 +109,7 @@ public class ProfesorControlador {
 	
 	
 	
-//BORRA AL PROFESOR ELGIDO POR ID ------------------------------------------------------------------------------------
+	//BORRA AL PROFESOR ELGIDO POR ID ------------------------------------------------------------------------------------
 
 	@GetMapping("/borrarProfesor/{id}")
 	public String borrarProfesor(@PathVariable("id") long idProfesor) {
@@ -114,8 +118,6 @@ public class ProfesorControlador {
 		
 		return "redirect:/admin/profesores";
 	}
-	
-	//----------------------------------------------------------------------------------------------
-	
+		
 
 }
