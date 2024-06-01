@@ -72,7 +72,8 @@ public class Profesor {
 	
 // OTO (ACTIVIDAD COMPLEMENTARIA) ------------------------------------------------------------------------	
 
-	@OneToOne(mappedBy = "profesor", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+	@ManyToOne
+    @JoinColumn(foreignKey = @ForeignKey(name="fk_encargo_profesor"))
 	private ActividadComplementaria encargado;
 	
 	

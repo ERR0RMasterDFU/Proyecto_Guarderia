@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -42,11 +43,13 @@ public class ActividadComplementaria {
 	
 	
 
-// OTO (PROFESOR) ---------------------------------------------------------------------
+// OTM (PROFESOR) ---------------------------------------------------------------------
 	
-    @JoinColumn(name = "profesor_id")
-    @OneToOne(fetch = FetchType.EAGER)
-    private Profesor profesor;	
+	@ToString.Exclude
+	@EqualsAndHashCode.Exclude
+	@OneToMany(mappedBy="encargado", fetch = FetchType.EAGER)
+	@Builder.Default
+	private List<Profesor> profesores = new ArrayList<>();
 	
 	
 }

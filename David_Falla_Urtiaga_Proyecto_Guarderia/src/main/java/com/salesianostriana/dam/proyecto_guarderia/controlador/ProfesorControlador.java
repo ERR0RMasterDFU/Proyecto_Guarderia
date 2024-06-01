@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.salesianostriana.dam.proyecto_guarderia.modelo.ActividadComplementaria;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Profesor;
+import com.salesianostriana.dam.proyecto_guarderia.servicio.ActividadComplementariaServicio;
+import com.salesianostriana.dam.proyecto_guarderia.servicio.CursoServicio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.ProfesorServicio;
 
 
@@ -21,6 +24,9 @@ public class ProfesorControlador {
 
 	@Autowired
 	private ProfesorServicio servicio;
+	
+	@Autowired
+	private CursoServicio CursoServicio;
 	
 
 	
@@ -43,6 +49,8 @@ public class ProfesorControlador {
 		
 		Profesor profesor = new Profesor();
 		model.addAttribute("profesor", profesor);
+		
+		model.addAttribute("listaCursos", CursoServicio.findAll()); 	//LISTA DE CURSOS PARA PROFESOR
 		
 		return "admin/agregarEditarProfesoresAdmin";
 	}	
@@ -71,6 +79,9 @@ public class ProfesorControlador {
 		if(profesorEditar.isPresent()) {
 			
 			model.addAttribute("profesor", profesorEditar.get());
+			
+			model.addAttribute("listaCursos", CursoServicio.findAll()); 	//LISTA DE CURSOS PARA PROFESOR
+
 			return "admin/agregarEditarProfesoresAdmin";
 			
 		} else {

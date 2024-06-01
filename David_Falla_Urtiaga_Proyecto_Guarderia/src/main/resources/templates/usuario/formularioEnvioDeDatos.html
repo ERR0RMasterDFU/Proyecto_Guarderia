@@ -46,7 +46,7 @@
 
         <!---- NOMBRE Y APELLIDOS -------------------------------------------->
 
-							<input th:if="${alumno.idAlumno!=0}" type="hidden" name="id" th:field="*{idAlumno}"/>
+							<input th:if="${alumno.id!=0}" type="hidden" name="id" th:field="*{id}"/>
 		
                             <div class="d-flex w-100">
                                 <div class="me-3" style="flex: 1 1 33%;">
@@ -84,16 +84,8 @@
 
                             <div class="d-flex mt-3 w-100">
                                 <div class="pe-3" style="flex: 1 1 33%;">
-                                    <label for="edad" class="fw-bold">EDAD<span class="text-danger"> *</span></label><br>
-                                    <select class="form-select form-select-sm" name="edad" id="edad">
-                                        <option value="0">Menos de un año</option>
-                                        <option value="1">1 año</option>
-                                        <option value="2">2 años</option>
-                                        <option value="3">3 años</option>
-                                        <option value="4">4 años</option>
-                                        <option value="5">5 años</option>
-                                        <option value="6">6 años</option>
-                                    </select>
+                                    <label for="precio" class="form-label m-0 fw-bold">EDAD (0 cuenta como menor de un año)<span class="text-danger"> *</span></label><br>
+                                    <input class="w-100" style="height: 37px;" type="number" name="edad" id="edad" placeholder="Introduzca la edad" min="0" max="6" step="1" th:field="*{edad}" required>
                                 </div>
 
                                 <div class="ms-3" style="flex: 1 1 66%;">
