@@ -101,4 +101,17 @@ public class CursoControlador {
 	}
 	
 		
+	
+	// FILTRA A LOS PROFESORES POR CURSO -----------------------------------------------------------------
+	
+	@GetMapping("/profesores/{nombreCurso}")
+	public String mostrarProfesoresFiltradosPorCursos(@PathVariable("nombreCurso") String nombreCurso, Model model, String curso) {
+			
+		model.addAttribute("listaProfesores", servicio.findProfesoresByCurso(curso));
+		
+		return "admin/profesoresAdmin";
+	}
+	
+	
+	
 }

@@ -1,8 +1,12 @@
 package com.salesianostriana.dam.proyecto_guarderia.servicio;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Curso;
+import com.salesianostriana.dam.proyecto_guarderia.modelo.Profesor;
 import com.salesianostriana.dam.proyecto_guarderia.repositorio.CursoRepositorio;
 import com.salesianostriana.dam.proyecto_guarderia.repositorio.UsuarioRepositorio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.base.ServicioBaseImpl;
@@ -10,11 +14,19 @@ import com.salesianostriana.dam.proyecto_guarderia.servicio.base.ServicioBaseImp
 @Service
 public class CursoServicio extends ServicioBaseImpl<Curso, Long, CursoRepositorio> {
 
+	@Autowired
+	private CursoRepositorio repositorio;
+	
+	
 	public CursoServicio(UsuarioRepositorio repo) {
 		super(repo);
-		// TODO Auto-generated constructor stub
 	}
 
+	
+	public List<Profesor>findProfesoresByCurso(String curso){
+		List <Profesor> profesoresFiltradosPorCurso = repositorio.findProfesoresByCurso(curso);
+		return profesoresFiltradosPorCurso;
+	}
 
 
 }
