@@ -8,14 +8,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class MvcConfig implements WebMvcConfigurer {
 
 	
-	//CAMBIAR SI HAY FALLO ----------------------------------------------------------------------------------------------------
+	/*CAMBIAR SI HAY FALLO ----------------------------------------------------------------------------------------------------
 	
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/login").setViewName("login");
 		registry.addViewController("/logout").setViewName("login");
 		
-	}
+	}*/
 	
 	//------------------------------------------------------------------------------------------------------------------------
 	

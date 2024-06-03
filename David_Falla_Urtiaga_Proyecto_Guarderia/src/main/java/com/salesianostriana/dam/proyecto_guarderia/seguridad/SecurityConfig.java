@@ -54,28 +54,6 @@ public class SecurityConfig{
 			.build();
 	}
 	
-	
-	@Bean
-	InMemoryUserDetailsManager userDetailsService() {
-		UserDetails admin = Usuario.builder()
-				.username("admin")
-				.password("{noop}admin")
-				.roles("ADMIN", "USER").build();
-		
-		UserDetails user = Usuario.builder()
-				.username("user")
-				.password("{noop}1234")
-				.roles("USER").build();
-		
-		UserDetails user2 = Usuario.builder()
-				.username("user2")
-				.password("{noop}5678")
-				.roles("OTHER").build();
-		
-		
-		return new InMemoryUserDetailsManager(user, admin, user2);
-	}
-	
 	 
 	@Bean
 		SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
