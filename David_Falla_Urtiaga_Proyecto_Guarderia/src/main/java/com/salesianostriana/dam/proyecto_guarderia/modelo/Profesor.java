@@ -82,21 +82,42 @@ public class Profesor {
 	
 	// ALUMNO - PROFESOR
 	
-	public void agregarAlumno(Alumno a) {
+	public void addToAlumno(Alumno a) {
 		this.alumnos.add(a);
 		a.getProfesores().add(this);
 	}
 		
-	public void eliminarAlumno(Alumno a) {
+	public void removeFromAlumno(Alumno a) {
 		a.getProfesores().remove(this);
 		this.alumnos.remove(a);
 	}
 	
 	
+	// CURSO - PROFESOR
+	
+	public void addToCurso(Curso curso) {
+		this.curso = curso;
+		curso.getProfesores().add(this);
+	}
+	
+	public void removeFromCurso(Curso curso) {
+		curso.getProfesores().remove(this);
+		this.curso = null;		
+	}
 	
 	
 	
+	// ACTIVIDAD COMPLEMENTARIA - PROFESOR
 	
+	public void addToActividad(ActividadComplementaria actividad) {
+		this.encargado = actividad;
+		actividad.getProfesores().add(this);
+	}
+	
+	public void removeFromActividad(ActividadComplementaria actividad) {
+		encargado.getProfesores().remove(this);
+		this.encargado = null;		
+	}
 	
 	
 	

@@ -47,3 +47,5 @@ public class Curso {
 	private List<Profesor> profesores = new ArrayList<>();
     
 }
+
+

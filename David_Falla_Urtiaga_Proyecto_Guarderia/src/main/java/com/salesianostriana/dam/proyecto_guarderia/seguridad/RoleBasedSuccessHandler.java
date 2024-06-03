@@ -1,4 +1,4 @@
-/*package com.salesianostriana.dam.proyecto_guarderia.seguridad;
+package com.salesianostriana.dam.proyecto_guarderia.seguridad;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -82,4 +82,4 @@ public class RoleBasedSuccessHandler implements AuthenticationSuccessHandler {
 			"ROLE_USER", 1
 			);
 
-}*/
+}

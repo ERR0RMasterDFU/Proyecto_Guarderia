@@ -1,4 +1,4 @@
-/*package com.salesianostriana.dam.proyecto_guarderia.seguridad;
+package com.salesianostriana.dam.proyecto_guarderia.seguridad;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -27,10 +28,10 @@ public class SecurityConfig{
 	private final AuthenticationSuccessHandler authenticationSuccessHandler;
 
 	
-	//@Bean
-	//public PasswordEncoder passwordEncoder() {
-	//return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-	//}
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+	}
 	
 	
 	@Bean 
@@ -90,4 +91,4 @@ public class SecurityConfig{
 		}
 
 	    
-}*/
+}

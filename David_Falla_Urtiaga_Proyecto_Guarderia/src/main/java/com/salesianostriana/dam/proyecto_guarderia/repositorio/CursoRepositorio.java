@@ -14,6 +14,7 @@ public interface CursoRepositorio extends JpaRepository<Curso, Long>{
 	@Query("""
 			SELECT p
 			FROM Profesor p
-			WHERE p.curso.nombre = :curso""")
-			List<Profesor> findProfesoresByCurso(@Param("curso.nombre") String curso);
+			WHERE curso.id = :curso
+			""")
+			List<Profesor> findProfesoresByCurso(@Param("curso") long id);
 }

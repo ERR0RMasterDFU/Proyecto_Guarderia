@@ -83,7 +83,7 @@ public class Alumno {
 	private List<Profesor> profesores = new ArrayList<>();
 	
 	
-// MTO (USUARIO) -----------------------------------------------------------------------------------
+// MTO (CURSO) -----------------------------------------------------------------------------------
 	
 	@ManyToOne
 	@JoinColumn(foreignKey = @ForeignKey(name="fk_curso_alumno"))
@@ -95,12 +95,12 @@ public class Alumno {
 	
 	//USUARIO - ALUMNO
 	
-	public void agregarprogenitor(Usuario progenitor) {
+	public void addToProgenitor(Usuario progenitor) {
 		this.progenitor = progenitor;
 		progenitor.getHijos().add(this);
 	}
 	
-	public void eliminarProgenitor(Usuario progenitor) {
+	public void removeFromProgenitor(Usuario progenitor) {
 		progenitor.getHijos().remove(this);
 		this.progenitor = null;		
 	}
@@ -108,12 +108,12 @@ public class Alumno {
 
 	// ALUMNO - ACTIVIDAD COMPLEMENTARIA
 	
-	public void agregarActividad(ActividadComplementaria ac) {
+	public void addActividad(ActividadComplementaria ac) {
 		this.horario.add(ac);
 		ac.getAlumnos().add(this);
 	}
 	
-	public void eliminarActividad(ActividadComplementaria ac) {
+	public void removeActividad(ActividadComplementaria ac) {
 		ac.getAlumnos().remove(this);
 		this.horario.remove(ac);
 	}
@@ -121,12 +121,12 @@ public class Alumno {
 	
 	//ALUMNO - CURSO
 	
-	public void agregarCurso(Curso curso) {
+	public void addToCurso(Curso curso) {
 		this.curso = curso;
 		curso.getAlumnos().add(this);
 	}
 	
-	public void eliminarCurso(Curso curso) {
+	public void removeFromCurso(Curso curso) {
 		curso.getAlumnos().remove(this);
 		this.curso = null;		
 	}

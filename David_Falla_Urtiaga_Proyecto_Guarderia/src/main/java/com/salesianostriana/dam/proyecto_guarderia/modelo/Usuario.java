@@ -1,11 +1,12 @@
 package com.salesianostriana.dam.proyecto_guarderia.modelo;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-/*import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;*/
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -33,7 +34,7 @@ import lombok.ToString;
 @Entity
 @Builder
 @Data
-public class Usuario /*implements UserDetails*/ {
+public class Usuario implements UserDetails {
 
 	@Id @GeneratedValue
 	private long id;
@@ -73,26 +74,24 @@ public class Usuario /*implements UserDetails*/ {
 	)
 	@Builder.Default
 	private List<Observacion> observaciones = new ArrayList<>();
-
-	
 	
 	
 	
 	
 // MÉTODOS HELPER ----------------------------------------------------------------------------	
 	
-	public void agregarObservacion(Observacion o) {
+	public void addObservacion(Observacion o) {
 		this.observaciones.add(o);
 		o.getUsuarios().add(this);
 	}
 		
-	public void eliminarObservacion(Observacion o) {
+	public void removeObservacion(Observacion o) {
 		o.getUsuarios().remove(this);
 		this.observaciones.remove(o);
 	}
 
 	
-/*SEGURIDAD ----------------------------------------------------------------------------------------------------------------------------------
+//SEGURIDAD ----------------------------------------------------------------------------------------------------------------------------------
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -130,6 +129,6 @@ public class Usuario /*implements UserDetails*/ {
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
 		return false;
-	}*/
+	}
 	
 }

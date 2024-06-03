@@ -34,7 +34,7 @@ public class Observacion {
 	private String mensaje;
 	
 	
-// MTO (USUARIO) --------------------------------------------------------
+// MTO (ALUMNO) --------------------------------------------------------
 	
 	@ManyToOne
 	@JoinColumn(foreignKey = @ForeignKey(name="fk_alumno_observacion"))
@@ -60,14 +60,16 @@ public class Observacion {
 	
 // MÉTODOS HELPER ------------------------------------------------------------------------------------------------------------------------------
 	
+
+	 
 	// ALUMNO - OBSERVACION
 	 
-	public void agregarAlumno(Alumno alumno) {
+	public void addToAlumno(Alumno alumno) {
 		this.alumno = alumno;
 		alumno.getObservaciones().add(this);
 	}
 	
-	public void eliminarAlumno(Alumno alumno) {
+	public void removeFromAlumno(Alumno alumno) {
 		alumno.getObservaciones().remove(this);
 		this.alumno = null;		
 	}
@@ -75,12 +77,12 @@ public class Observacion {
 	
 	// PROFESOR -OBSERVACION
 	
-	public void agregarProfesor(Profesor profesor) {
+	public void addToProfesor(Profesor profesor) {
 		this.profesor = profesor;
 		profesor.getObservaciones().add(this);
 	}
 	
-	public void eliminarProfesor(Profesor profesor) {
+	public void removeFromProfesor(Profesor profesor) {
 		profesor.getObservaciones().remove(this);
 		this.profesor = null;		
 	}	

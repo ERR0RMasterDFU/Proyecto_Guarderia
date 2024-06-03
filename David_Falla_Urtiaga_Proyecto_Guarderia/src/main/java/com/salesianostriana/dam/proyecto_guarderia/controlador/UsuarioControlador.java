@@ -15,8 +15,6 @@ import com.salesianostriana.dam.proyecto_guarderia.modelo.Progenitor;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Usuario;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.UsuarioServicio;
 
-
-
 @Controller
 @RequestMapping("/usuario")
 public class UsuarioControlador {
@@ -46,7 +44,7 @@ public class UsuarioControlador {
 				
 		servicio.save(usuario);		
 					
-		return "redirect:/";
+		return "redirect:/login";
 	}
 		
 		

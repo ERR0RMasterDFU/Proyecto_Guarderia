@@ -21,7 +21,6 @@ public class CursoControlador {
 	@Autowired
 	private CursoServicio servicio;
 	
-	
 	//MOSTRAR LA LISTA DE CURSOS -----------------------------------------------------------------------------
 	
 	@GetMapping("")
@@ -104,10 +103,10 @@ public class CursoControlador {
 	
 	// FILTRA A LOS PROFESORES POR CURSO -----------------------------------------------------------------
 	
-	@GetMapping("/profesores/{nombreCurso}")
-	public String mostrarProfesoresFiltradosPorCursos(@PathVariable("nombreCurso") String nombreCurso, Model model, String curso) {
+	@GetMapping("/profesores/{id}")
+	public String mostrarProfesoresFiltradosPorCursos(@PathVariable("id") long id, Model model) {
 			
-		model.addAttribute("listaProfesores", servicio.findProfesoresByCurso(curso));
+		model.addAttribute("listaProfesores", servicio.findProfesoresByCurso(id));
 		
 		return "admin/profesoresAdmin";
 	}

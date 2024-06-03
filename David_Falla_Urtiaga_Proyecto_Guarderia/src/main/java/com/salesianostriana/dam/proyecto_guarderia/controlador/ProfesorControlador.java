@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.salesianostriana.dam.proyecto_guarderia.modelo.ActividadComplementaria;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Profesor;
+import com.salesianostriana.dam.proyecto_guarderia.repositorio.ProfesorRepositorio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.ActividadComplementariaServicio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.CursoServicio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.ProfesorServicio;
@@ -30,6 +31,9 @@ public class ProfesorControlador {
 	
 	@Autowired
 	private ActividadComplementariaServicio ActServicio;
+	
+	@Autowired
+	private ProfesorRepositorio PorfeRepo;
 
 	
 	// MUESTRA LA PÁGINA DE PROFESORES -----------------------------------------------------------------------------------
@@ -54,6 +58,8 @@ public class ProfesorControlador {
 		
 		model.addAttribute("listaCursos", CursoServicio.findAll()); 		//LISTA DE CURSOS PARA PROFESOR
 		model.addAttribute("listaActividades", ActServicio.findAll()); 		//LISTA DE ACTIVIDADES PARA PROFESOR
+		
+		PorfeRepo.save(profesor);
 		
 		return "admin/agregarEditarProfesoresAdmin";
 	}	

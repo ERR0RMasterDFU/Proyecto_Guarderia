@@ -23,8 +23,8 @@ public class CursoServicio extends ServicioBaseImpl<Curso, Long, CursoRepositori
 	}
 
 	
-	public List<Profesor>findProfesoresByCurso(String curso){
-		List <Profesor> profesoresFiltradosPorCurso = repositorio.findProfesoresByCurso(curso);
+	public List<Profesor>findProfesoresByCurso(long id){
+		List <Profesor> profesoresFiltradosPorCurso = repositorio.findProfesoresByCurso(id);
 		return profesoresFiltradosPorCurso;
 	}
 

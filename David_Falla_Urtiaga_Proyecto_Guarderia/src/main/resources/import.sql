@@ -1,7 +1,6 @@
-
 -- USUARIOS -----------------------------------------------------------------------------------------------------------------------------------------------
 
-INSERT INTO Usuario (id, username, dni, password, email, nombre, primer_apellido, segundo_apellido, num_telefono, num_hijos, progenitor, admin) VALUES (1, 'admin', 'null', 'admin', 'null', 'null', 'null', 'null', null,  0, 'TUTORLEGAL', 'true');
+INSERT INTO Usuario (id, username, dni, password, email, nombre, primer_apellido, segundo_apellido, num_telefono, num_hijos, progenitor, admin) VALUES (1, 'admin', 'null', 'admin', 'null', 'null', 'null', 'null', 'null',  0, 'TUTORLEGAL', 'true');
 
 ALTER SEQUENCE usuario_seq RESTART WITH 51;
 
