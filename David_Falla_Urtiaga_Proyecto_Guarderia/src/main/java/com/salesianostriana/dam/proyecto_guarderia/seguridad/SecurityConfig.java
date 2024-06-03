@@ -7,13 +7,16 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.savedrequest.NullRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
+
+import com.salesianostriana.dam.proyecto_guarderia.modelo.Usuario;
 
 import lombok.RequiredArgsConstructor;
 
@@ -28,10 +31,6 @@ public class SecurityConfig{
 	private final AuthenticationSuccessHandler authenticationSuccessHandler;
 
 	
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-	}
 	
 	
 	@Bean 
@@ -53,6 +52,28 @@ public class SecurityConfig{
 		return authBuilder
 			.authenticationProvider(daoAuthenticationProvider())
 			.build();
+	}
+	
+	
+	@Bean
+	InMemoryUserDetailsManager userDetailsService() {
+		UserDetails admin = Usuario.builder()
+				.username("admin")
+				.password("{noop}admin")
+				.roles("ADMIN", "USER").build();
+		
+		UserDetails user = Usuario.builder()
+				.username("user")
+				.password("{noop}1234")
+				.roles("USER").build();
+		
+		UserDetails user2 = Usuario.builder()
+				.username("user2")
+				.password("{noop}5678")
+				.roles("OTHER").build();
+		
+		
+		return new InMemoryUserDetailsManager(user, admin, user2);
 	}
 	
 	 
