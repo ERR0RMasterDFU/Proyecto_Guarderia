@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.salesianostriana.dam.proyecto_guarderia.modelo.ActividadComplementaria;
+import com.salesianostriana.dam.proyecto_guarderia.modelo.Curso;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.ActividadComplementariaServicio;
 
 @Controller
@@ -24,7 +25,7 @@ public class ActividadComplementariaControlador {
 	
 	//MOSTRAR LA LISTA DE ACTIVIDADES COMPLEMENTARIAS -----------------------------------------------------------------------------
 	
-	@GetMapping("")
+	@GetMapping("/")
 	public String mostrarActividades(Model model) {
 			
 		model.addAttribute("listaActividades", servicio.findAll());
@@ -53,7 +54,7 @@ public class ActividadComplementariaControlador {
 			
 			servicio.save(actividad);		
 			
-		return "redirect:/admin/actividades";
+		return "redirect:/admin/actividades/";
 	} 
 
 	
@@ -71,7 +72,7 @@ public class ActividadComplementariaControlador {
 				
 		} else {
 				
-			return "redirect:/admin/actividades";
+			return "redirect:/admin/actividades/";
 		}
 			
 	}
@@ -85,7 +86,7 @@ public class ActividadComplementariaControlador {
 			
 		servicio.save(actividad);
 			
-		return "redirect:/admin/actividades";	
+		return "redirect:/admin/actividades/";	
 	}
 		
 		
@@ -94,11 +95,31 @@ public class ActividadComplementariaControlador {
 
 	@GetMapping("/borrarActividad/{id}")
 	public String borrarActividad(@PathVariable("id") long id) {
+
+		Optional<ActividadComplementaria> actividadABorrar = servicio.findById(id);
+		
+		if(actividadABorrar.isPresent()) {
+		
+			if(servicio.contarProfesoresDeUnaActividad(id) == 0) {
+				servicio.deleteById(id);
+			}else {
+				return "redirect:/admin/actividad/?error=true";
+			}
+		}
 			
-		servicio.deleteById(id);
-			
-		return "redirect:/admin/actividades";
+		return "redirect:/admin/actividad/";
 	}
 	
+	
+	
+	// FILTRA A LOS PROFESORES POR CURSO -----------------------------------------------------------------
+	
+		@GetMapping("/profesores/{id}")
+		public String mostrarProfesoresFiltradosPorActividad(@PathVariable("id") long id, Model model) {
+				
+			model.addAttribute("listaProfesores", servicio.filtrarProfesoresPorActividad(id));
+			
+			return "admin/profesoresAdmin";
+		}
 		
 }

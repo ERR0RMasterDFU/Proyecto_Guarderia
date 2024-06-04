@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Curso;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.CursoServicio;
-import com.salesianostriana.dam.proyecto_guarderia.servicio.ProfesorServicio;
 
 @Controller
 @RequestMapping("/admin/cursos")
@@ -94,7 +93,7 @@ public class CursoControlador {
 	//BORRA EL CURSO ELEGIDO POR ID ----------------------------------------------------------------------
 
 	@GetMapping("/borrarCurso/{id}")
-	public String borrarCurso(@PathVariable("id") long id, Model model) {
+	public String borrarCurso(@PathVariable("id") long id) {
 
 		Optional<Curso> cursoABorrar = servicio.findById(id);
 		

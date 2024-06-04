@@ -16,6 +16,10 @@ public class UsuarioServicio extends ServicioBaseImpl<Usuario, Long, UsuarioRepo
 	@Autowired
 	private PasswordEncoder encoder;
 	
+	@Autowired
+	private UsuarioRepositorio repositorio;
+	
+	
 	public UsuarioServicio(UsuarioRepositorio repo) {
 		super(repo);
 	}
@@ -29,6 +33,12 @@ public class UsuarioServicio extends ServicioBaseImpl<Usuario, Long, UsuarioRepo
 		u.setPassword(encoder.encode(u.getPassword()));
 		return save(u);
 	}
+	
+	
+	/*public int contarAlumnosdeUnUsuario(long id) {
+		return repositorio.findNumAlumnosByUsuario(id);
+		
+	}*/
 	
 }
 

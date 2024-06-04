@@ -28,7 +28,7 @@ public class UsuarioControlador {
 	@GetMapping("/registro")
 	public String mostrarFormularioRegistro(Model model) {
 					
-		model.addAttribute("listaTipoProgenitor", Progenitor.values());	
+		model.addAttribute("listaUsuarios", Progenitor.values());	
 				
 		Usuario usuario = new Usuario();
 		model.addAttribute("usuario", usuario);
