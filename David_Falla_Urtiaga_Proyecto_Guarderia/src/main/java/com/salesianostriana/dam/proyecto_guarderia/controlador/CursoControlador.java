@@ -48,7 +48,7 @@ public class CursoControlador {
 	// AÑADE EL NUEVO CURSO A LA BASE DE DATOS ---------------------------------------------------------------
 		
 	@PostMapping("/nuevoCurso/submit")
-	public String registrarNuevoCurso(@ModelAttribute("actividad") Curso curso) {
+	public String registrarNuevoCurso(@ModelAttribute("curso") Curso curso) {
 			
 			servicio.save(curso);		
 			

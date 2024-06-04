@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.salesianostriana.dam.proyecto_guarderia.modelo.ActividadComplementaria;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Progenitor;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Usuario;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.UsuarioServicio;
@@ -80,7 +81,6 @@ public class UsuarioControlador {
 			return "redirect:/usuario/miPerfil";
 		}
 	}
-		
 	
 	
 		
