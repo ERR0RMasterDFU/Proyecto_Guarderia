@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es"xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<body>
+		
+		<nav class="navbar navbar-expand-sm bg-warning sticky-top border border-2 border-start-0 border-end-0 border-black">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#inicio"><img src="../static/img/general/logoParenteller.png" th:src="@{/img/general/logoParenteller.png}" width="160px" alt="Logo de Parenteller"></a>
+		    	<ul class="nav justify-content-end align-items-center" style="font-size: 18px;">
+					<li class="nav-item"><a class="nav-link text-black fw-bold estiloNavItem" href="alumnosAdmin.html" th:href="@{/admin/alumnos}"><i class="bi bi-person-fill"></i>&ensp;ALUMNOS</a></li>
+					<li class="nav-item"><a class="nav-link text-black fw-bold estiloNavItem" href="profesoresAdmin.html" th:href="@{/admin/profesores}"><i class="bi bi-mortarboard-fill"></i>&ensp;PROFESORES</a></li>
+					<li class="nav-item"><a class="nav-link text-black fw-bold estiloNavItem" href="cursosAdmin.html" th:href="@{/admin/cursos}"><i class="bi bi-bookmarks-fill"></i>&ensp;CURSOS</a></li>
+					<li class="nav-item"><a class="nav-link text-black fw-bold estiloNavItem" href="actsComplementariasAdmin.html" th:href="@{/admin/actividades}"><i class="bi bi-clipboard2-fill"></i>&ensp;ACTS. COMPLEMENTARIAS</a></li>
+
+		        	<!--li class="nav-item"><a class="nav-link text-black fw-bold estiloNavItem me-3" href="perfilUsuario.html" th:href="@{/usuario/miPerfil}"><i class="bi bi-file-earmark-bar-graph-fill"></i>&ensp;MI PERFIL</a></li-->
+		        	<!--li class="nav-item flex-fill text-center"><a href="inicioDeSesion.html"><button type="button" class="btn btn-info text-dark border-dark border-2 fw-bold ms-3">CERRAR SESIÓN</button></a></li-->
+		   		
+					<div class="dropdown ms-3">
+						<button class="btn btn-dark text-white dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false">CUENTA&nbsp;&nbsp;</button>
+				
+						<ul class="dropdown-menu dropdown-menu-end border border-2 border-black">
+							<div class="mb-4 mt-2 px-3"> <!--sec:authorize="isAuthenticated()"-->
+								<h5 class="text-center">¡Hola, <!--span sec:authentication="username"></span-->!</h5> 
+							</div>	
+								
+							<li style="width: 350px;"><form th:action="@{/logout}" method="post" id="logoutForm"><a class="dropdown-item flex-fill text-center"><button type="submit" class="btn btn-info text-dark border-dark border-2 fw-bold w-100"><i class="bi bi-door-open-fill"></i>&ensp;CERRAR SESIÓN</button></a></form></li>
+						</ul>
+					</div>
+			
+				</ul>
+			</div>
+		</nav>
+		
+	</body>
+</html>

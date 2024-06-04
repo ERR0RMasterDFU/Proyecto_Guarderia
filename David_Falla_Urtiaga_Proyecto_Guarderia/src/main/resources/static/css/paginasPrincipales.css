@@ -1,0 +1,9 @@
+.fondo{
+        background-image: url(../img/general/fondoPaginas.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+.estiloNavItem:hover{
+    background-color: white;
+}
