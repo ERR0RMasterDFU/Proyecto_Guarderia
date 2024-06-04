@@ -15,7 +15,5 @@ public class ProfesorServicio extends ServicioBaseImpl<Profesor, Long, ProfesorR
 		// TODO Auto-generated constructor stub
 	}
 	
-	
-	
 
 }

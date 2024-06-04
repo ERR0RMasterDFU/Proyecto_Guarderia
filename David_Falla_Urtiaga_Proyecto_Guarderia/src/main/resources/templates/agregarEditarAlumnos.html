@@ -102,8 +102,13 @@
         <!---- ACTIVIDADES COMPLEMENTARIAS ------------------------------------------------------>
 
                             <div class="mt-3">
-                                <p class="m-0 fw-bold">HORARIO</p>
+                                <p class="m-0 fw-bold">ACTIVIDADES COMPLEMENTARIAS</p>
                                 <div class="d-flex w-100 mt-1">
+									
+									<div th:each="actividad : ${listaActividades}" class="col-3 form-check pe-5 py-1">
+										<input type="checkbox" class="form-check-input border border-1 border-black" th:field="*{curso}" th:value="${curso.id}" th:text="${curso.nombre}"> 
+									</div>
+									
                                     <input type="checkbox" name="guarderia" checked disabled value="guarderia"><label class="ps-1" for="guarderia" style="flex: 1 1 20%;">Guardería</label>
                                     <input type="checkbox" name="aulaMatinal" value="aulaMatinal"><label class="ps-1" for="aulaMatinal" style="flex: 1 1 20%;">Aula matinal</label>
                                     <input type="checkbox" name="comedor" value="comedor"><label class="ps-1" for="comedor" style="flex: 1 1 20%;">Comedor</label>

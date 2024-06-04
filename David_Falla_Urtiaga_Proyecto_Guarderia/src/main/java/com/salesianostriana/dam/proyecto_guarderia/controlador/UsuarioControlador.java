@@ -43,7 +43,7 @@ public class UsuarioControlador {
 	@PostMapping("/registro/submit")
 	public String registrarNuevoUsuario(@ModelAttribute("usuario") Usuario usuario) {
 				
-		servicio.save(usuario);		
+		servicio.saveNewUsuario(usuario);	
 					
 		return "redirect:/login";
 	}
