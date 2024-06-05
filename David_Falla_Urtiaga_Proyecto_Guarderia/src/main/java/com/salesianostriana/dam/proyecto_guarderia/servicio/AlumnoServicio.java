@@ -3,6 +3,7 @@ package com.salesianostriana.dam.proyecto_guarderia.servicio;
 import org.springframework.stereotype.Service;
 
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Alumno;
+import com.salesianostriana.dam.proyecto_guarderia.modelo.Usuario;
 import com.salesianostriana.dam.proyecto_guarderia.repositorio.AlumnoRepositorio;
 import com.salesianostriana.dam.proyecto_guarderia.repositorio.UsuarioRepositorio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.base.ServicioBaseImpl;
@@ -14,5 +15,6 @@ public class AlumnoServicio extends ServicioBaseImpl<Alumno, Long, AlumnoReposit
 		super(repo);
 		// TODO Auto-generated constructor stub
 	}
+
 
 }

@@ -35,41 +35,47 @@
 
             <main class="m-3 p-5 bg-white text-black" style="flex: 1 1 81%; width: 75%; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
                 
-                <table class="border border-2 border-dark w-100 text-center rounded-3">
-                    <thead class="bg-warning">
-                        <tr class="fw-bold border border-2 border-black text-black" style="font-size: 15px;">
-                            <th style="width: 10%;">NOMBRE</th>
-                            <th style="width: 10%;">PRIMER<br>APELLIDO</th>
-                            <th style="width: 10%;">SEGUNDO<br>APELLIDO</th>
-                            <th style="width: 8%;">EDAD</th>
-                            <th style="width: 8%;">CURSO</th>
-                            <th style="width: 14%;">FECHA DE<br>NACIMIENTO</th>
-                            <th style="width: auto">DIRECCIÓN</th>
-                            <th class="border border-black border-2 py-3" style="width: 20%;">INFORMACIÓN EXTRA</th>
-                        </tr>
-                    </thead>
-                    <tbody style="font-size: 15px; background-color: rgb(252, 244, 199);">
-                        <tr class="border-2 border-bottom border-black">
-                            <td class="border border-black border-2">1</td>
-                            <td class="py-3 px-2">Luchintus Teofristastus</td>
-                            <td class="py-3 px-2">Falla</td>
-                            <td class="py-3 px-2">Urtiaga</td>
-                            <td class="py-3 px-2">1 año</td>
-                            <td class="py-3 px-2">1er Ciclo</td>
-                            <td class="py-3 px-2">30/06/1997</td>
-                            <td class="py-3 px-2">ebveyvbeygvufbvetrbrfjngfj</td>
-                            <td class="py-2 px-3 border border-black border-2">
-                                <div class="py-0">
-                                    <a type="button" href="../templates/formularioEnvioDeDatos.html" class="btn btn-primary text-white fw-bold w-100">HORARIO</a>
-                                </div>
-                                <div class="mt-2 py-0">
-                                    <a type="button" href="../templates/formularioEnvioDeDatos.html" class="btn btn-danger text-white fw-bold w-100">TUTOR LEGAL</a>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-
+				<div class="table-responsive">
+					<table class="table table-hover table-warning table-striped text-center">
+				   		<thead class="bg-warning">
+				     		<tr class="fw-bold text-black align-middle">
+				               	<th class="bg-warning border-2 border-end-0 border-black">NOMBRE</th>
+				               	<th class="bg-warning border-2 border-start-0 border-end-0 border-black">PRIMER<br>APELLIDO</th>
+				               	<th	class="bg-warning border-2 border-start-0 border-end-0 border-black">SEGUNDO<br>APELLIDO</th>
+								<th	class="bg-warning border-2 border-start-0 border-end-0 border-black">EDAD</th>
+								<th	class="bg-warning border-2 border-start-0 border-end-0 border-black">DIRECCIÓN</th>
+								<th	class="bg-warning border-2 border-start-0 border-end-0 border-black">FECHA DE<br>NACIMIENTO</th>
+								<th	class="bg-warning border-2 border-start-0 border-end-0 border-black">CURSO</th>
+				               	<th	class="bg-warning border-2 border-start-0 border-black">LISTADOS</th>
+				         	</tr>					
+				 		</thead>
+				       	<tbody>
+				       		<tr th:each="alumno : ${listaAlumnos}">
+				             	<td th:text="${alumno.nombre}" class="border-2 border-end-0 border-black py-3 px-2"></td>
+				               	<td	th:text="${alumno.primerApellido}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+				             	<td th:text="${alumno.segundoApellido}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+								<th:block th:if="${alumno.edad == 0}">
+									<td class="border-2 border-start-0 border-end-0 border-black py-3 px-2">Menos de un año</td>
+								</th:block>
+								<th:block th:if="${alumno.edad == 1}">
+									<td th:text="${alumno.edad + ' año'}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+								</th:block>
+								<th:block th:if="${alumno.edad > 1}">
+									<td th:text="${alumno.edad + ' años'}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+								</th:block>
+				               	<td th:text="${alumno.direccion}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+								<td th:text="${alumno.fechaNacimiento}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+								<td th:text="${alumno.curso.nombre}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+								<td class="border-2 border-start-0 border-start-0 border-black py-2 px-3">
+									<div class="py-0">
+										<a type="button" th:href="@{ -- }" class="btn btn-primary text-white fw-bold w-100">ALUMNOS</a>
+									</div>
+				              	</td>
+				           	</tr>
+				       	</tbody>
+				  	</table>
+				</div>
+				
             </main>
 
 <!------------------------------------------------------------------>

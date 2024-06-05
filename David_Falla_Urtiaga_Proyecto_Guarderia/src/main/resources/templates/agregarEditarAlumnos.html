@@ -47,6 +47,8 @@
         <!---- NOMBRE Y APELLIDOS -------------------------------------------->
 
 							<input th:if="${alumno.id!=0}" type="hidden" name="id" th:field="*{id}"/>
+							
+							<input th:if="${alumno.id!=0}" type="hidden" name="progenitor" th:field="*{progenitor}" th:value="${progenitor.id}"/>
 		
                             <div class="d-flex w-100">
                                 <div class="me-3" style="flex: 1 1 33%;">

@@ -34,7 +34,7 @@ public class AlumnoControlador {
 	@GetMapping("/usuario/alumnos")
 	public String mostrarAlumnosUsuario(Model model) {
 		
-		model.addAttribute("listaAlumnos", servicio);
+		model.addAttribute("listaAlumnos", servicio.findAll());
 	
 		return "usuario/alumnosUsuario";
 	}
