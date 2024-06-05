@@ -33,7 +33,7 @@
 
 <!---- CONTENIDO PRINCIPAL / MAIN ------------------------------------>
 
-            <main class="m-3 px-5 pt-4 pb-5 bg-white" style="flex: 1 1 81%; width: 75%; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
+            <main class="m-3 px-5 py-5 bg-white" style="flex: 1 1 81%; width: 75%; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
 
 				
 				<!-- MENSAJE DE ERROR -------------------------------------------------------------------------------------------------------------------------------->
@@ -43,53 +43,54 @@
 						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 					</div>
 					
-							<!---------------------------------------------------------------------------------------------------------------------------------------------------->
+				<!---------------------------------------------------------------------------------------------------------------------------------------------------->
 		
-				
-                <table class="border border-2 border-black w-100 text-center rounded-3">
+				<div class="table-responsive">
+				<table class="table table-hover table-warning table-striped text-center">
                     <thead class="bg-warning">
-                        <tr class="fw-bold border border-2 border-black text-black" style="font-size: 15px;">
-                            <th class="border border-black border-2" style="width: 7%;">ID</th>
-                            <th style="width: 7%;">NOMBRE</th>
-                            <th style="width: 7%;">PRIMER<br>APELLIDO</th>
-                            <th style="width: 7%;">SEGUNDO<br>APELLIDO</th>
-							<th style="width: 7%;">NOMBRE DE<br>USUARIO</th>
-							<th style="width: 7%;">TIPO DE<br>PROGENITOR</th>
-							<th style="width: 7%;">DNI</th>
-							<th style="width: 7%;">CORREO</th>
-							<th style="width: 7%;">Nº TELÉFONO</th>
-                            <th style="width: 7%;">NÚMERO DE<br>HIJOS</th>
-							<th style="width: 7%">ES<br>ADMINISTRADOR</th>
-                            <th class="border border-black border-2 py-3" style="width: 7%;">LISTADOS</th>
-                            <th class="border border-black border-2" style="width: 7%;">ADMIN</th>
+                        <tr class="fw-bold text-black align-middle" style="font-size: 15px;">
+                            <th class="bg-warning border-2 border-end-0 border-black">ID</th>
+                            <th class="bg-warning border-2 border-start-0 border-end-0 border-black">NOMBRE</th>
+                            <th class="bg-warning border-2 border-start-0 border-end-0 border-black">PRIMER<br>APELLIDO</th>
+                            <th	class="bg-warning border-2 border-start-0 border-end-0 border-black">SEGUNDO<br>APELLIDO</th>
+							<th	class="bg-warning border-2 border-start-0 border-end-0 border-black">USERNAME</th>
+							<th	class="bg-warning border-2 border-start-0 border-end-0 border-black">TIPO<br>PROGENITOR</th>
+							<th	class="bg-warning border-2 border-start-0 border-end-0 border-black">DNI</th>
+							<th	class="bg-warning border-2 border-start-0 border-end-0 border-black">CORREO</th>
+							<th	class="bg-warning border-2 border-start-0 border-end-0 border-black">Nº TELÉFONO</th>
+                            <th	class="bg-warning border-2 border-start-0 border-end-0 border-black">Nº HIJOS</th>
+							<th	class="bg-warning border-2 border-start-0 border-end-0 border-black">¿ADMIN?</th>
+                            <th	class="bg-warning border-2 border-start-0 border-end-0 border-black">LISTADOS</th>
+                            <th	class="bg-warning border-2 border-start-0 border-black">ADMIN</th>
                         </tr>					
                     </thead>
                     <tbody style="font-size: 15px; background-color: rgb(252, 244, 199);">
-                        <tr th:each="usuario : ${listaUsuarios}" class="border-2 border-bottom border-black">
-                            <td th:text="${usuario.id}" class="border border-black border-2"></td>
-                            <td th:text="${usuario.nombre}" class="py-3 px-2"></td>
-                            <td	th:text="${usuario.primerApellido}" class="py-3 px-2"></td>
-                            <td th:text="${usuario.segundoApellido}" class="py-3 px-2"></td>
-							<td th:text="${usuario.username}" class="py-3 px-2"></td>
-                            <td th:text="${usuario.progenitor.tipoProgenitor}" class="py-3 px-2"></td>
-							<td th:text="${usuario.dni}" class="py-3 px-2"></td>
-							<td th:text="${usuario.email}" class="py-3 px-2"></td>
-                            <td th:text="${usuario.numTelefono}" class="py-3 px-2"></td>
-                            <td th:text="${usuario.numHijos}" class="py-3 px-2"></td>
-                            <td th:text="${usuario.admin ? 'SI' : 'NO'}" class="py-3 px-2"></td>
-							<td>
+                        <tr th:each="usuario : ${listaUsuarios}">
+                            <td th:text="${usuario.id}" class="border-2 border-end-0 border-black py-3 px-2"></td>
+                            <td th:text="${usuario.nombre}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+                            <td	th:text="${usuario.primerApellido}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+                            <td th:text="${usuario.segundoApellido}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+							<td th:text="${usuario.username}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+                            <td th:text="${usuario.progenitor.tipoProgenitor}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+							<td th:text="${usuario.dni}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+							<td th:text="${usuario.email}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+                            <td th:text="${usuario.numTelefono}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+                            <td th:text="${usuario.numHijos}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+                            <td th:text="${usuario.admin ? 'SI' : 'NO'}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+							<td class="border-2 border-start-0 border-end-0 border-black">
 								<div class="py-0">
 									<a type="button" th:href="@{ -- }" class="btn btn-primary text-white fw-bold w-100">ALUMNOS</a>
 								</div>
                             </td>
-                            <td class="py-2 px-3 border border-black border-2 bg-opacity-25 bg-black">
-                                <div class="py-0">
-                                    <a type="button" href="profesoresAdmin.html" th:href="@{/admin/usuarios/borrarUsuarios/{id}(id=${usuario.id})}" class="btn text-white fw-bold w-100" style="background-color: rgb(218, 63, 3);"><i class="bi bi-trash-fill"></i></a>
+                            <td class="border-2 border-start-0 border-start-0 border-black py-2 px-3">
+                                <div class="py-0" th:if="${usuario.admin==false}">
+                                    <a type="button" href="profesoresAdmin.html" th:href="@{/admin/usuarios/borrarUsuario/{id}(id=${usuario.id})}" class="btn text-white fw-bold w-100" style="background-color: rgb(218, 63, 3);"><i class="bi bi-trash-fill"></i></a>
                                 </div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
+				</div>
 
             </main>
 

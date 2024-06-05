@@ -18,7 +18,7 @@ import com.salesianostriana.dam.proyecto_guarderia.servicio.UsuarioServicio;
 
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/admin/usuarios")
 public class AdminControlador {
 
 	@Autowired
@@ -27,18 +27,16 @@ public class AdminControlador {
 	
 	// MUESTRA LA PÁGINA DE BIENVENIDA (ADMIN) -------------------------------------------------------------------------------------------------------------------------------
 
-	@GetMapping("/")
+	/*@GetMapping("/")
 	public String muestraBienvenidaAdmin() {
 		
 		return "admin/bienvenidaAdmin";
-	}
+	}*/
 	
 	
-	@GetMapping("/usuarios")
+	@GetMapping("/")
 	public String mostrarListaUsuarios(Model model) {
 		
-		
-			
 		model.addAttribute("listaUsuarios", servicio.findAll());
 		
 		return "admin/tablaUsuariosAdmin";
@@ -46,7 +44,7 @@ public class AdminControlador {
 	}			
 			
 			
-	/* BORRA EL USUARIO ELEGIDO POR ID ----------------------------------------------------------------------
+	//BORRA EL USUARIO ELEGIDO POR ID ----------------------------------------------------------------------
 
 	@GetMapping("/borrarUsuario/{id}")
 	public String borrarUsuario(@PathVariable("id") long id) {
@@ -58,11 +56,11 @@ public class AdminControlador {
 			if(servicio.contarAlumnosdeUnUsuario(id) == 0) {
 				servicio.deleteById(id);
 			}else {
-				return "redirect:/admin/usuarios?error=true";
+				return "redirect:/admin/usuarios/?error=true";
 			}
 		}
 				
-			return "redirect:/admin/usuarios";
+			return "redirect:/admin/usuarios/";
 	}
 		
 			

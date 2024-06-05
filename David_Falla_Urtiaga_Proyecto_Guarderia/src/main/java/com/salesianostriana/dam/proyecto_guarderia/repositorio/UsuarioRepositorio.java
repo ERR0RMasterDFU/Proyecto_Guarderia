@@ -13,11 +13,11 @@ public interface UsuarioRepositorio extends JpaRepository<Usuario, Long>{
 	Optional<Usuario> findFirstByUsername(String username);
 	
 	// CUENTA LOS USUARIOS QUE HAY EN UN CURSO
-	/*@Query("""
+	@Query("""
 			SELECT count(a)
-			FROM Alumnos a
-			WHERE progenitor.id = :progenitor
+			FROM Alumno a
+			WHERE a.progenitor.id = :progenitor
 			""")
-	public int findNumAlumnosByUsuario(@Param("progenitor") long id);*/
+	public int findNumAlumnosByUsuario(@Param("progenitor") long id);
 }
 

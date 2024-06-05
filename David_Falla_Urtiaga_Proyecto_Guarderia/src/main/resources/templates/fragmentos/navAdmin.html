@@ -10,13 +10,14 @@
 					<li class="nav-item"><a class="nav-link text-black fw-bold estiloNavItem" href="profesoresAdmin.html" th:href="@{/admin/profesores}"><i class="bi bi-mortarboard-fill"></i>&ensp;PROFESORES</a></li>
 					<li class="nav-item"><a class="nav-link text-black fw-bold estiloNavItem" href="cursosAdmin.html" th:href="@{/admin/cursos/}"><i class="bi bi-bookmarks-fill"></i>&ensp;CURSOS</a></li>
 					<li class="nav-item"><a class="nav-link text-black fw-bold estiloNavItem" href="actsComplementariasAdmin.html" th:href="@{/admin/actividades/}"><i class="bi bi-clipboard2-fill"></i>&ensp;ACTS. COMPLEMENTARIAS</a></li>
-					<li class="nav-item"><a class="nav-link text-black fw-bold estiloNavItem" href="actsComplementariasAdmin.html" th:href="@{/admin/usuarios}"><i class="bi bi-clipboard2-fill"></i>&ensp;USUARIOS / TUTORES LEGALES</a></li>
+					<li class="nav-item"><a class="nav-link text-black fw-bold estiloNavItem" href="actsComplementariasAdmin.html" th:href="@{/admin/actividades/}"><i class="bi bi-pen-fill"></i>&ensp;OBSERVACIONES</a></li>
+					<li class="nav-item"><a class="nav-link text-black fw-bold estiloNavItem" href="tablaUsuariosAdmin.html" th:href="@{/admin/usuarios/}"><i class="bi bi-people-fill"></i>&ensp;USUARIOS / TUTORES LEGALES</a></li>
 					
 					<div class="dropdown ms-3">
 						<button class="btn btn-dark text-white dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false">CUENTA&nbsp;&nbsp;</button>
 				
 						<ul class="dropdown-menu dropdown-menu-end border border-2 border-black">
-							<div class="mb-4 mt-2 px-3"> <!--sec:authorize="isAuthenticated()"-->
+							<div class="my-2 px-3">
 								<h5 class="text-center">¡Hola, <span sec:authentication="name"></span>!</h5> 
 							</div>	
 								

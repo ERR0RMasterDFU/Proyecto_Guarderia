@@ -103,11 +103,11 @@ public class ActividadComplementariaControlador {
 			if(servicio.contarProfesoresDeUnaActividad(id) == 0) {
 				servicio.deleteById(id);
 			}else {
-				return "redirect:/admin/actividad/?error=true";
+				return "redirect:/admin/actividades/?error=true";
 			}
 		}
 			
-		return "redirect:/admin/actividad/";
+		return "redirect:/admin/actividades/";
 	}
 	
 	

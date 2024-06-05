@@ -35,10 +35,10 @@ public class UsuarioServicio extends ServicioBaseImpl<Usuario, Long, UsuarioRepo
 	}
 	
 	
-	/*public int contarAlumnosdeUnUsuario(long id) {
+	public int contarAlumnosdeUnUsuario(long id) {
 		return repositorio.findNumAlumnosByUsuario(id);
 		
-	}*/
+	}
 	
 }
 
