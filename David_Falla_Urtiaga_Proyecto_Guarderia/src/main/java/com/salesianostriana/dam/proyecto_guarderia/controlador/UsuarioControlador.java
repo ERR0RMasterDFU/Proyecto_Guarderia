@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.salesianostriana.dam.proyecto_guarderia.modelo.ActividadComplementaria;
+import com.salesianostriana.dam.proyecto_guarderia.modelo.Profesor;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Progenitor;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Usuario;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.UsuarioServicio;
@@ -48,68 +49,51 @@ public class UsuarioControlador {
 		return "redirect:/login";
 	}
 		
-		
-		
-
-//MUESTRA LA PÁGINA DE LOS DATOS DE USUARIO (MI PERFIL) ---------------------------------------------------------------------
-		
-	@GetMapping("/miPerfil")
-	public String mostrarPerfilUsuario(long id, Model model) {
 				
-		Optional<Usuario> usuario = servicio.findById(id);
-					
-		return "usuario/perfilUsuario";
-	}
-		
-
 	
-	
-// MUESTRA EL FORMULARIO DE REGISTRO (PARA AÑADIR USUARIO / TUTOR LEGAL) RELLENO --------------------------------------------
+// MUESTRA EL FORMULARIO DE REGISTRO (PARA AÑADIR USUARIO) RELLENO --------------------------------------------
 
-	@GetMapping("/editarDatosTutorLegal/{id}")
-	public String mostrarFormularioEdicionUsuarioTL(@PathVariable("id") long id, Model model) {
+	@GetMapping("/miPerfil/{id}")
+	public String mostrarFormularioEdicionUsuario(@PathVariable("id") long id, Model model) {
 					
-		Optional <Usuario> usuarioEditar = servicio.findById(id);
+		Optional <Usuario> usuarioAEditar = servicio.findById(id);
 				
-		if(usuarioEditar.isPresent()){
+		if(usuarioAEditar.isPresent()){
 						
-			model.addAttribute("tutorlegal", usuarioEditar.get());
-			return "modificarPerfilUsuario";
+			model.addAttribute("listaTipoProgenitor", Progenitor.values());	
+			model.addAttribute("usuario", usuarioAEditar.get());
+			
+			return "usuario/perfilUsuario";
 						
 		} else {
 						
-			return "redirect:/usuario/miPerfil";
+			return "redirect:/usuario/alumnos";
 		}
 	}
 	
+		
+	// GUARDA LOS NUEVOS CAMBIOS AL PROFESOR -----------------------------------------------------------------------------
 	
-		
-		
-		
-	/* GUARDA LOS NUEVOS CAMBIOS AL PROFESOR ----------------------------------------------------------------------------------------------
-		
-		@PostMapping("/editarDatosTutorLegal/submit")
-		public String registrarProfesorEditado(@ModelAttribute("tutorlegal") TutorLegal tl) {
+	@PostMapping("/miPerfil/submit")
+	public String registrarProfesorEditado(@ModelAttribute("usuario") Usuario usuario) {
 			
-			servicio.save(tl);
+		servicio.saveNewUsuario(usuario);
 			
-			return "redirect:/user/miPerfil";
-			
-		}
+		return "redirect:/miPerfil/{id}";
+	}
 		
 		
 		
-	// BORRA AL PROFESOR ELGIDO POR ID ----------------------------------------------------------------------------------------------------
+	//BORRA AL PROFESOR ELGIDO POR ID ------------------------------------------------------------------------------------
 
-		@GetMapping("/borrarProfesor/{id}")
-		public String borrarProfesor(@PathVariable("id") long idProfesor) {
+	@GetMapping("/borrarProfesor/{id}")
+	public String borrarProfesor(@PathVariable("id") long idProfesor) {
 			
-			servicio.deleteById(idProfesor);
+		servicio.deleteById(idProfesor);
 			
-			return "redirect:/admin/profesores";
-		}
-		
-		//---------------------------------------------------------------------------------------------------------------------------------*/
-		
+		return "redirect:/admin/profesores";
+	}
+			
+
 
 }

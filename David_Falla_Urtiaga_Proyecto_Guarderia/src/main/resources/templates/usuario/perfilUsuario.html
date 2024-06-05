@@ -37,93 +37,105 @@
                 
                 <h1 class="fw-bold display-5 text-warning mb-4 bg-black pt-2 pb-1 ps-3" id="perfil"><i class="bi bi-file-earmark-bar-graph-fill"></i>&ensp;MI PERFIL&ensp;<i class="bi bi-file-earmark-bar-graph-fill"></i></h1>
 
-                <div class="py-2 mb-3 w-100">
-                    <a type="button" href="modificarPerfilUsuario.html" class="btn btn-success text-white fw-bold py-1 w-100" style="font-size: 25px;"><i class="bi bi-gear-fill"></i>&ensp;MODIFICAR DATOS</a>
-                </div>
-
-    <!---- DATOS DEL PROGENITOR ------------------------------------------>
-    
-                <form action="pantallaInicio.html" class="w-100">
-                    <fieldset class="justify-content-center border border-black border-3">
-                        <legend class="fw-bold border border-black border-3 border-start-0 border-end-0 border-top-0 px-2 mb-3 text-black bg-opacity-50 bg-secondary">DATOS PERSONALES</legend>
-                        <div class="mx-3 mb-3">
-
-        <!---- NOMBRE Y APELLIDOS -------------------------------------------->
-                        
-                            <div class="d-flex w-100">
-
-                                <div class="me-3" style="flex: 1 1 33%;">
-                                    <label for="nombreTutor" class="form-label m-0 fw-bold">NOMBRE<span class="text-danger"> *</span></label><br>
-                                    <input type="text" class="form-control" name="nombreTutor" id="nombreTutor" placeholder="Introduzca su nombre" required maxlength="100" size="50">
-                                </div>
-
-                                <div class="mx-3" style="flex: 1 1 33%;">
-                                    <label for="apellido1Tutor" class="form-label m-0 fw-bold">PRIMER APELLIDO<span class="text-danger"> *</span></label><br>
-                                    <input type="text" class="form-control" name="apellido1Tutor" id="apellido1Tutor" placeholder="Introduzca su primer apellido" required maxlength="100" size="50">
-                                </div>
-
-                                <div class="ms-3" style="flex: 1 1 33%;">
-                                    <label for="apellido2Tutor" class="form-label m-0 fw-bold">SEGUNDO APELLIDO</label><br>
-                                    <input type="text" class="form-control" name="apellido2Tutor" id="apellido2Tutor" placeholder="Introduzca su segundo apellido" maxlength="100" size="50">
-                                </div>    
-                        
-                            </div>
-                        
-        <!-------------------------------------------------------------------->
-                            
-        <!---- TELÉFONO, TIPO DE PROGENITOR Y NÚMERO DE HIJOS ---------------->
-                        
-                            <div class="d-flex mt-3 w-100">
-                        
-                                <div class="me-3" style="flex: 1 1 33%;">
-                                    <label for="telefonoTutor" class="form-label m-0 fw-bold">TELÉFONO<span class="text-danger"> *</span></label><br>
-                                    <input type="text" class="form-control w-100" name="telefonoTutor" id="telefonoTutor" placeholder="Introduzca el nº su teléfono" required pattern="^[9|6|7][0-9]{8}$">
-                                </div>
-
-                                <div class="mx-3" style="flex: 1 1 33%;">
-                                    <label for="tipo" class="fw-bold">PROGENITOR<span class="text-danger"> *</span></label><br>
-                                    <select class="form-select form-select-sm" style="height: 37px;"  name="tipo" id="tipo">
-                                        <option value="madre">Madre</option>
-                                        <option value="padre">Padre</option>
-                                        <option value="tutorlegal">Tutor legal</option>
-                                    </select>
-                                </div>        
-
-                                <div class="ms-3" style="flex: 1 1 33%;">
-                                    <label for="numHijosTutor" class="form-label m-0 fw-bold">NÚMERO DE HIJOS</label><br>
-                                    <input class="w-100" style="height: 37px;" type="number" name="numHijosTutor" id="numHijosTutor" min="0" step="1" value="0">
-                                </div>
-
-                            </div>
-
-    <!------------------------------------------------------------------->
-                        
-    <!---- DNI (NOMBRE DE USUARIO), CONTRASEÑA Y CORREO ------------------>
-
-                            <div class="d-flex mt-3 w-100">
-
-                                <div class="me-3" style="flex: 1 1 50%;">
-                                    <label for="dniTutor" class="form-label text-warning mb-1 px-2 pb-0 fw-bold bg-black rounded-2"><i class="bi bi-person-fill"></i>&ensp;DNI (NOMBRE DE USUARIO)<span class="text-danger"> *</span></label><br>
-                                    <input type="text" class="form-control w-100" name="dniTutor" id="dniTutor" placeholder="Introduzca su DNI" required pattern="^[9|6|7][0-9]{8}$">
-                                </div>
-
-                                <!--div class="mx-3" style="flex: 1 1 28%;">
-                                    <label for="contraseniaTutor" class="form-label text-warning mb-1 px-2 pb-0 fw-bold bg-black rounded-2"><i class="bi bi-shield-lock-fill"></i>&ensp;CONTRASEÑA<span class="text-danger"> *</span></label><br>
-                                    <input type="password" class="form-control" name="contraseniaTutor" id="contraseniaTutor" placeholder="Introduzca su contraseña" required maxlength="20" size="20">
-                                </div-->
-
-                                <div class="ms-3" style="flex: 1 1 50%;">
-                                    <label for="correoTutor" class="form-label text-warning mb-1 px-2 pb-0 fw-bold bg-black rounded-2"><i class="bi bi-envelope-fill"></i>&ensp;CORREO ELECTRÓNICO<span class="text-danger"> *</span></label><br>
-                                    <input type="text" class="form-control w-100" name="correoTutor" id="correoTutor" placeholder="Introduzca su correo electrónico" required>
-                                </div>
-
-                            </div>
-                        
-    <!-------------------------------------------------------------------->
-
-                        </div>
-                    </fieldset>
-                </form>
+<!---- FORMULARIO DE REGISTRO ---------------------------------------->
+				
+				<form method="post" th:action="@{/usuario/miPerfil/submit}" th:object="${usuario}" class="container-fluid w-100">
+					<fieldset class="row d-flex justify-content-center">
+				    	<legend class="fw-bold text-white bg-warning border-top-0 border-2 border-black my-3 px-0 py-1 text-center" style="--bs-bg-opacity:.100; font-size: 35px;">REGISTRO</legend>
+				       	<div class="p-4 border border-2 border-black bg-white pb-4 col-10">
+				
+	<!---- NOMBRE Y APELLIDOS -------------------------------------------->
+				                        
+				       		<div class="d-flex w-100">
+												
+								<input th:if="${usuario.id!=0}" type="hidden" name="id" th:field="*{id}"/>
+				
+				               	<div class="me-3" style="flex: 1 1 33%;">
+				               		<label for="nombre" class="form-label m-0 fw-bold">NOMBRE<span class="text-danger"> *</span></label><br>
+				              		<input type="text" th:field="*{nombre}" class="form-control" name="nombre" id="nombre" placeholder="Introduzca su nombre" required maxlength="100" size="50">
+				              	</div>
+				
+				            	<div class="mx-3" style="flex: 1 1 33%;">
+				               		<label for="primerApellido" class="form-label m-0 fw-bold">PRIMER APELLIDO<span class="text-danger"> *</span></label><br>
+				                  	<input type="text" th:field="*{primerApellido}" class="form-control" name="primerApellido" id="primerApellido" placeholder="Introduzca su primer apellido" required maxlength="100" size="50">
+				            	</div>
+				
+				              	<div class="ms-3" style="flex: 1 1 33%;">
+				               		<label for="segundoApellido" class="form-label m-0 fw-bold">SEGUNDO APELLIDO</label><br>
+				             		<input type="text" th:field="*{segundoApellido}" class="form-control" name="segundoApellido" id="segundoApellido" placeholder="Introduzca su segundo apellido" maxlength="100" size="50">
+				              	</div>    
+				                        
+				          	</div>
+				                        
+	<!------------------------------------------------------------------->
+				                        
+	<!---- TELÉFONO, TIPO DE PROGENITOR Y NÚMERO DE HIJOS ---------------->
+				                        
+				          	<div class="d-flex mt-3 w-100">
+				                        
+				           		<div class="me-3" style="flex: 1 1 33%;">
+				              		<label for="numTelefono" class="form-label m-0 fw-bold">TELÉFONO<span class="text-danger"> *</span></label><br>
+				              		<input type="text" th:field="*{numTelefono}" class="form-control w-100" name="numTelefono" id="numTelefono" placeholder="Introduzca su nº teléfono" required pattern="^[9|6|7][0-9]{8}$">
+				              	</div>
+				
+				             	<div class="mx-3" style="flex: 1 1 33%;">
+				            		<label for="progenitor" class="fw-bold">PROGENITOR<span class="text-danger"> *</span></label><br>
+				                   	<select th:field="*{progenitor}" class="form-select form-select-sm" style="height: 37px;"  name="progenitor" id="progenitor">
+				                   		<option th:each="progenitor : ${listaTipoProgenitor}" th:value="${progenitor}" th:field="*{progenitor}" th:text="${progenitor.tipoProgenitor}"></option>
+				                   	</select>
+				              	</div>        
+				
+				            	<div class="ms-3" style="flex: 1 1 33%;">
+				              		<label for="numHijos" class="form-label m-0 fw-bold">NÚMERO DE HIJOS</label><br>
+				                 	<input class="w-100" style="height: 37px;" type="number" name="numHijos" placeholder="Introduzca su nº de hijos" id="numHijos" min="0" step="1" th:field="*{numHijos}">
+				               	</div>
+				
+							</div>
+				
+	<!------------------------------------------------------------------->
+				                        
+	<!---- NOMBRE DE USUARIO Y CONTRASEÑA ------------------------------>
+				
+				          	<div class="d-flex mt-3 w-100">
+				
+				           		<div class="me-3" style="flex: 1 1 50%;">
+				               		<label for="username" class="form-label text-warning mb-1 px-2 pb-0 fw-bold bg-black rounded-2"><i class="bi bi-person-fill"></i>&ensp;NOMBRE DE USUARIO<span class="text-danger"> *</span></label><br>
+				                  	<input type="text" th:field="*{username}" class="form-control w-100" name="username" id="username" placeholder="Introduzca su nombre de usuario" required>
+				             	</div>
+				
+				           		<div class="ms-3" style="flex: 1 1 50%;">
+				              		<label for="password" class="form-label text-warning mb-1 px-2 pb-0 fw-bold bg-black rounded-2"><i class="bi bi-shield-lock-fill"></i>&ensp;CONTRASEÑA<span class="text-danger"> *</span></label><br>
+				                 	<input type="password" th:field="*{password}" class="form-control" name="password" id="password" placeholder="Introduzca su contraseña" required maxlength="20" size="20">
+				               	</div>
+				
+				         	</div>
+				                        
+	<!-------------------------------------------------------------------->
+					
+	<!---- DNI Y CORREO -------------------------------------------------->
+					
+					     	<div class="d-flex mt-3 w-100">
+					
+						  		<div class="me-3" style="flex: 1 1 50%;">
+						      		<label for="dni" class="form-label text-warning mb-1 px-2 pb-0 fw-bold bg-black rounded-2"><i class="bi bi-person-vcard"></i>&ensp;DNI<span class="text-danger"> *</span></label><br>
+						       		<input type="text" th:field="*{dni}" class="form-control w-100" name="dni" id="dni" placeholder="Introduzca su DNI" required pattern="^[9|6|7][0-9]{8}$">
+						  		</div>
+					
+								<div class="ms-3" style="flex: 1 1 50%;">
+									<label for="email" class="form-label text-warning mb-1 px-2 pb-0 fw-bold bg-black rounded-2"><i class="bi bi-envelope-fill"></i>&ensp;CORREO ELECTRÓNICO<span class="text-danger"> *</span></label><br>
+									<input type="text" th:field="*{email}" class="form-control w-100" name="email" id="email" placeholder="Introduzca su correo electrónico" required>
+								</div>
+					
+					     	</div>
+					                       
+	<!-------------------------------------------------------------------->
+				
+				          	<div class="container mt-3 px-0">
+				           		<button type="submit" class="btn btn-warning w-100 mt-2 mb-1 fw-bold">GUARDAR CAMBIOS</button>
+				            </div>
+				     	</div>        
+				    </fieldset>
+				</form>
 
 <!-------------------------------------------------------------------->
 
