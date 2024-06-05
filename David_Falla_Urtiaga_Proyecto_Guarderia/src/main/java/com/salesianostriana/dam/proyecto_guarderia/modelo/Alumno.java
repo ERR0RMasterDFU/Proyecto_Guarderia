@@ -58,8 +58,6 @@ public class Alumno {
 	@Builder.Default
 	private List<Observacion> observaciones = new ArrayList<>();
 	
-	
-	
 // MTM (ACTIVIDADES COMPLEMENTARIAS) ------------------------------------------------------------
 	
 	@ManyToMany(fetch = FetchType.EAGER)
@@ -70,7 +68,6 @@ public class Alumno {
 	)
 	@Builder.Default
 	private List<ActividadComplementaria> horario = new ArrayList<>();
-	
 	
 	
 	

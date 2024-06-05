@@ -3,7 +3,6 @@ package com.salesianostriana.dam.proyecto_guarderia.modelo;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ForeignKey;
@@ -14,7 +13,6 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -44,7 +42,7 @@ public class Profesor {
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
-			name = "alumno",
+			name = "alumno_profesor",
 			joinColumns = @JoinColumn(name="profesor_id"),
 			inverseJoinColumns = @JoinColumn(name="alumno_id")
 	)
