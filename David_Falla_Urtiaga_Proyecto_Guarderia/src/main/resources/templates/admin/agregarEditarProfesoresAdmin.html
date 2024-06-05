@@ -99,14 +99,6 @@
                                     <select class="form-select form-select-sm" style="height: 60%;" name="encargado" id="encargado" th:field="*{encargado}">
                                         
 										<option th:each="actividad : ${listaActividades}" th:value="${actividad.id}" th:text="${actividad.nombre}"></option>
-										
-										<!--option value="Guardería">Guardería</option>
-                                        <option value="Aula matinal">Aula matinal</option>
-                                        <option value="Comedor">Comedor</option>
-                                        <option value="Siesta">Siesta</option>
-                                        <option value="Extraescolares">Extraescolares</option-->
-											
-											
                                     </select>
                                 </div>
 

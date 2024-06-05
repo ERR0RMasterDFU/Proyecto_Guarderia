@@ -23,10 +23,17 @@ public class CursoServicio extends ServicioBaseImpl<Curso, Long, CursoRepositori
 	}
 
 	
+	// MÉTODO QUE FILTRA PROFESORES POR CURSO
 	public List<Profesor>findProfesoresByCurso(long id){
 		List <Profesor> profesoresFiltradosPorCurso = repositorio.findProfesoresByCurso(id);
 		return profesoresFiltradosPorCurso;
 	}
 
 
+	// MÉTODO QUE CUENTA CUÁNTOS PROFESORES HAY EN UN CURSO
+	public int contarProfesoresDeUnCurso(long id) {
+		int numProfesores = repositorio.findNumProfesoresByCurso(id);
+		return numProfesores;
+	}
+	
 }

@@ -3,7 +3,6 @@
 INSERT INTO Usuario (id, username, dni, password, email, nombre, primer_apellido, segundo_apellido, num_telefono, num_hijos, progenitor, admin) VALUES (1, 'admin', 'null', '{noop}admin', 'null', 'null', 'null', 'null', 'null',  0, 'TUTORLEGAL', 'true');
 INSERT INTO Usuario (id, username, dni, password, email, nombre, primer_apellido, segundo_apellido, num_telefono, num_hijos, progenitor, admin) VALUES (2, 'user', '30320264P', '{noop}1234', 'usuario.salesianostriana@gmail.com', 'Luismi', 'López', 'Magaña', '676002840',  2, 'TUTORLEGAL', 'false');
 
-
 ALTER SEQUENCE usuario_seq RESTART WITH 52;
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------

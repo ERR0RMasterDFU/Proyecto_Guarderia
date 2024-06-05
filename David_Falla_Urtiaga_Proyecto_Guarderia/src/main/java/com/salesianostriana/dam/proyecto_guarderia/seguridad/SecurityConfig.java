@@ -68,7 +68,7 @@ public class SecurityConfig{
 
 		http.authorizeHttpRequests(
 				(authz) -> authz
-				.requestMatchers("/css/**", "/img/**", "/js/**", "/h2-console/**", "/", "/emplazamiento", "/normas", "/usuario/registro").permitAll()
+				.requestMatchers("/css/**", "/img/**", "/js/**", "/h2-console/**", "/", "/emplazamiento", "/normas", "/usuario/registro", "/usuario/registro/submit").permitAll()
 				.requestMatchers("/admin/**").hasRole("ADMIN")
 				.anyRequest().authenticated())
 			.requestCache(cache -> cache.requestCache(requestCache))

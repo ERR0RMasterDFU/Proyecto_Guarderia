@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Alumno;
+import com.salesianostriana.dam.proyecto_guarderia.servicio.ActividadComplementariaServicio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.AlumnoServicio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.CursoServicio;
 
@@ -21,8 +22,10 @@ public class AlumnoControlador {
 	private AlumnoServicio servicio;
 	
 	@Autowired
-	private CursoServicio CursoServicio;
+	private CursoServicio cursoServicio;
 	
+	@Autowired
+	private ActividadComplementariaServicio actServicio;
 
 //MOSTRAR LA LISTA DE ALUMNOS -----------------------------------------------------------------------------------------------------------
 	
@@ -59,7 +62,8 @@ public class AlumnoControlador {
 		Alumno alumno = new Alumno();
 		model.addAttribute("alumno", alumno);
 		
-		model.addAttribute("listaCursos", CursoServicio.findAll()); 	//LISTA DE CURSOS PARA PROFESOR
+		model.addAttribute("listaCursos", cursoServicio.findAll()); 	//LISTA DE CURSOS PARA ALUMNO
+		model.addAttribute("listaActividades", actServicio.findAll());	//LISTA DE ACTIVIDADES PARA ALUMNO
 		
 		return "agregarEditarAlumnos";
 	}
@@ -89,7 +93,8 @@ public class AlumnoControlador {
 				
 			model.addAttribute("alumno", AlumnoAEditar.get());
 				
-			model.addAttribute("listaCursos", CursoServicio.findAll()); 	//LISTA DE CURSOS PARA PROFESOR
+			model.addAttribute("listaCursos", cursoServicio.findAll()); 	//LISTA DE CURSOS PARA PROFESOR
+			model.addAttribute("listaActividades", actServicio.findAll());	//LISTA DE ACTIVIDADES PARA ALUMNO
 
 			return "agregarEditarAlumnos";
 				

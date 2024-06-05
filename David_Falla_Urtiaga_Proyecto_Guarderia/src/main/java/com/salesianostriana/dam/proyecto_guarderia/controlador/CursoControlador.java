@@ -21,9 +21,10 @@ public class CursoControlador {
 	@Autowired
 	private CursoServicio servicio;
 	
+	
 	//MOSTRAR LA LISTA DE CURSOS -----------------------------------------------------------------------------
 	
-	@GetMapping("")
+	@GetMapping("/")
 	public String mostrarCursos(Model model) {
 			
 		model.addAttribute("listaCursos", servicio.findAll());
@@ -52,7 +53,7 @@ public class CursoControlador {
 			
 			servicio.save(curso);		
 			
-		return "redirect:/admin/cursos";
+		return "redirect:/admin/cursos/";
 	} 
 
 	
@@ -61,16 +62,16 @@ public class CursoControlador {
 	@GetMapping("/editarCurso/{id}")
 	public String mostrarFormularioCursosEditar(@PathVariable("id") long id, Model model) {
 			
-		Optional<Curso> cursosAEditar = servicio.findById(id);
+		Optional<Curso> cursoAEditar = servicio.findById(id);
 			
-		if(cursosAEditar.isPresent()) {
+		if(cursoAEditar.isPresent()) {
 				
-			model.addAttribute("curso", cursosAEditar.get());
+			model.addAttribute("curso", cursoAEditar.get());
 			return "admin/agregarEditarCursosAdmin";
 				
 		} else {
 				
-			return "redirect:/admin/cursos";
+			return "redirect:/admin/cursos/";
 		}
 			
 	}
@@ -84,7 +85,7 @@ public class CursoControlador {
 			
 		servicio.save(curso);
 			
-		return "redirect:/admin/cursos";	
+		return "redirect:/admin/cursos/";	
 	}
 		
 		
@@ -93,10 +94,19 @@ public class CursoControlador {
 
 	@GetMapping("/borrarCurso/{id}")
 	public String borrarCurso(@PathVariable("id") long id) {
+
+		Optional<Curso> cursoABorrar = servicio.findById(id);
+		
+		if(cursoABorrar.isPresent()) {
+		
+			if(servicio.contarProfesoresDeUnCurso(id) == 0) {
+				servicio.deleteById(id);
+			}else {
+				return "redirect:/admin/cursos/?error=true";
+			}
+		}
 			
-		servicio.deleteById(id);
-			
-		return "redirect:/admin/cursos";
+		return "redirect:/admin/cursos/";
 	}
 	
 		

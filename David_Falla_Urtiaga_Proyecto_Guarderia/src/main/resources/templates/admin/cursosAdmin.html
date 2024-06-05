@@ -94,7 +94,16 @@
 <!---- CONTENIDO PRINCIPAL / MAIN ------------------------------------>
 
             <main class="m-3 px-5 pt-4 pb-5 bg-white" style="flex: 1 1 81%; width: 75%; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
-                
+
+			<!-- MENSAJE DE ERROR -------------------------------------------------------------------------------------------------------------------------------->
+				
+				<div class="alert alert-primary alert-dismissible fade show" role="alert" th:if="${param.error}">
+					<strong><i class="bi bi-exclamation-triangle-fill text-primary"></i>&ensp;¡NO SE PUEDEN BORRAR LOS CURSOS QUE TIENEN PROFESORES ASOCIADOS!</strong>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+	
+			<!---------------------------------------------------------------------------------------------------------------------------------------------------->
+				
                 <div class="py-0 my-4 w-100 ">
                     <a type="button" th:href="@{/admin/cursos/nuevoCurso}" href="agregarEditarCursosAdmin.html" class="btn btn-success text-white fw-bold py-2 w-100" style="font-size: 25px;"><i class="bi bi-sign-intersection-fill m-0"></i>&ensp;AÑADIR CURSO</a>
                 </div>
