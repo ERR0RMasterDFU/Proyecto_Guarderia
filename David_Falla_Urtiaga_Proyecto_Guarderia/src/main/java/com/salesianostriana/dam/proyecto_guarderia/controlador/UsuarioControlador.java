@@ -3,6 +3,7 @@ package com.salesianostriana.dam.proyecto_guarderia.controlador;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,8 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.salesianostriana.dam.proyecto_guarderia.modelo.ActividadComplementaria;
-import com.salesianostriana.dam.proyecto_guarderia.modelo.Profesor;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Progenitor;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Usuario;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.UsuarioServicio;
@@ -53,23 +52,17 @@ public class UsuarioControlador {
 	
 // MUESTRA EL FORMULARIO DE REGISTRO (PARA AÑADIR USUARIO) RELLENO --------------------------------------------
 
-	@GetMapping("/miPerfil/{id}")
-	public String mostrarFormularioEdicionUsuario(@PathVariable("id") long id, Model model) {
-					
-		Optional <Usuario> usuarioAEditar = servicio.findById(id);
-				
-		if(usuarioAEditar.isPresent()){
+	@GetMapping("/miPerfil")
+	public String mostrarFormularioEdicionUsuario(@AuthenticationPrincipal Usuario usuario, Model model) {
 						
-			model.addAttribute("listaTipoProgenitor", Progenitor.values());	
-			model.addAttribute("usuario", usuarioAEditar.get());
+		model.addAttribute("listaTipoProgenitor", Progenitor.values());	
+		model.addAttribute("usuario", usuario);
 			
-			return "usuario/perfilUsuario";
-						
-		} else {
-						
-			return "redirect:/usuario/alumnos";
-		}
+		return "usuario/perfilUsuario";
+
 	}
+	
+	
 	
 		
 	// GUARDA LOS NUEVOS CAMBIOS AL PROFESOR -----------------------------------------------------------------------------
@@ -79,7 +72,7 @@ public class UsuarioControlador {
 			
 		servicio.saveNewUsuario(usuario);
 			
-		return "redirect:/miPerfil/{id}";
+		return "redirect:/miPerfil";
 	}
 		
 		

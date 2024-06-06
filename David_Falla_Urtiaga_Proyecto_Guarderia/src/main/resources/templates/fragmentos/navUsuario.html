@@ -16,7 +16,7 @@
 								<h5 class="text-center">¡Hola, <span sec:authentication="name"></span>!</h5> 
 							</div>	
 								
-							<li style="width: 350px;"><a class="dropdown-item flex-fill text-center" href="perfilUsuario.html" th:href="@{/usuario/miPerfil/{id}(id=${usuario.id})}"><button type="button" class="btn btn-warning text-dark border-dark border-2 fw-bold w-100"><i class="bi bi-person-vcard-fill"></i>&ensp;MI PERFIL</button></a></li>
+							<li style="width: 350px;"><a class="dropdown-item flex-fill text-center" href="perfilUsuario.html" th:href="@{/usuario/miPerfil}"><button type="button" class="btn btn-warning text-dark border-dark border-2 fw-bold w-100"><i class="bi bi-person-vcard-fill"></i>&ensp;MI PERFIL</button></a></li>
 							<li style="width: 350px;"><form th:action="@{/logout}" method="post" id="logoutForm"><a class="dropdown-item flex-fill text-center"><button type="submit" class="btn btn-info text-dark border-dark border-2 fw-bold w-100"><i class="bi bi-door-open-fill"></i>&ensp;CERRAR SESIÓN</button></a></form></li>
 						</ul>
 					</div>

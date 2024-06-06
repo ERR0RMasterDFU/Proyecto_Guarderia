@@ -34,6 +34,19 @@ public class UsuarioServicio extends ServicioBaseImpl<Usuario, Long, UsuarioRepo
 		return save(u);
 	}
 	
+	//public Usuario editarUsuario(Usuario u) {
+		
+		// Editar el usuario sin cambiarle la contraseña
+		
+		// 1. Rescato el usuario de la bd.
+		// 2. Actualizo "todos" los atributos menos el password.
+		// 3. Guardo el usuario en la base de datos.
+		// 4. Actualizo el contexto de seguridad con el nuevo usuario (Carlos Román)
+		
+		
+		
+		
+	//}
 	
 	public int contarAlumnosdeUnUsuario(long id) {
 		return repositorio.findNumAlumnosByUsuario(id);

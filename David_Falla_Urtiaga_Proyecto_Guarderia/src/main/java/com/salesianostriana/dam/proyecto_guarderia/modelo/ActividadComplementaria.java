@@ -7,10 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -33,7 +31,7 @@ public class ActividadComplementaria {
 	
 	
 	
-// MTM (ALUMNO) ----------------------------------------------------------------------------
+	// MTM (ALUMNO) ----------------------------------------------------------------------------
 	
 	@ManyToMany(mappedBy="horario", fetch = FetchType.EAGER)
 	@Builder.Default
@@ -43,13 +41,24 @@ public class ActividadComplementaria {
 	
 	
 
-// OTM (PROFESOR) ---------------------------------------------------------------------
+	// OTM (PROFESOR) ---------------------------------------------------------------------
 	
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
 	@OneToMany(mappedBy="encargado", fetch = FetchType.EAGER)
 	@Builder.Default
 	private List<Profesor> profesores = new ArrayList<>();
+	
+	
+	// OTM (PROFESOR) ---------------------------------------------------------------------
+	
+	@ToString.Exclude
+	@EqualsAndHashCode.Exclude
+	@OneToMany(mappedBy="actividad", fetch = FetchType.EAGER)
+	@Builder.Default
+	private List<Observacion> observaciones = new ArrayList<>();
+
+	
 	
 	
 }

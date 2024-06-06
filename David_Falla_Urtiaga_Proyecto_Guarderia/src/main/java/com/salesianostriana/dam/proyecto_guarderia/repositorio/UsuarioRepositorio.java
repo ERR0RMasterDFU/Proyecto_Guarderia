@@ -12,7 +12,7 @@ public interface UsuarioRepositorio extends JpaRepository<Usuario, Long>{
 
 	Optional<Usuario> findFirstByUsername(String username);
 	
-	// CUENTA LOS USUARIOS QUE HAY EN UN CURSO
+	// CUENTA LOS ALUMNOS QUE TIENE UN USUARIO
 	@Query("""
 			SELECT count(a)
 			FROM Alumno a

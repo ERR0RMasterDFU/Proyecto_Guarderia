@@ -39,10 +39,10 @@
 
 <!---- FORMULARIO DE REGISTRO ---------------------------------------->
 				
-				<form method="post" th:action="@{/usuario/miPerfil/submit}" th:object="${usuario}" class="container-fluid w-100">
-					<fieldset class="row d-flex justify-content-center">
-				    	<legend class="fw-bold text-white bg-warning border-top-0 border-2 border-black my-3 px-0 py-1 text-center" style="--bs-bg-opacity:.100; font-size: 35px;">REGISTRO</legend>
-				       	<div class="p-4 border border-2 border-black bg-white pb-4 col-10">
+				<form method="post" th:action="@{/usuario/miPerfil/submit}" th:object="${usuario}" class="w-100">
+					<fieldset class="justify-content-center border border-black border-3">
+						<legend class="fw-bold border border-black border-3 border-start-0 border-end-0 border-top-0 text-black px-2 mb-3 bg-warning">DATOS DEL PERFIL</legend>
+					  	<div class="mx-3 mb-3">
 				
 	<!---- NOMBRE Y APELLIDOS -------------------------------------------->
 				                        
@@ -130,11 +130,16 @@
 					                       
 	<!-------------------------------------------------------------------->
 				
-				          	<div class="container mt-3 px-0">
-				           		<button type="submit" class="btn btn-warning w-100 mt-2 mb-1 fw-bold">GUARDAR CAMBIOS</button>
-				            </div>
+				          	<!--div class="container mt-3 px-0">
+				           		<button type="submit" class="btn btn-warning w-100 mt-2 mb-1 fw-bold">GUARDAR CAMBIOS EN EL PERFIL</button>
+				            </div-->
 				     	</div>        
 				    </fieldset>
+					
+					<div class="mt-4 px-0 w-100">
+						<button type="submit" class="btn border border-2 border-black btn-warning w-100 mt-2 mb-1 fw-bold" style="font-size: 23px;">GUARDAR CAMBIOS EN EL PERFIL</button>
+					</div>
+					
 				</form>
 
 <!-------------------------------------------------------------------->
