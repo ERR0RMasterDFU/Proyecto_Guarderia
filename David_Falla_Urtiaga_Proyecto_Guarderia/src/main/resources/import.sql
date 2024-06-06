@@ -52,7 +52,7 @@ INSERT INTO Alumno (id, nombre, primer_apellido, segundo_apellido, edad, fecha_n
 INSERT INTO Alumno (id, nombre, primer_apellido, edad, fecha_nacimiento, direccion, curso_id, progenitor_id) VALUES (11, 'Mao', 'Bocheng', 1, '2022-10-24', 'Av Fuerzas Armadas, 56', 1, 2);
 INSERT INTO Alumno (id, nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, direccion, curso_id, progenitor_id) VALUES (12, 'Andoni', 'Ferreiro', 'Guijarro', 6, '2018-02-04', 'Pol. industrial Cabezo Beaza', 2, 3);
 
-ALTER SEQUENCE alumno_seq RESTART WITH 63;
+ALTER SEQUENCE alumno_seq RESTART WITH 62;
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 

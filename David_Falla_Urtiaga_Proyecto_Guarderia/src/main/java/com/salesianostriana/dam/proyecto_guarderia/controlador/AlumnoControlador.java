@@ -34,9 +34,9 @@ public class AlumnoControlador {
 	// USUARIO
 	
 	@GetMapping("/usuario/alumnos")
-	public String mostrarAlumnosUsuario(Model model) {
+	public String mostrarAlumnosUsuario(@AuthenticationPrincipal Usuario usuario, Model model) {
 		
-		model.addAttribute("listaAlumnos", servicio.findAll());
+		model.addAttribute("listaAlumnos", servicio.filtrarAlumnosPorUsuario(usuario));
 	
 		return "usuario/alumnosUsuario";
 	}
