@@ -59,7 +59,7 @@ public class ProfesorControlador {
 		model.addAttribute("listaCursos", CursoServicio.findAll()); 		//LISTA DE CURSOS PARA PROFESOR
 		model.addAttribute("listaActividades", ActServicio.findAll()); 		//LISTA DE ACTIVIDADES PARA PROFESOR
 		
-		PorfeRepo.save(profesor);
+		servicio.save(profesor);
 		
 		return "admin/agregarEditarProfesoresAdmin";
 	}	
@@ -112,7 +112,6 @@ public class ProfesorControlador {
 		
 		return "redirect:/admin/profesores";	
 	}
-	
 	
 	
 	//BORRA AL PROFESOR ELGIDO POR ID ------------------------------------------------------------------------------------

@@ -38,51 +38,68 @@
                 <div class="py-0 my-4 w-100 ">
                     <a type="button" href="" class="btn btn-success text-white fw-bold py-2 w-100" style="font-size: 25px;"><i class="bi bi-person-fill-add m-0"></i>&ensp;MATRICULAR ALUMNO</a>
                 </div>
-
-                <table class="border border-2 border-black w-100 text-center rounded-3">
-                    <thead class="bg-warning">
-                        <tr class="fw-bold border border-2 border-black text-black" style="font-size: 15px;">
-                            <th class="border border-black border-2" style="width: 3%;">ID</th>
-                            <th style="width: 10%;">NOMBRE</th>
-                            <th style="width: 10%;">PRIMER<br>APELLIDO</th>
-                            <th style="width: 10%;">SEGUNDO<br>APELLIDO</th>
-                            <th style="width: 8%;">EDAD</th>
-                            <th style="width: 8%;">CURSO</th>
-                            <th style="width: 14%;">FECHA DE<br>NACIMIENTO</th>
-                            <th style="width: auto">DIRECCIÓN</th>
-                            <th class="border border-black border-2 py-3" style="width: 20%;">INFORMACIÓN EXTRA</th>
-                            <th class="border border-black border-2" style="width: 5%;">ADMIN</th>
-                        </tr>
-                    </thead>
-                    <tbody style="font-size: 15px; background-color: rgb(252, 244, 199);">
-                        <tr th:each="alumno : ${listaAlumnos}" class="border-2 border-bottom border-black">
-                            <td th:text="${alumno.id}" class="border border-black border-2"></td>
-                            <td th:text="${alumno.nombre}" class="py-3 px-2"></td>
-                            <td th:text="${alumno.primerApellido}" class="py-3 px-2"></td>
-                            <td th:text="${alumno.segundoApellido}" class="py-3 px-2"></td>
-                            <td th:text="${alumno.edad}" class="py-3 px-2"></td>
-                            <td th:text="${alumno.curso.nombre}" class="py-3 px-2"></td>
-                            <td th:text="${alumno.fechaNacimiento}" class="py-3 px-2">30/06/1997</td>
-                            <td th:text="${alumno.direccion}" class="py-3 px-2"></td>
-                            <td class="py-2 px-3 border border-black border-2">	
-                                <div class="py-0">
-                                    <a type="button" href="../formularioEnvioDeDatos.html" class="btn btn-primary text-white fw-bold w-100">HORARIO</a>
-                                </div>
-                                <div class="mt-2 py-0">
-                                    <a type="button" href="../formularioEnvioDeDatos.html" class="btn btn-danger text-white fw-bold w-100">TUTOR LEGAL</a>
-                                </div>
-                            </td>
-                            <td class="py-2 px-3 border border-black border-2 bg-opacity-25 bg-black">
-                                <div class="py-0">
-                                    <a type="button" href="../agregarEditarAlumnos.html" th:href="@{/admin/alumnos/editarAlumno/{id}(id=${alumno.id})}" class="btn btn-success text-white fw-bold w-100"><i class="bi bi-person-fill-gear m-0"></i></a>
-                                </div>
-                                <div class="mt-2 py-0">
-                                    <a type="button" href="alumnosAdmin.html" th:href="@{/admin/alumnos/borrarAlumno/{id}(id=${alumno.id})}" class="btn btn-success text-white fw-bold w-100"><i class="bi bi-person-fill-dash m-0"></i></a>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+	
+				<div class="table-responsive">
+					<table class="table table-hover table-warning table-striped text-center">
+						<thead class="bg-warning">
+							<tr class="fw-bold text-black align-middle">
+								<th class="bg-warning border-2 border-end-0 border-black">ID</th>
+								<th class="bg-warning border-2 border-start-0 border-end-0 border-black">NOMBRE</th>
+								<th class="bg-warning border-2 border-start-0 border-end-0 border-black">PRIMER<br>APELLIDO</th>
+								<th	class="bg-warning border-2 border-start-0 border-end-0 border-black">SEGUNDO<br>APELLIDO</th>
+								<th	class="bg-warning border-2 border-start-0 border-end-0 border-black">EDAD</th>
+								<th	class="bg-warning border-2 border-start-0 border-end-0 border-black">DIRECCIÓN</th>
+								<th	class="bg-warning border-2 border-start-0 border-end-0 border-black">FECHA DE<br>NACIMIENTO</th>
+								<th	class="bg-warning border-2 border-start-0 border-end-0 border-black">CURSO</th>
+								<th	class="bg-warning border-2 border-start-0 border-end-0 border-black">LISTADOS</th>
+								<th	class="bg-warning border-2 border-start-0 border-black">ADMIN</th>
+							</tr>					
+						</thead>
+						<tbody>
+							<tr th:each="alumno : ${listaAlumnos}" class="align-middle">
+								<td th:text="${alumno.id}" class="border-2 border-end-0 border-black py-3 px-2"></td>
+								<td th:text="${alumno.nombre}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+								<td	th:text="${alumno.primerApellido}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+								<td th:text="${alumno.segundoApellido}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+								<th:block th:if="${alumno.edad == 0}">
+									<td class="border-2 border-start-0 border-end-0 border-black py-3 px-2">Menos de un año</td>
+								</th:block>
+								<th:block th:if="${alumno.edad == 1}">
+									<td th:text="${alumno.edad + ' año'}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+								</th:block>
+								<th:block th:if="${alumno.edad > 1}">
+									<td th:text="${alumno.edad + ' años'}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+								</th:block>
+								<td th:text="${alumno.direccion}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+								<td th:text="${alumno.fechaNacimiento}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+								<td th:text="${alumno.curso.nombre}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+								<td class="border-2 border-start-0 border-end-0 border-black py-2 px-3">
+									<div class="text-center align-middle">
+										<div class="py-0">
+											<a type="button" th:href="@{ -- }" class="btn btn-primary text-white fw-bold w-100">HORARIO</a>
+										</div>
+										<div class="my-2 py-0">
+											<a type="button" th:href="@{ -- }" class="btn btn-danger text-white fw-bold w-100">OBSERVACIONES</a>
+										</div>
+										<div class="py-0">
+											<a type="button" th:href="@{ -- }" class="btn btn-success text-white fw-bold w-100">PROFESORES</a>
+										</div>
+									</div>
+								</td>
+								<td class="border-2 border-start-0 border-start-0 border-black py-2 px-3">
+									<div class="text-center align-middle">
+										<div class="py-0">
+											<a type="button" href="../agregarEditarAlumnos.html" th:href="@{/admin/alumnos/editarAlumno/{id}(id=${alumno.id})}" class="btn text-white fw-bold w-100" style="background-color: rgb(210, 122, 2); font-size: 20px;"><i class="bi bi-person-fill-gear m-0"></i></a>
+										</div>
+										<div class="mt-2 py-0">
+											<a type="button" href="alumnosAdmin.html" th:href="@{/admin/alumnos/borrarAlumno/{id}(id=${alumno.id})}" class="btn text-white fw-bold w-100" style="background-color: rgb(218, 63, 3); font-size: 20px;"><i class="bi bi-person-fill-dash m-0"></i></a>
+										</div>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 
             </main>
 
