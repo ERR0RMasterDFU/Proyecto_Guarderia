@@ -3,6 +3,7 @@ package com.salesianostriana.dam.proyecto_guarderia.controlador;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Alumno;
+import com.salesianostriana.dam.proyecto_guarderia.modelo.Usuario;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.ActividadComplementariaServicio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.AlumnoServicio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.CursoServicio;
@@ -32,9 +34,9 @@ public class AlumnoControlador {
 	// USUARIO
 	
 	@GetMapping("/usuario/alumnos")
-	public String mostrarAlumnosUsuario(Model model) {
+	public String mostrarAlumnosUsuario(@AuthenticationPrincipal Usuario usuario, Model model) {
 		
-		model.addAttribute("listaAlumnos", servicio.findAll());
+		model.addAttribute("listaAlumnos", servicio.filtrarAlumnosPorUsuario(usuario));
 	
 		return "usuario/alumnosUsuario";
 	}
@@ -73,8 +75,9 @@ public class AlumnoControlador {
 	//ENVIAMOS LOS DATOS DEL ALUMNO A LA BASE DE DATOS -------------------------------------------------------------------
 	
 	@PostMapping("/usuario/matricula/submit")
-	public String registroMatriculaFormulario(@ModelAttribute("alumno") Alumno alumno) {
+	public String registroMatriculaFormulario(@ModelAttribute("alumno") Alumno alumno, @AuthenticationPrincipal Usuario usuario) {
 		
+		alumno.setProgenitor(usuario);
 		servicio.save(alumno);		
 			
 		return "redirect:/usuario/alumnos";

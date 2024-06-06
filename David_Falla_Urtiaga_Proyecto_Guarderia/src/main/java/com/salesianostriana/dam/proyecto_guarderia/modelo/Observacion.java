@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ForeignKey;
@@ -30,7 +32,9 @@ public class Observacion {
 	@Id @GeneratedValue
 	private long id;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime fechaObservacion;
+	
 	private String mensaje;
 	
 	
@@ -55,6 +59,13 @@ public class Observacion {
 	 @ManyToOne
 	 @JoinColumn(foreignKey = @ForeignKey(name="fk_profesor_observacion"))
 	 private Profesor profesor;
+	 
+	 
+// MTO (ACTIVIDAD COMPLEMENTARIA) ----------------------------------------------------------
+		
+	 @ManyToOne
+	 @JoinColumn(foreignKey = @ForeignKey(name="fk_actividad_observacion"))
+	 private ActividadComplementaria actividad;
 	
 	
 	
@@ -62,7 +73,7 @@ public class Observacion {
 	
 
 	 
-	// ALUMNO - OBSERVACION
+	// OBSERVACION - ALUMNO  
 	 
 	public void addToAlumno(Alumno alumno) {
 		this.alumno = alumno;
@@ -75,7 +86,7 @@ public class Observacion {
 	}
 	
 	
-	// PROFESOR -OBSERVACION
+	// OBSERVACION - PROFESOR
 	
 	public void addToProfesor(Profesor profesor) {
 		this.profesor = profesor;
@@ -86,6 +97,19 @@ public class Observacion {
 		profesor.getObservaciones().remove(this);
 		this.profesor = null;		
 	}	
+	
+	
+	// OBSERVACIÓN - ACTIVIDAD COMPLEMENTARIA
+	
+	public void addToActividad(ActividadComplementaria actividad) {
+		this.actividad = actividad;
+		actividad.getObservaciones().add(this);
+	}
+		
+	public void removeFromActividad(ActividadComplementaria actividad) {
+		actividad.getObservaciones().remove(this);
+		this.actividad = null;		
+	}
 	
 	
 }

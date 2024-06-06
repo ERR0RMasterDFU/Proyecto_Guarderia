@@ -50,7 +50,7 @@
 				         	</tr>					
 				 		</thead>
 				       	<tbody>
-				       		<tr th:each="alumno : ${listaAlumnos}">
+				       		<tr th:each="alumno : ${listaAlumnos}" class="align-middle">
 				             	<td th:text="${alumno.nombre}" class="border-2 border-end-0 border-black py-3 px-2"></td>
 				               	<td	th:text="${alumno.primerApellido}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
 				             	<td th:text="${alumno.segundoApellido}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
@@ -67,8 +67,16 @@
 								<td th:text="${alumno.fechaNacimiento}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
 								<td th:text="${alumno.curso.nombre}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
 								<td class="border-2 border-start-0 border-start-0 border-black py-2 px-3">
-									<div class="py-0">
-										<a type="button" th:href="@{ -- }" class="btn btn-primary text-white fw-bold w-100">ALUMNOS</a>
+									<div class="text-center align-middle">
+										<div class="py-0">
+											<a type="button" th:href="@{ -- }" class="btn btn-primary text-white fw-bold w-100">HORARIO</a>
+										</div>
+										<div class="my-2 py-0">
+											<a type="button" th:href="@{ -- }" class="btn btn-danger text-white fw-bold w-100">OBSERVACIONES</a>
+										</div>
+										<div class="py-0">
+											<a type="button" th:href="@{ -- }" class="btn btn-success text-white fw-bold w-100">PROFESORES</a>
+										</div>
 									</div>
 				              	</td>
 				           	</tr>
