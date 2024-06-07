@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.salesianostriana.dam.proyecto_guarderia.modelo.ActividadComplementaria;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Profesor;
-import com.salesianostriana.dam.proyecto_guarderia.repositorio.ProfesorRepositorio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.ActividadComplementariaServicio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.CursoServicio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.ProfesorServicio;
@@ -31,9 +29,6 @@ public class ProfesorControlador {
 	
 	@Autowired
 	private ActividadComplementariaServicio ActServicio;
-	
-	@Autowired
-	private ProfesorRepositorio PorfeRepo;
 
 	
 	// MUESTRA LA PÁGINA DE PROFESORES -----------------------------------------------------------------------------------
@@ -102,7 +97,6 @@ public class ProfesorControlador {
 	}
 	
 	
-	
 	// GUARDA LOS NUEVOS CAMBIOS AL PROFESOR -----------------------------------------------------------------------------
 	
 	@PostMapping("/editarProfesor/submit")
@@ -125,4 +119,15 @@ public class ProfesorControlador {
 	}
 		
 
+	// MUESTRA LOS ALUMNOS DEL PROFESOR ------------------------------------------------------------------------------------
+	
+	@GetMapping("/curso/{id}/actividad/{idA}")
+	public String muestrarAlumnos(@PathVariable("id") long idCurso, @PathVariable("idA") long idActividad, Model model) {
+		
+		model.addAttribute("listaAlumnos", servicio.filtrarAlumnosPorCursoYActividad(idCurso, idActividad));
+		
+		return "admin/alumnosAdmin";
+	}
+	
+	
 }

@@ -12,11 +12,12 @@ public interface ProfesorRepositorio extends JpaRepository<Profesor, Long>{
 
 	@Query("""
 			SELECT a
-			FROM Alumno a JOIN ActividadComplementaria ac 
-			WHERE a.curso.id = ?1 AND ac.id = ?2
+			FROM Alumno a JOIN a.horario h
+			WHERE a.curso.id = ?1 AND h.id = ?2
 			""")
 	public List<Alumno> findAlumnosByActividadIdYCursoId (long idCurso, long idActividad);
 }
 
 
 //SELECT * FROM ALUMNO a JOIN HORARIO h ON (a.id = h.alumno_id) WHERE a.curso_id = 2 AND h.actividad_id = 6
+// SELECT a FROM Alumno a JOIN a.horario h WHERE a.curso.id =?1 and h.id = ?2 

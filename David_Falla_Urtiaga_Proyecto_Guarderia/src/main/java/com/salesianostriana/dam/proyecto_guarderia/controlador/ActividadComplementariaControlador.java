@@ -112,7 +112,7 @@ public class ActividadComplementariaControlador {
 	
 	
 	
-	// FILTRA A LOS PROFESORES POR CURSO -----------------------------------------------------------------
+	// FILTRADOS POR ACTIVIDAD COMPLEMENTARIA -----------------------------------------------------------------
 	
 		@GetMapping("/profesores/{id}")
 		public String mostrarProfesoresFiltradosPorActividad(@PathVariable("id") long id, Model model) {
@@ -121,5 +121,18 @@ public class ActividadComplementariaControlador {
 			
 			return "admin/profesoresAdmin";
 		}
+		
+		
+		@GetMapping("/alumnos/{id}")
+		public String mostrarAlumnosFiltradosPorActividad(@PathVariable("id") long id, Model model) {
+				
+			model.addAttribute("listaAlumnos", servicio.filtrarAlumnosPorActividad(id));
+			
+			return "admin/alumnosAdmin";
+		}
+		
+		
+		
+
 		
 }

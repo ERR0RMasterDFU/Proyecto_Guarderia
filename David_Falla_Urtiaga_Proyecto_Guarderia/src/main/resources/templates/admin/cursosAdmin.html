@@ -38,7 +38,7 @@
 			<!-- MENSAJE DE ERROR -------------------------------------------------------------------------------------------------------------------------------->
 				
 				<div class="alert alert-primary alert-dismissible fade show" role="alert" th:if="${param.error}">
-					<strong><i class="bi bi-exclamation-triangle-fill text-primary"></i>&ensp;¡NO SE PUEDEN BORRAR LOS CURSOS QUE TIENEN PROFESORES ASOCIADOS!</strong>
+					<strong><i class="bi bi-exclamation-triangle-fill text-primary"></i>&ensp;¡NO SE PUEDEN BORRAR LOS CURSOS QUE TIENEN PROFESORES O ALUMNOS ASOCIADOS!</strong>
 					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 				</div>
 	
@@ -65,7 +65,7 @@
 								<td class="border-2 border-start-0 border-end-0 border-black py-2 px-3">
 									<div class="text-center align-middle d-flex justify-content-center w-100">
 										<div class="py-0 w-100">
-											<a type="button" href="../formularioEnvioDeDatos.html" class="btn btn-primary text-white fw-bold w-100">ALUMNOS</a>
+											<a type="button" href="../formularioEnvioDeDatos.html" th:href="@{/admin/cursos/alumnos/{id}(id=${curso.id})}" class="btn btn-primary text-white fw-bold w-100">ALUMNOS</a>
 										</div>
 										<div class="ms-2 py-0 w-100">
                                             <a type="button" href="profesoresAdmin.html" th:href="@{/admin/cursos/profesores/{id}(id=${curso.id})}" class="btn btn-danger text-white fw-bold w-100">PROFESORES</a>

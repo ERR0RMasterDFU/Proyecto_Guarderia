@@ -67,7 +67,7 @@
 								<td class="border-2 border-start-0 border-end-0 border-black py-2 px-3">
 									<div class="text-center align-middle d-flex justify-content-center w-100">
 										<div class="py-0 w-100">
-											<a type="button" href="../formularioEnvioDeDatos.html" class="btn btn-primary text-white fw-bold w-100">ALUMNOS</a>
+											<a type="button" href="../formularioEnvioDeDatos.html" th:href="@{/admin/actividades/alumnos/{id}(id=${actividad.id})}" class="btn btn-primary text-white fw-bold w-100">ALUMNOS</a>
 										</div>
 										<div class="ms-2 py-0 w-100">
                                             <a type="button" href="../admin/profesoresAdmin.html" th:href="@{/admin/actividades/profesores/{id}(id=${actividad.id})}" class="btn btn-danger text-white fw-bold w-100">PROFESORES</a>

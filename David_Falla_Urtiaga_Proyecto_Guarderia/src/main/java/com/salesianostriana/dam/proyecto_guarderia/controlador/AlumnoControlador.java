@@ -135,8 +135,7 @@ public class AlumnoControlador {
 			
 		return "redirect:/admin/alumnos";
 	}
-				
-	
+
 	
 	@GetMapping("/admin/alumnos/filtrados")
 	public String mostrarAlumnosFiltrados(Model model, long idCurso, long idActividad) {
@@ -146,6 +145,16 @@ public class AlumnoControlador {
 		return "admin/profesoresAdmin";
 	}
 
+	
+	/*@GetMapping("/admin/alumnos/actividades/{id}")
+	public String mostrarActividadesFiltradosPorAlumno(@PathVariable("id") long id, Model model) {
+			
+		model.addAttribute("listaActividad", servicio.filtrarActividadesPorAlumno(id));
+		
+		return "admin/actsComplementariasAdmin";
+	}*/
+	
+	
 	
 }
 	
