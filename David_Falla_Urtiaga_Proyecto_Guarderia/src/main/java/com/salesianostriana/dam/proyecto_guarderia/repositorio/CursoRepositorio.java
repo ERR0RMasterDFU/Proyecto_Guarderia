@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.salesianostriana.dam.proyecto_guarderia.modelo.Alumno;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Curso;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Profesor;
 
@@ -17,7 +18,16 @@ public interface CursoRepositorio extends JpaRepository<Curso, Long>{
 			FROM Profesor p
 			WHERE curso.id = :curso
 			""")
-			List<Profesor> findProfesoresByCurso(@Param("curso") long id);
+	public List<Profesor> findProfesoresByCurso(@Param("curso") long id);
+	
+	
+	// FILTRA ALUMNOS POR CURSO 
+		@Query("""
+				SELECT a
+				FROM Alumno a
+				WHERE curso.id = :curso
+				""")
+	public List<Alumno> findAlumnosByCurso(@Param("curso") long id);
 	
 	
 	// CUENTA LOS PROFESORES QUE HAY EN UN CURSO
@@ -27,6 +37,15 @@ public interface CursoRepositorio extends JpaRepository<Curso, Long>{
 			WHERE curso.id = :curso
 			""")
 	public int findNumProfesoresByCurso(@Param("curso") long id);
+	
+	
+	// CUENTA LOS ALUMNOS QUE HAY EN UN CURSO
+	@Query("""
+			SELECT count(a)
+			FROM Alumno a
+			WHERE curso.id = :curso
+			""")
+	public int findNumAlumnosByCurso(@Param("curso") long id);
 }
 
 

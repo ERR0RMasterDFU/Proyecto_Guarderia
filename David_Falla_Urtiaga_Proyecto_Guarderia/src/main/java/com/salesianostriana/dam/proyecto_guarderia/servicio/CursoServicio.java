@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.salesianostriana.dam.proyecto_guarderia.modelo.Alumno;
+import com.salesianostriana.dam.proyecto_guarderia.modelo.Alumno;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Curso;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Profesor;
 import com.salesianostriana.dam.proyecto_guarderia.repositorio.CursoRepositorio;
@@ -24,16 +26,30 @@ public class CursoServicio extends ServicioBaseImpl<Curso, Long, CursoRepositori
 
 	
 	// MÉTODO QUE FILTRA PROFESORES POR CURSO
-	public List<Profesor>findProfesoresByCurso(long id){
+	public List<Profesor>filtrarProfesoresPorCurso(long id){
 		List <Profesor> profesoresFiltradosPorCurso = repositorio.findProfesoresByCurso(id);
 		return profesoresFiltradosPorCurso;
 	}
 
+	
+	// MÉTODO QUE FILTRA ALUMNOS POR CURSO
+	public List<Alumno>filtrarAlumnosPorCurso(long id){
+		List<Alumno> alumnosFiltradosPorCurso = repositorio.findAlumnosByCurso(id);
+		return alumnosFiltradosPorCurso;
+		}
+	
 
 	// MÉTODO QUE CUENTA CUÁNTOS PROFESORES HAY EN UN CURSO
 	public int contarProfesoresDeUnCurso(long id) {
 		int numProfesores = repositorio.findNumProfesoresByCurso(id);
 		return numProfesores;
+	}
+	
+	
+	// MÉTODO QUE CUENTA CUÁNTOS PROFESORES HAY EN UN CURSO
+	public int contarAlumnosDeUnCurso(long id) {
+		int numAlumnos = repositorio.findNumAlumnosByCurso(id);
+		return numAlumnos;
 	}
 	
 }

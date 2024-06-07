@@ -16,6 +16,7 @@ import com.salesianostriana.dam.proyecto_guarderia.modelo.Usuario;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.ActividadComplementariaServicio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.AlumnoServicio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.CursoServicio;
+import com.salesianostriana.dam.proyecto_guarderia.servicio.ProfesorServicio;
 
 @Controller
 public class AlumnoControlador {
@@ -25,6 +26,9 @@ public class AlumnoControlador {
 	
 	@Autowired
 	private CursoServicio cursoServicio;
+	
+	@Autowired
+	private ProfesorServicio profeServicio;
 	
 	@Autowired
 	private ActividadComplementariaServicio actServicio;
@@ -131,8 +135,26 @@ public class AlumnoControlador {
 			
 		return "redirect:/admin/alumnos";
 	}
-				
 
+	
+	@GetMapping("/admin/alumnos/filtrados")
+	public String mostrarAlumnosFiltrados(Model model, long idCurso, long idActividad) {
+		
+		model.addAttribute("listaAlumnos", profeServicio.filtrarAlumnosPorCursoYActividad(idCurso, idActividad));
+	
+		return "admin/profesoresAdmin";
+	}
+
+	
+	/*@GetMapping("/admin/alumnos/actividades/{id}")
+	public String mostrarActividadesFiltradosPorAlumno(@PathVariable("id") long id, Model model) {
+			
+		model.addAttribute("listaActividad", servicio.filtrarActividadesPorAlumno(id));
+		
+		return "admin/actsComplementariasAdmin";
+	}*/
+	
+	
 	
 }
 	

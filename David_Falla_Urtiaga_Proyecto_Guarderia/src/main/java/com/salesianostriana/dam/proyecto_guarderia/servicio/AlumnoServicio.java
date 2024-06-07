@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.salesianostriana.dam.proyecto_guarderia.modelo.ActividadComplementaria;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Alumno;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Usuario;
 import com.salesianostriana.dam.proyecto_guarderia.repositorio.AlumnoRepositorio;
@@ -26,6 +27,12 @@ public class AlumnoServicio extends ServicioBaseImpl<Alumno, Long, AlumnoReposit
 	public List<Alumno> filtrarAlumnosPorUsuario (Usuario usuario){
 		List<Alumno> alumnosFiltrados = repositorio.findAlumnoByUsuario(usuario);
 		return alumnosFiltrados;
+	}
+	
+	
+	public List<ActividadComplementaria> filtrarActividadesPorAlumno (long id){
+		List<ActividadComplementaria> actividadesFiltradas = repositorio.findHorarioByAlumnoId(id);
+		return actividadesFiltradas;
 	}
 	
 }

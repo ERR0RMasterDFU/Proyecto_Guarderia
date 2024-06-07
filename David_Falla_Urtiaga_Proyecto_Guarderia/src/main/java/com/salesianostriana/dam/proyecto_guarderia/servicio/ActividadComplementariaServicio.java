@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.salesianostriana.dam.proyecto_guarderia.modelo.ActividadComplementaria;
+import com.salesianostriana.dam.proyecto_guarderia.modelo.Alumno;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Profesor;
 import com.salesianostriana.dam.proyecto_guarderia.repositorio.ActividadComplementariaRepositorio;
 import com.salesianostriana.dam.proyecto_guarderia.repositorio.UsuarioRepositorio;
@@ -24,8 +25,15 @@ public class ActividadComplementariaServicio extends ServicioBaseImpl<ActividadC
 	
 	// MÉTODO QUE FILTRA PROFESORES POR ACTIVIDAD
 	public List<Profesor>filtrarProfesoresPorActividad(long id){
-		List <Profesor> profesoresFiltradosPorActividad = repositorio.findProfesoresByActividad(id);
+		List<Profesor> profesoresFiltradosPorActividad = repositorio.findProfesoresByActividad(id);
 		return profesoresFiltradosPorActividad;
+	}
+	
+	
+	// MÉTODO QUE FILTRA PROFESORES POR ACTIVIDAD
+	public List<Alumno>filtrarAlumnosPorActividad(long id){
+		List<Alumno> alumnosFiltradosPorActividad = repositorio.findAlumnosByActividad(id);
+		return alumnosFiltradosPorActividad;
 	}
 	
 	

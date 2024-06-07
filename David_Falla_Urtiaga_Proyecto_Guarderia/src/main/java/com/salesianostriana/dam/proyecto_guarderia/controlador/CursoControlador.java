@@ -99,7 +99,7 @@ public class CursoControlador {
 		
 		if(cursoABorrar.isPresent()) {
 		
-			if(servicio.contarProfesoresDeUnCurso(id) == 0) {
+			if(servicio.contarProfesoresDeUnCurso(id) == 0 && servicio.contarAlumnosDeUnCurso(id) == 0) {
 				servicio.deleteById(id);
 			}else {
 				return "redirect:/admin/cursos/?error=true";
@@ -111,14 +111,23 @@ public class CursoControlador {
 	
 		
 	
-	// FILTRA A LOS PROFESORES POR CURSO -----------------------------------------------------------------
+	// FILTRADOS POR CURSO -----------------------------------------------------------------
 	
 	@GetMapping("/profesores/{id}")
 	public String mostrarProfesoresFiltradosPorCursos(@PathVariable("id") long id, Model model) {
 			
-		model.addAttribute("listaProfesores", servicio.findProfesoresByCurso(id));
+		model.addAttribute("listaProfesores", servicio.filtrarProfesoresPorCurso(id));
 		
 		return "admin/profesoresAdmin";
+	}
+	
+	
+	@GetMapping("/alumnos/{id}")
+	public String mostrarAlumnosFiltradosPorCursos(@PathVariable("id") long id, Model model) {
+			
+		model.addAttribute("listaAlumnos", servicio.filtrarAlumnosPorCurso(id));
+		
+		return "admin/alumnosAdmin";
 	}
 	
 	

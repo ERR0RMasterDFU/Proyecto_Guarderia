@@ -38,52 +38,57 @@
                 <div class="py-0 my-4 w-100 ">
                     <a type="button" th:href="@{/admin/profesores/nuevoProfesor}" class="btn btn-success text-white fw-bold py-2 w-100" style="font-size: 25px;"><i class="bi bi-sign-intersection-fill m-0"></i>&ensp;AÑADIR PROFESOR</a>
                 </div>
-
-                <table class="border border-2 border-black w-100 text-center rounded-3">
-                    <thead class="bg-warning">
-                        <tr class="fw-bold border border-2 border-black text-black" style="font-size: 15px;">
-                            <th class="border border-black border-2" style="width: 4%;">ID</th>
-                            <th style="width: 11%;">NOMBRE</th>
-                            <th style="width: 11%;">PRIMER<br>APELLIDO</th>
-                            <th style="width: 11%;">SEGUNDO<br>APELLIDO</th>
-							<th style="width: 11%;">DNI</th>
-							<th style="width: 11%;">Nº TELÉFONO</th>
-                            <th style="width: 11%;">CURSO</th>
-                            <th style="width: 11%;">ENCARGADO</th>
-                            <th class="border border-black border-2 py-3" style="width: 11%;">LISTADOS</th>
-                            <th class="border border-black border-2" style="width: 11%;">ADMIN</th>
-                        </tr>
-                    </thead>
-                    <tbody style="font-size: 15px; background-color: rgb(252, 244, 199);">
-                        <tr th:each="profesor : ${listaProfesores}" class="border-2 border-bottom border-black">
-                            <td th:text="${profesor.id}" class="border border-black border-2"></td>
-                            <td th:text="${profesor.nombre}" class="py-3 px-2"></td>
-                            <td	th:text="${profesor.primerApellido}" class="py-3 px-2"></td>
-                            <td th:text="${profesor.segundoApellido}" class="py-3 px-2"></td>
-                            <td th:text="${profesor.dni}" class="py-3 px-2"></td>
-                            <td th:text="${profesor.numTelefono}" class="py-3 px-2"></td>
-                            <td th:text="${profesor.curso.nombre}" class="py-3 px-2"></td>
-							<td th:text="${profesor.encargado.nombre}" class="py-3 px-2"></td>
-                            <td class="py-2 px-3 border border-black border-2">
-								<div class="py-0">
-									<a type="button" th:href="@{ -- }" class="btn btn-primary text-white fw-bold w-100">ALUMNOS</a>
-								</div>
-								
-								<div class="mt-2 py-0">
-                                    <a type="button" th:href="@{ -- }" class="btn btn-danger text-white fw-bold w-100">OBSERVACIONES</a>
-                                </div>
-                            </td>
-                            <td class="py-2 px-3 border border-black border-2 bg-opacity-25 bg-black">
-                                <div class="py-0">
-                                    <a type="button" href="agregarEditarProfesoresAdmin.html" th:href="@{/admin/profesores/editarProfesor/{id}(id=${profesor.id})}" class="btn text-white fw-bold w-100" style="background-color: rgb(210, 122, 2);"><i class="bi bi-gear-fill"></i></a>
-                                </div>
-                                <div class="mt-2 py-0">
-                                    <a type="button" href="profesoresAdmin.html" th:href="@{/admin/profesores/borrarProfesor/{id}(id=${profesor.id})}" class="btn text-white fw-bold w-100" style="background-color: rgb(218, 63, 3);"><i class="bi bi-trash-fill"></i></a>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+ 
+				<div class="table-responsive">
+					<table class="table table-hover table-warning table-striped text-center">
+						<thead class="bg-warning">
+							<tr class="fw-bold text-black align-middle">
+								<th class="bg-warning border-2 border-end-0 border-black">ID</th>
+								<th class="bg-warning border-2 border-start-0 border-end-0 border-black">NOMBRE</th>
+								<th class="bg-warning border-2 border-start-0 border-end-0 border-black">PRIMER<br>APELLIDO</th>
+								<th	class="bg-warning border-2 border-start-0 border-end-0 border-black">SEGUNDO<br>APELLIDO</th>
+								<th	class="bg-warning border-2 border-start-0 border-end-0 border-black">DNI</th>
+								<th	class="bg-warning border-2 border-start-0 border-end-0 border-black">Nº TELÉFONO</th>
+								<th	class="bg-warning border-2 border-start-0 border-end-0 border-black">CURSO</th>
+								<th	class="bg-warning border-2 border-start-0 border-end-0 border-black">ENCARGADO</th>
+								<th	class="bg-warning border-2 border-start-0 border-end-0 border-black">LISTADOS</th>
+								<th	class="bg-warning border-2 border-start-0 border-black">ADMIN</th>
+							</tr>					
+						</thead>
+						<tbody>
+							<tr th:each="profesor : ${listaProfesores}" class="align-middle">
+								<td th:text="${profesor.id}" class="border-2 border-end-0 border-black py-3 px-2"></td>
+								<td th:text="${profesor.nombre}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+								<td	th:text="${profesor.primerApellido}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+								<td th:text="${profesor.segundoApellido}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+								<td th:text="${profesor.dni}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+								<td th:text="${profesor.numTelefono}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+								<td th:text="${profesor.curso.nombre}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+								<td th:text="${profesor.encargado.nombre}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+								<td class="border-2 border-start-0 border-end-0 border-black py-2 px-3">
+									<div class="text-center align-middle">
+										<div class="py-0">
+											<a type="button" th:href="@{/admin/profesores/curso/{id}/actividad/{idA} (idCurso=${profesor.curso.id}, idActividad=${profesor.encargado.id})}" class="btn btn-primary text-white fw-bold w-100">ALUMNOS</a>
+										</div>
+										<div class="mt-2 py-0">
+											<a type="button" th:href="@{ -- }" class="btn btn-danger text-white fw-bold w-100">OBSERVACIONES</a>
+										</div>
+									</div>
+								</td>
+								<td class="border-2 border-start-0 border-start-0 border-black py-2 px-3">
+									<div class="text-center align-middle">
+										<div class="py-0">
+											<a type="button" href="agregarEditarProfesoresAdmin.html" th:href="@{/admin/profesores/editarProfesor/{id}(id=${profesor.id})}" class="btn text-white fw-bold w-100" style="background-color: rgb(210, 122, 2);"><i class="bi bi-gear-fill"></i></a>
+										</div>
+										<div class="mt-2 py-0">
+											<a type="button" href="profesoresAdmin.html" th:href="@{/admin/profesores/borrarProfesor/{id}(id=${profesor.id})}" class="btn text-white fw-bold w-100" style="background-color: rgb(218, 63, 3);"><i class="bi bi-trash-fill"></i></a>
+										</div>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 
             </main>
 

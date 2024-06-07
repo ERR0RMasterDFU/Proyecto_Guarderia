@@ -43,51 +43,51 @@
 				</div>
 					
 			<!---------------------------------------------------------------------------------------------------------------------------------------------------->
-								
-				
 				
                 <div class="py-0 my-4 w-100 ">
                     <a type="button" th:href="@{/admin/actividades/nuevaActividad}" href="agregarEditarActsComplementariasAdmin.html" class="btn btn-success text-white fw-bold py-2 w-100" style="font-size: 25px;"><i class="bi bi-clipboard2-plus-fill"></i>&ensp;AÑADIR ACTIVIDAD</a>
                 </div>
 
-                <table class="border border-2 border-black w-100 text-center rounded-3">
-                    <thead class="bg-warning">
-                        <tr class="fw-bold border border-2 border-black text-black" style="font-size: 15px;">
-                            <th class="border border-black border-2" style="width: 6%;">ID</th>
-                            <th style="width: 20%;">NOMBRE</th>
-                            <th class="py-3" style="width: 25%;">PRECIO EN LA MATRÍCULA</th>
-                            <th class="border border-black border-2" style="width: 35%;">LISTADOS</th>
-                            <th class="border border-black border-2" style="width: 14%;">ADMIN</th>
-                        </tr>
-                    </thead>
-                    <tbody style="font-size: 15px; background-color: rgb(252, 244, 199);">
-                        <tr th:each="actividad : ${listaActividades}" class="border-2 border-bottom border-black">
-                            <td th:text="${actividad.id}" class="border border-black border-2"></td>
-                            <td th:text="${actividad.nombre}" class="py-3 px-2"></td>
-                            <td th:text="${actividad.precio}" class="py-3 px-2"></td>
-                            <td class="py-2 px-3 border border-black border-2">
-								<div class="d-flex w-100">
-	                                <div class="py-0" style="flex: 1 1 50%;">
-	                                    <a type="button" href="../admin/alumnosAdmin.html" class="btn btn-primary text-white fw-bold w-100">ALUMNOS</a>
-	                                </div>
-	                                <div class="py-0 ms-3" style="flex: 1 1 50%;">
-	                                    <a type="button" href="../admin/profesoresAdmin.html" th:href="@{/admin/actividades/profesores/{id}(id=${actividad.id})}" class="btn btn-danger text-white fw-bold w-100">PROFESORES</a>
-	                                </div>
-								</div>
-                            </td>
-                            <td class="py-2 px-3 border border-black border-2 bg-opacity-25 bg-black">
-								<div class="d-flex w-100">
-	                                <div class="py-0" style="flex: 1 1 50%">
-	                                    <a type="button" href="agregarEditarActsComplementariasAdmin.html" th:href="@{/admin/actividades/editarActividad/{id}(id=${actividad.id})}" class="btn text-white fw-bold w-100" style="background-color: rgb(210, 122, 2);"><i class="bi bi-clipboard2-pulse-fill" style="font-size: 20px;"></i></a>
-	                                </div>
-	                                <div class="py-0 ms-2" style="flex: 1 1 50%;">
-	                                    <a type="button" href="actsComplementariasAdmin.html" th:href="@{/admin/actividades/borrarActividad/{id}(id=${actividad.id})}" class="btn text-white fw-bold w-100" style="background-color: rgb(218, 63, 3);"><i class="bi bi-clipboard2-x-fill" style="font-size: 20px;"></i></a>
-	                                </div>
-								</div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+					<table class="table table-hover table-warning table-striped text-center">
+						<thead class="bg-warning">
+							<tr class="fw-bold text-black align-middle">
+								<th class="bg-warning border-2 border-end-0 border-black">ID</th>
+								<th class="bg-warning border-2 border-start-0 border-end-0 border-black">NOMBRE</th>
+                                <th class="bg-warning border-2 border-start-0 border-end-0 border-black">PRECIO EN LA MATRÍCULA</th>
+								<th	class="bg-warning border-2 border-start-0 border-end-0 border-black">LISTADOS</th>
+								<th	class="bg-warning border-2 border-start-0 border-black">ADMIN</th>
+							</tr>					
+						</thead>
+						<tbody>
+							<tr th:each="actividad : ${listaActividades}" class="align-middle">
+                                <td th:text="${actividad.id}" class="border-2 border-end-0 border-black py-3 px-2"></td>
+                                <td th:text="${actividad.nombre}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+                                <td th:text="${#numbers.formatDecimal(actividad.precio,1,2,'COMMA') + ' €'}" class="border-2 border-start-0 border-end-0 border-black py-3 px-0"></td>
+								<td class="border-2 border-start-0 border-end-0 border-black py-2 px-3">
+									<div class="text-center align-middle d-flex justify-content-center w-100">
+										<div class="py-0 w-100">
+											<a type="button" href="../formularioEnvioDeDatos.html" th:href="@{/admin/actividades/alumnos/{id}(id=${actividad.id})}" class="btn btn-primary text-white fw-bold w-100">ALUMNOS</a>
+										</div>
+										<div class="ms-2 py-0 w-100">
+                                            <a type="button" href="../admin/profesoresAdmin.html" th:href="@{/admin/actividades/profesores/{id}(id=${actividad.id})}" class="btn btn-danger text-white fw-bold w-100">PROFESORES</a>
+										</div>
+									</div>
+								</td>
+								<td class="border-2 border-start-0 border-start-0 border-black py-2 px-3">
+									<div class="text-center align-middle d-flex justify-content-center w-100">
+										<div class="py-0">
+                                            <a type="button" href="agregarEditarActsComplementariasAdmin.html" th:href="@{/admin/actividades/editarActividad/{id}(id=${actividad.id})}" class="btn text-white fw-bold w-100" style="background-color: rgb(210, 122, 2);"><i class="bi bi-clipboard2-pulse-fill" style="font-size: 20px;"></i></a>
+                                        </div>
+                                        <div class="ms-2 py-0">
+                                            <a type="button" href="actsComplementariasAdmin.html" th:href="@{/admin/actividades/borrarActividad/{id}(id=${actividad.id})}" class="btn text-white fw-bold w-100" style="background-color: rgb(218, 63, 3);"><i class="bi bi-clipboard2-x-fill" style="font-size: 20px;"></i></a>
+										</div>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 
             </main>
 
