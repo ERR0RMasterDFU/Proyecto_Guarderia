@@ -16,7 +16,6 @@ import com.salesianostriana.dam.proyecto_guarderia.servicio.ActividadComplementa
 import com.salesianostriana.dam.proyecto_guarderia.servicio.CursoServicio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.ProfesorServicio;
 
-
 @Controller
 @RequestMapping("/admin/profesores")
 public class ProfesorControlador {
@@ -33,7 +32,7 @@ public class ProfesorControlador {
 	
 	// MUESTRA LA PÁGINA DE PROFESORES -----------------------------------------------------------------------------------
 	
-	@GetMapping("")
+	@GetMapping("/")
 	public String mostrarProfesores(Model model) {
 		
 		model.addAttribute("listaProfesores", servicio.findAll());
@@ -68,7 +67,7 @@ public class ProfesorControlador {
 		
 			servicio.save(profesor);		
 			
-		return "redirect:/admin/profesores";
+		return "redirect:/admin/profesores/";
 	} 
 
 	
@@ -91,7 +90,7 @@ public class ProfesorControlador {
 			
 		} else {
 			
-			return "redirect:/admin/profesores";
+			return "redirect:/admin/profesores/";
 		}
 		
 	}
@@ -104,7 +103,7 @@ public class ProfesorControlador {
 		
 		servicio.save(profesor);
 		
-		return "redirect:/admin/profesores";	
+		return "redirect:/admin/profesores/";	
 	}
 	
 	
@@ -115,7 +114,7 @@ public class ProfesorControlador {
 		
 		servicio.deleteById(idProfesor);
 		
-		return "redirect:/admin/profesores";
+		return "redirect:/admin/profesores/";
 	}
 		
 

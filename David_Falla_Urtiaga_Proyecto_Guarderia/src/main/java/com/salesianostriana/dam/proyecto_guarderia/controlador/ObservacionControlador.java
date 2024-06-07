@@ -57,23 +57,23 @@ public class ObservacionControlador {
 		model.addAttribute("listaProfesores", profeServicio.findAll()); 	//LISTA DE PROFESORES PARA OBSERVACIÓN
 		model.addAttribute("listaActividades", actServicio.findAll()); 		//LISTA DE ACTIVIDADES PARA OBSERVACIÓN
 			
-		return "admin/agregarEditarCursosAdmin";
+		return "admin/agregarEditarObservacionesAdmin";
 	}	
 
 		
 		
-	/* AÑADE EL NUEVO CURSO A LA BASE DE DATOS ---------------------------------------------------------------
+	// AÑADE EL NUEVO CURSO A LA BASE DE DATOS ---------------------------------------------------------------
 		
 	@PostMapping("/nuevaObservacion/submit")
 	public String registrarNuevoCurso(@ModelAttribute("observacion") Observacion observacion) {
 			
 			servicio.save(observacion);		
 			
-		return "redirect:/admin/cursos/";
+		return "redirect:/admin/observaciones/";
 	} 
 
 	
-	// MUESTRA EL FORMULARIO PARA AÑADIR CURSOS RELLENO ---------------------------------------------------
+	/* MUESTRA EL FORMULARIO PARA AÑADIR CURSOS RELLENO ---------------------------------------------------
 
 	@GetMapping("/editarCurso/{id}")
 	public String mostrarFormularioCursosEditar(@PathVariable("id") long id, Model model) {

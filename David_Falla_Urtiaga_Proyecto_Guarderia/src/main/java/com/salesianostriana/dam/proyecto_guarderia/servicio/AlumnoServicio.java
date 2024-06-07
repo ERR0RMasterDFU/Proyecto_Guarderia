@@ -30,9 +30,9 @@ public class AlumnoServicio extends ServicioBaseImpl<Alumno, Long, AlumnoReposit
 	}
 	
 	
-	public List<ActividadComplementaria> filtrarActividadesPorAlumno (long id){
+	/*public List<ActividadComplementaria> filtrarActividadesPorAlumno (long id){
 		List<ActividadComplementaria> actividadesFiltradas = repositorio.findHorarioByAlumnoId(id);
 		return actividadesFiltradas;
-	}
+	}*/
 	
 }
