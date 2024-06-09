@@ -52,18 +52,40 @@
 				<div class="container-fluid">
 			  		<div class="row d-flex justify-content-center">
 
-						<div class="card px-2 m-2" style="width: 18rem;" th:each="observacion : ${listaObservaciones}">
+						<div class="card p-2 m-2 border border-black border-3 bg-primary bg-opacity-25" style="width: 18rem;" th:each="observacion : ${listaObservaciones}">
+						  <div class="card-body p-2 bg-white">
+							<th:block th:if="${observacion.alumno.segundoApellido != null}">
+						   		<p class="card-title m-0"><span class="fw-bold">ALUMNO:<br></span><span th:text="${observacion.alumno.nombre} + ' ' + ${observacion.alumno.primerApellido} + ' ' + ${observacion.alumno.segundoApellido}"></span></p>
+							</th:block>
+							<th:block th:if="${observacion.alumno.segundoApellido == null}">
+								<p class="card-title"><span class="fw-bold">ALUMNO:<br></span><span th:text="${observacion.alumno.nombre} + ' ' + ${observacion.alumno.primerApellido}"></span></p>
+							</th:block>
+						  </div>
 						  <div class="card-body">
-						   		<p class="card-title" th:text="'ALUMNO: ' + ${observacion.alumno.nombre} + ' ' + ${observacion.alumno.primerApellido} + ' ' + ${observacion.alumno.segundoApellido}"></p>
 								<a type="button" th:href="@{ -- }" class="btn btn-primary text-white fw-bold w-100">DATOS DEL ALUMNO</a>
 						  </div>
-						  <ul class="list-group list-group-flush">
-							<li class="list-group-item" th:text="'DURANTE: ' + ${observacion.actividad.nombre}"></li>
-						    <li class="list-group-item" th:text="'PROFESOR: ' + ${observacion.profesor.nombre} + ' ' + ${observacion.profesor.primerApellido} + ' ' + ${observacion.profesor.segundoApellido}"></li>
-						    <li class="list-group-item" th:text="'FECHA: ' + ${#temporals.format(observacion.fechaObservacion, 'dd/MMM/yyyy HH:mm')}"></li>
+						  <ul class="list-group list-group-flush mb-3">
+							<li class="list-group-item p-2"><span class="fw-bold">DURANTE:<br></span><span th:text="${observacion.actividad.nombre}"></span></li>
+							<th:block th:if="${observacion.profesor.segundoApellido != null}">
+						    	<li class="list-group-item p-2"><span class="fw-bold">PROFESOR:<br></span><span th:text="${observacion.profesor.nombre} + ' ' + ${observacion.profesor.primerApellido} + ' ' + ${observacion.profesor.segundoApellido}"></span></li>
+							</th:block>
+							<th:block th:if="${observacion.profesor.segundoApellido == null}">
+								<li class="list-group-item p-2"><span class="fw-bold">PROFESOR:<br></span><span th:text="${observacion.profesor.nombre} + ' ' + ${observacion.profesor.primerApellido}"></span></li>
+							</th:block>
+							<li class="list-group-item p-2"><span class="fw-bold">FECHA:<br></span><span th:text="${#temporals.format(observacion.fechaObservacion, 'dd/MM/yyyy HH:mm')}"></span></li>
 						  </ul>
-						  <div class="card-body">
-							<p class="card-text" th:text="'MENSAJE: ' + ${observacion.mensaje}"></p>
+						  <div class="card-body bg-white mt-0 p-2">
+							<p class="card-text"><span class="fw-bold">MENSAJE:<br></span><span th:text="${observacion.mensaje}"></span></p>
+						  </div>
+						  <div class="card-body pb-1">
+							<div class="text-center align-middle d-flex justify-content-center w-100">
+								<div class="py-0 w-100">
+									<a type="button" href="agregarEditarObservacionesAdmin.html" th:href="@{/admin/observaciones/editarObservacion/{id}(id=${observacion.id})}" class="btn text-white fw-bold w-100" style="background-color: rgb(210, 122, 2);"><i class="bi bi-gear-fill" style="font-size: 20px;"></i></a>										
+								</div>
+								<div class="ms-2 py-0 w-100">
+									<a type="button" href="observacionesAdmin.html" th:href="@{/admin/observaciones/borrarObservacion/{id}(id=${observacion.id})}" class="btn text-white fw-bold w-100" style="background-color: rgb(218, 63, 3);"><i class="bi bi-trash-fill" style="font-size: 20px;"></i></a>
+								</div>
+							</div>
 						  </div>
 						</div>
 						
