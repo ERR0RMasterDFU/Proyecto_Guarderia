@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.proyecto_guarderia.controlador;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,27 +68,32 @@ public class ObservacionControlador {
 	@PostMapping("/nuevaObservacion/submit")
 	public String registrarNuevoCurso(@ModelAttribute("observacion") Observacion observacion) {
 			
-			servicio.save(observacion);		
+		servicio.introducirFechaInstante(observacion);
+		servicio.save(observacion);		
 			
 		return "redirect:/admin/observaciones/";
 	} 
 
 	
-	/* MUESTRA EL FORMULARIO PARA AÑADIR CURSOS RELLENO ---------------------------------------------------
+	// MUESTRA EL FORMULARIO PARA AÑADIR CURSOS RELLENO ---------------------------------------------------
 
-	@GetMapping("/editarCurso/{id}")
-	public String mostrarFormularioCursosEditar(@PathVariable("id") long id, Model model) {
+	@GetMapping("/editarObservacion/{id}")
+	public String mostrarFormularioObservacionEditar(@PathVariable("id") long id, Model model) {
 			
-		Optional<Curso> cursoAEditar = servicio.findById(id);
+		Optional<Observacion> observacionAEditar = servicio.findById(id);
+		
+		model.addAttribute("listaAlumnos", alumnoServicio.findAll()); 		//LISTA DE ALUMNOS PARA OBSERVACIÓN
+		model.addAttribute("listaProfesores", profeServicio.findAll()); 	//LISTA DE PROFESORES PARA OBSERVACIÓN
+		model.addAttribute("listaActividades", actServicio.findAll()); 		//LISTA DE ACTIVIDADES PARA OBSERVACIÓN
 			
-		if(cursoAEditar.isPresent()) {
+		if(observacionAEditar.isPresent()) {
 				
-			model.addAttribute("curso", cursoAEditar.get());
-			return "admin/agregarEditarCursosAdmin";
+			model.addAttribute("observacion", observacionAEditar.get());
+			return "admin/agregarEditarObservacionesAdmin";
 				
 		} else {
 				
-			return "redirect:/admin/cursos/";
+			return "redirect:/admin/observaciones/";
 		}
 			
 	}
@@ -96,38 +102,39 @@ public class ObservacionControlador {
 		
 	// GUARDA LOS NUEVOS CAMBIOS A LOS CURSOS ----------------------------------------------------------------
 		
-	@PostMapping("/editarCurso/submit")
-	public String registrarCursoEditado(@ModelAttribute("curso") Curso curso) {
+	@PostMapping("/editarObservacion/submit")
+	public String registrarObservacionEditada(@ModelAttribute("observacion") Observacion observacion) {
 			
-		servicio.save(curso);
+		observacion.setFechaObservacion(servicio.editarFechaInstante(observacion));
+		servicio.save(observacion);
 			
-		return "redirect:/admin/cursos/";	
+		return "redirect:/admin/observaciones/";	
 	}
 		
 		
 		
 	//BORRA EL CURSO ELEGIDO POR ID ----------------------------------------------------------------------
 
-	@GetMapping("/borrarCurso/{id}")
-	public String borrarCurso(@PathVariable("id") long id) {
+	@GetMapping("/borrarObservacion/{id}")
+	public String borrarObservacion(@PathVariable("id") long id) {
 
-		Optional<Curso> cursoABorrar = servicio.findById(id);
+		Optional<Observacion> observacionAEditar = servicio.findById(id);
 		
-		if(cursoABorrar.isPresent()) {
+		if(observacionAEditar.isPresent()) {
 		
-			if(servicio.contarProfesoresDeUnCurso(id) == 0) {
+			//if(servicio.contarProfesoresDeUnCurso(id) == 0) {
 				servicio.deleteById(id);
 			}else {
-				return "redirect:/admin/cursos/?error=true";
+				return "redirect:/admin/observaciones/?error=true";
 			}
-		}
+		//}
 			
-		return "redirect:/admin/cursos/";
+		return "redirect:/admin/observaciones/";
 	}
 	
 		
 	
-	// FILTRA A LOS PROFESORES POR CURSO -----------------------------------------------------------------
+	/* FILTRA A LOS PROFESORES POR CURSO -----------------------------------------------------------------
 	
 	@GetMapping("/profesores/{id}")
 	public String mostrarProfesoresFiltradosPorCursos(@PathVariable("id") long id, Model model) {
