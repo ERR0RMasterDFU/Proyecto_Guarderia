@@ -45,7 +45,7 @@ public class ObservacionControlador {
 	}
 	
 	
-	// MUESTRA EL FORMULARIO PARA AÑADIR CURSOS VACÍO -------------------------------------------------------
+	// MUESTRA EL FORMULARIO PARA AÑADIR OBSERVACIONES VACÍO -------------------------------------------------------
 	
 	@GetMapping("/nuevaObservacion")
 	public String mostrarFormularioObservacionAgregar(Model model) {
@@ -62,7 +62,7 @@ public class ObservacionControlador {
 
 		
 		
-	// AÑADE EL NUEVO CURSO A LA BASE DE DATOS ---------------------------------------------------------------
+	// AÑADE LA NUEVA OBSERVACIÓN A LA BASE DE DATOS ---------------------------------------------------------------
 		
 	@PostMapping("/nuevaObservacion/submit")
 	public String registrarNuevoCurso(@ModelAttribute("observacion") Observacion observacion) {

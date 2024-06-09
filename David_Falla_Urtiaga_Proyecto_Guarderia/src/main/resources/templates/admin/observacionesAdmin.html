@@ -54,16 +54,16 @@
 
 						<div class="card px-2 m-2" style="width: 18rem;" th:each="observacion : ${listaObservaciones}">
 						  <div class="card-body">
-						   		<h5 class="card-title" th:text="${'Nombre: ' + alumno.nombre}"></h5>
+						   		<p class="card-title" th:text="'ALUMNO: ' + ${observacion.alumno.nombre} + ' ' + ${observacion.alumno.primerApellido} + ' ' + ${observacion.alumno.segundoApellido}"></p>
 								<a type="button" th:href="@{ -- }" class="btn btn-primary text-white fw-bold w-100">DATOS DEL ALUMNO</a>
 						  </div>
 						  <ul class="list-group list-group-flush">
-							<li class="list-group-item" th:text="${'Durante: ' + actividad.nombre}"></li>
-						    <li class="list-group-item" th:text="${'Profesor: ' + profesor.nombre}"></li>
-						    <li class="list-group-item" th:text="${'Fecha: ' + #temporals.(observacion.fechaObservacion, 'dd/MMM/yyyy HH:mm')}"></li>
+							<li class="list-group-item" th:text="'DURANTE: ' + ${observacion.actividad.nombre}"></li>
+						    <li class="list-group-item" th:text="'PROFESOR: ' + ${observacion.profesor.nombre} + ' ' + ${observacion.profesor.primerApellido} + ' ' + ${observacion.profesor.segundoApellido}"></li>
+						    <li class="list-group-item" th:text="'FECHA: ' + ${#temporals.format(observacion.fechaObservacion, 'dd/MMM/yyyy HH:mm')}"></li>
 						  </ul>
 						  <div class="card-body">
-							<p class="card-text" th:text="${'Mensaje: ' + observacion.mensaje + '.'}"></p>
+							<p class="card-text" th:text="'MENSAJE: ' + ${observacion.mensaje}"></p>
 						  </div>
 						</div>
 						

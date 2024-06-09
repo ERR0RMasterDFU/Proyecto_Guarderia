@@ -44,21 +44,37 @@
 						<legend class="fw-bold border border-black border-3 border-start-0 border-end-0 border-top-0 text-white px-2 mb-3 bg-success">DATOS DE LA OBSERVACIÓN</legend>
 						<div class="mx-3 mb-3">
 							
+							<input th:if="${observacion.id!=0}" type="hidden" name="id" th:field="*{id}"/>
+							
 	<!---- PROFESOR, ALUMNO Y MOMENTO ---------------------------------->
 							
 							<div class="d-flex mt-3 w-100">
 							
-								<div class="ms-3" style="flex: 1 1 33%;">
+								<div class="me-3" style="flex: 1 1 33%;">
 									<label for="alumno" class="fw-bold">RECEPTOR (ALUMNO)<span class="text-danger"> *</span></label><br>
 									<select class="form-select form-select-sm" style="height: 60%;" name="alumno" id="alumno" th:field="*{alumno}" required>
-										<option th:each="alumnos : ${listaAlumnos}" th:value="${alumno.id}" th:text="${alumno.id} + '- ' ${alumno.nombre} + ' ' + ${alumno.primerApellido} + ' ' + ${alumno.segundoApellido}"></option>
+										<div th:each="alumno : ${listaAlumnos}">
+											<th:block th:if="${alumno.segundoApellido != null}">
+												<option th:value="${alumno.id}" th:text="${alumno.id} + '- ' + ${alumno.nombre} + ' ' + ${alumno.primerApellido} + ' ' + ${alumno.segundoApellido}"></option>
+											</th:block>
+											<th:block th:if="${alumno.segundoApellido == null}">
+												<option th:value="${alumno.id}" th:text="${alumno.id} + '- ' + ${alumno.nombre} + ' ' + ${alumno.primerApellido}"></option>
+											</th:block>
+										</div>
 									</select>
 								</div>
 							
-								<div class="ms-3" style="flex: 1 1 33%;">
+								<div class="mx-3" style="flex: 1 1 33%;">
 									<label for="profesor" class="fw-bold">AUTOR (PROFESOR)<span class="text-danger"> *</span></label><br>
 									<select class="form-select form-select-sm" style="height: 60%;" name="profesor" id="profesor" th:field="*{profesor}" required>
-										<option th:each="profesores : ${listaProfesores}" th:value="${profesor.id}" th:text="${profesor.id} + '- ' ${profesor.nombre} + ' ' + ${profesor.primerApellido} + ' ' + ${profesor.segundoApellido}"></option>
+										<div th:each="profesor : ${listaProfesores}">
+											<th:block th:if="${profesor.segundoApellido != null}">
+												<option th:value="${profesor.id}" th:text="${profesor.id} + '- ' + ${profesor.nombre} + ' ' + ${profesor.primerApellido} + ' ' + ${profesor.segundoApellido}"></option>
+											</th:block>
+											<th:block th:if="${profesor.segundoApellido == null}">
+												<option th:value="${profesor.id}" th:text="${profesor.id} + '- ' + ${profesor.nombre} + ' ' + ${profesor.primerApellido}"></option>
+											</th:block>
+										</div>
 									</select>
 								</div>
 							
@@ -78,7 +94,7 @@
 							<div class="row mb-3">
 								<div class="col mb-3 mx-4">
 									<label for="mensaje" class="form-label fw-bold p-0 m-0">MENSAJE <span class="text-danger">*</span></label>
-									<textarea th:field="*{mensaje}" class="form-control" maxlength="500" rows="2" id="mensaje" name="mensaje" placeholder="Describa el motivo por el que se redacta de esta observación." required></textarea>
+									<textarea th:field="*{mensaje}" class="form-control" maxlength="500" rows="2" id="mensaje" name="mensaje" placeholder="Describa el motivo por el que se redacta esta observación." required></textarea>
 								</div>
 							</div>
 									
