@@ -27,7 +27,7 @@
 
 <!---- SECCIÓN DE ANUNCIOS / ASIDE ---------------------------------->
 
-			<aside th:replace="~{fragmentos/asideUsuario::aside}"></aside>
+			<aside th:replace="~{fragmentos/asideAdmin::aside}"></aside>
 
 <!------------------------------------------------------------------->
 
@@ -68,7 +68,7 @@
 								<td class="border-2 border-start-0 border-end-0 border-black py-2 px-3">
 									<div class="text-center align-middle">
 										<div class="py-0">
-											<a type="button" th:href="@{/admin/profesores/curso/{id}/actividad/{idA} (idCurso=${profesor.curso.id}, idActividad=${profesor.encargado.id})}" class="btn btn-primary text-white fw-bold w-100">ALUMNOS</a>
+											<a type="button" th:href="@{/admin/profesores/curso/{id}/actividad/{idA} (id=${profesor.curso.id}, idA=${profesor.encargado.id})}" class="btn btn-primary text-white fw-bold w-100">ALUMNOS</a>
 										</div>
 										<div class="mt-2 py-0">
 											<a type="button" th:href="@{ -- }" class="btn btn-danger text-white fw-bold w-100">OBSERVACIONES</a>

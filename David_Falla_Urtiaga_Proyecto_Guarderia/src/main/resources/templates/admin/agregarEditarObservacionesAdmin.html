@@ -29,7 +29,7 @@
 
 <!---- SECCIÓN DE ANUNCIOS / ASIDE ---------------------------------->
 
-			<aside th:replace="~{fragmentos/asideUsuario::aside}"></aside>
+			<aside th:replace="~{fragmentos/asideAdmin::aside}"></aside>
 
 <!------------------------------------------------------------------->
 
@@ -45,6 +45,7 @@
 						<div class="mx-3 mb-3">
 							
 							<input th:if="${observacion.id!=0}" type="hidden" name="id" th:field="*{id}"/>
+							<input th:if="${observacion.fechaObservacion!=null}" type="hidden" name="fechaObservacion" th:field="*{fechaObservacion}"/>
 							
 	<!---- PROFESOR, ALUMNO Y MOMENTO ---------------------------------->
 							

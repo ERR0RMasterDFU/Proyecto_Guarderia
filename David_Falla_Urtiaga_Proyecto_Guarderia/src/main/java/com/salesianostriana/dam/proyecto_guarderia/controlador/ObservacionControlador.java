@@ -41,6 +41,7 @@ public class ObservacionControlador {
 	public String mostrarObservaciones(Model model) {
 		
 		model.addAttribute("listaObservaciones", servicio.findAll());
+		model.addAttribute("listaObservaciones", servicio.sieteObservacionesMasRecientes());
 		
 		return "admin/observacionesAdmin";
 	}
@@ -104,8 +105,7 @@ public class ObservacionControlador {
 		
 	@PostMapping("/editarObservacion/submit")
 	public String registrarObservacionEditada(@ModelAttribute("observacion") Observacion observacion) {
-			
-		observacion.setFechaObservacion(servicio.editarFechaInstante(observacion));
+		
 		servicio.save(observacion);
 			
 		return "redirect:/admin/observaciones/";	
@@ -121,32 +121,28 @@ public class ObservacionControlador {
 		Optional<Observacion> observacionAEditar = servicio.findById(id);
 		
 		if(observacionAEditar.isPresent()) {
-		
-			//if(servicio.contarProfesoresDeUnCurso(id) == 0) {
+			
 				servicio.deleteById(id);
+				
 			}else {
+				
 				return "redirect:/admin/observaciones/?error=true";
 			}
-		//}
 			
 		return "redirect:/admin/observaciones/";
 	}
 	
 		
 	
-	/* FILTRA A LOS PROFESORES POR CURSO -----------------------------------------------------------------
+	// FILTRA AL ALUMNO ELEGIDO EN LA OBSERVACIÓN  -----------------------------------------------------------------
 	
-	@GetMapping("/profesores/{id}")
-	public String mostrarProfesoresFiltradosPorCursos(@PathVariable("id") long id, Model model) {
+	@GetMapping("/alumno/{id}")
+	public String mostrarAlumnoFiltradoPorId(@PathVariable("id") long id, Model model) {
 			
-		model.addAttribute("listaProfesores", servicio.findProfesoresByCurso(id));
+		model.addAttribute("listaAlumnos", alumnoServicio.findById(id));
 		
-		return "admin/profesoresAdmin";
+		return "admin/alumnosAdmin";
 	}
-	
-	
-	
-}*/
 
 
 }
