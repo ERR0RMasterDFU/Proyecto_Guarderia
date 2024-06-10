@@ -52,7 +52,7 @@
 				<div class="container-fluid">
 			  		<div class="row d-flex justify-content-center">
 
-						<div class="card p-3 m-2 border border-black border-2 bg-primary bg-opacity-25" style="width: 18rem;" th:each="observacion : ${listaObservaciones}">
+						<div class="card p-3 m-2 border border-black border-2" style="width: 18rem; background-color: rgb(184, 219, 254);" th:each="observacion : ${listaObservaciones}">
 						  <div class="card-body border border-black border-1 p-2 bg-white">
 							<th:block th:if="${observacion.alumno.segundoApellido != null}">
 						   		<p class="card-title m-0"><span class="fw-bold">ALUMNO:<br></span><span th:text="${observacion.alumno.nombre} + ' ' + ${observacion.alumno.primerApellido} + ' ' + ${observacion.alumno.segundoApellido}"></span></p>

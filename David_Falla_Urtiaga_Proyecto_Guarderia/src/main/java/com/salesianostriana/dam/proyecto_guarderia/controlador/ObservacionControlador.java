@@ -41,7 +41,7 @@ public class ObservacionControlador {
 	public String mostrarObservaciones(Model model) {
 		
 		model.addAttribute("listaObservaciones", servicio.findAll());
-		model.addAttribute("listaObservaciones", servicio.sieteObservacionesMasRecientes());
+		model.addAttribute("listaAsideAdmin", servicio.cuatroObservacionesMasRecientes());
 		
 		return "admin/observacionesAdmin";
 	}

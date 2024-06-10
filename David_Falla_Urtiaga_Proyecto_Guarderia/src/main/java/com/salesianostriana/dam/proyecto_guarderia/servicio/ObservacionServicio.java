@@ -34,7 +34,7 @@ public class ObservacionServicio extends ServicioBaseImpl<Observacion, Long, Obs
 	}
 	
 	
-	public List<Observacion> sieteObservacionesMasRecientes () {
+	public List<Observacion> cuatroObservacionesMasRecientes () {
 		//return repositorio.findTop7OrderByFechaObservacionDesc();
 		//return repositorio.findFirst7AndSort(Sort.by(Direction.DESC, "fechaObservacion"));
 		Page<Observacion> page = repositorio.findAll(PageRequest.of(0, 4,Sort.by("fechaObservacion").descending()));

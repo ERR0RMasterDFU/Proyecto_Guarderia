@@ -53,8 +53,6 @@ public class ProfesorControlador {
 		model.addAttribute("listaCursos", CursoServicio.findAll()); 		//LISTA DE CURSOS PARA PROFESOR
 		model.addAttribute("listaActividades", ActServicio.findAll()); 		//LISTA DE ACTIVIDADES PARA PROFESOR
 		
-		servicio.save(profesor);
-		
 		return "admin/agregarEditarProfesoresAdmin";
 	}	
 
@@ -112,7 +110,16 @@ public class ProfesorControlador {
 	@GetMapping("/borrarProfesor/{id}")
 	public String borrarProfesor(@PathVariable("id") long idProfesor) {
 		
-		servicio.deleteById(idProfesor);
+		Optional<Profesor> profesorAEditar = servicio.findById(idProfesor);
+		
+		if(profesorAEditar.isPresent()) {
+			
+			if(servicio.contarObservacionesPorProfesor(idProfesor) == 0) {
+				servicio.deleteById(idProfesor);
+			}else{
+				return "redirect:/admin/profesores/?error=true";
+			}
+		}
 		
 		return "redirect:/admin/profesores/";
 	}

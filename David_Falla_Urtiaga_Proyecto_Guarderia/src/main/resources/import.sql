@@ -117,10 +117,10 @@ INSERT INTO Profesor (id, nombre, primer_apellido, segundo_apellido, dni, num_te
 INSERT INTO Profesor (id, nombre, primer_apellido, segundo_apellido, dni, num_telefono, curso_id, encargado_id) VALUES (7, 'Manuel', 'Pérez', 'Gómez', '00796433N', '674450136', 1, 5);
 INSERT INTO Profesor (id, nombre, primer_apellido, dni, num_telefono, curso_id, encargado_id) VALUES (8, 'Huang', 'Yueying', 'Y9086809Y', '854248643', 1, 2);
 INSERT INTO Profesor (id, nombre, primer_apellido, segundo_apellido, dni, num_telefono, curso_id, encargado_id) VALUES (9, 'Fabián', 'Ramiro', 'López', '31947902M', '897535526', 1, 6);
-INSERT INTO Profesor (id, nombre, primer_apellido, segundo_apellido, dni, num_telefono, curso_id, encargado_id) VALUES (10, 'Ester', 'Valencia', 'Ródenas', '56010542E', '492282089' 1, 1);
-INSERT INTO Profesor (id, nombre, primer_apellido, dni, num_telefono, curso_id, encargado_id) VALUES (11, 'Fukutsuchi', 'Yorikane', 'Z3444850F', '829-969-699', 2, 2);
-INSERT INTO Profesor (id, nombre, primer_apellido, segundo_apellido, dni, num_telefono, curso_id, encargado_id) VALUES (12, 'Oier', 'Tirado', 'Montiel', '39347544H', '009-707-157' 1, 4);
-INSERT INTO Profesor (id, nombre, primer_apellido, dni, num_telefono, curso_id, encargado_id) VALUES (13, 'Harigae', 'Katsunosuki', 'Y6047437S', '546-069-182', 2, 3);
+INSERT INTO Profesor (id, nombre, primer_apellido, segundo_apellido, dni, num_telefono, curso_id, encargado_id) VALUES (10, 'Ester', 'Valencia', 'Ródenas', '56010542E', '492282089', 1, 1);
+INSERT INTO Profesor (id, nombre, primer_apellido, dni, num_telefono, curso_id, encargado_id) VALUES (11, 'Fukutsuchi', 'Yorikane', 'Z3444850F', '829969699', 2, 2);
+INSERT INTO Profesor (id, nombre, primer_apellido, segundo_apellido, dni, num_telefono, curso_id, encargado_id) VALUES (12, 'Oier', 'Tirado', 'Montiel', '39347544H', '009707157', 1, 4);
+INSERT INTO Profesor (id, nombre, primer_apellido, dni, num_telefono, curso_id, encargado_id) VALUES (13, 'Harigae', 'Katsunosuki', 'Y6047437S', '546069182', 2, 3);
 
 ALTER SEQUENCE profesor_seq RESTART WITH 63;
 
@@ -129,14 +129,18 @@ ALTER SEQUENCE profesor_seq RESTART WITH 63;
 -- OBSERVACIONES ------------------------------------------------------------------------------------------------------------------------------------------
 
 INSERT INTO Observacion (id, alumno_id, profesor_id, actividad_id, mensaje, fecha_observacion) VALUES (1, 1, 4, 2, 'Se ha atragantado con una patata.', '2024-05-27 19:35:54'); 
-INSERT INTO Observacion (id, alumno_id, profesor_id, actividad_id, mensaje, fecha_observacion) VALUES (2, 2, 3, 3, 'Ha aplastado a otro alumno mientras dormía.', '2024-05-28 18:21:03');
-INSERT INTO Observacion (id, alumno_id, profesor_id, actividad_id, mensaje, fecha_observacion) VALUES (3, 8, 7, 5, 'Se ha cortado con el filo del papel.', '');
-INSERT INTO Observacion (id, alumno_id, profesor_id, actividad_id, mensaje, fecha_observacion) VALUES (4, 1, 12, 4, 'Le ha dado un balonazo muy fuerte a otro niño durante el partido.', '');
-INSERT INTO Observacion (id, alumno_id, profesor_id, actividad_id, mensaje, fecha_observacion) VALUES (5, 4, 6, 1, 'Ha roto un banco por su peso', '');
-INSERT INTO Observacion (id, alumno_id, profesor_id, actividad_id, mensaje, fecha_observacion) VALUES (6, 5, 2, 6, 'Ha pegado a otro niño sin querer en la actuación', '');
-INSERT INTO Observacion (id, alumno_id, profesor_id, actividad_id, mensaje, fecha_observacion) VALUES (7, 10, 5, 4, 'Se ha chocado contra el poste de la portería', '');
-INSERT INTO Observacion (id, alumno_id, profesor_id, actividad_id, mensaje, fecha_observacion) VALUES (8, 12, 13, 3, 'Ronca mucho demasiado fuerte.', '');
-INSERT INTO Observacion (id, alumno_id, profesor_id, actividad_id, mensaje, fecha_observacion) VALUES (9, 9, 11, 2, 'Ha vomitado todos los macarrones sobre la mesa.', '');
-INSERT INTO Observacion (id, alumno_id, profesor_id, actividad_id, mensaje, fecha_observacion) VALUES (10, 11, 7, 5, 'Los cuadros que pinta son excepcionalmente bonitos.', '');
-INSERT INTO Observacion (id, alumno_id, profesor_id, actividad_id, mensaje, fecha_observacion) VALUES (11, 12, 2, 6 '', '');
-INSERT INTO Observacion (id, alumno_id, profesor_id, actividad_id, mensaje, fecha_observacion) VALUES (12, 4, 6, 1, '', '');
+INSERT INTO Observacion (id, alumno_id, profesor_id, actividad_id, mensaje, fecha_observacion) VALUES (2, 2, 3, 3, 'Ha aplastado a otro alumno mientras dormía.', '2024-05-28 16:21:03');
+INSERT INTO Observacion (id, alumno_id, profesor_id, actividad_id, mensaje, fecha_observacion) VALUES (3, 8, 7, 5, 'Se ha cortado con el filo del papel.', '2024-05-29 18:08:54');
+INSERT INTO Observacion (id, alumno_id, profesor_id, actividad_id, mensaje, fecha_observacion) VALUES (4, 1, 12, 4, 'Le ha dado un balonazo muy fuerte a otro niño durante el partido.', '2024-05-30 17:47:42');
+INSERT INTO Observacion (id, alumno_id, profesor_id, actividad_id, mensaje, fecha_observacion) VALUES (5, 4, 6, 1, 'Ha venido con los deberes sin hacer.', '2024-05-31 08:24:15');
+INSERT INTO Observacion (id, alumno_id, profesor_id, actividad_id, mensaje, fecha_observacion) VALUES (6, 5, 2, 6, 'Ha pegado a otro niño sin querer en la actuación', '2024-06-03 20:10:34');
+INSERT INTO Observacion (id, alumno_id, profesor_id, actividad_id, mensaje, fecha_observacion) VALUES (7, 10, 5, 4, 'Se ha chocado contra el poste de la portería', '2024-06-04 16:08:28');
+INSERT INTO Observacion (id, alumno_id, profesor_id, actividad_id, mensaje, fecha_observacion) VALUES (8, 12, 13, 3, 'Ronca mucho y demasiado fuerte.', '2024-06-05 15:31:09');
+INSERT INTO Observacion (id, alumno_id, profesor_id, actividad_id, mensaje, fecha_observacion) VALUES (9, 9, 11, 2, 'Ha vomitado todos los macarrones sobre la mesa.', '2024-06-06 13:45:31');
+INSERT INTO Observacion (id, alumno_id, profesor_id, actividad_id, mensaje, fecha_observacion) VALUES (10, 11, 7, 5, 'Los cuadros que pinta son excepcionalmente bonitos.', '2024-06-07 16:08:28');
+INSERT INTO Observacion (id, alumno_id, profesor_id, actividad_id, mensaje, fecha_observacion) VALUES (11, 12, 2, 6, 'No se ha aprendido correctamente su papel.', '2024-06-10 17:16:00');
+INSERT INTO Observacion (id, alumno_id, profesor_id, actividad_id, mensaje, fecha_observacion) VALUES (12, 4, 6, 1, 'Se ha limpiado los mocos en la chaqueta de un profesor.', '2024-06-10 08:27:04');
+
+ALTER SEQUENCE observacion_seq RESTART WITH 62;
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
