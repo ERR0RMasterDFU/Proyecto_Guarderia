@@ -27,7 +27,7 @@
 
 <!---- SECCIÓN DE ANUNCIOS / ASIDE ---------------------------------->
 
-			<aside th:replace="~{fragmentos/asideUsuario::aside}"></aside>
+			<aside th:replace="~{fragmentos/asideAdmin::aside}"></aside>
 
 <!------------------------------------------------------------------->
 
@@ -35,6 +35,18 @@
 
             <main class="m-3 px-5 pt-4 pb-5 bg-white" style="flex: 1 1 81%; width: 75%; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
                 
+				
+			<!-- MENSAJE DE ERROR -------------------------------------------------------------------------------------------------------------------------------->
+								
+				<div class="alert alert-primary alert-dismissible fade show" role="alert" th:if="${param.error}">
+					<strong><i class="bi bi-exclamation-triangle-fill text-primary"></i>&ensp;¡NO SE PUEDEN BORRAR LOS PROFESORES QUE APAREZCAN EN ALGUNA OBSERVACIÓN!</strong>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+					
+			<!---------------------------------------------------------------------------------------------------------------------------------------------------->
+				
+				
+				
                 <div class="py-0 my-4 w-100 ">
                     <a type="button" th:href="@{/admin/profesores/nuevoProfesor}" class="btn btn-success text-white fw-bold py-2 w-100" style="font-size: 25px;"><i class="bi bi-sign-intersection-fill m-0"></i>&ensp;AÑADIR PROFESOR</a>
                 </div>
@@ -68,7 +80,7 @@
 								<td class="border-2 border-start-0 border-end-0 border-black py-2 px-3">
 									<div class="text-center align-middle">
 										<div class="py-0">
-											<a type="button" th:href="@{/admin/profesores/curso/{id}/actividad/{idA} (idCurso=${profesor.curso.id}, idActividad=${profesor.encargado.id})}" class="btn btn-primary text-white fw-bold w-100">ALUMNOS</a>
+											<a type="button" th:href="@{/admin/profesores/curso/{id}/actividad/{idA} (id=${profesor.curso.id}, idA=${profesor.encargado.id})}" class="btn btn-primary text-white fw-bold w-100">ALUMNOS</a>
 										</div>
 										<div class="mt-2 py-0">
 											<a type="button" th:href="@{ -- }" class="btn btn-danger text-white fw-bold w-100">OBSERVACIONES</a>
@@ -81,7 +93,7 @@
 											<a type="button" href="agregarEditarProfesoresAdmin.html" th:href="@{/admin/profesores/editarProfesor/{id}(id=${profesor.id})}" class="btn text-white fw-bold w-100" style="background-color: rgb(210, 122, 2);"><i class="bi bi-gear-fill"></i></a>
 										</div>
 										<div class="mt-2 py-0">
-											<a type="button" href="profesoresAdmin.html" th:href="@{/admin/profesores/borrarProfesor/{id}(id=${profesor.id})}" class="btn text-white fw-bold w-100" style="background-color: rgb(218, 63, 3);"><i class="bi bi-trash-fill"></i></a>
+											<button type="button" data-bs-toggle="modal" data-bs-target="#modalBorrado" th:data-id="${profesor.id}" class="btn text-white fw-bold w-100" style="background-color: rgb(218, 63, 3); font-size: 20px;"><i class="bi bi-trash-fill"></i></button>
 										</div>
 									</div>
 								</td>
@@ -90,9 +102,42 @@
 					</table>
 				</div>
 
+
+	<!-- MODAL DE CONFIRMACIÓN DE BORRADO -------------------------------------------------------------------------------------------------------------------------------------------------------------->
+							
+			<div class="modal fade" id="modalBorrado" tabindex="-1" aria-labelledby="labelModalBorrado" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+					<h1 class="modal-title fs-5" id="labelModalBorrado"><i class="bi bi-exclamation-triangle-fill" style="color: rgb(218, 63, 3);"></i>&ensp;BORRAR PROFESOR</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+					<p>¿Seguro que quiere borrar al profesor seleccionado?</p>
+					</div>
+					<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
+					<a id="confirmarEliminar" href="#" class="btn fw-bold text-white" style="background-color: rgb(218, 63, 3);">ELIMINAR</a>
+					</div>
+				</div>
+				</div>
+			</div>
+			
+	<!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
             </main>
 
 <!-------------------------------------------------------------------->
+
+	<!-- LIBRERÍAS NECESARIAS PARA EL MODAL DE CONFIRMACIÓN DE BORRADO ------------------------------------------------------------>
+	
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"></script>
+			<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+			<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+			<script src="../../static/js/modalBorrarProfesores.js" th:src="@{/js/modalBorrarProfesores.js}" defer></script>
+
+	<!---------------------------------------------------------------------------------------------------------------------------->
 
         </div>
 

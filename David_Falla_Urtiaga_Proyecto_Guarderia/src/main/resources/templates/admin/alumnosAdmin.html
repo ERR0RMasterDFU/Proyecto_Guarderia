@@ -27,7 +27,7 @@
 
 <!---- SECCIÓN DE ANUNCIOS / ASIDE ---------------------------------->
 
-			<aside th:replace="~{fragmentos/asideUsuario::aside}"></aside>
+			<aside th:replace="~{fragmentos/asideAdmin::aside}"></aside>
 
 <!------------------------------------------------------------------->
 
@@ -92,7 +92,7 @@
 											<a type="button" href="../agregarEditarAlumnos.html" th:href="@{/admin/alumnos/editarAlumno/{id}(id=${alumno.id})}" class="btn text-white fw-bold w-100" style="background-color: rgb(210, 122, 2); font-size: 20px;"><i class="bi bi-person-fill-gear m-0"></i></a>
 										</div>
 										<div class="mt-2 py-0">
-											<a type="button" href="alumnosAdmin.html" th:href="@{/admin/alumnos/borrarAlumno/{id}(id=${alumno.id})}" class="btn text-white fw-bold w-100" style="background-color: rgb(218, 63, 3); font-size: 20px;"><i class="bi bi-person-fill-dash m-0"></i></a>
+											<button type="button" data-bs-toggle="modal" data-bs-target="#modalBorrado" th:data-id="${alumno.id}" class="btn text-white fw-bold w-100" style="background-color: rgb(218, 63, 3); font-size: 20px;"><i class="bi bi-person-fill-dash m-0"></i></button>
 										</div>
 									</div>
 								</td>
@@ -100,10 +100,44 @@
 						</tbody>
 					</table>
 				</div>
+				
+				
+				
+		<!-- MODAL DE CONFIRMACIÓN DE BORRADO -------------------------------------------------------------------------------------------------------------------------------------------------------------->
+				
+				<div class="modal fade" id="modalBorrado" tabindex="-1" aria-labelledby="labelModalBorrado" aria-hidden="true">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h1 class="modal-title fs-5" id="labelModalBorrado"><i class="bi bi-exclamation-triangle-fill" style="color: rgb(218, 63, 3);"></i>&ensp;BORRAR ALUMNO</h1>
+				        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				      </div>
+				      <div class="modal-body">
+				        <p>¿Seguro que quiere borrar al alumno seleccionado?</p>
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
+						<a id="confirmarEliminar" href="#" class="btn fw-bold text-white" style="background-color: rgb(218, 63, 3);">ELIMINAR</a>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+				
+		<!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 
             </main>
 
 <!-------------------------------------------------------------------->
+
+	<!-- LIBRERÍAS NECESARIAS PARA EL MODAL DE CONFIRMACIÓN DE BORRADO ------------------------------------------------------------>
+	
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"></script>
+    	<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+    	<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+		<script src="../../static/js/modalBorrarAlumnos.js" th:src="@{/js/modalBorrarAlumnos.js}" defer></script>
+
+	<!---------------------------------------------------------------------------------------------------------------------------->
 
         </div>
 

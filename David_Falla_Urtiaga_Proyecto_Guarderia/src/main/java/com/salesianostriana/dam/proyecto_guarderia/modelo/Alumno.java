@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ForeignKey;
@@ -54,7 +55,7 @@ public class Alumno {
 	
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
-	@OneToMany(mappedBy="alumno", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="alumno", fetch = FetchType.EAGER) //cascade = CascadeType.ALL
 	@Builder.Default
 	private List<Observacion> observaciones = new ArrayList<>();
 	

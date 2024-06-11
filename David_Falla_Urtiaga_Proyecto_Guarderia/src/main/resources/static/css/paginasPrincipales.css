@@ -7,3 +7,8 @@
 .estiloNavItem:hover{
     background-color: white;
 }
+
+/*aside{
+	max-height: 100vh;
+	overflow-y: auto;
+}*/

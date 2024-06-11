@@ -26,5 +26,11 @@ public class ProfesorServicio extends ServicioBaseImpl<Profesor, Long, ProfesorR
 		List<Alumno> obtenerAlumnos = repositorio.findAlumnosByActividadIdYCursoId(idCurso, idActividad);
 		return obtenerAlumnos;
 	}
+	
+	
+	public int contarObservacionesPorProfesor (long idProfesor){
+		int obtenerObservaciones = repositorio.countObservacionesByProfesorId(idProfesor);
+		return obtenerObservaciones;
+	}
 
 }
