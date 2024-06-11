@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Alumno;
+import com.salesianostriana.dam.proyecto_guarderia.modelo.Observacion;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Profesor;
 import com.salesianostriana.dam.proyecto_guarderia.repositorio.ProfesorRepositorio;
 import com.salesianostriana.dam.proyecto_guarderia.repositorio.UsuarioRepositorio;
@@ -31,6 +32,12 @@ public class ProfesorServicio extends ServicioBaseImpl<Profesor, Long, ProfesorR
 	public int contarObservacionesPorProfesor (long idProfesor){
 		int obtenerObservaciones = repositorio.countObservacionesByProfesorId(idProfesor);
 		return obtenerObservaciones;
+	}
+	
+	
+	public List<Observacion> filtrarObservacionesPorProfesor (long idProfesor) {
+		List <Observacion> obtenerObservacionesProfesor = repositorio.findObservacionesByProfesorId(idProfesor);
+		return obtenerObservacionesProfesor;
 	}
 
 }

@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Alumno;
+import com.salesianostriana.dam.proyecto_guarderia.modelo.Observacion;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Profesor;
 
 public interface ProfesorRepositorio extends JpaRepository<Profesor, Long>{
@@ -32,8 +33,14 @@ public interface ProfesorRepositorio extends JpaRepository<Profesor, Long>{
 
 
 	
-	
+	@Query("""
+			SELECT o
+			FROM Observacion o
+			WHERE o.profesor.id = ?1
+			""")
+	public List<Observacion> findObservacionesByProfesorId (long idProfesor);
 
+	
 	
 }
 

@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.salesianostriana.dam.proyecto_guarderia.modelo.Alumno;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Observacion;
 import com.salesianostriana.dam.proyecto_guarderia.repositorio.ObservacionRepositorio;
 import com.salesianostriana.dam.proyecto_guarderia.repositorio.UsuarioRepositorio;
@@ -34,11 +35,17 @@ public class ObservacionServicio extends ServicioBaseImpl<Observacion, Long, Obs
 	}
 	
 	
-	public List<Observacion> cuatroObservacionesMasRecientes () {
+	public List<Observacion> tresObservacionesMasRecientes () {
 		//return repositorio.findTop7OrderByFechaObservacionDesc();
 		//return repositorio.findFirst7AndSort(Sort.by(Direction.DESC, "fechaObservacion"));
-		Page<Observacion> page = repositorio.findAll(PageRequest.of(0, 4,Sort.by("fechaObservacion").descending()));
+		Page<Observacion> page = repositorio.findAll(PageRequest.of(0, 3,Sort.by("fechaObservacion").descending()));
 		return page.toList();
+	}
+	
+	
+	public Alumno encontrarAlumnoPorId (long id) {
+		Alumno alumnoBuscado = repositorio.findAlumnoById(id);
+		return alumnoBuscado;
 	}
 
 }

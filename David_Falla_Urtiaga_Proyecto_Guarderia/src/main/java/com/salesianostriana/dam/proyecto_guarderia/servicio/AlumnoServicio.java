@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.salesianostriana.dam.proyecto_guarderia.modelo.ActividadComplementaria;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Alumno;
+import com.salesianostriana.dam.proyecto_guarderia.modelo.Observacion;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Usuario;
 import com.salesianostriana.dam.proyecto_guarderia.repositorio.AlumnoRepositorio;
 import com.salesianostriana.dam.proyecto_guarderia.repositorio.UsuarioRepositorio;
@@ -30,9 +31,21 @@ public class AlumnoServicio extends ServicioBaseImpl<Alumno, Long, AlumnoReposit
 	}
 	
 	
-	/*public List<ActividadComplementaria> filtrarActividadesPorAlumno (long id){
+	public List<Observacion> filtrarObservacionesPorAlumnoId (long idAlumno) {
+		List<Observacion> observacionesFiltradasAlumno = repositorio.findObservacionesByAlumno(idAlumno);
+		return observacionesFiltradasAlumno;
+	}
+	
+	
+	public Usuario findUsuarioByAlumnoId (long idAlumno) {
+		Usuario obtenerUsuarioEncontrado = repositorio.findUsuarioByAlumnoId(idAlumno);
+		return obtenerUsuarioEncontrado;
+	}
+	
+	
+	public List<ActividadComplementaria> filtrarActividadesPorAlumnoId (long id){
 		List<ActividadComplementaria> actividadesFiltradas = repositorio.findHorarioByAlumnoId(id);
 		return actividadesFiltradas;
-	}*/
+	}
 	
 }

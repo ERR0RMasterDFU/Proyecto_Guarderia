@@ -38,22 +38,24 @@ document.getElementById("profesorForm").addEventListener("submit", function(even
         spanError.innerHTML = error.join("<br>");
         alertError.classList.remove("d-none");                  // MUESTRA EL ALERT
     } else {
-        //alert("Formulario enviado correctamente");              // ENVÍO DEL FURMULARIO SIN ERRORES
         
         // Mostrar modal de confirmación
 
         const modalConfirmacion = new bootstrap.Modal(document.getElementById('modalConfirmacion'), {});
         modalConfirmacion.show();
 
-        // Cerrar el modal después de 3 segundos
+        // Cierra el modal después de 2 segundos
+
         setTimeout(() => {
             modalConfirmacion.hide();
-        }, 1000);
-    
+        }, 2000);
+
+        event.target.submit();
+        
     }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+    
 });
 
 

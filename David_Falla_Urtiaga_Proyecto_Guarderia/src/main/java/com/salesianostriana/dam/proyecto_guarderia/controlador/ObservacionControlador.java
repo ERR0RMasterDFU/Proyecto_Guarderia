@@ -1,6 +1,5 @@
 package com.salesianostriana.dam.proyecto_guarderia.controlador;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +40,7 @@ public class ObservacionControlador {
 	public String mostrarObservaciones(Model model) {
 		
 		model.addAttribute("listaObservaciones", servicio.findAll());
-		model.addAttribute("listaAsideAdmin", servicio.cuatroObservacionesMasRecientes());
+		model.addAttribute("listaAsideAdmin", servicio.tresObservacionesMasRecientes());
 		
 		return "admin/observacionesAdmin";
 	}
@@ -139,7 +138,7 @@ public class ObservacionControlador {
 	@GetMapping("/alumno/{id}")
 	public String mostrarAlumnoFiltradoPorId(@PathVariable("id") long id, Model model) {
 			
-		model.addAttribute("listaAlumnos", alumnoServicio.findById(id));
+		model.addAttribute("listaAlumnos", servicio.encontrarAlumnoPorId(id));
 		
 		return "admin/alumnosAdmin";
 	}

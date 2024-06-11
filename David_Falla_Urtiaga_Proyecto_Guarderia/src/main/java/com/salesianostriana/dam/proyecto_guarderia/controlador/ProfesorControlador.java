@@ -128,12 +128,26 @@ public class ProfesorControlador {
 	// MUESTRA LOS ALUMNOS DEL PROFESOR ------------------------------------------------------------------------------------
 	
 	@GetMapping("/curso/{id}/actividad/{idA}")
-	public String muestrarAlumnos(@PathVariable("id") long idCurso, @PathVariable("idA") long idActividad, Model model) {
+	public String mostrarAlumnos(@PathVariable("id") long idCurso, @PathVariable("idA") long idActividad, Model model) {
 		
 		model.addAttribute("listaAlumnos", servicio.filtrarAlumnosPorCursoYActividad(idCurso, idActividad));
 		
 		return "admin/alumnosAdmin";
 	}
+	
+	
+	
+	// MUESTRA LAS OBSERVACIONES DEL PROFESOR --------------------------------------------------------------------------------
+	
+	
+	@GetMapping("/observaciones/{id}")
+	public String mostrarObservacionesProfesor(@PathVariable("id") long idProfesor, Model model) {
+		
+		model.addAttribute("listaObservaciones", servicio.filtrarObservacionesPorProfesor(idProfesor));
+		
+		return "admin/observacionesAdmin";
+	}
+	
 	
 	
 }
