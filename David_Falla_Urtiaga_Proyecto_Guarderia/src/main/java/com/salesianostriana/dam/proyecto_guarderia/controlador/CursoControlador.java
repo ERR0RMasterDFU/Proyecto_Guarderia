@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Curso;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.CursoServicio;
+import com.salesianostriana.dam.proyecto_guarderia.servicio.ObservacionServicio;
 
 @Controller
 @RequestMapping("/admin/cursos")
@@ -21,6 +22,9 @@ public class CursoControlador {
 	@Autowired
 	private CursoServicio servicio;
 	
+	@Autowired
+	private ObservacionServicio obServicio;
+	
 	
 	//MOSTRAR LA LISTA DE CURSOS -----------------------------------------------------------------------------
 	
@@ -28,6 +32,7 @@ public class CursoControlador {
 	public String mostrarCursos(Model model) {
 			
 		model.addAttribute("listaCursos", servicio.findAll());
+		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
 		
 		return "admin/cursosAdmin";
 	}
@@ -40,6 +45,7 @@ public class CursoControlador {
 			
 		Curso curso = new Curso();
 		model.addAttribute("curso", curso);
+		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
 			
 		return "admin/agregarEditarCursosAdmin";
 	}	
@@ -63,6 +69,7 @@ public class CursoControlador {
 	public String mostrarFormularioCursosEditar(@PathVariable("id") long id, Model model) {
 			
 		Optional<Curso> cursoAEditar = servicio.findById(id);
+		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
 			
 		if(cursoAEditar.isPresent()) {
 				
@@ -93,9 +100,10 @@ public class CursoControlador {
 	//BORRA EL CURSO ELEGIDO POR ID ----------------------------------------------------------------------
 
 	@GetMapping("/borrarCurso/{id}")
-	public String borrarCurso(@PathVariable("id") long id) {
+	public String borrarCurso(@PathVariable("id") long id, Model model) {
 
 		Optional<Curso> cursoABorrar = servicio.findById(id);
+		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
 		
 		if(cursoABorrar.isPresent()) {
 		
@@ -117,6 +125,7 @@ public class CursoControlador {
 	public String mostrarProfesoresFiltradosPorCursos(@PathVariable("id") long id, Model model) {
 			
 		model.addAttribute("listaProfesores", servicio.filtrarProfesoresPorCurso(id));
+		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
 		
 		return "admin/profesoresAdmin";
 	}
@@ -126,6 +135,7 @@ public class CursoControlador {
 	public String mostrarAlumnosFiltradosPorCursos(@PathVariable("id") long id, Model model) {
 			
 		model.addAttribute("listaAlumnos", servicio.filtrarAlumnosPorCurso(id));
+		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
 		
 		return "admin/alumnosAdmin";
 	}

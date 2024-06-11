@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.ActividadComplementaria;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Curso;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.ActividadComplementariaServicio;
+import com.salesianostriana.dam.proyecto_guarderia.servicio.ObservacionServicio;
 
 @Controller
 @RequestMapping("/admin/actividades")
@@ -22,6 +23,9 @@ public class ActividadComplementariaControlador {
 	@Autowired
 	private ActividadComplementariaServicio servicio;
 	
+	@Autowired
+	private ObservacionServicio obServicio;
+	
 	
 	//MOSTRAR LA LISTA DE ACTIVIDADES COMPLEMENTARIAS -----------------------------------------------------------------------------
 	
@@ -29,6 +33,7 @@ public class ActividadComplementariaControlador {
 	public String mostrarActividades(Model model) {
 			
 		model.addAttribute("listaActividades", servicio.findAll());
+		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
 		
 		return "admin/actsComplementariasAdmin";
 	}
@@ -41,6 +46,7 @@ public class ActividadComplementariaControlador {
 			
 		ActividadComplementaria actividad = new ActividadComplementaria();
 		model.addAttribute("actividad", actividad);
+		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
 			
 		return "admin/agregarEditarActsComplementariasAdmin";
 	}	
@@ -64,6 +70,7 @@ public class ActividadComplementariaControlador {
 	public String mostrarFormularioActividadesEditar(@PathVariable("id") long id, Model model) {
 			
 		Optional<ActividadComplementaria> actividadAEditar = servicio.findById(id);
+		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
 			
 		if(actividadAEditar.isPresent()) {
 				
@@ -94,13 +101,14 @@ public class ActividadComplementariaControlador {
 	//BORRA A LA ACTIVIDAD COMPLEMENTARIA ELEGIDA POR ID ----------------------------------------------------------------------
 
 	@GetMapping("/borrarActividad/{id}")
-	public String borrarActividad(@PathVariable("id") long id) {
+	public String borrarActividad(@PathVariable("id") long id, Model model) {
 
 		Optional<ActividadComplementaria> actividadABorrar = servicio.findById(id);
+		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
 		
 		if(actividadABorrar.isPresent()) {
 		
-			if(servicio.contarProfesoresDeUnaActividad(id) == 0) {
+			if(servicio.contarProfesoresDeUnaActividad(id) == 0 && servicio.contarAlumnosDeUnaActividad(id) == 0) {
 				servicio.deleteById(id);
 			}else {
 				return "redirect:/admin/actividades/?error=true";
@@ -118,6 +126,7 @@ public class ActividadComplementariaControlador {
 		public String mostrarProfesoresFiltradosPorActividad(@PathVariable("id") long id, Model model) {
 				
 			model.addAttribute("listaProfesores", servicio.filtrarProfesoresPorActividad(id));
+			model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
 			
 			return "admin/profesoresAdmin";
 		}
@@ -127,6 +136,7 @@ public class ActividadComplementariaControlador {
 		public String mostrarAlumnosFiltradosPorActividad(@PathVariable("id") long id, Model model) {
 				
 			model.addAttribute("listaAlumnos", servicio.filtrarAlumnosPorActividad(id));
+			model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
 			
 			return "admin/alumnosAdmin";
 		}

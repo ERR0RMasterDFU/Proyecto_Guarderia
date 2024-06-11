@@ -39,4 +39,15 @@ public interface ActividadComplementariaRepositorio extends JpaRepository<Activi
 			WHERE encargado.id = :actividad
 			""")
 	public int findNumProfesoresByActividad(@Param("actividad") long id);
+	
+	
+	
+	// CUENTA LOS ALUMNOS QUE HAY EN UNA ACTIVIDAD
+		@Query("""
+				SELECT count(a)
+				FROM Alumno a JOIN a.horario h
+				WHERE h.id = :actividad
+				""")
+		public int findNumAlumnosByActividad(@Param("actividad") long id);
+	
 }

@@ -18,6 +18,7 @@ import com.salesianostriana.dam.proyecto_guarderia.modelo.Usuario;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.ActividadComplementariaServicio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.AlumnoServicio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.CursoServicio;
+import com.salesianostriana.dam.proyecto_guarderia.servicio.ObservacionServicio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.ProfesorServicio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.UsuarioServicio;
 
@@ -28,21 +29,18 @@ public class AdminControlador {
 
 	@Autowired
 	private UsuarioServicio servicio;
+	
+	@Autowired
+	private ObservacionServicio obServicio;
 
 	
-	// MUESTRA LA PÁGINA DE BIENVENIDA (ADMIN) -------------------------------------------------------------------------------------------------------------------------------
-
-	/*@GetMapping("/")
-	public String muestraBienvenidaAdmin() {
-		
-		return "admin/bienvenidaAdmin";
-	}*/
-	
+	// MUESTRA LA LISTA DE USUARIOS EXISTENTES EN EL PROGRAMA ----------------------------------------------	
 	
 	@GetMapping("/")
 	public String mostrarListaUsuarios(Model model) {
 		
 		model.addAttribute("listaUsuarios", servicio.findAll());
+		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
 		
 		return "admin/tablaUsuariosAdmin";
 		
@@ -52,9 +50,10 @@ public class AdminControlador {
 	//BORRA EL USUARIO ELEGIDO POR ID ----------------------------------------------------------------------
 
 	@GetMapping("/borrarUsuario/{id}")
-	public String borrarUsuario(@PathVariable("id") long id) {
+	public String borrarUsuario(@PathVariable("id") long id, Model model) {
 
 		Optional<Usuario> usuarioABorrar = servicio.findById(id);
+		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
 			
 		if(usuarioABorrar.isPresent()) {
 			
@@ -77,6 +76,7 @@ public class AdminControlador {
 	public String mostrarAlumnosUsuario(@PathVariable("id") long id, Model model) {
 		
 		model.addAttribute("listaAlumnos", servicio.filtrarAlumnosDeUsuario(id));
+		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
 	
 		return "admin/alumnosAdmin";
 	}

@@ -53,6 +53,7 @@ public class ObservacionControlador {
 			
 		Observacion observacion = new Observacion();
 		model.addAttribute("observacion", observacion);
+		model.addAttribute("listaAsideAdmin", servicio.tresObservacionesMasRecientes());
 		
 		model.addAttribute("listaAlumnos", alumnoServicio.findAll()); 		//LISTA DE ALUMNOS PARA OBSERVACIÓN
 		model.addAttribute("listaProfesores", profeServicio.findAll()); 	//LISTA DE PROFESORES PARA OBSERVACIÓN
@@ -81,6 +82,7 @@ public class ObservacionControlador {
 	public String mostrarFormularioObservacionEditar(@PathVariable("id") long id, Model model) {
 			
 		Optional<Observacion> observacionAEditar = servicio.findById(id);
+		model.addAttribute("listaAsideAdmin", servicio.tresObservacionesMasRecientes());
 		
 		model.addAttribute("listaAlumnos", alumnoServicio.findAll()); 		//LISTA DE ALUMNOS PARA OBSERVACIÓN
 		model.addAttribute("listaProfesores", profeServicio.findAll()); 	//LISTA DE PROFESORES PARA OBSERVACIÓN
@@ -115,9 +117,10 @@ public class ObservacionControlador {
 	//BORRA EL CURSO ELEGIDO POR ID ----------------------------------------------------------------------
 
 	@GetMapping("/borrarObservacion/{id}")
-	public String borrarObservacion(@PathVariable("id") long id) {
+	public String borrarObservacion(@PathVariable("id") long id, Model model) {
 
 		Optional<Observacion> observacionAEditar = servicio.findById(id);
+		model.addAttribute("listaAsideAdmin", servicio.tresObservacionesMasRecientes());
 		
 		if(observacionAEditar.isPresent()) {
 			
@@ -139,6 +142,7 @@ public class ObservacionControlador {
 	public String mostrarAlumnoFiltradoPorId(@PathVariable("id") long id, Model model) {
 			
 		model.addAttribute("listaAlumnos", servicio.encontrarAlumnoPorId(id));
+		model.addAttribute("listaAsideAdmin", servicio.tresObservacionesMasRecientes());
 		
 		return "admin/alumnosAdmin";
 	}
