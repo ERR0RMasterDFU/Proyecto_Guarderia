@@ -3,6 +3,7 @@ package com.salesianostriana.dam.proyecto_guarderia.controlador;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Curso;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Progenitor;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Usuario;
+import com.salesianostriana.dam.proyecto_guarderia.servicio.ActividadComplementariaServicio;
+import com.salesianostriana.dam.proyecto_guarderia.servicio.AlumnoServicio;
+import com.salesianostriana.dam.proyecto_guarderia.servicio.CursoServicio;
+import com.salesianostriana.dam.proyecto_guarderia.servicio.ProfesorServicio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.UsuarioServicio;
 
 
@@ -23,7 +28,7 @@ public class AdminControlador {
 
 	@Autowired
 	private UsuarioServicio servicio;
-	
+
 	
 	// MUESTRA LA PÁGINA DE BIENVENIDA (ADMIN) -------------------------------------------------------------------------------------------------------------------------------
 
@@ -63,21 +68,18 @@ public class AdminControlador {
 			return "redirect:/admin/usuarios/";
 	}
 		
-			
+
+
+
+	// MUESTRA LOS ALUMNOS DEL USUARIO ---------------------------------------------------------------------
+	
+	@GetMapping("/alumnos/{id}")
+	public String mostrarAlumnosUsuario(@PathVariable("id") long id, Model model) {
 		
-		/* FILTRA A LOS PROFESORES POR CURSO -----------------------------------------------------------------
-		
-		@GetMapping("/profesores/{id}")
-		public String mostrarProfesoresFiltradosPorCursos(@PathVariable("id") long id, Model model) {
-				
-			model.addAttribute("listaProfesores", servicio.findProfesoresByCurso(id));
-			
-			return "admin/profesoresAdmin";
-		}
-		
-		
-		
-	}*/
+		model.addAttribute("listaAlumnos", servicio.filtrarAlumnosDeUsuario(id));
+	
+		return "admin/alumnosAdmin";
+	}
 
 	
 	

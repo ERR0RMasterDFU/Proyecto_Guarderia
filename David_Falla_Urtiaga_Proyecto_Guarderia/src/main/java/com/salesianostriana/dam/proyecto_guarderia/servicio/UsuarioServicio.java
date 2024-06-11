@@ -1,11 +1,13 @@
 package com.salesianostriana.dam.proyecto_guarderia.servicio;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.salesianostriana.dam.proyecto_guarderia.modelo.Alumno;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Usuario;
 import com.salesianostriana.dam.proyecto_guarderia.repositorio.UsuarioRepositorio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.base.ServicioBaseImpl;
@@ -50,9 +52,13 @@ public class UsuarioServicio extends ServicioBaseImpl<Usuario, Long, UsuarioRepo
 	
 	public int contarAlumnosdeUnUsuario(long id) {
 		return repositorio.findNumAlumnosByUsuario(id);
-		
 	}
 	
+	
+	public List<Alumno> filtrarAlumnosDeUsuario (long id){
+		List<Alumno> alumnosDeUsuario = repositorio.findAlumnosbyUsuario(id);
+		return alumnosDeUsuario;
+	}
 }
 
 	

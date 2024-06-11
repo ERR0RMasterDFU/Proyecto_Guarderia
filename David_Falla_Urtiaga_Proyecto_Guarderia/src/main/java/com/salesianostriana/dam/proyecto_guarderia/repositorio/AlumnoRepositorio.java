@@ -8,6 +8,8 @@ import org.springframework.data.repository.query.Param;
 
 import com.salesianostriana.dam.proyecto_guarderia.modelo.ActividadComplementaria;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Alumno;
+import com.salesianostriana.dam.proyecto_guarderia.modelo.Observacion;
+import com.salesianostriana.dam.proyecto_guarderia.modelo.Profesor;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Usuario;
 
 public interface AlumnoRepositorio extends JpaRepository<Alumno, Long>{
@@ -22,24 +24,39 @@ public interface AlumnoRepositorio extends JpaRepository<Alumno, Long>{
 	public List<Alumno> findAlumnoByUsuario(@Param("progenitor") Usuario usuario);
 	
 	
-	
-	
-	/*@Query("""
-			SELECT a
-			FROM ActividadComplementaria a JOIN a.horario h
-			WHERE h.id = ?1
+	//FILTRA LAS OBSERVACIONES DEL ALUMNO
+	@Query("""
+			SELECT o
+			FROM Observacion o
+			WHERE o.alumno.id = ?1
 			""")
-	public List<ActividadComplementaria> findHorarioByAlumnoId(long id);*/
-
+	public List<Observacion> findObservacionesByAlumno(long idAlumno);
 	
-	//MOSTRAR ACTIVIDADES COMPLEMENTARIAS DEL NIÑO
-	//SELECT * FROM ACTIVIDAD_COMPLEMENTARIA  ac JOIN HORARIO h ON (ac.id=h.actividad_id) JOIN Alumno a ON (h.alumno_id=a.id) WHERE h.actividad_id IN (2, 4) AND h.alumno_id = 1
+	
+	//FILTRA EL TUTOR LEGAL DEL ALUMNO
+	@Query("""
+			SELECT a.progenitor
+			FROM Alumno a
+			WHERE a.id = ?1
+			""")
+	public Usuario findUsuarioByAlumnoId(long idAlumno);
+		
+	
+	//MUESTRA EL HORARIO DEL ALUMNO
+	@Query("""
+			SELECT a.horario
+			FROM Alumno a 
+			WHERE a.id = ?1
+			""")
+	public List<ActividadComplementaria> findHorarioByAlumnoId(long id);
+	
+	
+	
+	
+//SELECT PROFESOR.* 
+//FROM ALUMNO JOIN HORARIO ON (ALUMNO.ID = ALUMNO_ID) JOIN ACTIVIDAD_COMPLEMENTARIA ON (ACTIVIDAD_COMPLEMENTARIA.ID = ACTIVIDAD_ID) JOIN PROFESOR ON (ACTIVIDAD_ID=ENCARGADO_ID) 
+//WHERE ALUMNO.ID = 1 AND ALUMNO.CURSO_ID = PROFESOR.CURSO_ID
 
-
-
-	//MOSTRAR LOS PROFESORES DEL ALUMNO
-
-	//SELECT * FROM Profesor p WHERE p.curso_ID = 1 AND p.encargado_ID IN (2, 4)
 
 
 

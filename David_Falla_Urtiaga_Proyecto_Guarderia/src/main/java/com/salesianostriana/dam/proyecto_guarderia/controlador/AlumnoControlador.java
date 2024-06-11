@@ -126,7 +126,7 @@ public class AlumnoControlador {
 		
 		
 		
-	//BORRA AL PROFESOR ELGIDO POR ID ------------------------------------------------------------------------------------
+	//BORRA AL ALUMNO ELGIDO POR ID ------------------------------------------------------------------------------------
 
 	@GetMapping("/admin/alumnos/borrarAlumno/{id}")
 	public String borrarAlumno(@PathVariable("id") long id) {
@@ -146,13 +146,31 @@ public class AlumnoControlador {
 	}
 
 	
-	/*@GetMapping("/admin/alumnos/actividades/{id}")
+	@GetMapping("/admin/alumnos/observaciones/{id}")
+	public String mostrarObservacionesFiltradas(@PathVariable("id") long idAlumno, Model model) {
+		
+		model.addAttribute("listaObservaciones", servicio.filtrarObservacionesPorAlumnoId(idAlumno));
+	
+		return "admin/observacionesAdmin";
+	}
+	
+	
+	@GetMapping("/admin/alumnos/tutorLegal/{id}")
+	public String mostrarTutorLegalDeAlumno(@PathVariable("id") long idAlumno, Model model) {
+		
+		model.addAttribute("listaUsuarios", servicio.findUsuarioByAlumnoId(idAlumno));
+	
+		return "admin/tablaUsuariosAdmin";
+	}
+	
+	
+	@GetMapping("/admin/alumnos/actividades/{id}")
 	public String mostrarActividadesFiltradosPorAlumno(@PathVariable("id") long id, Model model) {
 			
-		model.addAttribute("listaActividad", servicio.filtrarActividadesPorAlumno(id));
+		model.addAttribute("listaActividades", servicio.filtrarActividadesPorAlumnoId(id));
 		
 		return "admin/actsComplementariasAdmin";
-	}*/
+	}
 	
 	
 	
