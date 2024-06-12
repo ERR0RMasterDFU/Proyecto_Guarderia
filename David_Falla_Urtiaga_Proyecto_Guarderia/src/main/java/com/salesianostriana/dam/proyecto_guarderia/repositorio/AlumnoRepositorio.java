@@ -20,6 +20,7 @@ public interface AlumnoRepositorio extends JpaRepository<Alumno, Long>{
 			SELECT a
 			FROM Alumno a
 			WHERE a.progenitor = :progenitor
+			ORDER BY a.curso.id asc 
 			""")
 	public List<Alumno> findAlumnoByUsuario(@Param("progenitor") Usuario usuario);
 	
@@ -51,6 +52,12 @@ public interface AlumnoRepositorio extends JpaRepository<Alumno, Long>{
 	public List<ActividadComplementaria> findHorarioByAlumnoId(long id);
 	
 	
+	/*@Query("""
+			SELECT t
+			FROM Alumno a JOIN a.horario h JOIN h.actividadComplementaria ac JOIN ac.profesores p JOIN p.profesor t 
+			WHERE a.id = ?1 AND a.curso.id = ?2
+			""")
+	public List<Profesor> findProfesoresByAlumno()*/
 	
 	
 //SELECT PROFESOR.* 

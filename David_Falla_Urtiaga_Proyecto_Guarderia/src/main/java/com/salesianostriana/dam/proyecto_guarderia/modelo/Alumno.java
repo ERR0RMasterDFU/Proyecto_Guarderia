@@ -72,13 +72,13 @@ public class Alumno {
 	
 	
 	
-// MTM (PROFESOR) -------------------------------------------------------------------------------
+/* MTM (PROFESOR) -------------------------------------------------------------------------------
 	
 	@ManyToMany(mappedBy="alumnos", fetch = FetchType.EAGER)
 	@Builder.Default
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
-	private List<Profesor> profesores = new ArrayList<>();
+	private List<Profesor> profesores = new ArrayList<>(); */
 	
 	
 // MTO (CURSO) -----------------------------------------------------------------------------------

@@ -26,7 +26,7 @@ public class CursoControlador {
 	private ObservacionServicio obServicio;
 	
 	
-	//MOSTRAR LA LISTA DE CURSOS -----------------------------------------------------------------------------
+// PANTALLA CON LOS CURSOS ---------------------------------------------------------------------------------------------------
 	
 	@GetMapping("/")
 	public String mostrarCursos(Model model) {
@@ -36,9 +36,11 @@ public class CursoControlador {
 		
 		return "admin/cursosAdmin";
 	}
+
+// ---------------------------------------------------------------------------------------------------------------------------
 	
 	
-	// MUESTRA EL FORMULARIO PARA AÑADIR CURSOS VACÍO -------------------------------------------------------
+// FORMULARIO PARA AÑADIR CURSOS ---------------------------------------------------------------------------------------------
 	
 	@GetMapping("/nuevoCurso")
 	public String mostrarFormulariCursosAgregar(Model model) {
@@ -49,21 +51,24 @@ public class CursoControlador {
 			
 		return "admin/agregarEditarCursosAdmin";
 	}	
-
+	
+// ---------------------------------------------------------------------------------------------------------------------------
 		
 		
-	// AÑADE EL NUEVO CURSO A LA BASE DE DATOS ---------------------------------------------------------------
+// GUARDA EL CURSO EN LA BASE DE DATOS ---------------------------------------------------------------------------------------
 		
 	@PostMapping("/nuevoCurso/submit")
 	public String registrarNuevoCurso(@ModelAttribute("curso") Curso curso) {
 			
-			servicio.save(curso);		
+		servicio.save(curso);		
 			
 		return "redirect:/admin/cursos/";
 	} 
 
+// ---------------------------------------------------------------------------------------------------------------------------
 	
-	// MUESTRA EL FORMULARIO PARA AÑADIR CURSOS RELLENO ---------------------------------------------------
+	
+// FORMULARIO PARA EDITAR CURSOS ---------------------------------------------------------------------------------------------
 
 	@GetMapping("/editarCurso/{id}")
 	public String mostrarFormularioCursosEditar(@PathVariable("id") long id, Model model) {
@@ -80,12 +85,12 @@ public class CursoControlador {
 				
 			return "redirect:/admin/cursos/";
 		}
-			
 	}
+
+// ---------------------------------------------------------------------------------------------------------------------------
 		
 		
-		
-	// GUARDA LOS NUEVOS CAMBIOS A LOS CURSOS ----------------------------------------------------------------
+// GUARDA LOS NUEVOS CAMBIOS SOBRE LOS CURSOS EN LA BASE DE DATOS ------------------------------------------------------------
 		
 	@PostMapping("/editarCurso/submit")
 	public String registrarCursoEditado(@ModelAttribute("curso") Curso curso) {
@@ -94,10 +99,12 @@ public class CursoControlador {
 			
 		return "redirect:/admin/cursos/";	
 	}
+	
+// ---------------------------------------------------------------------------------------------------------------------------
 		
 		
 		
-	//BORRA EL CURSO ELEGIDO POR ID ----------------------------------------------------------------------
+// BORRA EL CURSO POR ID -----------------------------------------------------------------------------------------------------
 
 	@GetMapping("/borrarCurso/{id}")
 	public String borrarCurso(@PathVariable("id") long id, Model model) {
@@ -116,11 +123,12 @@ public class CursoControlador {
 			
 		return "redirect:/admin/cursos/";
 	}
-	
+
+// ---------------------------------------------------------------------------------------------------------------------------
 		
 	
-	// FILTRADOS POR CURSO -----------------------------------------------------------------
-	
+// BOTÓN PROFESORES (CURSO) --------------------------------------------------------------------------------------------------
+
 	@GetMapping("/profesores/{id}")
 	public String mostrarProfesoresFiltradosPorCursos(@PathVariable("id") long id, Model model) {
 			
@@ -130,6 +138,10 @@ public class CursoControlador {
 		return "admin/profesoresAdmin";
 	}
 	
+// ---------------------------------------------------------------------------------------------------------------------------
+	
+	
+// BOTÓN ALUMNOS (CURSO) -----------------------------------------------------------------------------------------------------
 	
 	@GetMapping("/alumnos/{id}")
 	public String mostrarAlumnosFiltradosPorCursos(@PathVariable("id") long id, Model model) {
@@ -140,6 +152,6 @@ public class CursoControlador {
 		return "admin/alumnosAdmin";
 	}
 	
-	
+// ---------------------------------------------------------------------------------------------------------------------------
 	
 }

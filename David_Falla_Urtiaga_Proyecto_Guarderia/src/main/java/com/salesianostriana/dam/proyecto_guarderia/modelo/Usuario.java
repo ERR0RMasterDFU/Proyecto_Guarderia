@@ -63,7 +63,7 @@ public class Usuario implements UserDetails {
 	
 	
 	
-// MTM (OBSERVACION) --------------------------------------------------------	
+/* MTM (OBSERVACION) --------------------------------------------------------	
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
@@ -72,12 +72,12 @@ public class Usuario implements UserDetails {
 			inverseJoinColumns = @JoinColumn(name="observacion_id")
 	)
 	@Builder.Default
-	private List<Observacion> observaciones = new ArrayList<>();
+	private List<Observacion> observaciones = new ArrayList<>();*/
 	
 	
 	
 	
-// MÉTODOS HELPER ----------------------------------------------------------------------------	
+/* MÉTODOS HELPER ----------------------------------------------------------------------------	
 	
 	public void addObservacion(Observacion o) {
 		this.observaciones.add(o);
@@ -87,7 +87,7 @@ public class Usuario implements UserDetails {
 	public void removeObservacion(Observacion o) {
 		o.getUsuarios().remove(this);
 		this.observaciones.remove(o);
-	}
+	}*/
 
 	
 //SEGURIDAD ----------------------------------------------------------------------------------------------------------------------------------

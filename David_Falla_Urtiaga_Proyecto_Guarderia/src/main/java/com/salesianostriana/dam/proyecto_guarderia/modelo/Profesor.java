@@ -39,7 +39,7 @@ public class Profesor {
 	private String numTelefono;
 
 	
-// MTM (ALUMNO) ---------------------------------------------------------------------------
+/* MTM (ALUMNO) ---------------------------------------------------------------------------
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
@@ -48,7 +48,7 @@ public class Profesor {
 			inverseJoinColumns = @JoinColumn(name="alumno_id")
 	)
 	@Builder.Default
-	private List<Alumno> alumnos = new ArrayList<>();
+	private List<Alumno> alumnos = new ArrayList<>();*/
 	
 	
 	
@@ -79,7 +79,7 @@ public class Profesor {
 
 // MÉTODOS HELPER ---------------------------------------------------------------------------
 	
-	// ALUMNO - PROFESOR
+	/* ALUMNO - PROFESOR
 	
 	public void addToAlumno(Alumno a) {
 		this.alumnos.add(a);
@@ -89,7 +89,7 @@ public class Profesor {
 	public void removeFromAlumno(Alumno a) {
 		a.getProfesores().remove(this);
 		this.alumnos.remove(a);
-	}
+	}*/
 	
 	
 	// CURSO - PROFESOR

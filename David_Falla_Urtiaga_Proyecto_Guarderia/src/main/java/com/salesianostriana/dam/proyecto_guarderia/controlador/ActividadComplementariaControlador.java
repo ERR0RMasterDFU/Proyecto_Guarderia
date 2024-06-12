@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.salesianostriana.dam.proyecto_guarderia.modelo.ActividadComplementaria;
-import com.salesianostriana.dam.proyecto_guarderia.modelo.Curso;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.ActividadComplementariaServicio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.ObservacionServicio;
 
@@ -27,7 +26,7 @@ public class ActividadComplementariaControlador {
 	private ObservacionServicio obServicio;
 	
 	
-	//MOSTRAR LA LISTA DE ACTIVIDADES COMPLEMENTARIAS -----------------------------------------------------------------------------
+// PANTALLA DE ACTIVIDADES COMPLEMENTARIAS ------------------------------------------------------------------------------
 	
 	@GetMapping("/")
 	public String mostrarActividades(Model model) {
@@ -38,8 +37,10 @@ public class ActividadComplementariaControlador {
 		return "admin/actsComplementariasAdmin";
 	}
 	
+// ----------------------------------------------------------------------------------------------------------------------
 	
-	// MUESTRA EL FORMULARIO PARA AÑADIR ACTIVIDADES COMPLEMENTARIAS VACÍO -------------------------------------------------------
+	
+// MUESTRA EL FORMULARIO PARA AÑADIR ACTIVIDADES COMPLEMENTARIAS VACÍO --------------------------------------------------
 	
 	@GetMapping("/nuevaActividad")
 	public String mostrarFormularioActividadesAgregar(Model model) {
@@ -49,11 +50,12 @@ public class ActividadComplementariaControlador {
 		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
 			
 		return "admin/agregarEditarActsComplementariasAdmin";
-	}	
+	}
 
+// ----------------------------------------------------------------------------------------------------------------------
+	
 		
-		
-	// AÑADE LA NUEVA ACTIVIDAD COMPLEMENTARIA A LA BASE DE DATOS ---------------------------------------------------------------
+// AÑADE LA NUEVA ACTIVIDAD COMPLEMENTARIA A LA BASE DE DATOS -----------------------------------------------------------
 		
 	@PostMapping("/nuevaActividad/submit")
 	public String registrarNuevaActividad(@ModelAttribute("actividad") ActividadComplementaria actividad) {
@@ -62,9 +64,11 @@ public class ActividadComplementariaControlador {
 			
 		return "redirect:/admin/actividades/";
 	} 
+	
+// ----------------------------------------------------------------------------------------------------------------------
 
 	
-	// MUESTRA EL FORMULARIO PARA AÑADIR ACTIVIDADES COMPLEMENTARIAS RELLENO ---------------------------------------------------
+// MUESTRA EL FORMULARIO PARA AÑADIR ACTIVIDADES COMPLEMENTARIAS RELLENO ------------------------------------------------
 
 	@GetMapping("/editarActividad/{id}")
 	public String mostrarFormularioActividadesEditar(@PathVariable("id") long id, Model model) {
@@ -84,9 +88,10 @@ public class ActividadComplementariaControlador {
 			
 	}
 		
+// ----------------------------------------------------------------------------------------------------------------------	
 		
-		
-	// GUARDA LOS NUEVOS CAMBIOS A LA ACTIVIDAD COMPLEMENTARIA ----------------------------------------------------------------
+	
+// GUARDA LOS NUEVOS CAMBIOS A LA ACTIVIDAD COMPLEMENTARIA --------------------------------------------------------------
 		
 	@PostMapping("/editarActividad/submit")
 	public String registrarActividadEditada(@ModelAttribute("actividad") ActividadComplementaria actividad) {
@@ -95,10 +100,11 @@ public class ActividadComplementariaControlador {
 			
 		return "redirect:/admin/actividades/";	
 	}
+	
+// ----------------------------------------------------------------------------------------------------------------------
 		
-		
-		
-	//BORRA A LA ACTIVIDAD COMPLEMENTARIA ELEGIDA POR ID ----------------------------------------------------------------------
+				
+// BORRA LA ACTIVIDAD COMPLEMENTARIA ELEGIDA POR ID ---------------------------------------------------------------------
 
 	@GetMapping("/borrarActividad/{id}")
 	public String borrarActividad(@PathVariable("id") long id, Model model) {
@@ -118,30 +124,35 @@ public class ActividadComplementariaControlador {
 		return "redirect:/admin/actividades/";
 	}
 	
+// ----------------------------------------------------------------------------------------------------------------------
+		
 	
+// BOTÓN PROFESORES (ACTIVIDAD COMPLEMENTARIA) --------------------------------------------------------------------------
 	
-	// FILTRADOS POR ACTIVIDAD COMPLEMENTARIA -----------------------------------------------------------------
-	
-		@GetMapping("/profesores/{id}")
-		public String mostrarProfesoresFiltradosPorActividad(@PathVariable("id") long id, Model model) {
+	@GetMapping("/profesores/{id}")
+	public String mostrarProfesoresFiltradosPorActividad(@PathVariable("id") long id, Model model) {
 				
-			model.addAttribute("listaProfesores", servicio.filtrarProfesoresPorActividad(id));
-			model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
+		model.addAttribute("listaProfesores", servicio.filtrarProfesoresPorActividad(id));
+		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
 			
-			return "admin/profesoresAdmin";
-		}
+		return "admin/profesoresAdmin";
+	}
+	
+// ----------------------------------------------------------------------------------------------------------------------
+	
+	
+// BOTÓN ALUMNOS (ACTIVIDAD COMPLEMENTARIA) -----------------------------------------------------------------------------
 		
-		
-		@GetMapping("/alumnos/{id}")
-		public String mostrarAlumnosFiltradosPorActividad(@PathVariable("id") long id, Model model) {
+	@GetMapping("/alumnos/{id}")
+	public String mostrarAlumnosFiltradosPorActividad(@PathVariable("id") long id, Model model) {
 				
-			model.addAttribute("listaAlumnos", servicio.filtrarAlumnosPorActividad(id));
-			model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
+		model.addAttribute("listaAlumnos", servicio.filtrarAlumnosPorActividad(id));
+		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
 			
-			return "admin/alumnosAdmin";
-		}
+		return "admin/alumnosAdmin";
+	}
 		
-		
+// ----------------------------------------------------------------------------------------------------------------------
 		
 
 		

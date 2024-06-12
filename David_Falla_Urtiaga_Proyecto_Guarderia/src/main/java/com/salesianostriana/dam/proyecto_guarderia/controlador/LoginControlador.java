@@ -9,7 +9,7 @@ import com.salesianostriana.dam.proyecto_guarderia.modelo.Usuario;
 @Controller
 public class LoginControlador {
 	
-// SALE DE LA CUENTA DE USUARIO / ADMIN Y REDIRIGE A LA PÁGINA DE INICIO DE SESIÓN ---------------------------------------------------------------------------------------------------
+// PANTALLA DE INICIO DE SESIÓN ----------------------------------------------------------------------------------------------
 	
 	@GetMapping("/login")
 	public String mostrarPaginaLogin(Usuario usuario) {
@@ -19,13 +19,19 @@ public class LoginControlador {
 		}else {
 			return "login";
 		}
-	}	
+	}
+	
+// ---------------------------------------------------------------------------------------------------------------------------
 
+	
+// BOTÓN DE CERRAR SESIÓN ----------------------------------------------------------------------------------------------------
 	
 	@PostMapping("/logout")
 	public String devolverPaginaLogin() {
 		
 		return "redirect:/login";
 	}
+	
+// ---------------------------------------------------------------------------------------------------------------------------
 
 }

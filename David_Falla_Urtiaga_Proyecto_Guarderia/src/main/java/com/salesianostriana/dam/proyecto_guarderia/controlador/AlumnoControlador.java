@@ -36,11 +36,11 @@ public class AlumnoControlador {
 	
 	@Autowired
 	private ObservacionServicio obServicio;
+	
 
-//MOSTRAR LA LISTA DE ALUMNOS -----------------------------------------------------------------------------------------------------------
+// PANTALLA CON LOS ALUMNOS --------------------------------------------------------------------------------------------------
 	
 	// USUARIO
-	
 	@GetMapping("/usuario/alumnos")
 	public String mostrarAlumnosUsuario(@AuthenticationPrincipal Usuario usuario, Model model) {
 		
@@ -49,9 +49,8 @@ public class AlumnoControlador {
 		return "usuario/alumnosUsuario";
 	}
 
-		
-	// ADMINISTRADOR 
 	
+	// ADMINISTRADOR 
 	@GetMapping("/admin/alumnos")
 	public String mostrarAlumnosAdmin(Model model) {
 			
@@ -61,11 +60,10 @@ public class AlumnoControlador {
 		return "admin/alumnosAdmin";
 	}
 	
-// --------------------------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------------
 
 	
-	
-	//FORMULARIO DE MATRÍCULA (PARA AÑADIR ALUMNOS) VACÍA ------------------------------------------------------------------------------
+// FORMULARIO AÑADIR ALUMNOS -------------------------------------------------------------------------------------------------
 
 	@GetMapping("/usuario/matricula")
 	public String mostrarMatricula(Model model) {
@@ -80,9 +78,10 @@ public class AlumnoControlador {
 		return "agregarEditarAlumnos";
 	}
 
+// ---------------------------------------------------------------------------------------------------------------------------
 	
 	
-	//ENVIAMOS LOS DATOS DEL ALUMNO A LA BASE DE DATOS -------------------------------------------------------------------
+// GUARDA EL ALUMNO EN LA BASE DE DATOS --------------------------------------------------------------------------------------
 	
 	@PostMapping("/usuario/matricula/submit")
 	public String registroMatriculaFormulario(@ModelAttribute("alumno") Alumno alumno, @AuthenticationPrincipal Usuario usuario) {
@@ -93,19 +92,20 @@ public class AlumnoControlador {
 		return "redirect:/usuario/alumnos";
 	}
 	
+// ---------------------------------------------------------------------------------------------------------------------------
 	
 	
-	// MUESTRA EL FORMULARIO PARA AÑADIR ALUMNOS RELLENO --------------------------------------------------------------
+// FORMULARIO EDITAR ALUMNOS -------------------------------------------------------------------------------------------------
 
 	@GetMapping("/admin/alumnos/editarAlumno/{id}")
 	public String mostrarFormularioEdicion(@PathVariable("id") long id, Model model) {
 			
-		Optional<Alumno> AlumnoAEditar = servicio.findById(id);
+		Optional<Alumno> alumnoAEditar = servicio.findById(id);
 		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
 			
-		if(AlumnoAEditar.isPresent()) {
+		if(alumnoAEditar.isPresent()) {
 				
-			model.addAttribute("alumno", AlumnoAEditar.get());
+			model.addAttribute("alumno", alumnoAEditar.get());
 				
 			model.addAttribute("listaCursos", cursoServicio.findAll()); 	//LISTA DE CURSOS PARA PROFESOR
 			model.addAttribute("listaActividades", actServicio.findAll());	//LISTA DE ACTIVIDADES PARA ALUMNO
@@ -116,12 +116,12 @@ public class AlumnoControlador {
 				
 			return "redirect:/admin/alumnos";
 		}
-			
 	}
+	
+// ---------------------------------------------------------------------------------------------------------------------------
 		
 		
-		
-	// GUARDA LOS NUEVOS CAMBIOS AL PROFESOR -----------------------------------------------------------------------------
+// GUARDA LOS CAMBIOS REALIZADOS SOBRE EL ALUMNO EN LA BASE DE DATOS ---------------------------------------------------------
 		
 	@PostMapping("/admin/alumnos/editarAlumno/submit")
 	public String registrarAlumnoEditado(@ModelAttribute("alumno") Alumno alumno) {
@@ -131,19 +131,35 @@ public class AlumnoControlador {
 		return "redirect:/admin/alumnos";	
 	}
 		
+// ---------------------------------------------------------------------------------------------------------------------------
 		
 		
-	//BORRA AL ALUMNO ELGIDO POR ID ------------------------------------------------------------------------------------
+// BORRA AL ALUMNO POR ID ----------------------------------------------------------------------------------------------------
 
 	@GetMapping("/admin/alumnos/borrarAlumno/{id}")
 	public String borrarAlumno(@PathVariable("id") long id, Model model) {
 			
 		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
-		servicio.deleteById(id);
+		
+		Optional<Alumno> alumnoAEditar = servicio.findById(id);
 			
-		return "redirect:/admin/alumnos";
+		if(alumnoAEditar.isPresent()) {
+			
+			servicio.desvincularProfesoresDeObservacion(alumnoAEditar, id);
+			servicio.delete(alumnoAEditar.get());
+				
+		} else {
+				
+			return "redirect:/admin/alumnos";
+		}
+		
+		return "redirect:/admin/alumnos";	
 	}
 
+// ---------------------------------------------------------------------------------------------------------------------------
+	
+
+/* BOTÓN ALUMNOS (PROFESOR) --------------------------------------------------------------------------------------------------
 	
 	@GetMapping("/admin/alumnos/filtrados")
 	public String mostrarAlumnosFiltrados(Model model, long idCurso, long idActividad) {
@@ -154,7 +170,12 @@ public class AlumnoControlador {
 		return "admin/profesoresAdmin";
 	}
 
+// ---------------------------------------------------------------------------------------------------------------------------*/
 	
+	
+// BOTÓN OBSERVACIONES (ALUMNO) ----------------------------------------------------------------------------------------------
+	
+	//ADMINISTRADOR
 	@GetMapping("/admin/alumnos/observaciones/{id}")
 	public String mostrarObservacionesFiltradas(@PathVariable("id") long idAlumno, Model model) {
 		
@@ -165,6 +186,21 @@ public class AlumnoControlador {
 	}
 	
 	
+	//USUARIO
+	@GetMapping("/usuario/alumnos/observaciones/{id}")
+	public String mostrarObservacionesFiltradasUsuario(@PathVariable("id") long idAlumno, Model model) {
+		
+		model.addAttribute("listaObservaciones", servicio.filtrarObservacionesPorAlumnoId(idAlumno));
+		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
+	
+		return "usuario/observacionesUsuario";
+	}
+	
+// ---------------------------------------------------------------------------------------------------------------------------
+	
+	
+// BOTÓN TUTOR LEGAL (ALUMNO) ------------------------------------------------------------------------------------------------
+	
 	@GetMapping("/admin/alumnos/tutorLegal/{id}")
 	public String mostrarTutorLegalDeAlumno(@PathVariable("id") long idAlumno, Model model) {
 		
@@ -174,6 +210,10 @@ public class AlumnoControlador {
 		return "admin/tablaUsuariosAdmin";
 	}
 	
+// ---------------------------------------------------------------------------------------------------------------------------
+	
+
+// BOTÓN HORARIO (ALUMNO) ----------------------------------------------------------------------------------------------------
 	
 	@GetMapping("/admin/alumnos/actividades/{id}")
 	public String mostrarActividadesFiltradosPorAlumno(@PathVariable("id") long id, Model model) {
@@ -184,14 +224,6 @@ public class AlumnoControlador {
 		return "admin/actsComplementariasAdmin";
 	}
 	
-	
+// ---------------------------------------------------------------------------------------------------------------------------
 	
 }
-	
-
-	
-	
-	
-	
-	
-	

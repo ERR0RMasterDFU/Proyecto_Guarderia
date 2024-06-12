@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Progenitor;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Usuario;
+import com.salesianostriana.dam.proyecto_guarderia.servicio.ObservacionServicio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.UsuarioServicio;
 
 @Controller
@@ -22,6 +23,9 @@ public class UsuarioControlador {
 
 	@Autowired
 	private UsuarioServicio servicio;
+	
+	@Autowired
+	private ObservacionServicio obServicio;
 	
 // MUESTRA EL FORMULARIO DE REGISTRO (PARA AÑADIR USUARIO / TUTOR LEGAL) VACÍO --------------------------------------------------------
 	
@@ -74,10 +78,35 @@ public class UsuarioControlador {
 			
 		return "redirect:/miPerfil";
 	}
+	
+	
+	
+	// MUESTRA LAS OBSERVACIONES POR USUARIO -----------------------------------------------------------------------------
+	
+	@GetMapping("/observaciones")
+	public String mostrarObservaciones(@AuthenticationPrincipal Usuario usuario, Model model) {
+		
+		model.addAttribute("listaObservaciones", obServicio.mostrarObservacionesPorUsuario(usuario));
+		model.addAttribute("listaAsideUsuario", obServicio.tresObservacionesMasRecientesUsuario(usuario));
+		
+		return "usuario/observacionesUsuario";
+	}
+	
+	
+	// FILTRA AL ALUMNO ELEGIDO EN LA OBSERVACIÓN  -----------------------------------------------------------------
+	
+	@GetMapping("/observaciones/alumno/{id}")
+	public String mostrarAlumnoFiltradoPorId(@PathVariable("id") long id, Model model) {
+				
+		model.addAttribute("listaAlumnos", obServicio.encontrarAlumnoPorId(id));
+		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
+			
+		return "usuario/alumnosUsuario";
+	}
 		
 		
 		
-	//BORRA AL PROFESOR ELGIDO POR ID ------------------------------------------------------------------------------------
+	/*BORRA AL PROFESOR ELGIDO POR ID ------------------------------------------------------------------------------------
 
 	@GetMapping("/borrarProfesor/{id}")
 	public String borrarProfesor(@PathVariable("id") long idProfesor) {
@@ -85,7 +114,7 @@ public class UsuarioControlador {
 		servicio.deleteById(idProfesor);
 			
 		return "redirect:/admin/profesores";
-	}
+	}*/
 			
 
 

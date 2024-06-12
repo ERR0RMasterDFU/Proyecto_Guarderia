@@ -1,6 +1,7 @@
 package com.salesianostriana.dam.proyecto_guarderia.servicio;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,9 @@ public class ProfesorServicio extends ServicioBaseImpl<Profesor, Long, ProfesorR
 
 	@Autowired
 	private ProfesorRepositorio repositorio;
+	
+	@Autowired
+	private ObservacionServicio obServicio;
 	
 	public ProfesorServicio(UsuarioRepositorio repo) {
 		super(repo);
@@ -39,5 +43,21 @@ public class ProfesorServicio extends ServicioBaseImpl<Profesor, Long, ProfesorR
 		List <Observacion> obtenerObservacionesProfesor = repositorio.findObservacionesByProfesorId(idProfesor);
 		return obtenerObservacionesProfesor;
 	}
+	
+	
+	public void desvincularAlumnoDeObservacion (Optional<Profesor> profesorAEditar, long idProfesor) {
+		
+		List<Observacion> observacionesProfesor = profesorAEditar.get().getObservaciones();
+		List<Alumno> listaAlumnoObs = obServicio.buscarAlumnosPorObservacionProfesor(idProfesor);
+		
+		for (Observacion observacion : observacionesProfesor) {
+			for (Alumno alumno : listaAlumnoObs) {
+				observacion.removeFromAlumno(alumno);
+			}
+		}
+		
+	}
+	
+	
 
 }
