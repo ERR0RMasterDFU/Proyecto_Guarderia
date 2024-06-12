@@ -55,7 +55,7 @@ public class Alumno {
 	
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
-	@OneToMany(mappedBy="alumno", fetch = FetchType.EAGER) //cascade = CascadeType.ALL
+	@OneToMany(mappedBy="alumno", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@Builder.Default
 	private List<Observacion> observaciones = new ArrayList<>();
 	

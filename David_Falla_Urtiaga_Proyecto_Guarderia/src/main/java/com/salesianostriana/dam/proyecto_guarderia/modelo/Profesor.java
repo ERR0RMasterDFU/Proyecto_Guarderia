@@ -3,6 +3,7 @@ package com.salesianostriana.dam.proyecto_guarderia.modelo;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ForeignKey;
@@ -55,7 +56,7 @@ public class Profesor {
 	
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
-	@OneToMany(mappedBy="profesor", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="profesor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@Builder.Default
 	private List<Observacion> observaciones = new ArrayList<>();
 	

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Profesor;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.ActividadComplementariaServicio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.CursoServicio;
+import com.salesianostriana.dam.proyecto_guarderia.servicio.ObservacionServicio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.ProfesorServicio;
 
 @Controller
@@ -28,6 +29,9 @@ public class ProfesorControlador {
 	
 	@Autowired
 	private ActividadComplementariaServicio ActServicio;
+	
+	@Autowired
+	private ObservacionServicio obServicio;
 
 	
 	// MUESTRA LA PÁGINA DE PROFESORES -----------------------------------------------------------------------------------
@@ -36,6 +40,7 @@ public class ProfesorControlador {
 	public String mostrarProfesores(Model model) {
 		
 		model.addAttribute("listaProfesores", servicio.findAll());
+		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
 	
 		return "admin/profesoresAdmin";
 	}
@@ -49,6 +54,7 @@ public class ProfesorControlador {
 		
 		Profesor profesor = new Profesor();
 		model.addAttribute("profesor", profesor);
+		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
 		
 		model.addAttribute("listaCursos", CursoServicio.findAll()); 		//LISTA DE CURSOS PARA PROFESOR
 		model.addAttribute("listaActividades", ActServicio.findAll()); 		//LISTA DE ACTIVIDADES PARA PROFESOR
@@ -76,6 +82,7 @@ public class ProfesorControlador {
 	public String mostrarFormularioEdicion(@PathVariable("id") long idProfesor, Model model) {
 		
 		Optional<Profesor> profesorEditar = servicio.findById(idProfesor);
+		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
 		
 		if(profesorEditar.isPresent()) {
 			
@@ -108,11 +115,15 @@ public class ProfesorControlador {
 	//BORRA AL PROFESOR ELGIDO POR ID ------------------------------------------------------------------------------------
 
 	@GetMapping("/borrarProfesor/{id}")
-	public String borrarProfesor(@PathVariable("id") long idProfesor) {
+	public String borrarProfesor(@PathVariable("id") long idProfesor, Model model) {
 		
-		Optional<Profesor> profesorAEditar = servicio.findById(idProfesor);
+		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
 		
-		if(profesorAEditar.isPresent()) {
+		servicio.deleteById(idProfesor);
+		
+		return "redirect:/admin/profesores/";
+		
+			/*if(profesorAEditar.isPresent()) {
 			
 			if(servicio.contarObservacionesPorProfesor(idProfesor) == 0) {
 				servicio.deleteById(idProfesor);
@@ -121,7 +132,7 @@ public class ProfesorControlador {
 			}
 		}
 		
-		return "redirect:/admin/profesores/";
+		return "redirect:/admin/profesores/";*/
 	}
 		
 
@@ -131,6 +142,7 @@ public class ProfesorControlador {
 	public String mostrarAlumnos(@PathVariable("id") long idCurso, @PathVariable("idA") long idActividad, Model model) {
 		
 		model.addAttribute("listaAlumnos", servicio.filtrarAlumnosPorCursoYActividad(idCurso, idActividad));
+		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
 		
 		return "admin/alumnosAdmin";
 	}
@@ -144,6 +156,7 @@ public class ProfesorControlador {
 	public String mostrarObservacionesProfesor(@PathVariable("id") long idProfesor, Model model) {
 		
 		model.addAttribute("listaObservaciones", servicio.filtrarObservacionesPorProfesor(idProfesor));
+		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
 		
 		return "admin/observacionesAdmin";
 	}

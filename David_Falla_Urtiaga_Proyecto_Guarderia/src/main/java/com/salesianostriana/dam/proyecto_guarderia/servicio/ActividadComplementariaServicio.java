@@ -40,7 +40,10 @@ public class ActividadComplementariaServicio extends ServicioBaseImpl<ActividadC
 	// MÉTODO QUE CUENTA CUÁNTOS PROFESORES HAY EN UNA ACTIVIDAD
 	public int contarProfesoresDeUnaActividad(long id) {
 		return repositorio.findNumProfesoresByActividad(id);
-		 
+	}
+	
+	public int contarAlumnosDeUnaActividad(long id) {
+		return repositorio.findNumAlumnosByActividad(id);
 	}
 		
 		
