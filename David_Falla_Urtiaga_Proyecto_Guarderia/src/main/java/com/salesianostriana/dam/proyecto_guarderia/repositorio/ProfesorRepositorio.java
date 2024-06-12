@@ -11,8 +11,8 @@ import com.salesianostriana.dam.proyecto_guarderia.modelo.Profesor;
 
 public interface ProfesorRepositorio extends JpaRepository<Profesor, Long>{
 
-	//SELECT * FROM ALUMNO a JOIN HORARIO h ON (a.id = h.alumno_id) WHERE a.curso_id = 2 AND h.actividad_id = 6
-	// SELECT a FROM Alumno a JOIN a.horario h WHERE a.curso.id =?1 and h.id = ?2 
+
+// BOTÓN ALUMNOS (PROFESOR) --------------------------------------------------------------------------------------------------
 	
 	@Query("""
 			SELECT a
@@ -21,8 +21,10 @@ public interface ProfesorRepositorio extends JpaRepository<Profesor, Long>{
 			""")
 	public List<Alumno> findAlumnosByActividadIdYCursoId (long idCurso, long idActividad);
 	
+// ---------------------------------------------------------------------------------------------------------------------------
 	
-	//SELECT COUNT (*) FROM OBSERVACION WHERE observacion.profesor_id = 2
+	
+// CUENTA CUÁNTAS OBSERVACIONES TIENE UN PROFESOR ----------------------------------------------------------------------------
 	
 	@Query("""
 			SELECT count(o)
@@ -30,8 +32,11 @@ public interface ProfesorRepositorio extends JpaRepository<Profesor, Long>{
 			WHERE o.profesor.id = ?1
 			""")
 	public int countObservacionesByProfesorId (long idProfesor);
+	
+// ---------------------------------------------------------------------------------------------------------------------------
 
 
+// BOTÓN OBSERVACIONES (PROFESOR) --------------------------------------------------------------------------------------------
 	
 	@Query("""
 			SELECT o
@@ -39,9 +44,8 @@ public interface ProfesorRepositorio extends JpaRepository<Profesor, Long>{
 			WHERE o.profesor.id = ?1
 			""")
 	public List<Observacion> findObservacionesByProfesorId (long idProfesor);
-
 	
+// ---------------------------------------------------------------------------------------------------------------------------
 	
 }
-
 	

@@ -27,23 +27,38 @@ public class ProfesorServicio extends ServicioBaseImpl<Profesor, Long, ProfesorR
 		// TODO Auto-generated constructor stub
 	}
 	
+	
+// BOTÓN ALUMNOS (PROFESOR) --------------------------------------------------------------------------------------------------
+	
 	public List<Alumno> filtrarAlumnosPorCursoYActividad (long idCurso, long idActividad){
 		List<Alumno> obtenerAlumnos = repositorio.findAlumnosByActividadIdYCursoId(idCurso, idActividad);
 		return obtenerAlumnos;
 	}
 	
+// ---------------------------------------------------------------------------------------------------------------------------
+
+
+// CUENTA CUÁNTAS OBSERVACIONES TIENE UN PROFESOR ----------------------------------------------------------------------------
 	
 	public int contarObservacionesPorProfesor (long idProfesor){
 		int obtenerObservaciones = repositorio.countObservacionesByProfesorId(idProfesor);
 		return obtenerObservaciones;
 	}
 	
+// ---------------------------------------------------------------------------------------------------------------------------
+	
+	
+// BOTÓN OBSERVACIONES (PROFESOR) --------------------------------------------------------------------------------------------
 	
 	public List<Observacion> filtrarObservacionesPorProfesor (long idProfesor) {
 		List <Observacion> obtenerObservacionesProfesor = repositorio.findObservacionesByProfesorId(idProfesor);
 		return obtenerObservacionesProfesor;
 	}
 	
+// ---------------------------------------------------------------------------------------------------------------------------
+	
+	
+// MÉTODO QUE DESASOCIA UN ALUMNO DE UNA OBSERVACIÓN PARA PERIMITR QUE EL PROFESOR PUEDA SER BORRADO -------------------------
 	
 	public void desvincularAlumnoDeObservacion (Optional<Profesor> profesorAEditar, long idProfesor) {
 		
@@ -55,9 +70,8 @@ public class ProfesorServicio extends ServicioBaseImpl<Profesor, Long, ProfesorR
 				observacion.removeFromAlumno(alumno);
 			}
 		}
-		
 	}
 	
-	
+// ---------------------------------------------------------------------------------------------------------------------------
 
 }

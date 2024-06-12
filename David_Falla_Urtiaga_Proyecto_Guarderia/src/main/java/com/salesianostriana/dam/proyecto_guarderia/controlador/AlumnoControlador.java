@@ -17,7 +17,6 @@ import com.salesianostriana.dam.proyecto_guarderia.servicio.ActividadComplementa
 import com.salesianostriana.dam.proyecto_guarderia.servicio.AlumnoServicio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.CursoServicio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.ObservacionServicio;
-import com.salesianostriana.dam.proyecto_guarderia.servicio.ProfesorServicio;
 
 @Controller
 public class AlumnoControlador {
@@ -27,9 +26,6 @@ public class AlumnoControlador {
 	
 	@Autowired
 	private CursoServicio cursoServicio;
-	
-	@Autowired
-	private ProfesorServicio profeServicio;
 	
 	@Autowired
 	private ActividadComplementariaServicio actServicio;
@@ -45,6 +41,7 @@ public class AlumnoControlador {
 	public String mostrarAlumnosUsuario(@AuthenticationPrincipal Usuario usuario, Model model) {
 		
 		model.addAttribute("listaAlumnos", servicio.filtrarAlumnosPorUsuario(usuario));
+		model.addAttribute("listaAsideUsuario", obServicio.tresObservacionesMasRecientesUsuario(usuario));
 	
 		return "usuario/alumnosUsuario";
 	}
@@ -66,11 +63,11 @@ public class AlumnoControlador {
 // FORMULARIO AÑADIR ALUMNOS -------------------------------------------------------------------------------------------------
 
 	@GetMapping("/usuario/matricula")
-	public String mostrarMatricula(Model model) {
+	public String mostrarMatricula(Model model, @AuthenticationPrincipal Usuario usuario) {
 		
 		Alumno alumno = new Alumno();
 		model.addAttribute("alumno", alumno);
-		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
+		model.addAttribute("listaAsideUsuario", obServicio.tresObservacionesMasRecientesUsuario(usuario));
 		
 		model.addAttribute("listaCursos", cursoServicio.findAll()); 	//LISTA DE CURSOS PARA ALUMNO
 		model.addAttribute("listaActividades", actServicio.findAll());	//LISTA DE ACTIVIDADES PARA ALUMNO
@@ -84,7 +81,9 @@ public class AlumnoControlador {
 // GUARDA EL ALUMNO EN LA BASE DE DATOS --------------------------------------------------------------------------------------
 	
 	@PostMapping("/usuario/matricula/submit")
-	public String registroMatriculaFormulario(@ModelAttribute("alumno") Alumno alumno, @AuthenticationPrincipal Usuario usuario) {
+	public String registroMatriculaFormulario(@ModelAttribute("alumno") Alumno alumno, @AuthenticationPrincipal Usuario usuario, Model model) {
+		
+		model.addAttribute("listaAsideUsuario", obServicio.tresObservacionesMasRecientesUsuario(usuario));
 		
 		alumno.setProgenitor(usuario);
 		servicio.save(alumno);		
@@ -124,7 +123,9 @@ public class AlumnoControlador {
 // GUARDA LOS CAMBIOS REALIZADOS SOBRE EL ALUMNO EN LA BASE DE DATOS ---------------------------------------------------------
 		
 	@PostMapping("/admin/alumnos/editarAlumno/submit")
-	public String registrarAlumnoEditado(@ModelAttribute("alumno") Alumno alumno) {
+	public String registrarAlumnoEditado(@ModelAttribute("alumno") Alumno alumno, @AuthenticationPrincipal Usuario usuario, Model model) {
+		
+		model.addAttribute("listaAsideUsuario", obServicio.tresObservacionesMasRecientesUsuario(usuario));
 			
 		servicio.save(alumno);
 			
@@ -158,20 +159,6 @@ public class AlumnoControlador {
 
 // ---------------------------------------------------------------------------------------------------------------------------
 	
-
-/* BOTÓN ALUMNOS (PROFESOR) --------------------------------------------------------------------------------------------------
-	
-	@GetMapping("/admin/alumnos/filtrados")
-	public String mostrarAlumnosFiltrados(Model model, long idCurso, long idActividad) {
-		
-		model.addAttribute("listaAlumnos", profeServicio.filtrarAlumnosPorCursoYActividad(idCurso, idActividad));
-		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
-	
-		return "admin/profesoresAdmin";
-	}
-
-// ---------------------------------------------------------------------------------------------------------------------------*/
-	
 	
 // BOTÓN OBSERVACIONES (ALUMNO) ----------------------------------------------------------------------------------------------
 	
@@ -188,10 +175,10 @@ public class AlumnoControlador {
 	
 	//USUARIO
 	@GetMapping("/usuario/alumnos/observaciones/{id}")
-	public String mostrarObservacionesFiltradasUsuario(@PathVariable("id") long idAlumno, Model model) {
+	public String mostrarObservacionesFiltradasUsuario(@PathVariable("id") long idAlumno, Model model, @AuthenticationPrincipal Usuario usuario) {
 		
 		model.addAttribute("listaObservaciones", servicio.filtrarObservacionesPorAlumnoId(idAlumno));
-		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
+		model.addAttribute("listaAsideUsuario", obServicio.tresObservacionesMasRecientesUsuario(usuario));
 	
 		return "usuario/observacionesUsuario";
 	}
@@ -215,8 +202,9 @@ public class AlumnoControlador {
 
 // BOTÓN HORARIO (ALUMNO) ----------------------------------------------------------------------------------------------------
 	
+	// ADMINISTRADOR
 	@GetMapping("/admin/alumnos/actividades/{id}")
-	public String mostrarActividadesFiltradosPorAlumno(@PathVariable("id") long id, Model model) {
+	public String mostrarActividadesFiltradasPorAlumno(@PathVariable("id") long id, Model model) {
 			
 		model.addAttribute("listaActividades", servicio.filtrarActividadesPorAlumnoId(id));
 		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
@@ -224,6 +212,18 @@ public class AlumnoControlador {
 		return "admin/actsComplementariasAdmin";
 	}
 	
+	
+	// USUARIO
+	@GetMapping("/usuario/alumnos/horario/{id}")
+	public String mostrarActividadesFiltradasPorAlumnoUsuario(@PathVariable("id") long id, Model model, @AuthenticationPrincipal Usuario usuario) {
+			
+		model.addAttribute("listaActividades", servicio.filtrarActividadesPorAlumnoId(id));
+		model.addAttribute("listaAsideUsuario", obServicio.tresObservacionesMasRecientesUsuario(usuario));
+		
+		return "usuario/horarioUsuario";
+	}
+	
 // ---------------------------------------------------------------------------------------------------------------------------
+	
 	
 }

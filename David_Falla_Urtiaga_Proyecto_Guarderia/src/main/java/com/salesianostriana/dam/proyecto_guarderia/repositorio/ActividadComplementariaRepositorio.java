@@ -12,7 +12,9 @@ import com.salesianostriana.dam.proyecto_guarderia.modelo.Profesor;
 
 public interface ActividadComplementariaRepositorio extends JpaRepository<ActividadComplementaria, Long> {
 
-	// FILTRA PROFESORES POR ACTIVIDAD 
+	
+// BOTÓN PROFESORES (ACTIVIDAD COMPLEMENTARIA) -------------------------------------------------------------------------------
+	
 	@Query("""
 			SELECT p
 			FROM Profesor p
@@ -20,19 +22,23 @@ public interface ActividadComplementariaRepositorio extends JpaRepository<Activi
 			""")
 	List<Profesor> findProfesoresByActividad(@Param("actividad") long id);
 	
+// ---------------------------------------------------------------------------------------------------------------------------
 	
-	// FILTRA ALUMNOS POR ACTIVIDAD 
+
+// BOTÓN ALUMNOS (ACTIVIDAD COMPLEMENTARIA) ----------------------------------------------------------------------------------
+	
 	@Query("""
 			SELECT a
 			FROM Alumno a JOIN a.horario h
 			WHERE h.id = :actividad
 			""")
 	List<Alumno> findAlumnosByActividad(@Param("actividad") long id);
+
+// ---------------------------------------------------------------------------------------------------------------------------
 		
-	//SELECT * FROM Alumno a JOIN Horario h ON (a.id = h.alumno_id)  WHERE h.actividad_id = 1
+		
+// CUENTA LOS PROFESORES QUE HAY EN UNA ACTIVIDAD ----------------------------------------------------------------------------
 	
-		
-	// CUENTA LOS PROFESORES QUE HAY EN UNA ACTIVIDAD
 	@Query("""
 			SELECT count(p)
 			FROM Profesor p
@@ -40,9 +46,11 @@ public interface ActividadComplementariaRepositorio extends JpaRepository<Activi
 			""")
 	public int findNumProfesoresByActividad(@Param("actividad") long id);
 	
+// ---------------------------------------------------------------------------------------------------------------------------
+
 	
+// CUENTA LOS ALUMNOS QUE HAY EN UNA ACTIVIDAD -------------------------------------------------------------------------------
 	
-	// CUENTA LOS ALUMNOS QUE HAY EN UNA ACTIVIDAD
 		@Query("""
 				SELECT count(a)
 				FROM Alumno a JOIN a.horario h
@@ -50,4 +58,6 @@ public interface ActividadComplementariaRepositorio extends JpaRepository<Activi
 				""")
 		public int findNumAlumnosByActividad(@Param("actividad") long id);
 	
+// ---------------------------------------------------------------------------------------------------------------------------
+		
 }

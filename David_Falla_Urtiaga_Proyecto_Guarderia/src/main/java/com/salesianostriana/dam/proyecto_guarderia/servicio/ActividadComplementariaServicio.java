@@ -23,28 +23,42 @@ public class ActividadComplementariaServicio extends ServicioBaseImpl<ActividadC
 		// TODO Auto-generated constructor stub
 	}
 	
-	// MÉTODO QUE FILTRA PROFESORES POR ACTIVIDAD
+	
+// BOTÓN PROFESORES (ACTIVIDAD COMPLEMENTARIA) -------------------------------------------------------------------------------
+	
 	public List<Profesor>filtrarProfesoresPorActividad(long id){
 		List<Profesor> profesoresFiltradosPorActividad = repositorio.findProfesoresByActividad(id);
 		return profesoresFiltradosPorActividad;
 	}
 	
+// ---------------------------------------------------------------------------------------------------------------------------
 	
-	// MÉTODO QUE FILTRA PROFESORES POR ACTIVIDAD
+	
+// BOTÓN ALUMNOS (ACTIVIDAD COMPLEMENTARIA) ----------------------------------------------------------------------------------
+
 	public List<Alumno>filtrarAlumnosPorActividad(long id){
 		List<Alumno> alumnosFiltradosPorActividad = repositorio.findAlumnosByActividad(id);
 		return alumnosFiltradosPorActividad;
 	}
 	
+// ---------------------------------------------------------------------------------------------------------------------------
+
 	
-	// MÉTODO QUE CUENTA CUÁNTOS PROFESORES HAY EN UNA ACTIVIDAD
+// CUENTA LOS PROFESORES QUE HAY EN UNA ACTIVIDAD ----------------------------------------------------------------------------
+	
 	public int contarProfesoresDeUnaActividad(long id) {
 		return repositorio.findNumProfesoresByActividad(id);
 	}
+	
+// ---------------------------------------------------------------------------------------------------------------------------
+
+	
+// CUENTA LOS ALUMNOS QUE HAY EN UNA ACTIVIDAD -------------------------------------------------------------------------------
 	
 	public int contarAlumnosDeUnaActividad(long id) {
 		return repositorio.findNumAlumnosByActividad(id);
 	}
 		
+// ---------------------------------------------------------------------------------------------------------------------------
 		
 }

@@ -29,30 +29,48 @@ public class AlumnoServicio extends ServicioBaseImpl<Alumno, Long, AlumnoReposit
 		// TODO Auto-generated constructor stub
 	}
 
-
+	
+// PANTALLA DE ALUMNOS (USUARIO) ---------------------------------------------------------------------------------------------
+	
 	public List<Alumno> filtrarAlumnosPorUsuario (Usuario usuario){
 		List<Alumno> alumnosFiltrados = repositorio.findAlumnoByUsuario(usuario);
 		return alumnosFiltrados;
 	}
 	
+// ---------------------------------------------------------------------------------------------------------------------------
+	
+
+// BOTÓN OBSERVACIONES (ALUMNO) ----------------------------------------------------------------------------------------------
 	
 	public List<Observacion> filtrarObservacionesPorAlumnoId (long idAlumno) {
 		List<Observacion> observacionesFiltradasAlumno = repositorio.findObservacionesByAlumno(idAlumno);
 		return observacionesFiltradasAlumno;
 	}
 	
+// ---------------------------------------------------------------------------------------------------------------------------
+	
+	
+// BOTÓN TUTOR LEGAL (ALUMNO) ------------------------------------------------------------------------------------------------
 	
 	public Usuario findUsuarioByAlumnoId (long idAlumno) {
 		Usuario obtenerUsuarioEncontrado = repositorio.findUsuarioByAlumnoId(idAlumno);
 		return obtenerUsuarioEncontrado;
 	}
 	
+// ---------------------------------------------------------------------------------------------------------------------------
+	
+	
+// BOTÓN HORARIO (ALUMNO) ----------------------------------------------------------------------------------------------------
 	
 	public List<ActividadComplementaria> filtrarActividadesPorAlumnoId (long id){
 		List<ActividadComplementaria> actividadesFiltradas = repositorio.findHorarioByAlumnoId(id);
 		return actividadesFiltradas;
 	}
+
+// ---------------------------------------------------------------------------------------------------------------------------
 	
+	
+// MÉTODO QUE DESASOCIA UN PROFESOR DE UNA OBSERVACIÓN PARA PERIMITR QUE EL ALUMNO PUEDA SER BORRADO -------------------------
 	
 	public void desvincularProfesoresDeObservacion (Optional<Alumno> alumnoAEditar, long id) {
 		
@@ -66,5 +84,7 @@ public class AlumnoServicio extends ServicioBaseImpl<Alumno, Long, AlumnoReposit
 		}
 		
 	}
+	
+// ---------------------------------------------------------------------------------------------------------------------------
 	
 }

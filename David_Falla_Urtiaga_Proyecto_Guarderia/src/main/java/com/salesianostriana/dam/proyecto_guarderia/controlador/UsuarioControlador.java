@@ -1,7 +1,5 @@
 package com.salesianostriana.dam.proyecto_guarderia.controlador;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Progenitor;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Usuario;
+import com.salesianostriana.dam.proyecto_guarderia.servicio.ActividadComplementariaServicio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.ObservacionServicio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.UsuarioServicio;
 
@@ -27,7 +26,11 @@ public class UsuarioControlador {
 	@Autowired
 	private ObservacionServicio obServicio;
 	
-// MUESTRA EL FORMULARIO DE REGISTRO (PARA AÑADIR USUARIO / TUTOR LEGAL) VACÍO --------------------------------------------------------
+	@Autowired
+	private ActividadComplementariaServicio actServicio;
+	
+	
+// FORMULARIO PARA AÑDIR USUARIOS --------------------------------------------------------------------------------------------
 	
 	@GetMapping("/registro")
 	public String mostrarFormularioRegistro(Model model) {
@@ -40,9 +43,10 @@ public class UsuarioControlador {
 		return "paginaRegistro";
 	}
 	
+// ---------------------------------------------------------------------------------------------------------------------------
 	
 	
-// AÑADE EL NUEVO USUARIO / TUTOR LEGAL A LA BASE DE DATOS ----------------------------------------------------------------------------
+// GUARDA AL USUARIO EN LA BASE DE DATOS -------------------------------------------------------------------------------------
 		
 	@PostMapping("/registro/submit")
 	public String registrarNuevoUsuario(@ModelAttribute("usuario") Usuario usuario) {
@@ -52,9 +56,10 @@ public class UsuarioControlador {
 		return "redirect:/login";
 	}
 		
+// ---------------------------------------------------------------------------------------------------------------------------
 				
 	
-// MUESTRA EL FORMULARIO DE REGISTRO (PARA AÑADIR USUARIO) RELLENO --------------------------------------------
+// FORMULARIO PARA EDITAR USUARIOS -------------------------------------------------------------------------------------------
 
 	@GetMapping("/miPerfil")
 	public String mostrarFormularioEdicionUsuario(@AuthenticationPrincipal Usuario usuario, Model model) {
@@ -66,10 +71,10 @@ public class UsuarioControlador {
 
 	}
 	
+// ---------------------------------------------------------------------------------------------------------------------------
 	
 	
-		
-	// GUARDA LOS NUEVOS CAMBIOS AL PROFESOR -----------------------------------------------------------------------------
+// GUARDA LOS CAMBIOS REALIZADOS SOBRE EL USUARIO ----------------------------------------------------------------------------
 	
 	@PostMapping("/miPerfil/submit")
 	public String registrarProfesorEditado(@ModelAttribute("usuario") Usuario usuario) {
@@ -79,9 +84,10 @@ public class UsuarioControlador {
 		return "redirect:/miPerfil";
 	}
 	
+// ---------------------------------------------------------------------------------------------------------------------------
 	
 	
-	// MUESTRA LAS OBSERVACIONES POR USUARIO -----------------------------------------------------------------------------
+// PANTALLA CON LAS OBSERVACIONES (USUARIO) ----------------------------------------------------------------------------------
 	
 	@GetMapping("/observaciones")
 	public String mostrarObservaciones(@AuthenticationPrincipal Usuario usuario, Model model) {
@@ -92,8 +98,10 @@ public class UsuarioControlador {
 		return "usuario/observacionesUsuario";
 	}
 	
+// ---------------------------------------------------------------------------------------------------------------------------
 	
-	// FILTRA AL ALUMNO ELEGIDO EN LA OBSERVACIÓN  -----------------------------------------------------------------
+	
+// BOTÓN DATOS DEL ALUMNO (OBSERVACIÓN) USUARIO ------------------------------------------------------------------------------
 	
 	@GetMapping("/observaciones/alumno/{id}")
 	public String mostrarAlumnoFiltradoPorId(@PathVariable("id") long id, Model model) {
@@ -103,19 +111,21 @@ public class UsuarioControlador {
 			
 		return "usuario/alumnosUsuario";
 	}
-		
-		
-		
-	/*BORRA AL PROFESOR ELGIDO POR ID ------------------------------------------------------------------------------------
+	
+// ---------------------------------------------------------------------------------------------------------------------------
 
-	@GetMapping("/borrarProfesor/{id}")
-	public String borrarProfesor(@PathVariable("id") long idProfesor) {
+	
+// BOTÓN PROFESORES (HORARIO) USUARIO ----------------------------------------------------------------------------------------
+	
+	@GetMapping("/horario/profesores/{id}")
+	public String mostrarProfesoresFiltradosPorActividad(@PathVariable("id") long id, Model model, @AuthenticationPrincipal Usuario usuario) {
+				
+		model.addAttribute("listaProfesores", actServicio.filtrarProfesoresPorActividad(id));
+		model.addAttribute("listaAsideUsuario", obServicio.tresObservacionesMasRecientesUsuario(usuario));
 			
-		servicio.deleteById(idProfesor);
-			
-		return "redirect:/admin/profesores";
-	}*/
-			
-
-
+		return "usuario/profesoresUsuario";
+	}
+	
+// ---------------------------------------------------------------------------------------------------------------------------
+	
 }

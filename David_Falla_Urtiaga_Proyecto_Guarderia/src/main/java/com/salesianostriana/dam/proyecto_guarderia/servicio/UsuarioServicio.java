@@ -26,17 +26,22 @@ public class UsuarioServicio extends ServicioBaseImpl<Usuario, Long, UsuarioRepo
 		super(repo);
 	}
 
+	
+// SEGURIDAD -----------------------------------------------------------------------------------------------------------------
+	
 	public Optional<Usuario> buscarPorDni(String username) {
 		return repository.findFirstByUsername(username);
 	}
 
-	
+	// MÉTODO QUE ENCRIPTA LAS CONTRASEÑAS ANTES DE GUARDAR EL USUARIO
 	public Usuario saveNewUsuario(Usuario u) {
 		u.setPassword(encoder.encode(u.getPassword()));
 		return save(u);
 	}
 	
-	//public Usuario editarUsuario(Usuario u) {
+// ---------------------------------------------------------------------------------------------------------------------------
+	
+	/*public Usuario editarUsuario(Usuario u) {
 		
 		// Editar el usuario sin cambiarle la contraseña
 		
@@ -45,20 +50,24 @@ public class UsuarioServicio extends ServicioBaseImpl<Usuario, Long, UsuarioRepo
 		// 3. Guardo el usuario en la base de datos.
 		// 4. Actualizo el contexto de seguridad con el nuevo usuario (Carlos Román)
 		
-		
-		
-		
-	//}
+	 }*/
+	
+// CUENTA LOS ALUMNOS QUE TIENE UN USUARIO -----------------------------------------------------------------------------------
 	
 	public int contarAlumnosdeUnUsuario(long id) {
 		return repositorio.findNumAlumnosByUsuario(id);
 	}
 	
+// ---------------------------------------------------------------------------------------------------------------------------
+	
+	
+// BOTÓN ALUMNOS (TABLA DE USUARIOS) -----------------------------------------------------------------------------------------
 	
 	public List<Alumno> filtrarAlumnosDeUsuario (long id){
 		List<Alumno> alumnosDeUsuario = repositorio.findAlumnosbyUsuario(id);
 		return alumnosDeUsuario;
 	}
-}
-
 	
+// ---------------------------------------------------------------------------------------------------------------------------
+	
+}

@@ -14,9 +14,8 @@ import com.salesianostriana.dam.proyecto_guarderia.modelo.Usuario;
 
 public interface ObservacionRepositorio extends JpaRepository<Observacion, Long>{
 
-
-	//public Page<Observacion> findAll(Pageable pageable);
 	
+// BOTÓN DATOS DEL ALUMNO (OBSERVACIÓN) --------------------------------------------------------------------------------------
 	
 	@Query("""
 			SELECT a
@@ -25,9 +24,11 @@ public interface ObservacionRepositorio extends JpaRepository<Observacion, Long>
 			""")
 	public Alumno findAlumnoById(long id);
 	
+// ---------------------------------------------------------------------------------------------------------------------------
 	
 	
-	// MUESTRA LAS OBSERVACIONES DE LOS USUARIOS 
+// PANTALLA DE OBSERVACIONES DEL USUARIO -------------------------------------------------------------------------------------
+	
 	@Query("""
 			SELECT o
 			FROM Observacion o 
@@ -35,10 +36,11 @@ public interface ObservacionRepositorio extends JpaRepository<Observacion, Long>
 			""")
 	public List<Observacion> findObservacionesByUsuario(Usuario usuario);
 	
+// ---------------------------------------------------------------------------------------------------------------------------
 	
 	
+// CONSULTA QUE DEVUELVE LOS ALUMNOS QUE ESTÁN ASOCIADOS CON ALGUNA OBSERVACIÓN DE UN PROFESOR -------------------------------
 	
-	// MOSTRAR ALUMNOS DE LA OBSERVACIÓN DE UN PROFESOR
 	@Query("""
 			SELECT o.alumno
 			FROM Observacion o
@@ -46,9 +48,11 @@ public interface ObservacionRepositorio extends JpaRepository<Observacion, Long>
 			""")
 	public List<Alumno> findAlumnosByObservaciones(long id);
 	
+// ---------------------------------------------------------------------------------------------------------------------------
 	
 	
-	// MOSTRAR ALUMNOS DE LA OBSERVACIÓN DE UN PROFESOR
+// CONSULTA QUE DEVUELVE LOS PROFESORES QUE ESTÁN ASOCIADOS CON ALGUNA OBSERVACIÓN DE UN ALUMNO ------------------------------
+	
 	@Query("""
 			SELECT o.profesor
 			FROM Observacion o
@@ -56,7 +60,10 @@ public interface ObservacionRepositorio extends JpaRepository<Observacion, Long>
 			""")
 	public List<Profesor> findProfesoresByObservaciones(long id);
 	
+// ---------------------------------------------------------------------------------------------------------------------------
 	
+	
+// ASIDE DEL USUARIO ---------------------------------------------------------------------------------------------------------
 	
 	@Query("""
 			SELECT o
@@ -65,5 +72,6 @@ public interface ObservacionRepositorio extends JpaRepository<Observacion, Long>
 			""")
 	public Page<Observacion> observacionesDeUsuario(Usuario usuario, Pageable p);
 	
+// ---------------------------------------------------------------------------------------------------------------------------	
 
 }
