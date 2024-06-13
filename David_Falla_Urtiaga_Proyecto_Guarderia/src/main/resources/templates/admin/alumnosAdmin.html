@@ -57,7 +57,7 @@
 						</thead>
 						<tbody>
 							<tr th:each="alumno : ${listaAlumnos}" class="align-middle">
-								<td th:text="${alumno.id}" class="border-2 border-end-0 border-black py-3 px-2"></td>
+								<td th:text="${alumno.id}" class="border-2 border-end-0 border-black py-3 px-2"><br><p th:if="cumpleanos == alumno.fechaNacimiento" class="fw-bold" style="color: rgb(255, 157, 157);">¡FELIZ</p></td>
 								<td th:text="${alumno.nombre}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
 								<td	th:text="${alumno.primerApellido}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
 								<td th:text="${alumno.segundoApellido}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
@@ -82,14 +82,9 @@
 											<a type="button" th:href="@{/admin/alumnos/observaciones/{id}(id=${alumno.id})}" class="btn btn-danger text-white fw-bold w-100">OBSERVACIONES</a>
 										</div>
 									</div>
-									<!--div class="d-flex text-center align-middle mt-2">
-										<div class="py-0 w-100">
-											<a type="button" th:href="@{ -- }" class="btn btn-success text-white fw-bold w-100">PROFESORES</a>
-										</div-->
-										<div class="mt-2 py-0 w-100">
-											<a type="button" th:href="@{/admin/alumnos/tutorLegal/{id}(id=${alumno.id})}" class="btn btn-dark text-white fw-bold w-100">TUTOR LEGAL</a>
-										</div>
-									<!--/div-->
+									<div class="mt-2 py-0 w-100">
+										<a type="button" th:href="@{/admin/alumnos/tutorLegal/{id}(id=${alumno.id})}" class="btn btn-dark text-white fw-bold w-100">TUTOR LEGAL</a>
+									</div>
 								</td>
 								<td class="border-2 border-start-0 border-start-0 border-black py-2 px-3">
 									<div class="text-center align-middle">

@@ -37,5 +37,16 @@ public interface UsuarioRepositorio extends JpaRepository<Usuario, Long>{
 	public List<Alumno> findAlumnosbyUsuario(long id);
 	
 // ---------------------------------------------------------------------------------------------------------------------------
+
+	
+// BOTÓN ALUMNOS (TABLA DE USUARIOS) -----------------------------------------------------------------------------------------	
+
+	@Query("""
+			SELECT u
+			FROM Usuario u
+			""")
+	public List<Usuario> findAllUsuarios();
+	
+// ---------------------------------------------------------------------------------------------------------------------------		
 	
 }

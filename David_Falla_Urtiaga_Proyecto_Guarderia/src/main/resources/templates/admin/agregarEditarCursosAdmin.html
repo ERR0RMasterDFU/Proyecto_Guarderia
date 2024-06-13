@@ -3,7 +3,14 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Nuevo / Editar curso</title>
+        
+        <th:block th:if="${curso.id == 0}">
+            <title>Nuevo curso</title>
+        </th:block>
+        <th:block th:if="${curso.id != 0}">
+            <title>Editar curso</title>
+        </th:block>
+
         <link rel="stylesheet" type="text/css" href="../../static/css/paginasPrincipales.css" th:href="@{/css/paginasPrincipales.css}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -15,45 +22,11 @@
 
 		<header th:replace="~{fragmentos/header::header}"></header>
 
-
-        <!--header id="inicio">
-			<img src="../static/img/general/headerParenteller.png" th:src="@{/img/general/headerParenteller.png}" alt="Cabecera de la página" class="img-fluid w-100">
-		</header-->
-
 <!------------------------------------------------------------------->
 
 <!---- MENÚ NAVEGABLE / NAVBAR -------------------------------------->
     
 		<nav th:replace="~{fragmentos/navAdmin::nav}"></nav>
-
-
-        <!--nav class="navbar navbar-expand-sm bg-warning sticky-top border border-2 border-start-0 border-end-0 border-black">
-			<div class="container-fluid">
-				<a class="navbar-brand" href="#inicio"><img src="../static/img/general/logoParenteller.png" th:src="@{/img/general/logoParenteller.png}" width="160px" alt="Logo de Parenteller"></a>
-		    	<ul class="nav justify-content-end align-items-center" style="font-size: 18px;">
-					<li class="nav-item"><a class="nav-link text-black fw-bold estiloNavItem" href="../admin/alumnosAdmin.html" th:href="@{/admin/alumnos}"><i class="bi bi-person-fill"></i>&ensp;ALUMNOS</a></li>
-					<li class="nav-item"><a class="nav-link text-black fw-bold estiloNavItem" href="../admin/profesoresAdmin.html" th:href="@{/admin/profesores}"><i class="bi bi-mortarboard-fill"></i>&ensp;PROFESORES</a></li>
-					<li class="nav-item"><a class="nav-link text-black fw-bold estiloNavItem" href="../admin/cursosAdmin.html" th:href="@{/admin/cursos}"><i class="bi bi-bookmarks-fill"></i>&ensp;CURSOS</a></li-->
-
-		        	<!--li class="nav-item"><a class="nav-link text-black fw-bold estiloNavItem me-3" href="perfilUsuario.html" th:href="@{/usuario/miPerfil}"><i class="bi bi-file-earmark-bar-graph-fill"></i>&ensp;MI PERFIL</a></li-->
-		        	<!--li class="nav-item flex-fill text-center"><a href="inicioDeSesion.html"><button type="button" class="btn btn-info text-dark border-dark border-2 fw-bold ms-3">CERRAR SESIÓN</button></a></li-->
-		   		
-					<!--div class="dropdown ms-3">
-						<button class="btn btn-dark text-white dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false">CUENTA&nbsp;&nbsp;</button>
-				
-						<ul class="dropdown-menu dropdown-menu-end border border-2 border-black">
-							<div class="mb-4 mt-2 px-3"><div sec:authorize="isAuthenticated()">
-								<h5 class="text-center">¡Hola, Ángel!<span sec:authentication="username"></span></h5> 
-							</div>	
-								
-							<li style="width: 350px;"><form th:action="@{/logout}" method="POST" id="logoutForm"><a class="dropdown-item flex-fill text-center"><button type="button" class="btn btn-info text-dark border-dark border-2 fw-bold w-100"><i class="bi bi-door-open-fill"></i>&ensp;CERRAR SESIÓN</button></a></form></li>
-						</ul>
-					</div>
-			
-				</ul>
-			</div>
-		</nav-->
-
 
 <!-------------------------------------------------------------------->
 
@@ -62,32 +35,6 @@
 <!---- SECCIÓN DE ANUNCIOS / ASIDE ---------------------------------->
 
 			<aside th:replace="~{fragmentos/asideAdmin::aside}"></aside>
-
-
-            <!--aside class="m-3 border border-3 border-white" style="flex: 1 1 19%; background-color: grey; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
-		
-                <div class="container-fluid p-2 my-3 border border-3 border-white" style="width: 90%; background-color: darkred;">
-                       <p class="m-0 text-center fw-bold text-center text-white" style="font-size: 20px;">OBSERVACIONES</p>
-                   </div>
-            
-                 <div class="bg-white container-fluid p-2 my-3" style="width: 90%;">
-                    <p class="m-0 pt-2 p-1"><strong>Durante:</strong><br>Aula Matinal</p>
-                      <p class="m-0 pt-2 p-1"><strong>Profesor:</strong><br>Juan María Crocante Perez</p>
-                      <p class="m-0 pt-2 p-1"><strong>Alumno:</strong><br>Lucas Falla Urtiaga</p>
-                      <p class="m-0 pt-2 p-1"><strong>Fecha:</strong><br>18/10/2024 a las 18:03</p>
-                      <p class="m-0 pt-2 p-1"><strong>Mensaje:</strong><br>Ha pegado a un niño en el recreo.</p>
-                </div>
-            
-                  <div class="bg-white container-fluid p-2 my-3" style="width: 90%;">
-                    <p class="m-0 pt-2 p-1"><strong>Durante:</strong><br>Comedor</p>
-                      <p class="m-0 pt-2 p-1"><strong>Profesor:</strong><br>Juan María Crocante Perez</p>
-                     <p class="m-0 pt-2 p-1"><strong>Alumno:</strong><br>Lucas Falla Urtiaga</p>
-                    <p class="m-0 pt-2 p-1"><strong>Fecha:</strong><br>23/10/2024 a las 14:35</p>
-                     <p class="m-0 pt-2 p-1"><strong>Mensaje:</strong><br>Ha vomitado la comida.</p>
-                </div>
-            
-            </aside-->
-
 
 <!------------------------------------------------------------------->
 
@@ -100,23 +47,37 @@
 
                 <form method="post" th:action="${curso.id!=0} ? @{/admin/cursos/editarCurso/submit} : @{/admin/cursos/nuevoCurso/submit}" th:object="${curso}" class="w-100">
                     <fieldset class="justify-content-center border border-black border-3">
-                        <legend class="fw-bold border border-black border-3 border-start-0 border-end-0 border-top-0 text-white px-2 mb-3 bg-success">DATOS DEL CURSO</legend>
+
+                        <th:block th:if="${curso.id == 0}">
+                            <legend class="fw-bold border border-black border-3 border-start-0 border-end-0 border-top-0 text-white px-2 mb-3 bg-success">DATOS DEL NUEVO CURSO</legend>
+                        </th:block>
+                        <th:block th:if="${curso.id != 0}">
+                            <legend class="fw-bold border border-black border-3 border-start-0 border-end-0 border-top-0 text-white px-2 mb-3" style="background-color: rgb(210, 122, 2);">EDITANDO DATOS DEL CURSO...</legend>
+                        </th:block>
+
                         <div class="mx-3 mb-3">
 
                             <input th:if="${curso.id!=0}" type="hidden" name="id" th:field="*{id}"/>
 
-                            <div class="w-100">
+                            <div class="w-100 pb-2">
                                 <label for="nombre" class="form-label m-0 fw-bold">NOMBRE<span class="text-danger"> *</span></label><br>
                                 <input type="text" th:field="*{nombre}" class="form-control" name="nombre" id="nombre" placeholder="Introduzca el nombre del curso" required maxlength="100" size="50">
                             </div>
-                            </br>
 
                         </div>
                     </fieldset>
 
-                    <div class="mt-4 px-0 w-100">
-                        <button type="submit" class="btn border border-2 border-black btn-success w-100 mt-2 mb-1 fw-bold" style="font-size: 23px;">GUARDAR</button>
-                    </div>
+                    <th:block th:if="${curso.id == 0}">
+                        <div class="mt-3 px-0 w-100">
+                            <button type="submit" class="btn border border-2 border-black btn-success w-100 mt-2 mb-1 fw-bold" style="font-size: 23px;">GUARDAR</button>
+                        </div>
+                    </th:block>
+                        
+                    <th:block th:if="${curso.id != 0}">
+                        <div class="mt-3 px-0 w-100">
+                            <button type="submit" class="btn border border-2 border-black btn-success w-100 mt-2 mb-1 fw-bold" style="font-size: 23px; background-color: rgb(210, 122, 2);">GUARDAR CAMBIOS</button>
+                        </div>
+                    </th:block>
 
                 </form>
 

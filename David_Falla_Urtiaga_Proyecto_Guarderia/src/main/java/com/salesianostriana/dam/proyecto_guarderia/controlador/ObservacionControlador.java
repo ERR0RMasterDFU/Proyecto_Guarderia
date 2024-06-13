@@ -130,9 +130,9 @@ public class ObservacionControlador {
 
 		model.addAttribute("listaAsideAdmin", servicio.tresObservacionesMasRecientes());
 		
-		Optional<Observacion> observacionAEditar = servicio.findById(id);
+		Optional<Observacion> observacionABorrar = servicio.findById(id);
 		
-		if(observacionAEditar.isPresent()) {
+		if(observacionABorrar.isPresent()) {
 			
 			servicio.deleteById(id);
 				

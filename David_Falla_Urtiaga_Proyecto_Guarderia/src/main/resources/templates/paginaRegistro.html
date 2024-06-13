@@ -33,9 +33,16 @@
 	<!-- MENSAJE DE ERROR -------------------------------------------------------------------------------------------------------------------------------->
 							                                
 							<div class="alert alert-danger alert-dismissible fade show d-none" role="alert" id="alertError">
-								<strong><i class="bi bi-exclamation-triangle-fill text-danger"></i>&ensp;<span id="spanError"></span></strong>
+								<strong>
+                                    <i class="bi bi-exclamation-triangle-fill text-danger"></i>&ensp;<span id="spanError"></span>
+                                </strong>
 								<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 							</div>
+
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert" th:if="${param.error}">
+                                <strong><i class="bi bi-exclamation-triangle-fill text-danger"></i>&ensp;¡El nombre de usuario o DNI / NIE no son válidos porque ya pertenece/n a otro/s usuario/s!</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
 						
 	<!---------------------------------------------------------------------------------------------------------------------------------------------------->
 							
@@ -149,7 +156,7 @@
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
-								<button type="button" id="botonConfirmar" class="btn btn-warning fw-bold" data-bs-dismiss="modal">CLARO QUE SÍ, HOMBRE</button>
+								<button type="button" id="botonConfirmar" class="btn btn-warning fw-bold" data-bs-dismiss="modal">¡POR SUPUESTO!</button>
 							</div>
 						</div>
 					</div>

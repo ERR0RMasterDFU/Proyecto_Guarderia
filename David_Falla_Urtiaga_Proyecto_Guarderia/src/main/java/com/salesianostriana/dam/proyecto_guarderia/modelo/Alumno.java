@@ -69,16 +69,7 @@ public class Alumno {
 	)
 	@Builder.Default
 	private List<ActividadComplementaria> horario = new ArrayList<>();
-	
-	
-	
-/* MTM (PROFESOR) -------------------------------------------------------------------------------
-	
-	@ManyToMany(mappedBy="alumnos", fetch = FetchType.EAGER)
-	@Builder.Default
-	@ToString.Exclude
-	@EqualsAndHashCode.Exclude
-	private List<Profesor> profesores = new ArrayList<>(); */
+
 	
 	
 // MTO (CURSO) -----------------------------------------------------------------------------------

@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.proyecto_guarderia.controlador;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,9 @@ public class AlumnoControlador {
 		
 		model.addAttribute("listaAlumnos", servicio.filtrarAlumnosPorUsuario(usuario));
 		model.addAttribute("listaAsideUsuario", obServicio.tresObservacionesMasRecientesUsuario(usuario));
+		
+		LocalDate cumpleanos = LocalDate.now();
+		model.addAttribute("cumpleanos", cumpleanos);
 	
 		return "usuario/alumnosUsuario";
 	}
@@ -53,6 +57,9 @@ public class AlumnoControlador {
 			
 		model.addAttribute("listaAlumnos", servicio.findAll());
 		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
+		
+		LocalDate cumpleanos = LocalDate.now();
+		model.addAttribute("cumpleanos", cumpleanos);
 		
 		return "admin/alumnosAdmin";
 	}

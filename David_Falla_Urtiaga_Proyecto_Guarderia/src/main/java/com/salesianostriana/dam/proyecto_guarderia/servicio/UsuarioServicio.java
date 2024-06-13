@@ -70,4 +70,14 @@ public class UsuarioServicio extends ServicioBaseImpl<Usuario, Long, UsuarioRepo
 	
 // ---------------------------------------------------------------------------------------------------------------------------
 	
+
+// MOSTRAR TODOS LOS USUARIOS ------------------------------------------------------------------------------------------------
+	
+	public List<Usuario> filtrarTodosLosUsuarios (){
+		List<Usuario> todosUsuarios = repositorio.findAllUsuarios();
+		return todosUsuarios;
+	}
+		
+// ---------------------------------------------------------------------------------------------------------------------------
+	
 }

@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.proyecto_guarderia.controlador;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.salesianostriana.dam.proyecto_guarderia.modelo.Curso;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Progenitor;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Usuario;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.ActividadComplementariaServicio;
@@ -53,7 +53,14 @@ public class UsuarioControlador {
 		
 	@PostMapping("/registro/submit")
 	public String registrarNuevoUsuario(@ModelAttribute("usuario") Usuario usuario) {
-				
+		
+		List<Usuario> lu = servicio.filtrarTodosLosUsuarios();
+		
+		for(Usuario u : lu) {
+			if(u.getUsername().equals(usuario.getUsername()) || u.getDni().equals(usuario.getDni())) {
+				return "redirect:/usuario/registro?error=true";
+			}
+		}
 		servicio.saveNewUsuario(usuario);	
 					
 		return "redirect:/login";
