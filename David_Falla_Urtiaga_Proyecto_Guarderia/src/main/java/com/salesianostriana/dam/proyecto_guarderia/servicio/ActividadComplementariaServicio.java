@@ -34,6 +34,16 @@ public class ActividadComplementariaServicio extends ServicioBaseImpl<ActividadC
 // ---------------------------------------------------------------------------------------------------------------------------
 	
 	
+// BOTÓN PROFESORES (HORARIO) ------------------------------------------------------------------------------------------------
+	
+	public List<Profesor>filtrarProfesoresPorActividadUsuario(long id){
+		List<Profesor> profesoresFiltradosPorActividad = repositorio.findProfesoresByActividadUsuario(id);
+		return profesoresFiltradosPorActividad;
+	}
+	
+// ---------------------------------------------------------------------------------------------------------------------------
+	
+	
 // BOTÓN ALUMNOS (ACTIVIDAD COMPLEMENTARIA) ----------------------------------------------------------------------------------
 
 	public List<Alumno>filtrarAlumnosPorActividad(long id){

@@ -136,20 +136,24 @@
 	<!-------------------------------------------------------------------->
 				
 						
-				<!-- Modal -->
-					<div class="modal fade" id="modalConfirmacion" tabindex="-1" aria-labelledby="modalConfirmacionLabel" aria-hidden="true">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h1 class="modal-title fs-5" id="modalConfirmacionLabel">CONFIRMACIÓN</h1>
-								  	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-								</div>
-								<div class="modal-body">
-				              		<p>FORMULARIO ENVIADO CORRECTAMENTE</p>
-								</div>
+	<!-- Modal-->
+				<div class="modal fade" id="modalConfirmacion" tabindex="-1" aria-labelledby="modalConfirmacionLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h1 class="modal-title fs-5 fw-bold" id="modalConfirmacionLabel"><i class="bi bi-exclamation-diamond-fill text-warning"></i>&ensp;CONFIRMACIÓN&ensp;<i class="bi bi-exclamation-diamond-fill text-warning"></i></h1>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								<p class="m-0">SU CUENTA VA A CREARSE CON LOS SIGUIENTES DATOS.<br><br><span class="fw-bold">¿DESEA CONTINUAR?</span></p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
+								<button type="button" id="botonConfirmar" class="btn btn-warning fw-bold" data-bs-dismiss="modal">CLARO QUE SÍ, HOMBRE</button>
 							</div>
 						</div>
 					</div>
+				</div>
 					
 						
 	<!-------------------------------------------------------------------->

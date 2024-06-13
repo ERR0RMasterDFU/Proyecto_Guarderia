@@ -53,9 +53,10 @@ public class ObservacionControlador {
 	@GetMapping("/nuevaObservacion")
 	public String mostrarFormularioObservacionAgregar(Model model) {
 			
+		model.addAttribute("listaAsideAdmin", servicio.tresObservacionesMasRecientes());
+		
 		Observacion observacion = new Observacion();
 		model.addAttribute("observacion", observacion);
-		model.addAttribute("listaAsideAdmin", servicio.tresObservacionesMasRecientes());
 		
 		model.addAttribute("listaAlumnos", alumnoServicio.findAll()); 		//LISTA DE ALUMNOS PARA OBSERVACIÓN
 		model.addAttribute("listaProfesores", profeServicio.findAll()); 	//LISTA DE PROFESORES PARA OBSERVACIÓN
@@ -86,8 +87,9 @@ public class ObservacionControlador {
 	@GetMapping("/editarObservacion/{id}")
 	public String mostrarFormularioObservacionEditar(@PathVariable("id") long id, Model model) {
 			
-		Optional<Observacion> observacionAEditar = servicio.findById(id);
 		model.addAttribute("listaAsideAdmin", servicio.tresObservacionesMasRecientes());
+		
+		Optional<Observacion> observacionAEditar = servicio.findById(id);
 		
 		model.addAttribute("listaAlumnos", alumnoServicio.findAll()); 		//LISTA DE ALUMNOS PARA OBSERVACIÓN
 		model.addAttribute("listaProfesores", profeServicio.findAll()); 	//LISTA DE PROFESORES PARA OBSERVACIÓN
@@ -126,8 +128,9 @@ public class ObservacionControlador {
 	@GetMapping("/borrarObservacion/{id}")
 	public String borrarObservacion(@PathVariable("id") long id, Model model) {
 
-		Optional<Observacion> observacionAEditar = servicio.findById(id);
 		model.addAttribute("listaAsideAdmin", servicio.tresObservacionesMasRecientes());
+		
+		Optional<Observacion> observacionAEditar = servicio.findById(id);
 		
 		if(observacionAEditar.isPresent()) {
 			

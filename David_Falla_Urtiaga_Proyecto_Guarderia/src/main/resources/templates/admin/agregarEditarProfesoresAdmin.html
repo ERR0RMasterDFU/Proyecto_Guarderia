@@ -132,19 +132,33 @@
     <!-------------------------------------------------------------------->
 
 		
-				<!-- Modal -->
+	<!-- Modal-->
 				<div class="modal fade" id="modalConfirmacion" tabindex="-1" aria-labelledby="modalConfirmacionLabel" aria-hidden="true">
-				  <div class="modal-dialog">
-				    <div class="modal-content">
-				      <div class="modal-header">
-				        <h1 class="modal-title fs-5" id="modalConfirmacionLabel">CONFIRMACIÓN</h1>
-				        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				      </div>
-				      <div class="modal-body">
-                        <p>FORMULARIO ENVIADO CORRECTAMENTE</p>
-				      </div>
-				    </div>
-				  </div>
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h1 class="modal-title fs-5 fw-bold" id="modalConfirmacionLabel"><i class="bi bi-exclamation-diamond-fill text-success"></i>&ensp;CONFIRMACIÓN&ensp;<i class="bi bi-exclamation-diamond-fill text-success"></i></h1>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								<th:block th:if="${profesor.id == 0}">
+									<p class="m-0">SE VA A AÑADIR UN <span class="text-success fw-bold">NUEVO PROFESOR</span> CON LOS SIGUIENTES DATOS.<br><br><span class="fw-bold">¿DESEA CONTINUAR?</span></p>
+								</th:block>
+								<th:block th:if="${profesor.id != 0}">
+									<p class="m-0">SE VAN A <span class="text-success fw-bold">CAMBIAR LOS DATOS ANTIGUOS</span> DEL PROFESOR POR LOS NUEVOS.<br><br><span class="fw-bold">¿DESEA GUARDAR LOS CAMBIOS?</span></p>
+								</th:block>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
+								<th:block th:if="${profesor.id == 0}">
+									<button type="button" id="botonConfirmar" class="btn btn-success fw-bold" data-bs-dismiss="modal">¡AÑADIR PROFESOR!</button>
+								</th:block>
+								<th:block th:if="${profesor.id != 0}">
+									<button type="button" id="botonConfirmar" class="btn btn-success fw-bold" data-bs-dismiss="modal">¡GUARDAR LOS CAMBIOS!</button>
+								</th:block>
+							</div>
+						</div>
+					</div>
 				</div>
 	
 	

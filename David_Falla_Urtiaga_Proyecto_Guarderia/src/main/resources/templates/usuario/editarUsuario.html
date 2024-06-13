@@ -3,12 +3,15 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Mi perfil</title>
+        <title>Editar prefil</title>
         <link rel="stylesheet" type="text/css" href="../static/css/paginasPrincipales.css" th:href="@{/css/paginasPrincipales.css}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    </head>
+    
+		<script src="../../static/js/editarUsuarioValidacion.js" th:src="@{/js/editarUsuarioValidacion.js}" defer></script>
+		
+	</head>
     <body class="fondo">
 
 <!---- CABECERA / HEADER -------------------------------------------->
@@ -35,15 +38,26 @@
 
             <main class="m-3 p-5 bg-white" style="flex: 1 1 81%; width: 75%; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
                 
-                <h1 class="fw-bold display-5 text-warning mb-4 bg-black pt-2 pb-1 ps-3" id="perfil"><i class="bi bi-file-earmark-bar-graph-fill"></i>&ensp;MI PERFIL&ensp;<i class="bi bi-file-earmark-bar-graph-fill"></i></h1>
+                <h1 class="fw-bold display-5 text-warning mb-4 bg-black pt-2 pb-1 ps-3" id="perfil"><i class="bi bi-file-earmark-bar-graph-fill"></i>&ensp;EDITANDO PERFIL...&ensp;<i class="bi bi-file-earmark-bar-graph-fill"></i></h1>
 
 <!---- FORMULARIO DE REGISTRO ---------------------------------------->
 				
-				<form th:object="${usuario}" class="w-100">
+				<form method="post" id="editarUsuarioForm" th:action="@{/usuario/editarPerfil/submit}" th:object="${usuario}" class="w-100">
 					<fieldset class="justify-content-center border border-black border-3">
 						<legend class="fw-bold border border-black border-3 border-start-0 border-end-0 border-top-0 text-black px-2 mb-3 bg-warning">DATOS DEL PERFIL</legend>
 					  	<div class="mx-3 mb-3">
+							
+							
+	<!-- MENSAJE DE ERROR -------------------------------------------------------------------------------------------------------------------------------->
+														                                
+							<div class="alert alert-danger alert-dismissible fade show d-none" role="alert" id="alertError">
+								<strong><i class="bi bi-exclamation-triangle-fill text-danger"></i>&ensp;<span id="spanError"></span></strong>
+								<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+							</div>
+													
+	<!---------------------------------------------------------------------------------------------------------------------------------------------------->
 				
+								
 	<!---- NOMBRE Y APELLIDOS -------------------------------------------->
 				                        
 				       		<div class="d-flex w-100">
@@ -54,17 +68,17 @@
 								
 				               	<div class="me-3" style="flex: 1 1 33%;">
 				               		<label for="nombre" class="form-label m-0 fw-bold">NOMBRE<span class="text-danger"> *</span></label><br>
-				              		<input type="text" th:field="*{nombre}" class="form-control" name="nombre" id="nombre" placeholder="Introduzca su nombre" required maxlength="100" size="50" disabled>
+				              		<input type="text" th:field="*{nombre}" class="form-control" name="nombre" id="nombre" placeholder="Introduzca su nombre" required maxlength="100" size="50">
 				              	</div>
 				
 				            	<div class="mx-3" style="flex: 1 1 33%;">
 				               		<label for="primerApellido" class="form-label m-0 fw-bold">PRIMER APELLIDO<span class="text-danger"> *</span></label><br>
-				                  	<input type="text" th:field="*{primerApellido}" class="form-control" name="primerApellido" id="primerApellido" placeholder="Introduzca su primer apellido" required maxlength="100" size="50" disabled>
+				                  	<input type="text" th:field="*{primerApellido}" class="form-control" name="primerApellido" id="primerApellido" placeholder="Introduzca su primer apellido" required maxlength="100" size="50">
 				            	</div>
 				
 				              	<div class="ms-3" style="flex: 1 1 33%;">
 				               		<label for="segundoApellido" class="form-label m-0 fw-bold">SEGUNDO APELLIDO</label><br>
-				             		<input type="text" th:field="*{segundoApellido}" class="form-control" name="segundoApellido" id="segundoApellido" placeholder="Introduzca su segundo apellido" maxlength="100" size="50" disabled>
+				             		<input type="text" th:field="*{segundoApellido}" class="form-control" name="segundoApellido" id="segundoApellido" placeholder="Introduzca su segundo apellido" maxlength="100" size="50">
 				              	</div>    
 				                        
 				          	</div>
@@ -77,19 +91,19 @@
 				                        
 				           		<div class="me-3" style="flex: 1 1 33%;">
 				              		<label for="numTelefono" class="form-label m-0 fw-bold">TELÉFONO<span class="text-danger"> *</span></label><br>
-				              		<input type="text" th:field="*{numTelefono}" class="form-control w-100" name="numTelefono" id="numTelefono" placeholder="Introduzca su nº teléfono" required disabled>
+				              		<input type="text" th:field="*{numTelefono}" class="form-control w-100" name="numTelefono" id="numTelefono" placeholder="Introduzca su nº teléfono" required>
 				              	</div>
 				
 				             	<div class="mx-3" style="flex: 1 1 33%;">
 				            		<label for="progenitor" class="fw-bold">PROGENITOR<span class="text-danger"> *</span></label><br>
-				                   	<select th:field="*{progenitor}" class="form-select form-select-sm" style="height: 37px;"  name="progenitor" id="progenitor" disabled>
+				                   	<select th:field="*{progenitor}" class="form-select form-select-sm" style="height: 37px;"  name="progenitor" id="progenitor">
 				                   		<option th:each="progenitor : ${listaTipoProgenitor}" th:value="${progenitor}" th:field="*{progenitor}" th:text="${progenitor.tipoProgenitor}"></option>
 				                   	</select>
 				              	</div>        
 				
 				            	<div class="ms-3" style="flex: 1 1 33%;">
 				              		<label for="numHijos" class="form-label m-0 fw-bold">NÚMERO DE HIJOS</label><br>
-				                 	<input class="w-100" style="height: 37px;" type="number" name="numHijos" placeholder="Introduzca su nº de hijos" id="numHijos" min="0" step="1" th:field="*{numHijos}" disabled>
+				                 	<input class="w-100" style="height: 37px;" type="number" name="numHijos" placeholder="Introduzca su nº de hijos" id="numHijos" min="0" step="1" th:field="*{numHijos}">
 				               	</div>
 				
 							</div>
@@ -119,13 +133,13 @@
 					     	<div class="d-flex mt-3 w-100">
 					
 						  		<div class="me-3" style="flex: 1 1 50%;">
-						      		<label for="dni" class="form-label text-warning mb-1 px-2 pb-0 fw-bold bg-black rounded-2"><i class="bi bi-person-vcard"></i>&ensp;DNI<span class="text-danger"> *</span></label><br>
-						       		<input type="text" th:field="*{dni}" class="form-control w-100" name="dni" id="dni" placeholder="Introduzca su DNI" required disabled>
+						      		<label for="dniNie" class="form-label text-warning mb-1 px-2 pb-0 fw-bold bg-black rounded-2"><i class="bi bi-person-vcard"></i>&ensp;DNI / NIE<span class="text-danger"> *</span></label><br>
+						       		<input type="text" th:field="*{dni}" class="form-control w-100" name="dniNie" id="dniNie" placeholder="Introduzca su DNI o NIE" required>
 						  		</div>
 					
 								<div class="ms-3" style="flex: 1 1 50%;">
 									<label for="email" class="form-label text-warning mb-1 px-2 pb-0 fw-bold bg-black rounded-2"><i class="bi bi-envelope-fill"></i>&ensp;CORREO ELECTRÓNICO<span class="text-danger"> *</span></label><br>
-									<input type="email" th:field="*{email}" class="form-control w-100" name="email" id="email" placeholder="Introduzca su correo electrónico" required disabled>
+									<input type="email" th:field="*{email}" class="form-control w-100" name="email" id="email" placeholder="Introduzca su correo electrónico" required>
 								</div>
 					
 					     	</div>
@@ -135,13 +149,10 @@
 				     	</div>        
 				    </fieldset>
 					
-					<!--div class="mt-4 px-0 w-100">
-						<button type="submit" class="btn border border-2 border-black btn-warning w-100 mt-2 mb-1 fw-bold" style="font-size: 23px;">GUARDAR CAMBIOS EN EL PERFIL</button>
-					</div-->
-					
-					<div class="mt-3 px-0 w-100">
-						<a type="button" th:href="@{/usuario/editarPerfil/{id}(id=${usuario.id})}" class="btn border border-2 border-black btn-warning w-100 mt-2 mb-1 fw-bold" style="font-size: 23px;">EDITAR PERFIL</a>
+					<div class="mt-4 px-0 w-100">
+						<button type="submit" class="btn border border-2 border-black btn-success w-100 mt-2 mb-1 fw-bold" style="font-size: 23px;">GUARDAR CAMBIOS</button>
 					</div>
+					
 					
 					
 				</form>
@@ -150,6 +161,28 @@
 
      		</main>
 
+<!-------------------------------------------------------------------->
+								
+	<!-- Modal-->
+			<div class="modal fade" id="modalConfirmacion" tabindex="-1" aria-labelledby="modalConfirmacionLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h1 class="modal-title fs-5 fw-bold" id="modalConfirmacionLabel"><i class="bi bi-exclamation-diamond-fill text-success"></i>&ensp;CONFIRMACIÓN&ensp;<i class="bi bi-exclamation-diamond-fill text-success"></i></h1>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<p class="m-0">PARA QUE SU PERFIL PUEDA ACTUALIZARSE SERÁ NECESARIO <span class="text-success fw-bold">CERRAR SESIÓN</span>.<br><br><span class="fw-bold">¿DESEA CERRAR SESIÓN PARA GUARDAR LOS CAMBIOS?</span></p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
+							<button type="button" id="botonConfirmar" class="btn btn-success fw-bold" data-bs-dismiss="modal">SÍÍÍÍÍ</button>
+						</div>
+					</div>
+				</div>
+			</div>
+							
+								
 <!-------------------------------------------------------------------->
 
         </div>

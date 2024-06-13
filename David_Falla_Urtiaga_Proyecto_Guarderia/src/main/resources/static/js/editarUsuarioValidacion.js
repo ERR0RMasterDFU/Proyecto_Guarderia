@@ -1,4 +1,4 @@
-document.getElementById("profesorForm").addEventListener("submit", function(event) {
+document.getElementById("editarUsuarioForm").addEventListener("submit", function(event) {
     event.preventDefault();
     
     let error = [];
@@ -26,6 +26,18 @@ document.getElementById("profesorForm").addEventListener("submit", function(even
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
+// VALIDACIÓN DEL CORREO ELECTRÓNICO ----------------------------------------------------------------------------------------------------------------------------
+
+    const email = document.getElementById("email").value;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email)) {
+        error.push("El correo electrónico no es válido.");
+    }
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 // ALERT QUE MUESTRA ERRORES -------------------------------------------------------------------------------------------------------------------------------------
 
     const alertError = document.getElementById("alertError");
@@ -39,19 +51,19 @@ document.getElementById("profesorForm").addEventListener("submit", function(even
         alertError.classList.remove("d-none");                  // MUESTRA EL ALERT
     } else {
         
-         // Muestra modal de confirmación
+        // Muestra modal de confirmación
 
         const modalConfirmacion = new bootstrap.Modal(document.getElementById('modalConfirmacion'));
         modalConfirmacion.show();
 
         
-        // MUESTRA EL MODAL Y EL BOTÓN DE SUBMIT EN EL CLARO QUE SÍ, HOMBRE
+        // MUESTRA EL MODAL Y EL BOTÓN DE SUBMIT EN EL SÍÍÍ
         
         document.getElementById('botonConfirmar').addEventListener('click', function() {
             modalConfirmacion.hide();
             event.target.submit();
         }, { once: true });
-        
+    
     }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -51,19 +51,19 @@ document.getElementById("registroForm").addEventListener("submit", function(even
         alertError.classList.remove("d-none");                  // MUESTRA EL ALERT
     } else {
         
-        // Mostrar modal de confirmación
+        // Muestra modal de confirmación
 
-        const modalConfirmacion = new bootstrap.Modal(document.getElementById('modalConfirmacion'), {});
+        const modalConfirmacion = new bootstrap.Modal(document.getElementById('modalConfirmacion'));
         modalConfirmacion.show();
 
-        // Cierra el modal después de 3 segundos
-
-        setTimeout(() => {
-            modalConfirmacion.hide();
-        }, 3000);
-
-        event.target.submit();
         
+        // MUESTRA EL MODAL Y EL BOTÓN DE SUBMIT EN EL CLARO QUE SÍ, HOMBRE
+        
+        document.getElementById('botonConfirmar').addEventListener('click', function() {
+            modalConfirmacion.hide();
+            event.target.submit();
+        }, { once: true });
+    
     }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------

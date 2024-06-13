@@ -24,6 +24,19 @@ public interface ActividadComplementariaRepositorio extends JpaRepository<Activi
 	
 // ---------------------------------------------------------------------------------------------------------------------------
 	
+	
+// BOTÓN PROFESORES (ACTIVIDAD COMPLEMENTARIA) -------------------------------------------------------------------------------
+	
+	@Query("""
+			SELECT p
+			FROM Profesor p
+			WHERE encargado.id = :actividad
+			ORDER BY curso.id asc
+			""")
+	List<Profesor> findProfesoresByActividadUsuario(@Param("actividad") long id);
+		
+// ---------------------------------------------------------------------------------------------------------------------------
+	
 
 // BOTÓN ALUMNOS (ACTIVIDAD COMPLEMENTARIA) ----------------------------------------------------------------------------------
 	

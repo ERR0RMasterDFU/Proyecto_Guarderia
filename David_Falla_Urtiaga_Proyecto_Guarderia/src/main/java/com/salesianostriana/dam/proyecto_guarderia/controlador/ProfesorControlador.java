@@ -53,9 +53,10 @@ public class ProfesorControlador {
 	@GetMapping("/nuevoProfesor")
 	public String mostrarFormularioProfesor(Model model) {
 		
+		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
+		
 		Profesor profesor = new Profesor();
 		model.addAttribute("profesor", profesor);
-		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
 		
 		model.addAttribute("listaCursos", CursoServicio.findAll()); 		//LISTA DE CURSOS PARA PROFESOR
 		model.addAttribute("listaActividades", ActServicio.findAll()); 		//LISTA DE ACTIVIDADES PARA PROFESOR

@@ -81,10 +81,8 @@ public class AlumnoControlador {
 // GUARDA EL ALUMNO EN LA BASE DE DATOS --------------------------------------------------------------------------------------
 	
 	@PostMapping("/usuario/matricula/submit")
-	public String registroMatriculaFormulario(@ModelAttribute("alumno") Alumno alumno, @AuthenticationPrincipal Usuario usuario, Model model) {
-		
-		model.addAttribute("listaAsideUsuario", obServicio.tresObservacionesMasRecientesUsuario(usuario));
-		
+	public String registroMatriculaFormulario(@ModelAttribute("alumno") Alumno alumno, @AuthenticationPrincipal Usuario usuario) {
+				
 		alumno.setProgenitor(usuario);
 		servicio.save(alumno);		
 			
@@ -99,8 +97,9 @@ public class AlumnoControlador {
 	@GetMapping("/admin/alumnos/editarAlumno/{id}")
 	public String mostrarFormularioEdicion(@PathVariable("id") long id, Model model) {
 			
-		Optional<Alumno> alumnoAEditar = servicio.findById(id);
 		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
+		
+		Optional<Alumno> alumnoAEditar = servicio.findById(id);
 			
 		if(alumnoAEditar.isPresent()) {
 				
@@ -123,9 +122,7 @@ public class AlumnoControlador {
 // GUARDA LOS CAMBIOS REALIZADOS SOBRE EL ALUMNO EN LA BASE DE DATOS ---------------------------------------------------------
 		
 	@PostMapping("/admin/alumnos/editarAlumno/submit")
-	public String registrarAlumnoEditado(@ModelAttribute("alumno") Alumno alumno, @AuthenticationPrincipal Usuario usuario, Model model) {
-		
-		model.addAttribute("listaAsideUsuario", obServicio.tresObservacionesMasRecientesUsuario(usuario));
+	public String registrarAlumnoEditado(@ModelAttribute("alumno") Alumno alumno) {
 			
 		servicio.save(alumno);
 			
