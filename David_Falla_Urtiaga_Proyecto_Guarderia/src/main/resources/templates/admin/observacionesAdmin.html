@@ -78,7 +78,8 @@
 							<p class="card-text"><span class="fw-bold">MENSAJE:<br></span><span th:text="${observacion.mensaje}"></span></p>
 						  </div>
 						  <div class="card-body pb-0">
-							<div class="text-center align-middle justify-content-center w-100">
+
+						  	<div class="d-flex text-center align-middle justify-content-center w-100">
 								<div class="py-0 w-100">
 									<a type="button" href="agregarEditarObservacionesAdmin.html" th:href="@{/admin/observaciones/editarObservacion/{id}(id=${observacion.id})}" class="btn text-white fw-bold w-100" style="background-color: rgb(210, 122, 2);"><i class="bi bi-gear-fill" style="font-size: 20px;"></i></a>										
 								</div>
@@ -86,6 +87,7 @@
 									<a type="button" href="observacionesAdmin.html" th:href="@{/admin/observaciones/borrarObservacion/{id}(id=${observacion.id})}" class="btn text-white fw-bold w-100" style="background-color: rgb(218, 63, 3);"><i class="bi bi-trash-fill" style="font-size: 20px;"></i></a>
 								</div>
 							</div>
+
 						  </div>
 						</div>
 						

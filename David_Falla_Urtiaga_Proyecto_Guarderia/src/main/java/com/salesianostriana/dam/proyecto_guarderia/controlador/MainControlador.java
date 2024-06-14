@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MainControlador {
+	
+	
 
 // MUESTRA LA PÁGINA DE HISTORIA ---------------------------------------------------------------------------------------------
 	

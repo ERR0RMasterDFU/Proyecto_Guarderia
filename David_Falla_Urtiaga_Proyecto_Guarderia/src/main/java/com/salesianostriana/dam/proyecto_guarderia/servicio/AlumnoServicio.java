@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.proyecto_guarderia.servicio;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -83,6 +84,24 @@ public class AlumnoServicio extends ServicioBaseImpl<Alumno, Long, AlumnoReposit
 			}
 		}
 		
+	}
+	
+// ---------------------------------------------------------------------------------------------------------------------------
+	
+	
+// MÉTODO QUE HACE QUE LOS ALUMNOS CUMPLAN AÑOS ------------------------------------------------------------------------------
+	
+	public void cumplirAnios () {
+		
+		LocalDate cumple = LocalDate.now();
+		int uno = 1;
+		
+		for (Alumno alumno : repositorio.findAll()) {
+			
+			if(alumno.getFechaNacimiento() == cumple) {
+				alumno.setEdad(alumno.getEdad()+uno);
+			}	
+		}
 	}
 	
 // ---------------------------------------------------------------------------------------------------------------------------

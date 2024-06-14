@@ -39,7 +39,7 @@ document.getElementById("profesorForm").addEventListener("submit", function(even
         alertError.classList.remove("d-none");                  // MUESTRA EL ALERT
     } else {
         
-         // Muestra modal de confirmación
+         /* Muestra modal de confirmación
 
         const modalConfirmacion = new bootstrap.Modal(document.getElementById('modalConfirmacion'));
         modalConfirmacion.show();
@@ -50,7 +50,9 @@ document.getElementById("profesorForm").addEventListener("submit", function(even
         document.getElementById('botonConfirmar').addEventListener('click', function() {
             modalConfirmacion.hide();
             event.target.submit();
-        }, { once: true });
+        }, { once: true });*/
+
+        event.target.submit();
         
     }
 

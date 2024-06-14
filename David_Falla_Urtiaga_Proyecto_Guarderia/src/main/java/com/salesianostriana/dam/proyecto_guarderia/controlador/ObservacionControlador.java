@@ -133,7 +133,8 @@ public class ObservacionControlador {
 		Optional<Observacion> observacionABorrar = servicio.findById(id);
 		
 		if(observacionABorrar.isPresent()) {
-			
+			observacionABorrar.get().removeFromAlumno(observacionABorrar.get().getAlumno());
+			observacionABorrar.get().removeFromProfesor(observacionABorrar.get().getProfesor());
 			servicio.deleteById(id);
 				
 		}else {

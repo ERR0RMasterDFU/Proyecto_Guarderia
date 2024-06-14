@@ -57,7 +57,7 @@
 						</thead>
 						<tbody>
 							<tr th:each="alumno : ${listaAlumnos}" class="align-middle">
-								<td th:text="${alumno.id}" class="border-2 border-end-0 border-black py-3 px-2"><br><p th:if="cumpleanos == alumno.fechaNacimiento" class="fw-bold" style="color: rgb(255, 157, 157);">¡FELIZ</p></td>
+								<td th:text="${alumno.id}" class="border-2 border-end-0 border-black py-3 px-2"></td>
 								<td th:text="${alumno.nombre}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
 								<td	th:text="${alumno.primerApellido}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
 								<td th:text="${alumno.segundoApellido}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
@@ -87,12 +87,17 @@
 									</div>
 								</td>
 								<td class="border-2 border-start-0 border-start-0 border-black py-2 px-3">
-									<div class="text-center align-middle">
-										<div class="py-0">
-											<a type="button" href="../agregarEditarAlumnos.html" th:href="@{/admin/alumnos/editarAlumno/{id}(id=${alumno.id})}" class="btn text-white fw-bold w-100" style="background-color: rgb(210, 122, 2); font-size: 20px;"><i class="bi bi-person-fill-gear m-0"></i></a>
+									<div class="d-flex justify-content-center flex-direction text-center align-middle">
+										<div class="text-center align-middle">
+											<div class="py-0">
+												<a type="button" href="../agregarEditarAlumnos.html" th:href="@{/admin/alumnos/editarAlumno/{id}(id=${alumno.id})}" class="btn text-white fw-bold w-100" style="background-color: rgb(210, 122, 2); font-size: 20px;"><i class="bi bi-person-fill-gear m-0"></i></a>
+											</div>
+											<div class="mt-2 py-0">
+												<button type="button" data-bs-toggle="modal" data-bs-target="#modalBorrado" th:data-id="${alumno.id}" class="btn text-white fw-bold w-100" style="background-color: rgb(218, 63, 3); font-size: 20px;"><i class="bi bi-person-fill-dash m-0"></i></button>
+											</div>
 										</div>
-										<div class="mt-2 py-0">
-											<button type="button" data-bs-toggle="modal" data-bs-target="#modalBorrado" th:data-id="${alumno.id}" class="btn text-white fw-bold w-100" style="background-color: rgb(218, 63, 3); font-size: 20px;"><i class="bi bi-person-fill-dash m-0"></i></button>
+										<div th:if="${cumpleanos == alumno.fechaNacimiento}" class="ms-2 py-0 w-100">
+											<button type="button" data-bs-toggle="modal" data-bs-target="#modalCumple" class="btn text-white h-100" style="background-color: rgb(218, 94, 187);"><i class="bi bi-cake2" style="font-size: 30px;"></i></button>
 										</div>
 									</div>
 								</td>
@@ -100,31 +105,61 @@
 						</tbody>
 					</table>
 				</div>
-				
-				
-				
-		<!-- MODAL DE CONFIRMACIÓN DE BORRADO -------------------------------------------------------------------------------------------------------------------------------------------------------------->
-				
-				<div class="modal fade" id="modalBorrado" tabindex="-1" aria-labelledby="labelModalBorrado" aria-hidden="true">
-				  <div class="modal-dialog" role="document">
-				    <div class="modal-content">
-				      <div class="modal-header">
-				        <h1 class="modal-title fs-5" id="labelModalBorrado"><i class="bi bi-exclamation-triangle-fill" style="color: rgb(218, 63, 3);"></i>&ensp;ELIMINAR ALUMNO</h1>
-				        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				      </div>
-				      <div class="modal-body">
-				        <p>¿Seguro que quiere ELIMINAR al alumno seleccionado?</p>
-						<p><i class="bi bi-exclamation-triangle-fill" style="color: rgb(218, 63, 3);"></i>&ensp;Tenga en cuenta que también se eliminarán TODAS sus observaciones.&ensp;<i class="bi bi-exclamation-triangle-fill" style="color: rgb(218, 63, 3);"></i></p>
-				      </div>
-				      <div class="modal-footer">
-				        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
-						<a id="confirmarEliminar" href="#" class="btn fw-bold text-white" style="background-color: rgb(218, 63, 3);">ELIMINAR</a>
-				      </div>
-				    </div>
-				  </div>
+
+
+
+		<!-- MODAL DE CUMPLEAÑOS ALUMNO -------------------------------------------------------------------------------------------------------------------------------------------------------------->
+						
+				<div class="modal fade" id="modalCumple" tabindex="-1" aria-labelledby="labelModalCumple" aria-hidden="true">
+					<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header" style="background-color: rgb(218, 94, 187);">
+							<h1 class="modal-title fs-5 text-white text-center" id="labelModalCumple"><i class="bi bi-cake2-fill"></i>&ensp;¡FELIZ CUMPLEAÑOS!&ensp;<i class="bi bi-cake2-fill"></i></h1>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div>
+							<img src="../../static/img/general/felizCumple.jpg" th:src="@{/img/general/felizCumple.jpg}" class="w-100"><img>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn text-center text-white fw-bold" style="background-color: rgb(218, 94, 187);" data-bs-dismiss="modal">¡QUE DISFRUTES EN TU GRAN DÍA!</button>
+						</div>
+					</div>
+					</div>
 				</div>
 				
 		<!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+
+		<!-- MODAL DE CONFIRMACIÓN DE BORRADO -------------------------------------------------------------------------------------------------------------------------------------------------------------->
+									
+
+		<div class="modal fade" id="modalBorrado" tabindex="-1" aria-labelledby="modalBorradoLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5 fw-bold" id="modalBorradoLabel"><i class="bi bi-exclamation-diamond-fill" style="color: rgb(218, 63, 3);"></i>&ensp;CONFIRMACIÓN&ensp;<i class="bi bi-exclamation-diamond-fill" style="color: rgb(218, 63, 3);"></i></h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<p class="m-0">¿SEGURO QUE QUIERE <span class="fw-bold" style="color: rgb(218, 63, 3);">ELIMINAR</span> AL ALUMNO SELECCIONADO?<br>TAMBIÉN SE <span class="fw-bold" style="color: rgb(218, 63, 3);">ELIMINARÁN TODAS SUS OBSERVACIONES</span>.<br><br><span class="fw-bold">¿DESEA CONTINUAR?</span></p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
+						<a type="button" id="confirmarEliminar" class="btn fw-bold text-white" style="background-color: rgb(218, 63, 3);">¡HAZTE MAYOR Y CRECE!</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+
+
+
+
+
+
 
             </main>
 
