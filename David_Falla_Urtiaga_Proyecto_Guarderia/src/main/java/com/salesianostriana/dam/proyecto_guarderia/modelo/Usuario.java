@@ -8,15 +8,13 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -39,12 +37,17 @@ public class Usuario implements UserDetails {
 	@Id @GeneratedValue
 	private long id;
 	
+	@Column(unique = true)
 	private String username;
+	
 	private String password;
 	private String nombre;
 	private String primerApellido;
 	private String segundoApellido;
+	
+	@Column(unique = true)
 	private String dni;
+	
 	private String email;
 	private String numTelefono;
 	private int numHijos;
@@ -60,34 +63,6 @@ public class Usuario implements UserDetails {
 	@OneToMany(mappedBy="progenitor", fetch = FetchType.EAGER)
 	@Builder.Default
 	private List<Alumno> hijos = new ArrayList<>();
-	
-	
-	
-// MTM (OBSERVACION) --------------------------------------------------------	
-	
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(
-			name = "observacion_usuario",
-			joinColumns = @JoinColumn(name="usuario_id"),
-			inverseJoinColumns = @JoinColumn(name="observacion_id")
-	)
-	@Builder.Default
-	private List<Observacion> observaciones = new ArrayList<>();
-	
-	
-	
-	
-// MÉTODOS HELPER ----------------------------------------------------------------------------	
-	
-	public void addObservacion(Observacion o) {
-		this.observaciones.add(o);
-		o.getUsuarios().add(this);
-	}
-		
-	public void removeObservacion(Observacion o) {
-		o.getUsuarios().remove(this);
-		this.observaciones.remove(o);
-	}
 
 	
 //SEGURIDAD ----------------------------------------------------------------------------------------------------------------------------------

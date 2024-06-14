@@ -105,25 +105,26 @@
 
 	<!-- MODAL DE CONFIRMACIÓN DE BORRADO -------------------------------------------------------------------------------------------------------------------------------------------------------------->
 							
-			<div class="modal fade" id="modalBorrado" tabindex="-1" aria-labelledby="labelModalBorrado" aria-hidden="true">
-				<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="labelModalBorrado"><i class="bi bi-exclamation-triangle-fill" style="color: rgb(218, 63, 3);"></i>&ensp;ELIMINAR PROFESOR</h1>
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					</div>
-					<div class="modal-body">
-						<p>¿Seguro que quiere ELIMINAR al profesor seleccionado?</p>
-						<p><i class="bi bi-exclamation-triangle-fill" style="color: rgb(218, 63, 3);"></i>&ensp;Tenga en cuenta que también se eliminarán TODAS sus observaciones.&ensp;<i class="bi bi-exclamation-triangle-fill" style="color: rgb(218, 63, 3);"></i></p>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
-						<a id="confirmarEliminar" href="#" class="btn fw-bold text-white" style="background-color: rgb(218, 63, 3);">ELIMINAR</a>
+
+				<div class="modal fade" id="modalBorrado" tabindex="-1" aria-labelledby="modalBorradoLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h1 class="modal-title fs-5 fw-bold" id="modalBorradoLabel"><i class="bi bi-exclamation-diamond-fill" style="color: rgb(218, 63, 3);"></i>&ensp;CONFIRMACIÓN&ensp;<i class="bi bi-exclamation-diamond-fill" style="color: rgb(218, 63, 3);"></i></h1>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								<p class="m-0">¿SEGURO QUE QUIERE <span class="fw-bold" style="color: rgb(218, 63, 3);">ELIMINAR</span> AL PROFESOR SELECCIONADO?<br>TAMBIÉN SE <span class="fw-bold" style="color: rgb(218, 63, 3);">ELIMINARÁN TODAS SUS OBSERVACIONES</span>.<br><br><span class="fw-bold">¿DESEA CONTINUAR?</span></p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
+								<a type="button" id="confirmarEliminar" class="btn fw-bold text-white" style="background-color: rgb(218, 63, 3);">¡ADIÓS PROFESOR!</a>
+							</div>
+						</div>
 					</div>
 				</div>
-				</div>
-			</div>
-			
+
+				
 	<!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 
             </main>

@@ -14,7 +14,9 @@ public interface UsuarioRepositorio extends JpaRepository<Usuario, Long>{
 
 	Optional<Usuario> findFirstByUsername(String username);
 	
-	// CUENTA LOS ALUMNOS QUE TIENE UN USUARIO
+	
+// CUENTA LOS ALUMNOS QUE TIENE UN USUARIO -----------------------------------------------------------------------------------
+	
 	@Query("""
 			SELECT count(a)
 			FROM Alumno a
@@ -22,16 +24,29 @@ public interface UsuarioRepositorio extends JpaRepository<Usuario, Long>{
 			""")
 	public int findNumAlumnosByUsuario(@Param("progenitor") long id);
 	
+// ---------------------------------------------------------------------------------------------------------------------------
 	
-	// MUESTRA LOS HIJOS DEL USUARIO
+	
+// BOTÓN ALUMNOS (TABLA DE USUARIOS) -----------------------------------------------------------------------------------------
+	
 	@Query("""
 			SELECT a
 			FROM Alumno a
 			WHERE a.progenitor.id = ?1
 			""")
 	public List<Alumno> findAlumnosbyUsuario(long id);
+	
+// ---------------------------------------------------------------------------------------------------------------------------
+
+	
+// BOTÓN ALUMNOS (TABLA DE USUARIOS) -----------------------------------------------------------------------------------------	
+
+	@Query("""
+			SELECT u
+			FROM Usuario u
+			""")
+	public List<Usuario> findAllUsuarios();
+	
+// ---------------------------------------------------------------------------------------------------------------------------		
+	
 }
-
-
-
-

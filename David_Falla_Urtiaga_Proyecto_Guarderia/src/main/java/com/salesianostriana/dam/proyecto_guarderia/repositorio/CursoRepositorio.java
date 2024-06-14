@@ -12,7 +12,9 @@ import com.salesianostriana.dam.proyecto_guarderia.modelo.Profesor;
 
 public interface CursoRepositorio extends JpaRepository<Curso, Long>{
 
-	// FILTRA PROFESORES POR CURSO 
+	
+// BOTÓN PROFESORES (CURSO) --------------------------------------------------------------------------------------------------
+
 	@Query("""
 			SELECT p
 			FROM Profesor p
@@ -20,17 +22,23 @@ public interface CursoRepositorio extends JpaRepository<Curso, Long>{
 			""")
 	public List<Profesor> findProfesoresByCurso(@Param("curso") long id);
 	
+// ---------------------------------------------------------------------------------------------------------------------------
 	
-	// FILTRA ALUMNOS POR CURSO 
+	
+// BOTÓN ALUMNOS (CURSO) -----------------------------------------------------------------------------------------------------
+	
 		@Query("""
 				SELECT a
 				FROM Alumno a
 				WHERE curso.id = :curso
 				""")
 	public List<Alumno> findAlumnosByCurso(@Param("curso") long id);
+		
+// ---------------------------------------------------------------------------------------------------------------------------
 	
 	
-	// CUENTA LOS PROFESORES QUE HAY EN UN CURSO
+// CUENTA LOS PROFESORES QUE HAY EN UN CURSO ---------------------------------------------------------------------------------
+		
 	@Query("""
 			SELECT count(p)
 			FROM Profesor p
@@ -38,14 +46,18 @@ public interface CursoRepositorio extends JpaRepository<Curso, Long>{
 			""")
 	public int findNumProfesoresByCurso(@Param("curso") long id);
 	
+// ---------------------------------------------------------------------------------------------------------------------------
 	
-	// CUENTA LOS ALUMNOS QUE HAY EN UN CURSO
+	
+// CUENTA LOS ALUMNOS QUE HAY EN UN CURSO ------------------------------------------------------------------------------------
+	
 	@Query("""
 			SELECT count(a)
 			FROM Alumno a
 			WHERE curso.id = :curso
 			""")
 	public int findNumAlumnosByCurso(@Param("curso") long id);
+	
+// ---------------------------------------------------------------------------------------------------------------------------
+	
 }
-
-

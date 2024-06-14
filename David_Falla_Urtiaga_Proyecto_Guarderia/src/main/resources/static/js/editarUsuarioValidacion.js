@@ -1,4 +1,4 @@
-document.getElementById("registroForm").addEventListener("submit", function(event) {
+document.getElementById("editarUsuarioForm").addEventListener("submit", function(event) {
     event.preventDefault();
     
     let error = [];
@@ -57,7 +57,7 @@ document.getElementById("registroForm").addEventListener("submit", function(even
         modalConfirmacion.show();
 
         
-        // MUESTRA EL MODAL Y EL BOTÓN DE SUBMIT EN EL CLARO QUE SÍ, HOMBRE
+        // MUESTRA EL MODAL Y EL BOTÓN DE SUBMIT EN EL SÍÍÍ
         
         document.getElementById('botonConfirmar').addEventListener('click', function() {
             modalConfirmacion.hide();

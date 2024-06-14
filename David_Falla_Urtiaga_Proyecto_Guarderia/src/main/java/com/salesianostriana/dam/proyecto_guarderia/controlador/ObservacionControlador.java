@@ -34,7 +34,7 @@ public class ObservacionControlador {
 	private ActividadComplementariaServicio actServicio;
 	
 	
-	//MOSTRAR LA LISTA DE OBSERVACIONES -----------------------------------------------------------------------------
+// PANTALLA DE OBSERVACIONES -------------------------------------------------------------------------------------------------
 	
 	@GetMapping("/")
 	public String mostrarObservaciones(Model model) {
@@ -45,15 +45,18 @@ public class ObservacionControlador {
 		return "admin/observacionesAdmin";
 	}
 	
+// ---------------------------------------------------------------------------------------------------------------------------
 	
-	// MUESTRA EL FORMULARIO PARA AÑADIR OBSERVACIONES VACÍO -------------------------------------------------------
+	
+// FORMULARIO PARA AÑADIR OBSERVACIONES --------------------------------------------------------------------------------------
 	
 	@GetMapping("/nuevaObservacion")
 	public String mostrarFormularioObservacionAgregar(Model model) {
 			
+		model.addAttribute("listaAsideAdmin", servicio.tresObservacionesMasRecientes());
+		
 		Observacion observacion = new Observacion();
 		model.addAttribute("observacion", observacion);
-		model.addAttribute("listaAsideAdmin", servicio.tresObservacionesMasRecientes());
 		
 		model.addAttribute("listaAlumnos", alumnoServicio.findAll()); 		//LISTA DE ALUMNOS PARA OBSERVACIÓN
 		model.addAttribute("listaProfesores", profeServicio.findAll()); 	//LISTA DE PROFESORES PARA OBSERVACIÓN
@@ -62,9 +65,10 @@ public class ObservacionControlador {
 		return "admin/agregarEditarObservacionesAdmin";
 	}	
 
+// ---------------------------------------------------------------------------------------------------------------------------
 		
 		
-	// AÑADE LA NUEVA OBSERVACIÓN A LA BASE DE DATOS ---------------------------------------------------------------
+// GUARDA LAS OBSERVACIONES EN LA BASE DE DATOS ------------------------------------------------------------------------------
 		
 	@PostMapping("/nuevaObservacion/submit")
 	public String registrarNuevoCurso(@ModelAttribute("observacion") Observacion observacion) {
@@ -75,14 +79,17 @@ public class ObservacionControlador {
 		return "redirect:/admin/observaciones/";
 	} 
 
+// ---------------------------------------------------------------------------------------------------------------------------
 	
-	// MUESTRA EL FORMULARIO PARA AÑADIR CURSOS RELLENO ---------------------------------------------------
+	
+// FORMULARIO PARA EDITAR OBSERVACIONES --------------------------------------------------------------------------------------
 
 	@GetMapping("/editarObservacion/{id}")
 	public String mostrarFormularioObservacionEditar(@PathVariable("id") long id, Model model) {
 			
-		Optional<Observacion> observacionAEditar = servicio.findById(id);
 		model.addAttribute("listaAsideAdmin", servicio.tresObservacionesMasRecientes());
+		
+		Optional<Observacion> observacionAEditar = servicio.findById(id);
 		
 		model.addAttribute("listaAlumnos", alumnoServicio.findAll()); 		//LISTA DE ALUMNOS PARA OBSERVACIÓN
 		model.addAttribute("listaProfesores", profeServicio.findAll()); 	//LISTA DE PROFESORES PARA OBSERVACIÓN
@@ -99,10 +106,11 @@ public class ObservacionControlador {
 		}
 			
 	}
+
+// ---------------------------------------------------------------------------------------------------------------------------
 		
 		
-		
-	// GUARDA LOS NUEVOS CAMBIOS A LOS CURSOS ----------------------------------------------------------------
+// GUARDA CAMBIOS REALIZADOS EN LAS OBSERVACIONES ----------------------------------------------------------------------------
 		
 	@PostMapping("/editarObservacion/submit")
 	public String registrarObservacionEditada(@ModelAttribute("observacion") Observacion observacion) {
@@ -112,31 +120,35 @@ public class ObservacionControlador {
 		return "redirect:/admin/observaciones/";	
 	}
 		
+// ---------------------------------------------------------------------------------------------------------------------------
 		
 		
-	//BORRA EL CURSO ELEGIDO POR ID ----------------------------------------------------------------------
+// BORRA LA OBSERVACIÓN POR ID -----------------------------------------------------------------------------------------------
 
 	@GetMapping("/borrarObservacion/{id}")
 	public String borrarObservacion(@PathVariable("id") long id, Model model) {
 
-		Optional<Observacion> observacionAEditar = servicio.findById(id);
 		model.addAttribute("listaAsideAdmin", servicio.tresObservacionesMasRecientes());
 		
-		if(observacionAEditar.isPresent()) {
-			
-				servicio.deleteById(id);
+		Optional<Observacion> observacionABorrar = servicio.findById(id);
+		
+		if(observacionABorrar.isPresent()) {
+			observacionABorrar.get().removeFromAlumno(observacionABorrar.get().getAlumno());
+			observacionABorrar.get().removeFromProfesor(observacionABorrar.get().getProfesor());
+			servicio.deleteById(id);
 				
-			}else {
+		}else {
 				
-				return "redirect:/admin/observaciones/?error=true";
-			}
+			return "redirect:/admin/observaciones/?error=true";
+		}
 			
 		return "redirect:/admin/observaciones/";
 	}
 	
+// ---------------------------------------------------------------------------------------------------------------------------
 		
 	
-	// FILTRA AL ALUMNO ELEGIDO EN LA OBSERVACIÓN  -----------------------------------------------------------------
+// BOTÓN DATOS DEL ALUMNO (OBSERVACIÓN) --------------------------------------------------------------------------------------
 	
 	@GetMapping("/alumno/{id}")
 	public String mostrarAlumnoFiltradoPorId(@PathVariable("id") long id, Model model) {
@@ -146,6 +158,7 @@ public class ObservacionControlador {
 		
 		return "admin/alumnosAdmin";
 	}
-
+	
+// ---------------------------------------------------------------------------------------------------------------------------
 
 }

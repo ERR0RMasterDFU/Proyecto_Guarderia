@@ -34,7 +34,7 @@ public class ProfesorControlador {
 	private ObservacionServicio obServicio;
 
 	
-	// MUESTRA LA PÁGINA DE PROFESORES -----------------------------------------------------------------------------------
+// PANTALLA DE PROFESORES ----------------------------------------------------------------------------------------------------
 	
 	@GetMapping("/")
 	public String mostrarProfesores(Model model) {
@@ -45,16 +45,18 @@ public class ProfesorControlador {
 		return "admin/profesoresAdmin";
 	}
 
+// ---------------------------------------------------------------------------------------------------------------------------
 
 	
-	// MUESTRA EL FORMULARIO PARA AÑADIR PROFESORES VACÍO ----------------------------------------------------------------
+// FORMULARIO PARA AÑADIR PROFESORES -----------------------------------------------------------------------------------------
 	
 	@GetMapping("/nuevoProfesor")
 	public String mostrarFormularioProfesor(Model model) {
 		
+		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
+		
 		Profesor profesor = new Profesor();
 		model.addAttribute("profesor", profesor);
-		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
 		
 		model.addAttribute("listaCursos", CursoServicio.findAll()); 		//LISTA DE CURSOS PARA PROFESOR
 		model.addAttribute("listaActividades", ActServicio.findAll()); 		//LISTA DE ACTIVIDADES PARA PROFESOR
@@ -62,27 +64,30 @@ public class ProfesorControlador {
 		return "admin/agregarEditarProfesoresAdmin";
 	}	
 
+// ---------------------------------------------------------------------------------------------------------------------------
 	
 	
-	// AÑADE EL NUEVO PROFESOR A LA BASE DE DATOS ------------------------------------------------------------------------
+// GUARDA LOS PROFESORES A LA BASE DE DATOS ----------------------------------------------------------------------------------
 	
 	@PostMapping("/nuevoProfesor/submit")
 	public String registrarNuevoProfesor(@ModelAttribute("profesor") Profesor profesor) {
 		
-			servicio.save(profesor);		
+		servicio.save(profesor);		
 			
 		return "redirect:/admin/profesores/";
 	} 
 
+// ---------------------------------------------------------------------------------------------------------------------------
 	
 	
-	// MUESTRA EL FORMULARIO PARA AÑADIR PROFESORES RELLENO --------------------------------------------------------------
+// FORMULARIO PARA EDITAR PROFESORES -----------------------------------------------------------------------------------------
 
 	@GetMapping("/editarProfesor/{id}")
 	public String mostrarFormularioEdicion(@PathVariable("id") long idProfesor, Model model) {
 		
-		Optional<Profesor> profesorEditar = servicio.findById(idProfesor);
 		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
+		
+		Optional<Profesor> profesorEditar = servicio.findById(idProfesor);
 		
 		if(profesorEditar.isPresent()) {
 			
@@ -100,8 +105,10 @@ public class ProfesorControlador {
 		
 	}
 	
+// ---------------------------------------------------------------------------------------------------------------------------
 	
-	// GUARDA LOS NUEVOS CAMBIOS AL PROFESOR -----------------------------------------------------------------------------
+	
+// GUARDA LOS CAMBIOS REALIZADOS SOBRE LOS PROFESORES EN LA BASE DE DATOS ----------------------------------------------------
 	
 	@PostMapping("/editarProfesor/submit")
 	public String registrarProfesorEditado(@ModelAttribute("profesor") Profesor profesor) {
@@ -111,32 +118,34 @@ public class ProfesorControlador {
 		return "redirect:/admin/profesores/";	
 	}
 	
+// ---------------------------------------------------------------------------------------------------------------------------
 	
-	//BORRA AL PROFESOR ELGIDO POR ID ------------------------------------------------------------------------------------
+	
+//BORRA AL PROFESOR POR ID ---------------------------------------------------------------------------------------------------
 
 	@GetMapping("/borrarProfesor/{id}")
 	public String borrarProfesor(@PathVariable("id") long idProfesor, Model model) {
 		
 		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
 		
-		servicio.deleteById(idProfesor);
-		
-		return "redirect:/admin/profesores/";
-		
-			/*if(profesorAEditar.isPresent()) {
+		Optional<Profesor> profesorAEditar = servicio.findById(idProfesor);
+				
+		if(profesorAEditar.isPresent()) {
 			
-			if(servicio.contarObservacionesPorProfesor(idProfesor) == 0) {
-				servicio.deleteById(idProfesor);
-			}else{
-				return "redirect:/admin/profesores/?error=true";
-			}
+			servicio.desvincularAlumnoDeObservacion(profesorAEditar, idProfesor);
+			servicio.delete(profesorAEditar.get());
+			
+		}else{
+			return "redirect:/admin/profesores/?error=true";
 		}
 		
-		return "redirect:/admin/profesores/";*/
+		return "redirect:/admin/profesores/";
 	}
 		
+// ---------------------------------------------------------------------------------------------------------------------------
 
-	// MUESTRA LOS ALUMNOS DEL PROFESOR ------------------------------------------------------------------------------------
+	
+// BOTÓN ALUMNOS (PROFESOR) --------------------------------------------------------------------------------------------------
 	
 	@GetMapping("/curso/{id}/actividad/{idA}")
 	public String mostrarAlumnos(@PathVariable("id") long idCurso, @PathVariable("idA") long idActividad, Model model) {
@@ -147,10 +156,10 @@ public class ProfesorControlador {
 		return "admin/alumnosAdmin";
 	}
 	
+// ---------------------------------------------------------------------------------------------------------------------------
 	
 	
-	// MUESTRA LAS OBSERVACIONES DEL PROFESOR --------------------------------------------------------------------------------
-	
+// BOTÓN OBSERVACIONES (PROFESOR) --------------------------------------------------------------------------------------------
 	
 	@GetMapping("/observaciones/{id}")
 	public String mostrarObservacionesProfesor(@PathVariable("id") long idProfesor, Model model) {
@@ -161,6 +170,6 @@ public class ProfesorControlador {
 		return "admin/observacionesAdmin";
 	}
 	
-	
+// ---------------------------------------------------------------------------------------------------------------------------
 	
 }

@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.proyecto_guarderia.controlador;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Progenitor;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Usuario;
+import com.salesianostriana.dam.proyecto_guarderia.servicio.ActividadComplementariaServicio;
+import com.salesianostriana.dam.proyecto_guarderia.servicio.ObservacionServicio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.UsuarioServicio;
 
 @Controller
@@ -23,7 +26,14 @@ public class UsuarioControlador {
 	@Autowired
 	private UsuarioServicio servicio;
 	
-// MUESTRA EL FORMULARIO DE REGISTRO (PARA AÑADIR USUARIO / TUTOR LEGAL) VACÍO --------------------------------------------------------
+	@Autowired
+	private ObservacionServicio obServicio;
+	
+	@Autowired
+	private ActividadComplementariaServicio actServicio;
+	
+	
+// FORMULARIO PARA AÑDIR USUARIOS --------------------------------------------------------------------------------------------
 	
 	@GetMapping("/registro")
 	public String mostrarFormularioRegistro(Model model) {
@@ -36,25 +46,35 @@ public class UsuarioControlador {
 		return "paginaRegistro";
 	}
 	
+// ---------------------------------------------------------------------------------------------------------------------------
 	
 	
-// AÑADE EL NUEVO USUARIO / TUTOR LEGAL A LA BASE DE DATOS ----------------------------------------------------------------------------
+// GUARDA AL USUARIO EN LA BASE DE DATOS -------------------------------------------------------------------------------------
 		
 	@PostMapping("/registro/submit")
 	public String registrarNuevoUsuario(@ModelAttribute("usuario") Usuario usuario) {
-				
+		
+		List<Usuario> lu = servicio.filtrarTodosLosUsuarios();
+		
+		for(Usuario u : lu) {
+			if(u.getUsername().equals(usuario.getUsername()) || u.getDni().equals(usuario.getDni())) {
+				return "redirect:/usuario/registro?error=true";
+			}
+		}
 		servicio.saveNewUsuario(usuario);	
 					
 		return "redirect:/login";
 	}
 		
+// ---------------------------------------------------------------------------------------------------------------------------
 				
 	
-// MUESTRA EL FORMULARIO DE REGISTRO (PARA AÑADIR USUARIO) RELLENO --------------------------------------------
+// PANTALLA CON PERFIL DE USUARIO --------------------------------------------------------------------------------------------
 
 	@GetMapping("/miPerfil")
 	public String mostrarFormularioEdicionUsuario(@AuthenticationPrincipal Usuario usuario, Model model) {
-						
+		
+		model.addAttribute("listaAsideUsuario", obServicio.tresObservacionesMasRecientesUsuario(usuario));
 		model.addAttribute("listaTipoProgenitor", Progenitor.values());	
 		model.addAttribute("usuario", usuario);
 			
@@ -62,31 +82,86 @@ public class UsuarioControlador {
 
 	}
 	
+// ---------------------------------------------------------------------------------------------------------------------------
 	
 	
+// FORMULARIO EDITAR USUARIO -------------------------------------------------------------------------------------------------
+	
+	@GetMapping("/editarPerfil/{id}")
+	public String registrarProfesorEditado(@PathVariable("id") long id, @AuthenticationPrincipal Usuario usuario, Model model) {
 		
-	// GUARDA LOS NUEVOS CAMBIOS AL PROFESOR -----------------------------------------------------------------------------
-	
-	@PostMapping("/miPerfil/submit")
-	public String registrarProfesorEditado(@ModelAttribute("usuario") Usuario usuario) {
+		model.addAttribute("listaAsideUsuario", obServicio.tresObservacionesMasRecientesUsuario(usuario));
+		
+		Optional<Usuario> usuarioAEditar = servicio.findById(id);
 			
-		servicio.saveNewUsuario(usuario);
+		if(usuarioAEditar.isPresent()) {
+				
+			model.addAttribute("usuario", usuarioAEditar.get());
+			model.addAttribute("listaTipoProgenitor", Progenitor.values());
 			
-		return "redirect:/miPerfil";
+			return "usuario/editarUsuario";
+				
+		} else {
+				
+			return "redirect:/usuario/miPerfil";
+		}
 	}
-		
-		
-		
-	//BORRA AL PROFESOR ELGIDO POR ID ------------------------------------------------------------------------------------
-
-	@GetMapping("/borrarProfesor/{id}")
-	public String borrarProfesor(@PathVariable("id") long idProfesor) {
-			
-		servicio.deleteById(idProfesor);
-			
-		return "redirect:/admin/profesores";
+	
+// ---------------------------------------------------------------------------------------------------------------------------
+	
+	
+// GUARDA LOS CAMBIOS REALIZADOS SOBRE EL USUARIO EN LA BASE DE DATOS --------------------------------------------------------
+	
+	@PostMapping("/editarPerfil/submit")
+	public String registrarCursoEditado(@ModelAttribute("usuario") @AuthenticationPrincipal Usuario usuario) {
+					
+		servicio.save(usuario);
+					
+		return "redirect:/logout";	
 	}
 			
+// ---------------------------------------------------------------------------------------------------------------------------
+	
+	
+// PANTALLA CON LAS OBSERVACIONES (USUARIO) ----------------------------------------------------------------------------------
+	
+	@GetMapping("/observaciones")
+	public String mostrarObservaciones(@AuthenticationPrincipal Usuario usuario, Model model) {
+		
+		model.addAttribute("listaObservaciones", obServicio.mostrarObservacionesPorUsuario(usuario));
+		model.addAttribute("listaAsideUsuario", obServicio.tresObservacionesMasRecientesUsuario(usuario));
+		
+		return "usuario/observacionesUsuario";
+	}
+	
+// ---------------------------------------------------------------------------------------------------------------------------
+	
+	
+// BOTÓN DATOS DEL ALUMNO (OBSERVACIÓN) USUARIO ------------------------------------------------------------------------------
+	
+	@GetMapping("/observaciones/alumno/{id}")
+	public String mostrarAlumnoFiltradoPorId(@PathVariable("id") long id, Model model, @AuthenticationPrincipal Usuario usuario) {
+				
+		model.addAttribute("listaAsideUsuario", obServicio.tresObservacionesMasRecientesUsuario(usuario));
+		model.addAttribute("listaAlumnos", obServicio.encontrarAlumnoPorId(id));
+			
+		return "usuario/alumnosUsuario";
+	}
+	
+// ---------------------------------------------------------------------------------------------------------------------------
 
-
+	
+// BOTÓN PROFESORES (HORARIO) USUARIO ----------------------------------------------------------------------------------------
+	
+	@GetMapping("/horario/profesores/{id}")
+	public String mostrarProfesoresFiltradosPorActividad(@PathVariable("id") long id, Model model, @AuthenticationPrincipal Usuario usuario) {
+				
+		model.addAttribute("listaProfesores", actServicio.filtrarProfesoresPorActividadUsuario(id));
+		model.addAttribute("listaAsideUsuario", obServicio.tresObservacionesMasRecientesUsuario(usuario));
+			
+		return "usuario/profesoresUsuario";
+	}
+	
+// ---------------------------------------------------------------------------------------------------------------------------
+	
 }

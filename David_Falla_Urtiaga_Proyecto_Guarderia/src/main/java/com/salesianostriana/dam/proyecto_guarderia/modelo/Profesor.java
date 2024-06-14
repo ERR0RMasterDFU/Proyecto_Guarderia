@@ -4,14 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
@@ -20,7 +19,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-
 
 @Entity 
 @Data 
@@ -38,19 +36,6 @@ public class Profesor {
 	private String dni;
 	private String numTelefono;
 
-	
-// MTM (ALUMNO) ---------------------------------------------------------------------------
-	
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(
-			name = "alumno_profesor",
-			joinColumns = @JoinColumn(name="profesor_id"),
-			inverseJoinColumns = @JoinColumn(name="alumno_id")
-	)
-	@Builder.Default
-	private List<Alumno> alumnos = new ArrayList<>();
-	
-	
 	
 // OTM (OBSERVACION) ------------------------------------------------------------------------	
 	
@@ -77,20 +62,7 @@ public class Profesor {
 	
 	
 
-// MÉTODOS HELPER ---------------------------------------------------------------------------
-	
-	// ALUMNO - PROFESOR
-	
-	public void addToAlumno(Alumno a) {
-		this.alumnos.add(a);
-		a.getProfesores().add(this);
-	}
-		
-	public void removeFromAlumno(Alumno a) {
-		a.getProfesores().remove(this);
-		this.alumnos.remove(a);
-	}
-	
+// MÉTODOS HELPER ---------------------------------------------------------------------------	
 	
 	// CURSO - PROFESOR
 	

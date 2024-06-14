@@ -67,15 +67,17 @@
 								<td th:text="${alumno.fechaNacimiento}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
 								<td th:text="${alumno.curso.nombre}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
 								<td class="border-2 border-start-0 border-start-0 border-black py-2 px-3">
-									<div class="text-center align-middle">
-										<div class="py-0">
-											<a type="button" th:href="@{ -- }" class="btn btn-primary text-white fw-bold w-100">HORARIO</a>
+									<div class="d-flex justify-content-center text-center align-middle w-100">
+										<div class="text-center align-middle">
+											<div class="py-0">
+												<a type="button" th:href="@{/usuario/alumnos/horario/{id}(id=${alumno.id})}" class="btn btn-primary text-white fw-bold w-100">ACTIVIDADES</a>
+											</div>
+											<div class="mt-2 py-0">
+												<a type="button" th:href="@{/usuario/alumnos/observaciones/{id}(id=${alumno.id})}" class="btn btn-danger text-white fw-bold w-100">OBSERVACIONES</a>
+											</div>
 										</div>
-										<div class="my-2 py-0">
-											<a type="button" th:href="@{ -- }" class="btn btn-danger text-white fw-bold w-100">OBSERVACIONES</a>
-										</div>
-										<div class="py-0">
-											<a type="button" th:href="@{ -- }" class="btn btn-success text-white fw-bold w-100">PROFESORES</a>
+										<div th:if="${cumpleanos == alumno.fechaNacimiento}" class="ms-2 py-0">
+											<button type="button" data-bs-toggle="modal" data-bs-target="#modalCumple" class="btn text-white h-100" style="background-color: rgb(218, 94, 187);"><i class="bi bi-cake2" style="font-size: 30px;"></i></button>
 										</div>
 									</div>
 				              	</td>
@@ -83,6 +85,30 @@
 				       	</tbody>
 				  	</table>
 				</div>
+
+
+	<!-- MODAL DE CUMPLEAÑOS ALUMNO -------------------------------------------------------------------------------------------------------------------------------------------------------------->
+						
+			<div class="modal fade" id="modalCumple" tabindex="-1" aria-labelledby="labelModalCumple" aria-hidden="true">
+				<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header" style="background-color: rgb(218, 94, 187);">
+						<h1 class="modal-title fs-5 text-white text-center" id="labelModalCumple"><i class="bi bi-cake2-fill"></i>&ensp;¡FELIZ CUMPLEAÑOS!&ensp;<i class="bi bi-cake2-fill"></i></h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div>
+						<img src="../../static/img/general/felizCumple.jpg" th:src="@{/img/general/felizCumple.jpg}" class="w-100"><img>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn text-center text-white fw-bold" style="background-color: rgb(218, 94, 187);" data-bs-dismiss="modal">¡TE QUIERO MUCHO!</button>
+					</div>
+				</div>
+				</div>
+			</div>
+			
+	<!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+				
 				
             </main>
 

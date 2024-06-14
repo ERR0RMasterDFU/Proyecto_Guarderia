@@ -45,15 +45,6 @@ public class Observacion {
 	private Alumno alumno;
 	
 	
-// MTM (USUARIO) ---------------------------------------------------------
-	
-	@ManyToMany(mappedBy="observaciones", fetch = FetchType.EAGER)
-	@Builder.Default
-	@ToString.Exclude
-	@EqualsAndHashCode.Exclude
-	private List<Usuario> usuarios = new ArrayList<>();
-	
-	
 // MTO (PROFESOR) ----------------------------------------------------------
 	
 	 @ManyToOne
