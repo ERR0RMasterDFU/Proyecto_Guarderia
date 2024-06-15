@@ -84,7 +84,7 @@
 									<a type="button" href="agregarEditarObservacionesAdmin.html" th:href="@{/admin/observaciones/editarObservacion/{id}(id=${observacion.id})}" class="btn text-white fw-bold w-100" style="background-color: rgb(210, 122, 2);"><i class="bi bi-gear-fill" style="font-size: 20px;"></i></a>										
 								</div>
 								<div class="ms-2 py-0 w-100">
-									<a type="button" href="observacionesAdmin.html" th:href="@{/admin/observaciones/borrarObservacion/{id}(id=${observacion.id})}" class="btn text-white fw-bold w-100" style="background-color: rgb(218, 63, 3);"><i class="bi bi-trash-fill" style="font-size: 20px;"></i></a>
+									<button type="button" data-bs-toggle="modal" data-bs-target="#modalBorrado" th:data-id="${observacion.id}" class="btn text-white fw-bold w-100" style="background-color: rgb(218, 63, 3);"><i class="bi bi-trash-fill" style="font-size: 20px;"></i></button>
 								</div>
 							</div>
 
@@ -94,7 +94,43 @@
 			  		</div>
 				</div>
 
+
+		<!-- MODAL DE CONFIRMACIÓN DE BORRADO -------------------------------------------------------------------------------------------------------------------------------------------------------------->
+							
+
+				<div class="modal fade" id="modalBorrado" tabindex="-1" aria-labelledby="modalBorradoLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header" style="background-color: rgb(218, 63, 3);">
+								<h1 class="modal-title fs-5 fw-bold text-white" id="modalBorradoLabel"><i class="bi bi-exclamation-diamond-fill"></i>&ensp;CONFIRMACIÓN&ensp;<i class="bi bi-exclamation-diamond-fill"></i></h1>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								<p class="m-0">¿SEGURO QUE QUIERE <span class="fw-bold" style="color: rgb(218, 63, 3);">ELIMINAR</span> LA OBSERVACIÓN SELECCIONADA?</p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
+								<a type="button" id="confirmarEliminar" class="btn fw-bold text-white" style="background-color: rgb(218, 63, 3);">¡ELIMINAR OBSERVACIÓN!</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+	
+		<!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+
             </main>
+
+			<!-- LIBRERÍAS NECESARIAS PARA EL MODAL DE CONFIRMACIÓN DE BORRADO ------------------------------------------------------------>
+					
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"></script>
+			<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+			<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+				
+			<script src="../../static/js/modalBorrarObservacion.js" th:src="@{/js/modalBorrarObservacion.js}" defer></script>
+				
+			<!---------------------------------------------------------------------------------------------------------------------------->
 
 <!-------------------------------------------------------------------->
 

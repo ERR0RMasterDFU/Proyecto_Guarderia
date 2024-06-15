@@ -44,7 +44,7 @@
 				
 				<form method="post" id="editarUsuarioForm" th:action="@{/usuario/editarPerfil/submit}" th:object="${usuario}" class="w-100">
 					<fieldset class="justify-content-center border border-black border-3">
-						<legend class="fw-bold border border-black border-3 border-start-0 border-end-0 border-top-0 text-black px-2 mb-3 bg-warning">DATOS DEL PERFIL</legend>
+						<legend class="fw-bold border border-black border-3 border-start-0 border-end-0 border-top-0 text-white px-2 mb-3" style="background-color: rgb(210, 122, 2);">DATOS DEL PERFIL</legend>
 					  	<div class="mx-3 mb-3">
 							
 							
@@ -150,7 +150,7 @@
 				    </fieldset>
 					
 					<div class="mt-4 px-0 w-100">
-						<button type="submit" class="btn border border-2 border-black btn-success w-100 mt-2 mb-1 fw-bold" style="font-size: 23px;">GUARDAR CAMBIOS</button>
+						<button type="submit" class="btn border border-2 border-black w-100 mt-2 mb-1 fw-bold text-white" style="background-color: rgb(210, 122, 2); font-size: 23px;">GUARDAR CAMBIOS</button>
 					</div>
 					
 					
@@ -163,20 +163,22 @@
 
 <!-------------------------------------------------------------------->
 								
-	<!-- Modal-->
+	<!-- Modal-------------------------------------------------------->
+
+
 			<div class="modal fade" id="modalConfirmacion" tabindex="-1" aria-labelledby="modalConfirmacionLabel" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content">
-						<div class="modal-header">
-							<h1 class="modal-title fs-5 fw-bold" id="modalConfirmacionLabel"><i class="bi bi-exclamation-diamond-fill text-success"></i>&ensp;CONFIRMACIÓN&ensp;<i class="bi bi-exclamation-diamond-fill text-success"></i></h1>
+						<div class="modal-header" style="background-color: rgb(210, 122, 2);">
+							<h1 class="modal-title fs-5 fw-bold text-white" id="modalConfirmacionLabel"><i class="bi bi-gear-fill"></i></i>&ensp;CONFIRMACIÓN&ensp;<i class="bi bi-gear-fill"></i></h1>
 							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
 						<div class="modal-body">
-							<p class="m-0">PARA QUE SU PERFIL PUEDA ACTUALIZARSE SERÁ NECESARIO <span class="text-success fw-bold">CERRAR SESIÓN</span>.<br><br><span class="fw-bold">¿DESEA CERRAR SESIÓN PARA GUARDAR LOS CAMBIOS?</span></p>
+							<p class="m-0">PARA QUE SU PERFIL PUEDA ACTUALIZARSE SERÁ NECESARIO <span class="fw-bold" style="color: rgb(210, 122, 2);">CERRAR SESIÓN</span>.<br><br><span class="fw-bold">¿DESEA CERRAR SESIÓN PARA GUARDAR LOS CAMBIOS?</span></p>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
-							<button type="button" id="botonConfirmar" class="btn btn-success fw-bold" data-bs-dismiss="modal">SÍÍÍÍÍ</button>
+							<button type="button" id="botonConfirmar" class="btn text-white fw-bold" style="background-color: rgb(210, 122, 2);" data-bs-dismiss="modal">SÍÍÍÍÍ</button>
 						</div>
 					</div>
 				</div>

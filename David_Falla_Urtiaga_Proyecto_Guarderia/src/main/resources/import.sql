@@ -28,8 +28,8 @@ INSERT INTO actividad_complementaria (id, nombre, precio) VALUES (1, 'Aula Matin
 INSERT INTO actividad_complementaria (id, nombre, precio) VALUES (2, 'Comedor', 10.00);
 INSERT INTO actividad_complementaria (id, nombre, precio) VALUES (3, 'Siesta', 7.50);
 INSERT INTO actividad_complementaria (id, nombre, precio) VALUES (4, 'Fútbol', 4.99);
-INSERT INTO actividad_complementaria (id, nombre, precio) VALUES (5, 'Manualidades', 4.99);
-INSERT INTO actividad_complementaria (id, nombre, precio) VALUES (6, 'Teatro', 4.99);
+INSERT INTO actividad_complementaria (id, nombre, precio) VALUES (5, 'Manualidades', 3.50);
+INSERT INTO actividad_complementaria (id, nombre, precio) VALUES (6, 'Teatro', 5.80);
 
 ALTER SEQUENCE actividad_complementaria_seq RESTART WITH 56;
 
@@ -37,22 +37,65 @@ ALTER SEQUENCE actividad_complementaria_seq RESTART WITH 56;
 
 
 
+-- DATOS ALUMNOS ------------------------------------------------------------------------------------------------------------------------------------------
+
+INSERT INTO datos_alumno (id, nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, direccion, validos, progenitor_id) VALUES (1, 'Mauricio', 'Ramirez', 'Díaz', 2, '2021-09-08', 'Carril de la Torre, 52', 'true', 2);
+INSERT INTO datos_alumno (id, nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, direccion, validos, progenitor_id) VALUES (2, 'Ramón', 'Flores', 'García', 1, '2023-05-04', 'Autovia C-3319 Murcia-San Javier, Km1,4', 'true', 4);
+INSERT INTO datos_alumno (id, nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, direccion, validos, progenitor_id) VALUES (3, 'Claudia', 'Sosa', 'Gómez', 0, '2023-10-29', 'Carretera F-27 San Cayetano-Los Narejos, s/n', 'true', 3);
+INSERT INTO datos_alumno (id, nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, direccion, validos, progenitor_id) VALUES (4, 'Mirta', 'Gutierrez', 'Benitez', 6, '2018-03-21', 'Paraje Torre Octavio, 54', 'true', 2);
+INSERT INTO datos_alumno (id, nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, direccion, validos, progenitor_id) VALUES (5, 'Raúl', 'Aguirre', 'Aguirre', 4, '2020-03-22', 'Avenida Alfonso X El Sabio, 4', 'true', 3);
+INSERT INTO datos_alumno (id, nombre, primer_apellido, edad, fecha_nacimiento, direccion, validos, progenitor_id) VALUES (6, 'Zhu', 'Zedong', 5, '2018-07-19', 'Gran Via, s/n Km 1', 'true', 2);
+INSERT INTO datos_alumno (id, nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, direccion, validos, progenitor_id) VALUES (7, 'Eduard', 'Arjona', 'Yuste', 2, '2022-02-05', 'Av Alicante, 2', 'true', 4);
+INSERT INTO datos_alumno (id, nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, direccion, validos, progenitor_id) VALUES (8, 'Delia', 'Gracia', 'Orellana', 3, '2021-02-19', 'Urbanizacion Buenavista, s/n', 'true', 3);
+INSERT INTO datos_alumno (id, nombre, primer_apellido, edad, fecha_nacimiento, direccion, validos, progenitor_id) VALUES (9, 'Yuan', 'Shi', 5, '2018-12-30', 'C/ Manuel Wssel De Guimbarda, 1', 'true', 4);
+INSERT INTO datos_alumno (id, nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, direccion, validos, progenitor_id) VALUES (10, 'Cristina', 'Amado', 'Sarmiento', 4, '2019-08-11', 'Carretera F-27 San Cayetano-Los Narejos, s/n', 'true', 3);
+INSERT INTO datos_alumno (id, nombre, primer_apellido, edad, fecha_nacimiento, direccion, validos, progenitor_id) VALUES (11, 'Mao', 'Bocheng', 1, '2022-10-24', 'Av Fuerzas Armadas, 56', 'true', 2);
+INSERT INTO datos_alumno (id, nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, direccion, validos, progenitor_id) VALUES (12, 'Andoni', 'Ferreiro', 'Guijarro', 6, '2018-02-04', 'Pol. industrial Cabezo Beaza', 'true', 3);
+INSERT INTO datos_alumno (id, nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, direccion, validos, progenitor_id) VALUES (13, 'Dumont', 'Gladin', 'Prosper', 0, '2024-02-16', 'Carril Canovas, 19', 'false', 2);
+
+ALTER SEQUENCE datos_alumno_seq RESTART WITH 63;
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
 -- ALUMNOS ------------------------------------------------------------------------------------------------------------------------------------------------
 
-INSERT INTO Alumno (id, nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, direccion, curso_id, progenitor_id) VALUES (1, 'Mauricio', 'Ramirez', 'Díaz', 2, '2021-09-08', 'Carril de la Torre, 52', 1, 2);
-INSERT INTO Alumno (id, nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, direccion, curso_id, progenitor_id) VALUES (2, 'Ramón', 'Flores', 'García', 1, '2023-05-04', 'Autovia C-3319 Murcia-San Javier, Km1,4', 1, 4);
-INSERT INTO Alumno (id, nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, direccion, curso_id, progenitor_id) VALUES (3, 'Claudia', 'Sosa', 'Gómez', 0, '2023-10-29', 'Carretera F-27 San Cayetano-Los Narejos, s/n', 1, 3);
-INSERT INTO Alumno (id, nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, direccion, curso_id, progenitor_id) VALUES (4, 'Mirta', 'Gutierrez', 'Benitez', 6, '2018-03-21', 'Paraje Torre Octavio, 54', 2, 2);
-INSERT INTO Alumno (id, nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, direccion, curso_id, progenitor_id) VALUES (5, 'Raúl', 'Aguirre', 'Aguirre', 4, '2020-03-22', 'Avenida Alfonso X El Sabio, 4', 2, 3);
-INSERT INTO Alumno (id, nombre, primer_apellido, edad, fecha_nacimiento, direccion, curso_id, progenitor_id) VALUES (6,'Zhu', 'Zedong', 5, '2018-07-19', 'Gran Via, s/n Km 1', 2, 2);
-INSERT INTO Alumno (id, nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, direccion, curso_id, progenitor_id) VALUES (7, 'Eduard', 'Arjona', 'Yuste', 2, '2022-02-05', 'Av Alicante, 2', 1, 4);
-INSERT INTO Alumno (id, nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, direccion, curso_id, progenitor_id) VALUES (8, 'Delia', 'Gracia', 'Orellana', 3, '2021-02-19', 'Urbanizacion Buenavista, s/n', 1, 3);
-INSERT INTO Alumno (id, nombre, primer_apellido, edad, fecha_nacimiento, direccion, curso_id, progenitor_id) VALUES (9, 'Yuan', 'Shi', 5, '2018-12-30', 'C/ Manuel Wssel De Guimbarda, 1', 2, 4);
-INSERT INTO Alumno (id, nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, direccion, curso_id, progenitor_id) VALUES (10, 'Cristina', 'Amado', 'Sarmiento', 4, '2019-08-11', 'Carretera F-27 San Cayetano-Los Narejos, s/n', 2, 3);
-INSERT INTO Alumno (id, nombre, primer_apellido, edad, fecha_nacimiento, direccion, curso_id, progenitor_id) VALUES (11, 'Mao', 'Bocheng', 1, '2022-10-24', 'Av Fuerzas Armadas, 56', 1, 2);
-INSERT INTO Alumno (id, nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, direccion, curso_id, progenitor_id) VALUES (12, 'Andoni', 'Ferreiro', 'Guijarro', 6, '2018-02-04', 'Pol. industrial Cabezo Beaza', 2, 3);
+INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (1, 1, 314.99);
+INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (2, 1, 307.50);
+INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (3, 1, 332.79);
+INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (4, 2, 316.00);
+INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (5, 2, 311.08);
+INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (6, 2, 312.49);
+INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (7, 1, 310.00);
+INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (8, 1, 313.50);
+INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (9, 2, 323.50);
+INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (10, 2, 310.99);
+INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (11, 1, 314.29);
+INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (12, 2, 313.30);
 
 ALTER SEQUENCE alumno_seq RESTART WITH 62;
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+-- ALUMNOS ------------------------------------------------------------------------------------------------------------------------------------------------
+
+--INSERT INTO Alumno (id, nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, direccion, curso_id, progenitor_id) VALUES (1, 'Mauricio', 'Ramirez', 'Díaz', 2, '2021-09-08', 'Carril de la Torre, 52', 1, 2);
+--INSERT INTO Alumno (id, nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, direccion, curso_id, progenitor_id) VALUES (2, 'Ramón', 'Flores', 'García', 1, '2023-05-04', 'Autovia C-3319 Murcia-San Javier, Km1,4', 1, 4);
+--INSERT INTO Alumno (id, nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, direccion, curso_id, progenitor_id) VALUES (3, 'Claudia', 'Sosa', 'Gómez', 0, '2023-10-29', 'Carretera F-27 San Cayetano-Los Narejos, s/n', 1, 3);
+--INSERT INTO Alumno (id, nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, direccion, curso_id, progenitor_id) VALUES (4, 'Mirta', 'Gutierrez', 'Benitez', 6, '2018-03-21', 'Paraje Torre Octavio, 54', 2, 2);
+--INSERT INTO Alumno (id, nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, direccion, curso_id, progenitor_id) VALUES (5, 'Raúl', 'Aguirre', 'Aguirre', 4, '2020-03-22', 'Avenida Alfonso X El Sabio, 4', 2, 3);
+--INSERT INTO Alumno (id, nombre, primer_apellido, edad, fecha_nacimiento, direccion, curso_id, progenitor_id) VALUES (6, 'Zhu', 'Zedong', 5, '2018-07-19', 'Gran Via, s/n Km 1', 2, 2);
+--INSERT INTO Alumno (id, nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, direccion, curso_id, progenitor_id) VALUES (7, 'Eduard', 'Arjona', 'Yuste', 2, '2022-02-05', 'Av Alicante, 2', 1, 4);
+--INSERT INTO Alumno (id, nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, direccion, curso_id, progenitor_id) VALUES (8, 'Delia', 'Gracia', 'Orellana', 3, '2021-02-19', 'Urbanizacion Buenavista, s/n', 1, 3);
+--INSERT INTO Alumno (id, nombre, primer_apellido, edad, fecha_nacimiento, direccion, curso_id, progenitor_id) VALUES (9, 'Yuan', 'Shi', 5, '2018-12-30', 'C/ Manuel Wssel De Guimbarda, 1', 2, 4);
+--INSERT INTO Alumno (id, nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, direccion, curso_id, progenitor_id) VALUES (10, 'Cristina', 'Amado', 'Sarmiento', 4, '2019-08-11', 'Carretera F-27 San Cayetano-Los Narejos, s/n', 2, 3);
+--INSERT INTO Alumno (id, nombre, primer_apellido, edad, fecha_nacimiento, direccion, curso_id, progenitor_id) VALUES (11, 'Mao', 'Bocheng', 1, '2022-10-24', 'Av Fuerzas Armadas, 56', 1, 2);
+--INSERT INTO Alumno (id, nombre, primer_apellido, segundo_apellido, edad, fecha_nacimiento, direccion, curso_id, progenitor_id) VALUES (12, 'Andoni', 'Ferreiro', 'Guijarro', 6, '2018-02-04', 'Pol. industrial Cabezo Beaza', 2, 3);
+
+--ALTER SEQUENCE alumno_seq RESTART WITH 62;
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -100,7 +143,7 @@ INSERT INTO Horario (alumno_id, actividad_id) VALUES (11, 6);
 INSERT INTO Horario (alumno_id, actividad_id) VALUES (12, 3);
 INSERT INTO Horario (alumno_id, actividad_id) VALUES (12, 6);
 
-ALTER SEQUENCE alumno_seq RESTART WITH 78;
+ALTER SEQUENCE horario_seq RESTART WITH 78;
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 

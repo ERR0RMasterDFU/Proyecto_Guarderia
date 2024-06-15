@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			
             let id = button.getAttribute("data-id");
             
-            document.getElementById('confirmarEliminar').href = '/admin/cursos/borrarCurso/' + id;
+            document.getElementById('confirmarEliminar').href = '/admin/observaciones/borrarObservacion/' + id;
         });
     });
 });
