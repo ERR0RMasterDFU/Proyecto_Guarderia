@@ -137,9 +137,6 @@ public class ObservacionControlador {
 			observacionABorrar.get().removeFromProfesor(observacionABorrar.get().getProfesor());
 			servicio.deleteById(id);
 				
-		}else {
-				
-			return "redirect:/admin/observaciones/?error=true";
 		}
 			
 		return "redirect:/admin/observaciones/";
@@ -160,5 +157,25 @@ public class ObservacionControlador {
 	}
 	
 // ---------------------------------------------------------------------------------------------------------------------------
+	
+	
+/* BORRA LA OBSERVACIÓN POR ID -----------------------------------------------------------------------------------------------
+
+	@GetMapping("/borrarObservacionAside/{id}")
+	public void borrarObservacionAside(@PathVariable("id") long id, Model model) {
+
+		model.addAttribute("listaAsideAdmin", servicio.tresObservacionesMasRecientes());
+			
+		Optional<Observacion> observacionABorrar = servicio.findById(id);
+			
+		if(observacionABorrar.isPresent()) {
+			observacionABorrar.get().removeFromAlumno(observacionABorrar.get().getAlumno());
+			observacionABorrar.get().removeFromProfesor(observacionABorrar.get().getProfesor());
+			servicio.deleteById(id);			
+		}
+				
+	}
+		
+// ---------------------------------------------------------------------------------------------------------------------------*/
 
 }

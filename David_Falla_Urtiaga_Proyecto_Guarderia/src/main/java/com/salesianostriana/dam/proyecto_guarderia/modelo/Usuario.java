@@ -29,9 +29,9 @@ import lombok.ToString;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 @Builder
 @Data
+@Entity
 public class Usuario implements UserDetails {
 
 	@Id @GeneratedValue
@@ -56,13 +56,22 @@ public class Usuario implements UserDetails {
 	@Enumerated(EnumType.STRING)
 	private Progenitor progenitor;
 	
-// OTM (ALUMNOS) --------------------------------------------------------	
+ /*OTM (ALUMNOS) --------------------------------------------------------	
 	
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
 	@OneToMany(mappedBy="progenitor", fetch = FetchType.EAGER)
 	@Builder.Default
-	private List<Alumno> hijos = new ArrayList<>();
+	private List<Alumno> hijos = new ArrayList<>();*/
+	
+	
+// OTM (DATOS ALUMNO) --------------------------------------------------------	
+	
+	@ToString.Exclude
+	@EqualsAndHashCode.Exclude
+	@OneToMany(mappedBy="progenitor", fetch = FetchType.EAGER)
+	@Builder.Default
+	private List<DatosAlumno> hijos = new ArrayList<>(); 
 
 	
 //SEGURIDAD ----------------------------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <th:block th:if="${datos.id == 0}">
+            <title>Nuevos datos</title>
+        </th:block>
+        <th:block th:if="${datos.id != 0}">
+            <title>Editar datos</title>
+        </th:block>
+
+        <link rel="stylesheet" type="text/css" href="../static/css/paginasPrincipales.css" th:href="@{/css/paginasPrincipales.css}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    </head>
+    <body class="fondo">
+
+<!---- CABECERA / HEADER -------------------------------------------->
+		
+		<header th:replace="~{fragmentos/header::header}"></header>
+		
+<!------------------------------------------------------------------->
+		
+<!---- MENÚ NAVEGABLE / NAVBAR -------------------------------------->
+		    
+		<nav th:replace="~{fragmentos/navUsuario::nav}"></nav>
+		
+<!-------------------------------------------------------------------->
+
+        <div class="container-fluid d-flex w-100 p-0">
+
+<!---- SECCIÓN DE ANUNCIOS / ASIDE ---------------------------------->
+			
+			<aside th:replace="~{fragmentos/asideUsuario::aside}"></aside>
+			
+<!------------------------------------------------------------------->
+
+<!---- CONTENIDO PRINCIPAL / MAIN ------------------------------------>
+
+            <main class="m-3 p-5 bg-white" style="flex: 1 1 81%; width: 75%; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
+                
+    <!---- DATOS DEL ALUMNO ---------------------------------------------->
+    
+                <form method="post" th:action="${datos.id!=0} ? @{/usuario/DatosAlumnos/editarDatosAlumno/submit} : @{/usuario/DatosAlumnos/nuevosDatosAlumno/submit}" th:object="${datos}" class="w-100">
+                    <fieldset class="justify-content-center border border-black border-3">
+                        
+                        <th:block th:if="${datos.id == 0}">
+                            <legend class="fw-bold border border-black border-3 border-start-0 border-end-0 border-top-0 text-white px-2 mb-3 bg-success">DATOS DEL NUEVO ALUMNO</legend>
+                        </th:block>
+                        <th:block th:if="${datos.id != 0}">
+                            <legend class="fw-bold border border-black border-3 border-start-0 border-end-0 border-top-0 text-white px-2 mb-3" style="background-color: rgb(210, 122, 2);">EDITANDO DATOS DEL ALUMNO...</legend>
+                        </th:block>
+                        
+                        <div class="mx-3 mb-3">
+
+        <!---- NOMBRE Y APELLIDOS -------------------------------------------->
+
+							<input th:if="${datos.id!=0}" type="hidden" name="id" th:field="*{id}"/>
+							
+							<input th:if="${datos.id!=0}" type="hidden" name="progenitor" th:field="*{progenitor}"/>
+		
+                            <div class="d-flex w-100">
+                                <div class="me-3" style="flex: 1 1 33%;">
+                                    <label for="nombre" class="form-label m-0 fw-bold">NOMBRE<span class="text-danger"> *</span></label><br>
+                                    <input type="text" th:field="*{nombre}" class="form-control" name="nombre" id="nombre" placeholder="Introduzca el nombre" required maxlength="100" size="50">
+                                </div>
+                                <div class="mx-3" style="flex: 1 1 33%;">
+                                    <label for="primerApellido" class="form-label m-0 fw-bold">PRIMER APELLIDO<span class="text-danger"> *</span></label><br>
+                                    <input type="text" th:field="*{primerApellido}" class="form-control" style="width: 100%;" name="primerApellido" id="primerApellido" placeholder="Introduzca el primer apellido" required maxlength="100" size="50">
+                                </div>
+                                <div class="ms-3" style="flex: 1 1 33%;">
+                                    <label for="apellido2Alumno" class="form-label m-0 fw-bold">SEGUNDO APELLIDO</label><br>
+									<input type="text" th:field="*{segundoApellido}" class="form-control" style="width: 100%;" name="segundoApellido" id="segundoApellido" placeholder="Introduzca el segundo apellido" maxlength="100" size="50">
+                                </div>
+                            </div>
+
+        <!------------------------------------------------------------------->
+
+        <!---- EDAD, FECHA DE NACIMIENTO Y DIRECCIÓN ------------------------>
+
+                            <div class="d-flex mt-3 w-100">
+								<div class="pe-3" style="flex: 1 1 25%;">
+									<label for="precio" class="form-label m-0 fw-bold">EDAD (0 es menor de un año)<span class="text-danger"> *</span></label><br>
+									<input type="number" th:field="*{edad}" class="w-100 ps-2" style="height: 37px;" name="edad" id="edad" placeholder="Introduzca la edad" min="0" max="6" step="1" required>
+								</div>
+                                <div class="px-3" style="flex: 1 1 25%;">
+                                    <label for="fnac" class="fw-bold">FECHA DE NACIMIENTO<span class="text-danger"> *</span></label><br>
+                                    <input  type="date" th:field="*{fechaNacimiento}" class="w-100 ps-2" style="height: 37px;" name="fnac" id="fnac" min="2018-01-01" max="today" required>
+                                </div>
+                                <div class="ms-3" style="flex: 1 1 50%;">
+                                    <label for="direccion" class="form-label m-0 fw-bold">DIRECCIÓN<span class="text-danger"> *</span></label><br>
+                                    <input type="text" th:field="*{direccion}" class="form-control" name="direccion" id="direccion" placeholder="Introduzca su dirección" required maxlength="200" size="60">
+                                </div>
+                            </div>
+
+        <!------------------------------------------------------------------->
+
+                        </div>
+                    </fieldset>
+
+                    <th:block th:if="${datos.id == 0}">
+                        <div class="mt-3 px-0 w-100">
+                            <button type="submit" class="btn border border-2 border-black btn-success w-100 mt-2 mb-1 fw-bold" style="font-size: 23px;">ENVIAR DATOS</button>
+                        </div>
+                    </th:block>
+                        
+                    <th:block th:if="${datos.id != 0}">
+                        <div class="mt-3 px-0 w-100">
+                            <button type="submit" class="btn border border-2 border-black btn-success w-100 mt-2 mb-1 fw-bold" style="font-size: 23px; background-color: rgb(210, 122, 2);">VOLVER A ENVIAR LOS DATOS</button>
+                        </div>
+                    </th:block>
+
+                </form>
+
+            </main>
+
+<!-------------------------------------------------------------------->
+
+        </div>
+
+<!---- PIE DE PÁGINA / FOOTER ---------------------------------------->
+
+		<footer th:replace="~{fragmentos/footer::footer}"></footer>
+
+<!-------------------------------------------------------------------->
+
+    </body>
+</html>

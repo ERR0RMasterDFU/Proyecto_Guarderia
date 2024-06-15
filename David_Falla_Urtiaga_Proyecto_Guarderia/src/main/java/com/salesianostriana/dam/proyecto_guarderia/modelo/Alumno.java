@@ -19,36 +19,31 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
-@Entity 
-@Data 
-@NoArgsConstructor 
-@AllArgsConstructor 
-@Builder
-public class Alumno {
+@Getter 
+@Setter
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
+@NoArgsConstructor
+@AllArgsConstructor
+@SuperBuilder
+@Entity
+public class Alumno extends DatosAlumno{
 
-	@Id @GeneratedValue
-	private long id;
-	
-	private String nombre;
-	private String primerApellido;
-	private String segundoApellido;
-	private int edad;
-	private String direccion;
-	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate fechaNacimiento;
+	private double precioMatricula;
 	
 
-// MTO (USUARIO) -----------------------------------------------------------------------------------
+/* MTO (USUARIO) -----------------------------------------------------------------------------------
 	
 	@ManyToOne
     @JoinColumn(foreignKey = @ForeignKey(name="fk_progenitor_alumno"))
-	private Usuario progenitor;
+	private Usuario progenitor;*/
 	
 	
 // OTM (OBSERVACION) -------------------------------------------------------------------------------	
@@ -82,7 +77,7 @@ public class Alumno {
 // MÉTODOS HELPER ------------------------------------------------------------------------------------------------------------------------------
 	
 	
-	//USUARIO - ALUMNO
+	/*USUARIO - ALUMNO
 	
 	public void addToProgenitor(Usuario progenitor) {
 		this.progenitor = progenitor;
@@ -92,7 +87,7 @@ public class Alumno {
 	public void removeFromProgenitor(Usuario progenitor) {
 		progenitor.getHijos().remove(this);
 		this.progenitor = null;		
-	}
+	}*/
 	
 
 	// ALUMNO - ACTIVIDAD COMPLEMENTARIA
