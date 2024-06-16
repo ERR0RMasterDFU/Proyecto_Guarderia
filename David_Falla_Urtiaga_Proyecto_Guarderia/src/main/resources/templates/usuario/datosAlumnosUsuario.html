@@ -87,7 +87,7 @@
 									<td class="border-2 border-start-0 border-end-0 border-black py-3 px-2"><button type="button" data-bs-toggle="modal" data-bs-target="#modalPendiente" class="btn btn-danger text-white fw-bold w-100">PENDIENTE<br>POR VALIDAR</button></td>
 								</th:block>
 								<th:block th:if="${datos.validos == true}">
-									<td class="border-2 border-start-0 border-end-0 border-black py-3 px-2"><button type="button" class="btn btn-success text-white fw-bold w-100">¡VALIDADOS!</button></td>
+									<td class="border-2 border-start-0 border-end-0 border-black py-3 px-2"><a type="button" th:href="@{/usuario/nuevoAlumno/{id}(id=${datos.id})}" class="btn btn-success text-white fw-bold w-100">¡RELLENAR<br>MATRÍCULA!</a></td>
 								</th:block>
 
 								<!--td class="border-2 border-start-0 border-black py-2 px-3">

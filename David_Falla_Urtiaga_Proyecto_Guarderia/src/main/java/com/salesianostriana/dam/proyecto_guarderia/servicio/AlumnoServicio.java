@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.salesianostriana.dam.proyecto_guarderia.modelo.ActividadComplementaria;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Alumno;
+import com.salesianostriana.dam.proyecto_guarderia.modelo.DatosAlumno;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Observacion;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Profesor;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Usuario;
@@ -105,5 +106,22 @@ public class AlumnoServicio extends ServicioBaseImpl<Alumno, Long, AlumnoReposit
 	}
 	
 // ---------------------------------------------------------------------------------------------------------------------------
+	
+	
+// MÉTODO QUE TRANSFORMA LOS DATOS A UN TIPO ALUMNO --------------------------------------------------------------------------
+	
+	public void cambioDeTipo (Optional<DatosAlumno> datos, Alumno alumno) {
+		alumno.setId(datos.get().getId());
+		alumno.setNombre(datos.get().getNombre());
+		alumno.setPrimerApellido(datos.get().getPrimerApellido());
+		alumno.setSegundoApellido(datos.get().getSegundoApellido());
+		alumno.setEdad(datos.get().getEdad());
+		alumno.setDireccion(datos.get().getDireccion());
+		alumno.setFechaNacimiento(datos.get().getFechaNacimiento());
+		alumno.setProgenitor(datos.get().getProgenitor());
+	}
+	
+// ---------------------------------------------------------------------------------------------------------------------------
+
 	
 }

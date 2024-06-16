@@ -54,6 +54,7 @@ public class Alumno extends DatosAlumno{
 	@Builder.Default
 	private List<Observacion> observaciones = new ArrayList<>();
 	
+	
 // MTM (ACTIVIDADES COMPLEMENTARIAS) ------------------------------------------------------------
 	
 	@ManyToMany(fetch = FetchType.EAGER)

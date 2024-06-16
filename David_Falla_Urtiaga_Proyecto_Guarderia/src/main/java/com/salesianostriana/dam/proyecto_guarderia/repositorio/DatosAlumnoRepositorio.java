@@ -17,14 +17,24 @@ public interface DatosAlumnoRepositorio extends JpaRepository<DatosAlumno, Long>
 	@Query("""
 			SELECT da
 			FROM DatosAlumno da 
-			WHERE da.progenitor = ?1
+			WHERE da.progenitor = ?1 AND da.matriculado = false
 			""")
 	public List<DatosAlumno> findDatosByUsuario(Usuario usuario);
 
-//---------------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------------
 	
 	
-
+// CONSULTA QUE RETORNA LOS DATOS QUE TIENEN EL MISMO ID QUE UN ALUMNO ------------------------------------------------------
+	
+	@Query("""
+			SELECT da
+			FROM DatosAlumno da
+			WHERE da.id = ?1
+			""")
+	public DatosAlumno findDatosByIdAlumno(long id);
+	
+// --------------------------------------------------------------------------------------------------------------------------
+	
 }
 
 
