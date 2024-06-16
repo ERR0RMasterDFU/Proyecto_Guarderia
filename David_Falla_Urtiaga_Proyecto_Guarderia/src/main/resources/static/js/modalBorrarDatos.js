@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			
             let id = button.getAttribute("data-id");
             
-            document.getElementById('confirmarEliminar').href = '/usuario/DatosAlumnos/borrarDatosAlumno/' + id;
+            document.getElementById('confirmarEliminar').href = '/usuario/datosAlumnos/borrarDatosAlumno/' + id;
         });
     });
 });

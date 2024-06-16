@@ -44,7 +44,7 @@
                 
     <!---- DATOS DEL ALUMNO ---------------------------------------------->
     
-                <form method="post" th:action="${datos.id!=0} ? @{/usuario/DatosAlumnos/editarDatosAlumno/submit} : @{/usuario/DatosAlumnos/nuevosDatosAlumno/submit}" th:object="${datos}" class="w-100">
+                <form method="post" th:action="${datos.id!=0} ? @{/usuario/datosAlumnos/editarDatosAlumno/submit} : @{/usuario/datosAlumnos/nuevosDatosAlumno/submit}" th:object="${datos}" class="w-100">
                     <fieldset class="justify-content-center border border-black border-3">
                         
                         <th:block th:if="${datos.id == 0}">
