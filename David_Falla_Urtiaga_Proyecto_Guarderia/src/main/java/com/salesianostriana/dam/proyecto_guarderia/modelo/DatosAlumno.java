@@ -42,6 +42,7 @@ public class DatosAlumno {
 	private LocalDate fechaNacimiento;
 	
 	private boolean validos;
+	private boolean matriculado;
 	
 	
 	// MTO (USUARIO) -----------------------------------------------------------------------------------

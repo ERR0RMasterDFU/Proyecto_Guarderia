@@ -31,6 +31,16 @@ public class DatosAlumnoServicio extends ServicioBaseImpl<DatosAlumno, Long, Dat
 		
 // ---------------------------------------------------------------------------------------------------------------------------
 
+
+// MÉTODO QUE RETORNA LOS DATOS QUE TIENEN EL MISMO ID QUE UN ALUMNO ---------------------------------------------------------
+	
+	public DatosAlumno filtrarDatosPorIdAlumno (long id) {
+		DatosAlumno datosObtenidos = repositorio.findDatosByIdAlumno(id);
+		return datosObtenidos;
+	}
+	
+// ---------------------------------------------------------------------------------------------------------------------------
+
 	
 // MÉTODO QUE CAMBIA EL VÁLIDO A ESPERA AL HABERLOS EDITADO ------------------------------------------------------------------
 	
