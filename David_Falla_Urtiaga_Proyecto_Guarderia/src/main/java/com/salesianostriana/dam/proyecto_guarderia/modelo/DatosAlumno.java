@@ -15,6 +15,7 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,8 +26,9 @@ import lombok.experimental.SuperBuilder;
 @Data 
 @NoArgsConstructor 
 @AllArgsConstructor 
-@SuperBuilder
-@Inheritance(strategy = InheritanceType.JOINED)
+@Builder
+/*@SuperBuilder
+@Inheritance(strategy = InheritanceType.JOINED)*/
 public class DatosAlumno {
 
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
@@ -43,6 +45,11 @@ public class DatosAlumno {
 	
 	private boolean validos;
 	private boolean matriculado;
+	
+	
+	@OneToOne
+	  @JoinColumn(name="alumno_datos")
+	  private Alumno alumno;
 	
 	
 	// MTO (USUARIO) -----------------------------------------------------------------------------------
