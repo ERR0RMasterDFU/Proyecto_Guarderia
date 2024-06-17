@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Alumno;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Curso;
@@ -18,9 +17,9 @@ public interface CursoRepositorio extends JpaRepository<Curso, Long>{
 	@Query("""
 			SELECT p
 			FROM Profesor p
-			WHERE curso.id = :curso
+			WHERE curso.id = ?1
 			""")
-	public List<Profesor> findProfesoresByCurso(@Param("curso") long id);
+	public List<Profesor> findProfesoresByCurso(long id);
 	
 // ---------------------------------------------------------------------------------------------------------------------------
 	
@@ -30,9 +29,9 @@ public interface CursoRepositorio extends JpaRepository<Curso, Long>{
 		@Query("""
 				SELECT a
 				FROM Alumno a
-				WHERE curso.id = :curso
+				WHERE curso.id = ?1
 				""")
-	public List<Alumno> findAlumnosByCurso(@Param("curso") long id);
+	public List<Alumno> findAlumnosByCurso(long id);
 		
 // ---------------------------------------------------------------------------------------------------------------------------
 	
@@ -42,9 +41,9 @@ public interface CursoRepositorio extends JpaRepository<Curso, Long>{
 	@Query("""
 			SELECT count(p)
 			FROM Profesor p
-			WHERE curso.id = :curso
+			WHERE curso.id = ?1
 			""")
-	public int findNumProfesoresByCurso(@Param("curso") long id);
+	public int findNumProfesoresByCurso(long id);
 	
 // ---------------------------------------------------------------------------------------------------------------------------
 	
@@ -54,9 +53,9 @@ public interface CursoRepositorio extends JpaRepository<Curso, Long>{
 	@Query("""
 			SELECT count(a)
 			FROM Alumno a
-			WHERE curso.id = :curso
+			WHERE curso.id = ?1
 			""")
-	public int findNumAlumnosByCurso(@Param("curso") long id);
+	public int findNumAlumnosByCurso(long id);
 	
 // ---------------------------------------------------------------------------------------------------------------------------
 	

@@ -52,7 +52,7 @@
                             <legend class="fw-bold border border-black border-3 border-start-0 border-end-0 border-top-0 text-white px-2 mb-3 bg-success">DATOS DEL NUEVO CURSO</legend>
                         </th:block>
                         <th:block th:if="${curso.id != 0}">
-                            <legend class="fw-bold border border-black border-3 border-start-0 border-end-0 border-top-0 text-white px-2 mb-3" style="background-color: rgb(210, 122, 2);">EDITANDO DATOS DEL CURSO...</legend>
+                            <legend class="fw-bold border border-black border-3 border-start-0 border-end-0 border-top-0 text-white px-2 mb-3" style="background-color: rgb(210, 122, 2);">EDITANDO DATOS DEL CURSO: <span style="text-transform: uppercase;" th:text="*{nombre}"></span></legend>
                         </th:block>
 
                         <div class="mx-3 mb-3">

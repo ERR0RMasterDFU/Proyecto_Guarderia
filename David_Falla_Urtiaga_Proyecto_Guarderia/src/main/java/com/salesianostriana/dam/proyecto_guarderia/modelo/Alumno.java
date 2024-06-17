@@ -10,12 +10,16 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ForeignKey;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -36,18 +40,21 @@ import lombok.experimental.SuperBuilder;
 @Entity
 public class Alumno /*extends DatosAlumno*/{
 
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
+	
 	private double precioMatricula;
 	
 
-// MTO (USUARIO) -----------------------------------------------------------------------------------
+/* MTO (USUARIO) -----------------------------------------------------------------------------------
 	
 	@ManyToOne
     @JoinColumn(foreignKey = @ForeignKey(name="fk_progenitor_alumno"))
-	private Usuario progenitor;
-	
+	private Usuario progenitor;*/
 
-	/*@OneToOne(mappedBy="alumno")
-	private DatosAlumno datos;*/
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "datos_id", referencedColumnName = "id")
+	private DatosAlumno datos;
 	
 	
 // OTM (OBSERVACION) -------------------------------------------------------------------------------	

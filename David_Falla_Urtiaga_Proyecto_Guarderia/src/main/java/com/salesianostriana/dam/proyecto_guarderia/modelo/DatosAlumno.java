@@ -47,17 +47,11 @@ public class DatosAlumno {
 	private boolean matriculado;
 	
 	
-	@OneToOne
-	  @JoinColumn(name="alumno_datos")
-	  private Alumno alumno;
-	
-	
 	// MTO (USUARIO) -----------------------------------------------------------------------------------
 	
 	@ManyToOne
 	@JoinColumn(foreignKey = @ForeignKey(name="fk_progenitor_Datosalumno"))
 	private Usuario progenitor;
-	
 
 	
 	// MÉTODOS HELPER ------------------------------------------------------------------------------------------------------------------------------

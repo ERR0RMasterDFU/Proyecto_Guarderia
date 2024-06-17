@@ -247,20 +247,14 @@ public class AlumnoControlador {
 	public String mostrarMatricula(@PathVariable("id") long id, Model model, @AuthenticationPrincipal Usuario usuario) {
 		
 		model.addAttribute("listaAsideUsuario", obServicio.tresObservacionesMasRecientesUsuario(usuario));
+			
+		Alumno alumno = new Alumno();
 		
-		Optional<DatosAlumno> alumnoACrear = datosServicio.findById(id);
-		
-		if(alumnoACrear.isPresent()) {
+		model.addAttribute("alumno", alumno);
+		model.addAttribute("datosAlumno", datosServicio.findById(id)); 	//DATOS DEL ALUMNO
+		model.addAttribute("listaCursos", cursoServicio.findAll()); 	//LISTA DE CURSOS PARA ALUMNO
+		model.addAttribute("listaActividades", actServicio.findAll());	//LISTA DE ACTIVIDADES PARA ALUMNO
 			
-			Alumno alumno = new Alumno();
-
-			servicio.cambioDeTipo(alumnoACrear, alumno);
-			
-			model.addAttribute("alumno", alumno);
-			model.addAttribute("listaCursos", cursoServicio.findAll()); 	//LISTA DE CURSOS PARA ALUMNO
-			model.addAttribute("listaActividades", actServicio.findAll());	//LISTA DE ACTIVIDADES PARA ALUMNO
-			
-		}
 		return "usuario/agregarAlumnoUsuario";
 	}
 
@@ -272,14 +266,9 @@ public class AlumnoControlador {
 	@PostMapping("/usuario/nuevoAlumno/submit")
 	public String registroMatriculaFormulario(@ModelAttribute("alumno") Alumno alumno) {
 		
-		Optional<DatosAlumno> datos = datosServicio.findById(alumno.getId());
-		
-		//datosServicio.deleteById(datos.get().getId());
-		alumno.setValidos(true);
-		alumno.setMatriculado(true);
-		datos.get().setValidos(true);
-		datos.get().setMatriculado(true);
-		
+		alumno.getDatos().setValidos(true);
+		alumno.getDatos().setMatriculado(true);
+
 		servicio.save(alumno);
 			
 		return "redirect:/usuario/datosAlumnos/enviados";
@@ -288,7 +277,7 @@ public class AlumnoControlador {
 // ---------------------------------------------------------------------------------------------------------------------------
 	
 	
-// FORMULARIO EDITAR ALUMNOS -------------------------------------------------------------------------------------------------
+/* FORMULARIO EDITAR ALUMNOS -------------------------------------------------------------------------------------------------
 
 	@GetMapping("/admin/alumnos/editarAlumno/{id}")
 	public String mostrarFormularioEdicion(@PathVariable("id") long id, Model model) {
@@ -325,7 +314,7 @@ public class AlumnoControlador {
 		return "redirect:/admin/alumnos";	
 	}
 		
-// ---------------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------------*/
 	
 	
 	

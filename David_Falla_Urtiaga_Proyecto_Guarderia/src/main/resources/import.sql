@@ -61,20 +61,20 @@ ALTER SEQUENCE datos_alumno_seq RESTART WITH 63;
 
 -- ALUMNOS ------------------------------------------------------------------------------------------------------------------------------------------------
 
-INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (1, 1, 314.99);
-INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (2, 1, 307.50);
-INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (3, 1, 332.79);
-INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (4, 2, 316.00);
-INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (5, 2, 311.08);
-INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (6, 2, 312.49);
-INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (7, 1, 310.00);
-INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (8, 1, 313.50);
-INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (9, 2, 323.50);
-INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (10, 2, 310.99);
-INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (11, 1, 314.29);
-INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (12, 2, 313.30);
+INSERT INTO Alumno (id, datos_id, curso_id, precio_matricula) VALUES (1, 1, 1, 314.99);
+INSERT INTO Alumno (id, datos_id, curso_id, precio_matricula) VALUES (2, 2, 1, 307.50);
+INSERT INTO Alumno (id, datos_id, curso_id, precio_matricula) VALUES (3, 3, 1, 332.79);
+INSERT INTO Alumno (id, datos_id, curso_id, precio_matricula) VALUES (4, 4, 2, 316.00);
+INSERT INTO Alumno (id, datos_id, curso_id, precio_matricula) VALUES (5, 5, 2, 311.08);
+INSERT INTO Alumno (id, datos_id, curso_id, precio_matricula) VALUES (6, 6, 2, 312.49);
+INSERT INTO Alumno (id, datos_id, curso_id, precio_matricula) VALUES (7, 7, 1, 310.00);
+INSERT INTO Alumno (id, datos_id, curso_id, precio_matricula) VALUES (8, 8, 1, 313.50);
+INSERT INTO Alumno (id, datos_id, curso_id, precio_matricula) VALUES (9, 9, 2, 323.50);
+INSERT INTO Alumno (id, datos_id, curso_id, precio_matricula) VALUES (10, 10, 2, 310.99);
+INSERT INTO Alumno (id, datos_id, curso_id, precio_matricula) VALUES (11, 11, 1, 314.29);
+INSERT INTO Alumno (id, datos_id, curso_id, precio_matricula) VALUES (12, 12, 2, 313.30);
 
---ALTER SEQUENCE alumno_seq RESTART WITH 62;
+ALTER SEQUENCE alumno_seq RESTART WITH 62;
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 

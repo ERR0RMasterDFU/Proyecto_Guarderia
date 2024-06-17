@@ -32,7 +32,7 @@ public interface ObservacionRepositorio extends JpaRepository<Observacion, Long>
 	@Query("""
 			SELECT o
 			FROM Observacion o 
-			WHERE o.alumno.progenitor = ?1
+			WHERE o.alumno.datos.progenitor = ?1
 			""")
 	public List<Observacion> findObservacionesByUsuario(Usuario usuario);
 	
@@ -68,7 +68,7 @@ public interface ObservacionRepositorio extends JpaRepository<Observacion, Long>
 	@Query("""
 			SELECT o
 			FROM Observacion o 
-			WHERE o.alumno.progenitor = ?1
+			WHERE o.alumno.datos.progenitor = ?1
 			""")
 	public Page<Observacion> observacionesDeUsuario(Usuario usuario, Pageable p);
 	

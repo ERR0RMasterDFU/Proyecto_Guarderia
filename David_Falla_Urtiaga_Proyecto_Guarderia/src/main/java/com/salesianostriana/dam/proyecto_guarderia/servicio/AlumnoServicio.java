@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.salesianostriana.dam.proyecto_guarderia.modelo.ActividadComplementaria;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Alumno;
-import com.salesianostriana.dam.proyecto_guarderia.modelo.DatosAlumno;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Observacion;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Profesor;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Usuario;
@@ -44,8 +43,8 @@ public class AlumnoServicio extends ServicioBaseImpl<Alumno, Long, AlumnoReposit
 
 // BOTÓN OBSERVACIONES (ALUMNO) ----------------------------------------------------------------------------------------------
 	
-	public List<Observacion> filtrarObservacionesPorAlumnoId (long idAlumno) {
-		List<Observacion> observacionesFiltradasAlumno = repositorio.findObservacionesByAlumno(idAlumno);
+	public List<Observacion> filtrarObservacionesPorAlumnoId (long id) {
+		List<Observacion> observacionesFiltradasAlumno = repositorio.findObservacionesByAlumno(id);
 		return observacionesFiltradasAlumno;
 	}
 	
@@ -54,8 +53,8 @@ public class AlumnoServicio extends ServicioBaseImpl<Alumno, Long, AlumnoReposit
 	
 // BOTÓN TUTOR LEGAL (ALUMNO) ------------------------------------------------------------------------------------------------
 	
-	public Usuario findUsuarioByAlumnoId (long idAlumno) {
-		Usuario obtenerUsuarioEncontrado = repositorio.findUsuarioByAlumnoId(idAlumno);
+	public Usuario findUsuarioByAlumnoId (long id) {
+		Usuario obtenerUsuarioEncontrado = repositorio.findUsuarioByAlumnoId(id);
 		return obtenerUsuarioEncontrado;
 	}
 	
@@ -99,8 +98,8 @@ public class AlumnoServicio extends ServicioBaseImpl<Alumno, Long, AlumnoReposit
 		
 		for (Alumno alumno : repositorio.findAll()) {
 			
-			if(alumno.getFechaNacimiento() == cumple) {
-				alumno.setEdad(alumno.getEdad()+uno);
+			if(alumno.getDatos().getFechaNacimiento() == cumple) {
+				alumno.getDatos().setEdad(alumno.getDatos().getEdad()+uno);
 			}	
 		}
 	}
@@ -108,7 +107,7 @@ public class AlumnoServicio extends ServicioBaseImpl<Alumno, Long, AlumnoReposit
 // ---------------------------------------------------------------------------------------------------------------------------
 	
 	
-// MÉTODO QUE TRANSFORMA LOS DATOS A UN TIPO ALUMNO --------------------------------------------------------------------------
+/* MÉTODO QUE TRANSFORMA LOS DATOS A UN TIPO ALUMNO --------------------------------------------------------------------------
 	
 	public void cambioDeTipo (Optional<DatosAlumno> datos, Alumno alumno) {
 		alumno.setId(datos.get().getId());
@@ -121,7 +120,7 @@ public class AlumnoServicio extends ServicioBaseImpl<Alumno, Long, AlumnoReposit
 		alumno.setProgenitor(datos.get().getProgenitor());
 	}
 	
-// ---------------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------------*/
 
 	
 }
