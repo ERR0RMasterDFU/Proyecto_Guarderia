@@ -52,7 +52,7 @@ public class ActividadComplementaria {
 	private List<Profesor> profesores = new ArrayList<>();
 	
 	
-	// OTM (PROFESOR) ---------------------------------------------------------------------
+	// OTM (OBSERVACION) ---------------------------------------------------------------------
 	
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude

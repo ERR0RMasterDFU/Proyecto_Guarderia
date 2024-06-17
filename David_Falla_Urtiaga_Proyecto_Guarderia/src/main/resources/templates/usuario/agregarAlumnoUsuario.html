@@ -99,16 +99,15 @@
 
 							<div class="W-100">
 					            <label for="datos" class="fw-bold">DATOS VERIFICADOS DEL ALUMNO<span class="text-danger"> *</span></label><br>
-					            <select class="form-select form-select-sm" style="height: 60%;" name="datos" id="datos" th:field="*{datos}">
-					                
-									<!--option th:each="actividad : ${listaAlumno}" th:value="${actividad.id}" th:text="${alumno.datosAlumno.nombre}"></option-->
-										<th:block th:if="${datosAlumno.segundoApellido != null}">
-				                            <option th:value="${datosAlumno.id}" th:text="${datosAlumno.nombre} + ' ' + ${datosAlumno.primerApellido} + ' ' + ${datosAlumno.segundoApellido}"></option>
-										</th:block>
-										<th:block th:if="${datosAlumno.segundoApellido == null}">
-											<option th:value="${datosAlumno.id}" th:text="${datosAlumno.nombre} + ' ' + ${datosAlumno.primerApellido}"></option>
-										</th:block>
-									</div>
+					            <select class="form-select form-select-sm" style="height: 60%;" name="datos" id="datos" th:field="*{datos}" aria-readonly="true">
+					    
+								    <th:block th:if="${datosAlumno.segundoApellido != null}">
+                                        <option th:value="${datosAlumno.id}" th:text="${datosAlumno.nombre} + ' ' + ${datosAlumno.primerApellido} + ' ' + ${datosAlumno.segundoApellido}" selected></option>
+                                    </th:block>
+                                    <th:block th:if="${datosAlumno.segundoApellido == null}">
+                                        <option th:value="${datosAlumno.id}" th:text="${datosAlumno.nombre} + ' ' + ${datosAlumno.primerApellido}" selected></option>
+                                    </th:block>
+
 					            </select>
 					        </div>
 		
@@ -134,7 +133,7 @@
                                 <p class="m-0 fw-bold">ACTIVIDADES COMPLEMENTARIAS</p>
                                 <div class="d-flex flex-wrap w-100 mt-1">
 									<div class="col-3 form-check pe-5 py-1" th:each="actividad : ${listaActividades}">
-										<input type="checkbox" class="form-check-input border border-1 border-black" th:field="*{horario}" th:value="${actividad.id}" th:text="${actividad.nombre}"> 
+										<input type="checkbox" class="form-check-input border border-1 border-black" th:field="*{horario}" th:value="${actividad.id}" th:text="${actividad.nombre ' (' + actividad.precio + ')'}"> 
 									</div>
                                 </div>
                             </div>
@@ -145,6 +144,29 @@
                     </fieldset>
 
     <!-------------------------------------------------------------------->
+
+                    <!--div class="table-responsive">
+                        <table class="table table-hover table-warning table-striped text-center">
+                            <thead class="bg-warning">
+                                <tr class="fw-bold text-black align-middle">
+                                    <th class="bg-warning border-2 border-end-0 border-black">PRECIO BASE DE<br>LA MATRÍCULA</th>
+                                    <th class="bg-warning border-2 border-start-0 border-end-0 border-black">PRECIO EXTRA<br>DE ASIGNATURAS</th>
+                                    <th class="bg-warning border-2 border-start-0 border-end-0 border-black">DESCUENTO</th>
+                                    <th	class="bg-warning border-2 border-start-0 border-black">PRECIO FINAL DE<br>LA MATRÍCULA</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="align-middle">
+                                    <td th:text="${alumno.id}" class="border-2 border-end-0 border-black py-3 px-2"></td>
+
+
+                                </tr>
+                            </tbody-->
+
+
+
+
+
 
                     <div class="mt-3 px-0 w-100">
                         <button type="submit" class="btn border border-2 border-black btn-success w-100 mt-2 mb-1 fw-bold" style="font-size: 23px;">¡MATRICULAR ALUMNO!</button>

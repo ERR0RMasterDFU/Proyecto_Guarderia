@@ -43,7 +43,7 @@ public class DatosAlumnoControlador {
 	@GetMapping("/admin/datosAlumnos/recibidos")
 	public String mostrarDatosEnviadosAdmin(Model model) {
 			
-		model.addAttribute("listaDatosAlumnos", servicio.findAll());
+		model.addAttribute("listaDatosAlumnos", servicio.filtrarDatosAdmin());
 		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
 			
 		return "admin/datosAlumnosAdmin";

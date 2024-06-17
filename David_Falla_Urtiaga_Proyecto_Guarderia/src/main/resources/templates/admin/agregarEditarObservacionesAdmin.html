@@ -72,7 +72,7 @@
 											<th:block th:if="${alumno.datos.segundoApellido != null}">
 												<option th:value="${alumno.datos.id}" th:text="${alumno.datos.id} + '- ' + ${alumno.datos.nombre} + ' ' + ${alumno.datos.primerApellido} + ' ' + ${alumno.datos.segundoApellido}"></option>
 											</th:block>
-											<th:block th:if="${alumno.segundoApellido == null}">
+											<th:block th:if="${alumno.datos.segundoApellido == null}">
 												<option th:value="${alumno.datos.id}" th:text="${alumno.datos.id} + '- ' + ${alumno.datos.nombre} + ' ' + ${alumno.datos.primerApellido}"></option>
 											</th:block>
 										</div>

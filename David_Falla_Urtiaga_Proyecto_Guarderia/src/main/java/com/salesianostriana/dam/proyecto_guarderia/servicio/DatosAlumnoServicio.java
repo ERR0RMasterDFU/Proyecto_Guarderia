@@ -22,7 +22,7 @@ public class DatosAlumnoServicio extends ServicioBaseImpl<DatosAlumno, Long, Dat
 	}
 	
 	
-// PANTALLA DE ALUMNOS (USUARIO) ---------------------------------------------------------------------------------------------
+// PANTALLA DE DATOS (USUARIO) ---------------------------------------------------------------------------------------------
 	
 	public List<DatosAlumno> filtrarDatosPorUsuario (Usuario usuario){
 		List<DatosAlumno> datosFiltrados = repositorio.findDatosByUsuario(usuario);
@@ -30,12 +30,22 @@ public class DatosAlumnoServicio extends ServicioBaseImpl<DatosAlumno, Long, Dat
 	}
 		
 // ---------------------------------------------------------------------------------------------------------------------------
-
-
-// MÉTODO QUE RETORNA LOS DATOS QUE TIENEN EL MISMO ID QUE UN ALUMNO ---------------------------------------------------------
 	
-	public DatosAlumno filtrarDatosPorIdAlumno (long id) {
-		DatosAlumno datosObtenidos = repositorio.findDatosByIdAlumno(id);
+	
+// PANTALLA DE DATOS (ADMIN) -------------------------------------------------------------------------------------------------
+
+	public List<DatosAlumno> filtrarDatosAdmin (){
+		List<DatosAlumno> datosFiltradosAdmin = repositorio.findDatosSinMatricularByValidadosYMatriculados();
+		return datosFiltradosAdmin;
+	}
+		
+// ---------------------------------------------------------------------------------------------------------------------------
+
+
+// CONSULTA QUE RETORNA LOS DATOS POR ID ------------------------------------------------------------------------------------
+	
+	public DatosAlumno filtrarDatosPorId (long id) {
+		DatosAlumno datosObtenidos = repositorio.findDatosById(id);
 		return datosObtenidos;
 	}
 	

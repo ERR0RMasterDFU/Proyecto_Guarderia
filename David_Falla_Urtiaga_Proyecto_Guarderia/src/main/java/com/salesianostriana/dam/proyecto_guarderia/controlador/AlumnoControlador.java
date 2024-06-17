@@ -251,7 +251,7 @@ public class AlumnoControlador {
 		Alumno alumno = new Alumno();
 		
 		model.addAttribute("alumno", alumno);
-		model.addAttribute("datosAlumno", datosServicio.findById(id)); 	//DATOS DEL ALUMNO
+		model.addAttribute("datosAlumno", datosServicio.filtrarDatosPorId(id)); 	//DATOS DEL ALUMNO
 		model.addAttribute("listaCursos", cursoServicio.findAll()); 	//LISTA DE CURSOS PARA ALUMNO
 		model.addAttribute("listaActividades", actServicio.findAll());	//LISTA DE ACTIVIDADES PARA ALUMNO
 			
@@ -268,7 +268,7 @@ public class AlumnoControlador {
 		
 		alumno.getDatos().setValidos(true);
 		alumno.getDatos().setMatriculado(true);
-
+		
 		servicio.save(alumno);
 			
 		return "redirect:/usuario/datosAlumnos/enviados";
