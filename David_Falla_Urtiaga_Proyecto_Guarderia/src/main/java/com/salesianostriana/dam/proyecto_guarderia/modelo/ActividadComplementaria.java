@@ -1,7 +1,9 @@
 package com.salesianostriana.dam.proyecto_guarderia.modelo;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -33,11 +35,11 @@ public class ActividadComplementaria {
 	
 	// MTM (ALUMNO) ----------------------------------------------------------------------------
 	
-	@ManyToMany(mappedBy="horario", fetch = FetchType.EAGER)
-	@Builder.Default
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
-	private List<Alumno> alumnos = new ArrayList<>();
+	@ManyToMany(mappedBy="horario", fetch = FetchType.EAGER)
+	@Builder.Default
+	private Set<Alumno> alumnos = new HashSet<>();
 	
 	
 

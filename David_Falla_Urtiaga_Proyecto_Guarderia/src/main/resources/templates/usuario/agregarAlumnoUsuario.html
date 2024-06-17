@@ -100,7 +100,7 @@
 								<label for="curso" id="curso" class="fw-bold">CURSO<span class="text-danger"> *</span></label><br>
 			      	           	<div class="d-flex flex-wrap w-100 mt-1">
 									<div th:each="curso : ${listaCursos}" class="col-3 form-check pe-5 py-1">
-										<input type="radio" class="form-check-input border border-1 border-black" th:field="*{curso}" th:value="${curso.id}" th:text="${curso.nombre}"> 
+										<input type="radio" class="form-check-input border border-1 border-black" th:field="*{curso}" th:value="${curso.id}" th:text="${curso.nombre}" required> 
 								  	</div>
 								
 								</div>
@@ -114,7 +114,7 @@
                                 <p class="m-0 fw-bold">ACTIVIDADES COMPLEMENTARIAS</p>
                                 <div class="d-flex flex-wrap w-100 mt-1">
 									<div class="col-3 form-check pe-5 py-1" th:each="actividad : ${listaActividades}">
-										<input type="checkbox" class="form-check-input border border-1 border-black" th:field="*{horario}" th:value="${actividad.id}" th:text="${actividad.nombre}"> 
+										<input type="checkbox" class="form-check-input border border-1 border-black" th:field="*{horario}" th:value="${actividad.id}" th:text="${actividad.nombre}" required> 
 									</div>
                                 </div>
                             </div>

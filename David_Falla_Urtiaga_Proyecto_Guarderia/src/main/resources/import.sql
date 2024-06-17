@@ -74,7 +74,7 @@ INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (10, 2, 310.99);
 INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (11, 1, 314.29);
 INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (12, 2, 313.30);
 
-ALTER SEQUENCE alumno_seq RESTART WITH 62;
+--ALTER SEQUENCE alumno_seq RESTART WITH 62;
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -122,7 +122,7 @@ INSERT INTO Horario (alumno_id, actividad_id) VALUES (11, 6);
 INSERT INTO Horario (alumno_id, actividad_id) VALUES (12, 3);
 INSERT INTO Horario (alumno_id, actividad_id) VALUES (12, 6);
 
-ALTER SEQUENCE horario_seq RESTART WITH 78;
+--ALTER SEQUENCE horario_seq RESTART WITH 78;
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 

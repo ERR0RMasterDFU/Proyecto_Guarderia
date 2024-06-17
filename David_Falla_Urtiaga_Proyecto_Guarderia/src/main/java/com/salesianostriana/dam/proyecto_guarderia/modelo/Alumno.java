@@ -1,17 +1,14 @@
 package com.salesianostriana.dam.proyecto_guarderia.modelo;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-
-import org.springframework.format.annotation.DateTimeFormat;
+import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ForeignKey;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
@@ -64,7 +61,7 @@ public class Alumno extends DatosAlumno{
 			inverseJoinColumns = @JoinColumn(name="actividad_id")
 	)
 	@Builder.Default
-	private List<ActividadComplementaria> horario = new ArrayList<>();
+	private Set<ActividadComplementaria> horario = new HashSet<>();
 
 	
 	
