@@ -70,4 +70,24 @@ public class UsuarioServicio extends ServicioBaseImpl<Usuario, Long, UsuarioRepo
 		
 // ---------------------------------------------------------------------------------------------------------------------------
 	
+
+// MÉTODO QUE AUMENTA EN 1 EL NÚMERO DE HIJOS MATRICULADOS -------------------------------------------------------------------
+
+	public void aumentarNumHijos (Usuario usuario) {
+		int uno = 1;
+		usuario.setNumHijos(usuario.getNumHijos()+uno);
+	}
+	
+// ---------------------------------------------------------------------------------------------------------------------------
+	
+	
+// MÉTODO QUE DISMINUYE EN 1 EL NÚMERO DE HIJOS MATRICULADOS -----------------------------------------------------------------
+
+	public void restarNumHijos (Usuario usuario) {
+		int uno = 1;
+		usuario.setNumHijos(usuario.getNumHijos()-uno);
+	}
+	
+// ---------------------------------------------------------------------------------------------------------------------------
+	
 }

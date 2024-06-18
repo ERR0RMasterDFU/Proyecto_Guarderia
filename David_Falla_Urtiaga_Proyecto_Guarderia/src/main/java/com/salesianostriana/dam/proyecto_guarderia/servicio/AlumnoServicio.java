@@ -107,20 +107,62 @@ public class AlumnoServicio extends ServicioBaseImpl<Alumno, Long, AlumnoReposit
 // ---------------------------------------------------------------------------------------------------------------------------
 	
 	
-/* MÉTODO QUE TRANSFORMA LOS DATOS A UN TIPO ALUMNO --------------------------------------------------------------------------
-	
-	public void cambioDeTipo (Optional<DatosAlumno> datos, Alumno alumno) {
-		alumno.setId(datos.get().getId());
-		alumno.setNombre(datos.get().getNombre());
-		alumno.setPrimerApellido(datos.get().getPrimerApellido());
-		alumno.setSegundoApellido(datos.get().getSegundoApellido());
-		alumno.setEdad(datos.get().getEdad());
-		alumno.setDireccion(datos.get().getDireccion());
-		alumno.setFechaNacimiento(datos.get().getFechaNacimiento());
-		alumno.setProgenitor(datos.get().getProgenitor());
+// ---------------------------------------------------------------------------------------------------------------------------
+
+	public void resetearPrecioMatricula (Alumno alumno) {
+		double trescientos = 300.00;
+		alumno.setPrecioMatricula(trescientos);
 	}
 	
-// ---------------------------------------------------------------------------------------------------------------------------*/
-
+// ---------------------------------------------------------------------------------------------------------------------------
+	
+	
+// ---------------------------------------------------------------------------------------------------------------------------
+	
+	public double calcularPrecioFinalMatricula (Alumno alumno) {
+		double precioBase = alumno.getPrecioMatricula();
+		double precioAct = 0.00;
+		
+		for (ActividadComplementaria ac : alumno.getHorario()) {
+			precioAct += ac.getPrecio();
+		}
+		
+		return precioBase + precioAct;
+	}
+	
+// ---------------------------------------------------------------------------------------------------------------------------
+	
+	
+// ---------------------------------------------------------------------------------------------------------------------------
+	
+	public double calcularDescuento (Usuario usuario, double precioFinalMatricula) {
+		
+		double precioConDescuento = 0.00;
+		double diez = 10.00, quince = 15.00, veinte = 20.00, vienticinco = 25.00, cien = 100.00;
+		
+	    switch (usuario.getNumHijos()) {
+		    case 0:
+	        	precioConDescuento = precioFinalMatricula;
+	            break;
+	        case 1:
+	        	precioConDescuento = precioFinalMatricula - (precioFinalMatricula * diez/cien);
+	            break;
+	        case 2:
+	        	precioConDescuento = precioFinalMatricula - (precioFinalMatricula * quince/cien);
+	            break;
+	        case 3:
+	        	precioConDescuento = precioFinalMatricula - (precioFinalMatricula * veinte/cien);
+	            break;
+	        case 4 :
+	        	precioConDescuento = precioFinalMatricula - (precioFinalMatricula * vienticinco/cien);
+	            break;
+	        default:
+	        	precioConDescuento = precioFinalMatricula - (precioFinalMatricula * vienticinco/cien);
+	            break;
+	    }
+	    return precioConDescuento;
+	}
+	
+// ---------------------------------------------------------------------------------------------------------------------------
 	
 }

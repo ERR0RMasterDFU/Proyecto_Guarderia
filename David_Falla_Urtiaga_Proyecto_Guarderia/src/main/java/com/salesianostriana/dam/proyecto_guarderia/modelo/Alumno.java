@@ -1,6 +1,5 @@
 package com.salesianostriana.dam.proyecto_guarderia.modelo;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -19,7 +18,6 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.PrimaryKeyJoinColumn;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -27,18 +25,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import lombok.experimental.SuperBuilder;
 
 @Getter 
 @Setter
-/*@EqualsAndHashCode(callSuper = true)
-@ToString(callSuper = true)*/
 @NoArgsConstructor
 @AllArgsConstructor
-//@SuperBuilder
 @Builder
 @Entity
-public class Alumno /*extends DatosAlumno*/{
+public class Alumno{
 
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -46,16 +40,11 @@ public class Alumno /*extends DatosAlumno*/{
 	private double precioMatricula;
 	
 
-/* MTO (USUARIO) -----------------------------------------------------------------------------------
-	
-	@ManyToOne
-    @JoinColumn(foreignKey = @ForeignKey(name="fk_progenitor_alumno"))
-	private Usuario progenitor;*/
+// MTO (USUARIO) -----------------------------------------------------------------------------------
 
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "datos_id", referencedColumnName = "id")
 	private DatosAlumno datos;
-	
 	
 // OTM (OBSERVACION) -------------------------------------------------------------------------------	
 	

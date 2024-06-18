@@ -20,12 +20,16 @@ import com.salesianostriana.dam.proyecto_guarderia.servicio.AlumnoServicio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.CursoServicio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.DatosAlumnoServicio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.ObservacionServicio;
+import com.salesianostriana.dam.proyecto_guarderia.servicio.UsuarioServicio;
 
 @Controller
 public class AlumnoControlador {
 
 	@Autowired
 	private AlumnoServicio servicio;
+	
+	@Autowired
+	private UsuarioServicio userServicio;
 	
 	@Autowired
 	private CursoServicio cursoServicio;
@@ -156,6 +160,7 @@ public class AlumnoControlador {
 		if(alumnoAEditar.isPresent()) {
 			
 			servicio.desvincularProfesoresDeObservacion(alumnoAEditar, id);
+			userServicio.restarNumHijos(alumnoAEditar.get().getDatos().getProgenitor());
 			servicio.delete(alumnoAEditar.get());
 				
 		} else {
@@ -254,6 +259,8 @@ public class AlumnoControlador {
 		model.addAttribute("datosAlumno", datosServicio.filtrarDatosPorId(id)); 	//DATOS DEL ALUMNO
 		model.addAttribute("listaCursos", cursoServicio.findAll()); 	//LISTA DE CURSOS PARA ALUMNO
 		model.addAttribute("listaActividades", actServicio.findAll());	//LISTA DE ACTIVIDADES PARA ALUMNO
+		
+		servicio.resetearPrecioMatricula(alumno);
 			
 		return "usuario/agregarAlumnoUsuario";
 	}
@@ -268,6 +275,10 @@ public class AlumnoControlador {
 		
 		alumno.getDatos().setValidos(true);
 		alumno.getDatos().setMatriculado(true);
+	
+		alumno.setPrecioMatricula(servicio.calcularDescuento(alumno.getDatos().getProgenitor(), servicio.calcularPrecioFinalMatricula(alumno)));
+		
+		userServicio.aumentarNumHijos(alumno.getDatos().getProgenitor());
 		
 		servicio.save(alumno);
 			

@@ -1,9 +1,9 @@
 -- USUARIOS -----------------------------------------------------------------------------------------------------------------------------------------------
 
 INSERT INTO Usuario (id, username, dni, password, email, nombre, primer_apellido, segundo_apellido, num_telefono, num_hijos, progenitor, admin) VALUES (1, 'admin', 'null', '{noop}admin', 'null', 'null', 'null', 'null', 'null',  0, 'TUTORLEGAL', 'true');
-INSERT INTO Usuario (id, username, dni, password, email, nombre, primer_apellido, segundo_apellido, num_telefono, num_hijos, progenitor, admin) VALUES (2, 'user', '44923600T', '{noop}1234', 'usuario.salesianostriana@gmail.com', 'Luismi', 'López', 'Magaña', '676002840',  3, 'TUTORLEGAL', 'false');
-INSERT INTO Usuario (id, username, dni, password, email, nombre, primer_apellido, segundo_apellido, num_telefono, num_hijos, progenitor, admin) VALUES (3, 'Maksim', '43916709A', '{noop}juJan', 'nerer21078@gmail.com', 'Eneko', 'Sala', 'Carrero', '614030760', 4, 'PADRE', 'false');
-INSERT INTO Usuario (id, username, dni, password, email, nombre, primer_apellido, segundo_apellido, num_telefono, num_hijos, progenitor, admin) VALUES (4, 'Naaji', '83603799H', '{noop}BL453', 'Krak3nz0te@gmail.com', 'Maialen', 'Hidalgo', 'Mellado', '848917922',  6, 'MADRE', 'false');
+INSERT INTO Usuario (id, username, dni, password, email, nombre, primer_apellido, segundo_apellido, num_telefono, num_hijos, progenitor, admin) VALUES (2, 'user', '44923600T', '{noop}1234', 'usuario.salesianostriana@gmail.com', 'Luismi', 'López', 'Magaña', '676002840',  4, 'TUTORLEGAL', 'false');
+INSERT INTO Usuario (id, username, dni, password, email, nombre, primer_apellido, segundo_apellido, num_telefono, num_hijos, progenitor, admin) VALUES (3, 'Maksim', '43916709A', '{noop}juJan', 'nerer21078@gmail.com', 'Eneko', 'Sala', 'Carrero', '614030760', 5, 'PADRE', 'false');
+INSERT INTO Usuario (id, username, dni, password, email, nombre, primer_apellido, segundo_apellido, num_telefono, num_hijos, progenitor, admin) VALUES (4, 'Naaji', '83603799H', '{noop}BL453', 'Krak3nz0te@gmail.com', 'Maialen', 'Hidalgo', 'Mellado', '848917922',  3, 'MADRE', 'false');
 
 ALTER SEQUENCE usuario_seq RESTART WITH 54;
 
