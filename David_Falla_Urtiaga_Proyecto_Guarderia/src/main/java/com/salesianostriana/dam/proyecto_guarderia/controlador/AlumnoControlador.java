@@ -55,6 +55,7 @@ public class AlumnoControlador {
 		
 		LocalDate cumpleanos = LocalDate.now();
 		model.addAttribute("cumpleanos", cumpleanos);
+		model.addAttribute("alumnos", servicio.contarHijosMatriculadosPorUsuario(usuario));
 	
 		return "usuario/alumnosUsuario";
 	}
@@ -74,78 +75,6 @@ public class AlumnoControlador {
 	}
 	
 // ---------------------------------------------------------------------------------------------------------------------------
-
-	
-/* FORMULARIO AÑADIR ALUMNOS -------------------------------------------------------------------------------------------------
-
-	@GetMapping("/usuario/matricula")
-	public String mostrarMatricula(Model model, @AuthenticationPrincipal Usuario usuario) {
-		
-		Alumno alumno = new Alumno();
-		model.addAttribute("alumno", alumno);
-		model.addAttribute("listaAsideUsuario", obServicio.tresObservacionesMasRecientesUsuario(usuario));
-		
-		model.addAttribute("listaCursos", cursoServicio.findAll()); 	//LISTA DE CURSOS PARA ALUMNO
-		model.addAttribute("listaActividades", actServicio.findAll());	//LISTA DE ACTIVIDADES PARA ALUMNO
-		
-		return "agregarEditarAlumnos";
-	}
-
-// ---------------------------------------------------------------------------------------------------------------------------
-	
-	
-// GUARDA EL ALUMNO EN LA BASE DE DATOS --------------------------------------------------------------------------------------
-	
-	@PostMapping("/usuario/matricula/submit")
-	public String registroMatriculaFormulario(@ModelAttribute("alumno") Alumno alumno, @AuthenticationPrincipal Usuario usuario) {
-				
-		alumno.setProgenitor(usuario);
-		servicio.save(alumno);		
-			
-		return "redirect:/usuario/alumnos";
-	}
-	
-// ---------------------------------------------------------------------------------------------------------------------------
-	
-	
-// FORMULARIO EDITAR ALUMNOS -------------------------------------------------------------------------------------------------
-
-	@GetMapping("/admin/alumnos/editarAlumno/{id}")
-	public String mostrarFormularioEdicion(@PathVariable("id") long id, Model model) {
-			
-		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
-		
-		Optional<Alumno> alumnoAEditar = servicio.findById(id);
-			
-		if(alumnoAEditar.isPresent()) {
-				
-			model.addAttribute("alumno", alumnoAEditar.get());
-				
-			model.addAttribute("listaCursos", cursoServicio.findAll()); 	//LISTA DE CURSOS PARA PROFESOR
-			model.addAttribute("listaActividades", actServicio.findAll());	//LISTA DE ACTIVIDADES PARA ALUMNO
-
-			return "agregarEditarAlumnos";
-				
-		} else {
-				
-			return "redirect:/admin/alumnos";
-		}
-	}
-	
-// ---------------------------------------------------------------------------------------------------------------------------
-		
-		
-// GUARDA LOS CAMBIOS REALIZADOS SOBRE EL ALUMNO EN LA BASE DE DATOS ---------------------------------------------------------
-		
-	@PostMapping("/admin/alumnos/editarAlumno/submit")
-	public String registrarAlumnoEditado(@ModelAttribute("alumno") Alumno alumno) {
-			
-		servicio.save(alumno);
-			
-		return "redirect:/admin/alumnos";	
-	}
-		
-// ---------------------------------------------------------------------------------------------------------------------------*/
 		
 		
 // BORRA AL ALUMNO POR ID ----------------------------------------------------------------------------------------------------
@@ -262,7 +191,7 @@ public class AlumnoControlador {
 		
 		servicio.resetearPrecioMatricula(alumno);
 			
-		return "usuario/agregarAlumnoUsuario";
+		return "usuario/agregarEditarAlumnoUsuario";
 	}
 
 // ---------------------------------------------------------------------------------------------------------------------------
@@ -275,6 +204,8 @@ public class AlumnoControlador {
 		
 		alumno.getDatos().setValidos(true);
 		alumno.getDatos().setMatriculado(true);
+		
+		servicio.resetearPrecioMatricula(alumno);
 	
 		alumno.setPrecioMatricula(servicio.calcularDescuento(alumno.getDatos().getProgenitor(), servicio.calcularPrecioFinalMatricula(alumno)));
 		
@@ -282,18 +213,35 @@ public class AlumnoControlador {
 		
 		servicio.save(alumno);
 			
-		return "redirect:/usuario/datosAlumnos/enviados";
+		return "redirect:/usuario/alumnos";
 	}
 	
 // ---------------------------------------------------------------------------------------------------------------------------
 	
 	
-/* FORMULARIO EDITAR ALUMNOS -------------------------------------------------------------------------------------------------
+// PANTALLA DE MATRÍCULAS (USUARIO) ------------------------------------------------------------------------------------------
 
-	@GetMapping("/admin/alumnos/editarAlumno/{id}")
-	public String mostrarFormularioEdicion(@PathVariable("id") long id, Model model) {
+	@GetMapping("/usuario/matriculas")
+	public String mostrarListaMatriculas(Model model, @AuthenticationPrincipal Usuario usuario) {
+		
+		model.addAttribute("listaAsideUsuario", obServicio.tresObservacionesMasRecientesUsuario(usuario));
+		
+		model.addAttribute("listaMatriculas", servicio.filtrarAlumnosPorUsuario(usuario)); 	//DATOS DEL ALUMNO
+		model.addAttribute("listaCursos", cursoServicio.findAll()); 	//LISTA DE CURSOS PARA ALUMNO
+		model.addAttribute("listaActividades", actServicio.findAll());	//LISTA DE ACTIVIDADES PARA ALUMNO
 			
-		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
+		return "usuario/matriculasUsuario";
+	}
+
+// ---------------------------------------------------------------------------------------------------------------------------
+	
+	
+// FORMULARIO EDITAR ALUMNOS -------------------------------------------------------------------------------------------------
+
+	@GetMapping("/usuario/editarAlumno/{id}")
+	public String mostrarFormularioEdicion(@PathVariable("id") long id, Model model, @AuthenticationPrincipal Usuario usuario) {
+			
+		model.addAttribute("listaAsideUsuario", obServicio.tresObservacionesMasRecientesUsuario(usuario));
 		
 		Optional<Alumno> alumnoAEditar = servicio.findById(id);
 			
@@ -301,14 +249,15 @@ public class AlumnoControlador {
 				
 			model.addAttribute("alumno", alumnoAEditar.get());
 				
-			model.addAttribute("listaCursos", cursoServicio.findAll()); 	//LISTA DE CURSOS PARA PROFESOR
+			model.addAttribute("datosAlumno", datosServicio.filtrarDatosPorId(id)); 	//DATOS DEL ALUMNO
+			model.addAttribute("listaCursos", cursoServicio.findAll()); 	//LISTA DE CURSOS PARA ALUMNO
 			model.addAttribute("listaActividades", actServicio.findAll());	//LISTA DE ACTIVIDADES PARA ALUMNO
 
-			return "agregarEditarAlumnos";
+			return "usuario/agregarEditarAlumnoUsuario";
 				
 		} else {
 				
-			return "redirect:/admin/alumnos";
+			return "redirect:/usuario/matriculas";
 		}
 	}
 	
@@ -317,15 +266,19 @@ public class AlumnoControlador {
 		
 // GUARDA LOS CAMBIOS REALIZADOS SOBRE EL ALUMNO EN LA BASE DE DATOS ---------------------------------------------------------
 		
-	@PostMapping("/admin/alumnos/editarAlumno/submit")
+	@PostMapping("/usuario/editarAlumno/submit")
 	public String registrarAlumnoEditado(@ModelAttribute("alumno") Alumno alumno) {
-			
+		
+		servicio.resetearPrecioMatricula(alumno);
+		
+		alumno.setPrecioMatricula(servicio.calcularDescuento(alumno.getDatos().getProgenitor(), servicio.calcularPrecioFinalMatricula(alumno)));
+		
 		servicio.save(alumno);
 			
-		return "redirect:/admin/alumnos";	
+		return "redirect:/usuario/matriculas";	
 	}
 		
-// ---------------------------------------------------------------------------------------------------------------------------*/
+// ---------------------------------------------------------------------------------------------------------------------------
 	
 	
 	

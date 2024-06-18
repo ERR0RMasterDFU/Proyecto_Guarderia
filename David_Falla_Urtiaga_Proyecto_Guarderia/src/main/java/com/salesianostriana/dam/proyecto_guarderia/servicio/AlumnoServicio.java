@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import com.salesianostriana.dam.proyecto_guarderia.modelo.ActividadComplementaria;
@@ -70,6 +71,16 @@ public class AlumnoServicio extends ServicioBaseImpl<Alumno, Long, AlumnoReposit
 
 // ---------------------------------------------------------------------------------------------------------------------------
 	
+
+// NÚMERO DE HIJOS EN PANTALLA ALUMNOS (USUARIO) -----------------------------------------------------------------------------
+
+	public int contarHijosMatriculadosPorUsuario (Usuario usuario) {
+		int numHijos = repositorio.contarHijosMatriculadosPorUsuario(usuario);
+		return numHijos;
+	}
+	
+// ---------------------------------------------------------------------------------------------------------------------------
+	
 	
 // MÉTODO QUE DESASOCIA UN PROFESOR DE UNA OBSERVACIÓN PARA PERIMITR QUE EL ALUMNO PUEDA SER BORRADO -------------------------
 	
@@ -107,7 +118,7 @@ public class AlumnoServicio extends ServicioBaseImpl<Alumno, Long, AlumnoReposit
 // ---------------------------------------------------------------------------------------------------------------------------
 	
 	
-// ---------------------------------------------------------------------------------------------------------------------------
+// MÉTODO QUE CAMBIA EL VALOR DEL PRECIO DE MATRÍCULA BASE A 300.00 € --------------------------------------------------------
 
 	public void resetearPrecioMatricula (Alumno alumno) {
 		double trescientos = 300.00;
@@ -117,7 +128,7 @@ public class AlumnoServicio extends ServicioBaseImpl<Alumno, Long, AlumnoReposit
 // ---------------------------------------------------------------------------------------------------------------------------
 	
 	
-// ---------------------------------------------------------------------------------------------------------------------------
+// MÉTODO QUE SUMA EL PRECIO DE LA MATRÍCULA BASE CON EL PRECIO EXTRA DE LAS ACTIVIDADES -------------------------------------
 	
 	public double calcularPrecioFinalMatricula (Alumno alumno) {
 		double precioBase = alumno.getPrecioMatricula();
@@ -133,33 +144,21 @@ public class AlumnoServicio extends ServicioBaseImpl<Alumno, Long, AlumnoReposit
 // ---------------------------------------------------------------------------------------------------------------------------
 	
 	
-// ---------------------------------------------------------------------------------------------------------------------------
+// MÉTODO QUE REALIZA UN DESCUENTO AL PRECIO FINAL TENIENDO EN CUENTA EL NÚMERO DE HIJOS -------------------------------------
 	
 	public double calcularDescuento (Usuario usuario, double precioFinalMatricula) {
-		
-		double precioConDescuento = 0.00;
-		double diez = 10.00, quince = 15.00, veinte = 20.00, vienticinco = 25.00, cien = 100.00;
-		
-	    switch (usuario.getNumHijos()) {
-		    case 0:
-	        	precioConDescuento = precioFinalMatricula;
-	            break;
-	        case 1:
-	        	precioConDescuento = precioFinalMatricula - (precioFinalMatricula * diez/cien);
-	            break;
-	        case 2:
-	        	precioConDescuento = precioFinalMatricula - (precioFinalMatricula * quince/cien);
-	            break;
-	        case 3:
-	        	precioConDescuento = precioFinalMatricula - (precioFinalMatricula * veinte/cien);
-	            break;
-	        case 4 :
-	        	precioConDescuento = precioFinalMatricula - (precioFinalMatricula * vienticinco/cien);
-	            break;
-	        default:
-	        	precioConDescuento = precioFinalMatricula - (precioFinalMatricula * vienticinco/cien);
-	            break;
-	    }
+	    double cero = 0.00, diez = 10.00, veinte = 20.00, treinta = 30.00, treintaYCinco = 35.00, cien = 100.00;
+	    
+	    double descuento = switch (usuario.getNumHijos()) {
+	        case 0 -> cero;
+	        case 1 -> diez;
+	        case 2 -> veinte;
+	        case 3 -> treinta;
+	        case 4 -> treintaYCinco;
+	        default -> treintaYCinco;
+	    };
+	    
+	    double precioConDescuento = precioFinalMatricula - (precioFinalMatricula * descuento/cien);
 	    return precioConDescuento;
 	}
 	

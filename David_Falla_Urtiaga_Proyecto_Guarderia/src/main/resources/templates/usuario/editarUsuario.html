@@ -63,8 +63,9 @@
 				       		<div class="d-flex w-100">
 												
 								<input th:if="${usuario.id!=0}" type="hidden" name="id" th:field="*{id}"/>
-								<input th:if="${usuario.username != null}" type="hidden" name="username" th:field="*{username}">
-								<input th:if="${usuario.password != null}" type="hidden" name="password" th:field="*{password}">
+								<input th:if="${usuario.numHijos!=0}" type="hidden" name="numHijos" th:field="*{numHijos}"/>
+								<input th:if="${usuario.username != null}" type="hidden" name="username" th:field="*{username}"/>
+								<input th:if="${usuario.password != null}" type="hidden" name="password" th:field="*{password}"/>
 								
 				               	<div class="me-3" style="flex: 1 1 33%;">
 				               		<label for="nombre" class="form-label m-0 fw-bold">NOMBRE<span class="text-danger"> *</span></label><br>
@@ -89,22 +90,22 @@
 				                        
 				          	<div class="d-flex mt-3 w-100">
 				                        
-				           		<div class="me-3" style="flex: 1 1 33%;">
+				           		<div class="me-3" style="flex: 1 1 50%;">
 				              		<label for="numTelefono" class="form-label m-0 fw-bold">TELÉFONO<span class="text-danger"> *</span></label><br>
 				              		<input type="text" th:field="*{numTelefono}" class="form-control w-100" name="numTelefono" id="numTelefono" placeholder="Introduzca su nº teléfono" required>
 				              	</div>
 				
-				             	<div class="mx-3" style="flex: 1 1 33%;">
+				             	<div class="mx-3" style="flex: 1 1 50%;">
 				            		<label for="progenitor" class="fw-bold">PROGENITOR<span class="text-danger"> *</span></label><br>
 				                   	<select th:field="*{progenitor}" class="form-select form-select-sm" style="height: 37px;"  name="progenitor" id="progenitor">
 				                   		<option th:each="progenitor : ${listaTipoProgenitor}" th:value="${progenitor}" th:field="*{progenitor}" th:text="${progenitor.tipoProgenitor}"></option>
 				                   	</select>
 				              	</div>        
 				
-				            	<div class="ms-3" style="flex: 1 1 33%;">
+				            	<!--div class="ms-3" style="flex: 1 1 33%;">
 				              		<label for="numHijos" class="form-label m-0 fw-bold">NÚMERO DE HIJOS</label><br>
 				                 	<input class="w-100" style="height: 37px;" type="number" name="numHijos" placeholder="Introduzca su nº de hijos" id="numHijos" min="0" step="1" th:field="*{numHijos}">
-				               	</div>
+				               	</div-->
 				
 							</div>
 				

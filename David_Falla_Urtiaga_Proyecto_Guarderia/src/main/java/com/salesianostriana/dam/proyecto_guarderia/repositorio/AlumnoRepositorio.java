@@ -62,5 +62,17 @@ public interface AlumnoRepositorio extends JpaRepository<Alumno, Long>{
 	public List<ActividadComplementaria> findHorarioByAlumnoId(long id);
 	
 // ---------------------------------------------------------------------------------------------------------------------------
+	
+	
+// NÚMERO DE HIJOS EN PANTALLA ALUMNOS (USUARIO) -----------------------------------------------------------------------------
 
+	@Query("""
+			SELECT count(a)
+			FROM Alumno a JOIN a.datos d
+			WHERE d.progenitor = ?1
+			""")
+	public int contarHijosMatriculadosPorUsuario(Usuario usuario);
+	
+// ---------------------------------------------------------------------------------------------------------------------------
+	
 }
