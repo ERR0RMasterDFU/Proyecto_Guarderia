@@ -85,15 +85,14 @@
 								<td class="border-2 border-start-0 border-start-0 border-black py-2 px-3">
 									<div class="d-flex justify-content-center flex-direction text-center align-middle">
 										<div class="text-center align-middle">
-											<div class="py-0">
-												<a type="button" href="../agregarEditarAlumnos.html" th:href="@{/admin/alumnos/editarAlumno/{id}(id=${alumno.id})}" class="btn text-white fw-bold w-100" style="background-color: rgb(210, 122, 2); font-size: 20px;"><i class="bi bi-person-fill-gear m-0"></i></a>
+											<div th:if="${cumpleanos == alumno.datos.fechaNacimiento}">
+												<div class="py-0">
+													<button type="button" data-bs-toggle="modal" data-bs-target="#modalCumple" class="btn text-white fw-bold w-100" style="background-color: rgb(218, 94, 187); font-size: 20px;"><i class="bi bi-cake2 m-0"></i></button>
+												</div>
 											</div>
 											<div class="mt-2 py-0">
 												<button type="button" data-bs-toggle="modal" data-bs-target="#modalBorrado" th:data-id="${alumno.id}" class="btn text-white fw-bold w-100" style="background-color: rgb(218, 63, 3); font-size: 20px;"><i class="bi bi-person-fill-dash m-0"></i></button>
 											</div>
-										</div>
-										<div th:if="${cumpleanos == alumno.datos.fechaNacimiento}" class="ms-2 py-0 w-100">
-											<button type="button" data-bs-toggle="modal" data-bs-target="#modalCumple" class="btn text-white h-100" style="background-color: rgb(218, 94, 187);"><i class="bi bi-cake2" style="font-size: 30px;"></i></button>
 										</div>
 									</div>
 								</td>

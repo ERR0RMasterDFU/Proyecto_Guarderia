@@ -1,7 +1,7 @@
 document.getElementById("registroForm").addEventListener("submit", function(event) {
     event.preventDefault();
     
-    let error = [];
+    let error = false;
 
 // VALIDACIÓN DEL TELÉFONO ---------------------------------------------------------------------------------------------------------------------------------------
 
@@ -9,7 +9,8 @@ document.getElementById("registroForm").addEventListener("submit", function(even
     const telefonoRegex = /^[0-9]{9}$/;
 
     if (!telefonoRegex.test(telefono)) {
-        error.push("El teléfono debe contener 9 dígitos sin espacios, guiones ni el prefijo +34.");
+        alert("EL TELÉFONO DEBE CONTENER 9 DÍGITOS SIN ESPACIOS, GUIONES NI EL PREFIJO +34.");
+        error=true;
     }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -20,7 +21,8 @@ document.getElementById("registroForm").addEventListener("submit", function(even
     const dniNie = document.getElementById("dniNie").value;
 
     if (!dniValido(dniNie) && !nieValido(dniNie)) {
-        error.push("El DNI o NIE no es válido.");
+        alert("El DNI O NIE NO ES VÁLIDO.");
+        error = true;
     }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -32,7 +34,8 @@ document.getElementById("registroForm").addEventListener("submit", function(even
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!emailRegex.test(email)) {
-        error.push("El correo electrónico no es válido.");
+        alert("EL CORREO ELECTRÓNICO NO ES VÁLIDO.");
+        error = true;
     }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -40,30 +43,19 @@ document.getElementById("registroForm").addEventListener("submit", function(even
 
 // ALERT QUE MUESTRA ERRORES -------------------------------------------------------------------------------------------------------------------------------------
 
-    const alertError = document.getElementById("alertError");
-    const spanError = document.getElementById("spanError");
-
-    alertError.classList.add("d-none");                         // OCULTA EL ALERT
-    spanError.innerHTML = "";
-
-    if (error.length > 0) {error
-        spanError.innerHTML = error.join("<br>");
-        alertError.classList.remove("d-none");                  // MUESTRA EL ALERT
-    } else {
-        
-        // Muestra modal de confirmación
-
+    if(!error){
+		
         const modalConfirmacion = new bootstrap.Modal(document.getElementById('modalConfirmacion'));
         modalConfirmacion.show();
 
         
-        // MUESTRA EL MODAL Y EL BOTÓN DE SUBMIT EN EL CLARO QUE SÍ, HOMBRE
+        // MUESTRA EL MODAL Y EL BOTÓN DE SUBMIT EN EL SÍÍÍ
         
         document.getElementById('botonConfirmar').addEventListener('click', function() {
             modalConfirmacion.hide();
-            event.target.submit();
+            document.getElementById('registroForm').submit();
         }, { once: true });
-    
+        
     }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------
