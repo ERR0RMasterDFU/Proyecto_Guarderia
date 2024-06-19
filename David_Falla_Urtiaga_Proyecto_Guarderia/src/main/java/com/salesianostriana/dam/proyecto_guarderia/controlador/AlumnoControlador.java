@@ -185,9 +185,11 @@ public class AlumnoControlador {
 		Alumno alumno = new Alumno();
 		
 		model.addAttribute("alumno", alumno);
+		model.addAttribute("numHijos", servicio.contarHijosMatriculadosPorUsuario(usuario));
 		model.addAttribute("datosAlumno", datosServicio.filtrarDatosPorId(id)); 	//DATOS DEL ALUMNO
 		model.addAttribute("listaCursos", cursoServicio.findAll()); 	//LISTA DE CURSOS PARA ALUMNO
 		model.addAttribute("listaActividades", actServicio.findAll());	//LISTA DE ACTIVIDADES PARA ALUMNO
+		
 		
 		servicio.resetearPrecioMatricula(alumno);
 			
@@ -248,7 +250,7 @@ public class AlumnoControlador {
 		if(alumnoAEditar.isPresent()) {
 				
 			model.addAttribute("alumno", alumnoAEditar.get());
-				
+			model.addAttribute("numHijos", servicio.contarHijosMatriculadosPorUsuario(usuario));	
 			model.addAttribute("datosAlumno", datosServicio.filtrarDatosPorId(id)); 	//DATOS DEL ALUMNO
 			model.addAttribute("listaCursos", cursoServicio.findAll()); 	//LISTA DE CURSOS PARA ALUMNO
 			model.addAttribute("listaActividades", actServicio.findAll());	//LISTA DE ACTIVIDADES PARA ALUMNO

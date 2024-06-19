@@ -15,7 +15,7 @@ document.getElementById('alumnoForm').addEventListener('submit', function(event)
     }
 
     if (fechaNacimiento > hoy) {
-        error.push('Lo sentimos, en este centro no se admite a gente que viene del futuro.');
+        error.push('Lo sentimos, en este centro no admitimos a viajeros interdimiensionales.');
     }
 
 
@@ -25,12 +25,14 @@ document.getElementById('alumnoForm').addEventListener('submit', function(event)
     alertError.classList.add("d-none");                         // OCULTA EL ALERT
     spanError.innerHTML = "";
 
-    if (error.length > 0) {
+    if (error.length > 0) {error
         spanError.innerHTML = error.join("<br>");
-        alertError.classList.remove("d-none"); // Muestra el alert de error
+        alertError.classList.remove("d-none");    // MUESTRA EL ALERT
+    
     } else {
-        alertError.classList.add("d-none"); // Oculta el alert de error si no hay errores
-        event.target.submit(); // Envía el formulario si no hay errores
-    }
+ 
+        event.target.submit();
+   }
+        
 });
 

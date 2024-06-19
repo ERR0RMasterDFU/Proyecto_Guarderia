@@ -49,20 +49,20 @@
                     <fieldset class="justify-content-center border border-black border-3">
 
                         <th:block th:if="${alumno.id == 0}">
-                            <th:block th:if="alumno.datos.segundoApellido != null">
-                                <legend class="fw-bold border border-black border-3 border-start-0 border-end-0 border-top-0 text-white px-2 mb-3 bg-success">MATRÍCULA DE: <span style="text-transform: uppercase;" th:text="${alumno.datos.nombre} + ' ' + ${alumno.datos.primerApellido} + ' ' + ${alumno.datos.segundoApellido}"></span></legend>
+                            <th:block th:if="datosAlumno.segundoApellido != null">
+                                <legend class="fw-bold border border-black border-3 border-start-0 border-end-0 border-top-0 text-white px-2 mb-3 bg-success">MATRÍCULA DE: <span style="text-transform: uppercase;" th:text="${datosAlumno.nombre} + ' ' + ${datosAlumno.primerApellido} + ' ' + ${datosAlumno.segundoApellido}"></span></legend>
                             </th:block>
-                            <th:block th:if="alumno.datos.segundoApellido == null">
-                                <legend class="fw-bold border border-black border-3 border-start-0 border-end-0 border-top-0 text-white px-2 mb-3 bg-success">MATRÍCULA DE: <span style="text-transform: uppercase;" th:text="${alumno.datos.nombre} + ' ' + ${alumno.datos.primerApellido}"></span></legend>
+                            <th:block th:if="datosAlumno.segundoApellido == null">
+                                <legend class="fw-bold border border-black border-3 border-start-0 border-end-0 border-top-0 text-white px-2 mb-3 bg-success">MATRÍCULA DE: <span style="text-transform: uppercase;" th:text="${datosAlumno.nombre} + ' ' + ${datosAlumno.primerApellido}"></span></legend>
                             </th:block>
                         </th:block>
 
                         <th:block th:if="${alumno.id != 0}">
-                            <th:block th:if="alumno.datos.segundoApellido != null">
-                                <legend class="fw-bold border border-black border-3 border-start-0 border-end-0 border-top-0 text-white px-2 mb-3" style="background-color: rgb(210, 122, 2);">EDITANDO LA MATRÍCULA DE: <span style="text-transform: uppercase;" th:text="${alumno.datos.nombre} + ' ' + ${alumno.datos.primerApellido} + ' ' + ${alumno.datos.segundoApellido}"></span></legend>
+                            <th:block th:if="datosAlumno.segundoApellido != null">
+                                <legend class="fw-bold border border-black border-3 border-start-0 border-end-0 border-top-0 text-white px-2 mb-3" style="background-color: rgb(210, 122, 2);">EDITANDO LA MATRÍCULA DE: <span style="text-transform: uppercase;" th:text="${datosAlumno.nombre} + ' ' + ${datosAlumno.primerApellido}"></span></legend>
                             </th:block>
-                            <th:block th:if="alumno.datos.segundoApellido == null">
-                                <legend class="fw-bold border border-black border-3 border-start-0 border-end-0 border-top-0 text-white px-2 mb-3" style="background-color: rgb(210, 122, 2);">EDITANDO LA MATRÍCULA DE: <span style="text-transform: uppercase;" th:text="${alumno.datos.nombre} + ' ' + ${alumno.datos.primerApellido}"></span></legend>
+                            <th:block th:if="datosAlumno.segundoApellido == null">
+                                <legend class="fw-bold border border-black border-3 border-start-0 border-end-0 border-top-0 text-white px-2 mb-3" style="background-color: rgb(210, 122, 2);">EDITANDO LA MATRÍCULA DE: <span style="text-transform: uppercase;" th:text="${datosAlumno.nombre} + ' ' + ${datosAlumno.primerApellido}"></span></legend>
                             </th:block>
                         </th:block>
 
@@ -116,15 +116,28 @@
 							
 
                             <th:block th:if="${alumno.id == 0}">
-                                <div class="mt-4">
+                                <div class="mt-5">
                                     <h3>EL PRECIO BASE DE LA MATRÍCULA ES DE: <span th:text="${#numbers.formatDecimal(alumno.precioMatricula,1,2,'COMMA') + ' €'}"></span></h3>
                                 </div>
                             </th:block>
                             <th:block th:if="${alumno.id != 0}">
-                                <div class="mt-4">
+                                <div class="mt-5">
                                     <h3>EL PRECIO DE SU MATRÍCULA ES DE: <span th:text="${#numbers.formatDecimal(alumno.precioMatricula,1,2,'COMMA') + ' €'}"></span></h3>
                                 </div>
                             </th:block>
+							
+							<th:block th:if="${numHijos == 1}">
+								<h5 class="fw-bold btn btn-primary mb-0 mt-3"><i class="bi bi-info-circle-fill text-white"></i> Como tiene un hijo ya matriculado, está matrícula tendrá un 10% de descuento.</h5>
+							</th:block>
+							<th:block th:if="${numHijos == 2}">
+								<h5 class="fw-bold btn btn-success mb-0 mt-3"><i class="bi bi-info-circle-fill text-white"></i> Como tiene 2 hijos matriculados, está matrícula tendrá un 20% de descuento.</h5>
+							</th:block>
+							<th:block th:if="${numHijos == 3}">
+								<h5 class="fw-bold btn btn-warning mb-0 mt-3"><i class="bi bi-info-circle-fill text-dark"></i> Como tiene 3 hijos matriculados, está matrícula tendrá un 30% de descuento.</h5>
+							</th:block>
+							<th:block th:if="${numHijos >= 4}">
+								<h5 class="fw-bold btn btn-danger mb-0 mt-3"><i class="bi bi-info-circle-fill text-white"></i> Como tiene 4 hijos matriculados o MÁS, está matrícula tendrá un 35% de descuento.</h5>
+							</th:block>		
 							
 
         <!-------------------------------------------------------------------->
