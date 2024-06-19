@@ -1,22 +1,23 @@
 package com.salesianostriana.dam.proyecto_guarderia.modelo;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-
-import org.springframework.format.annotation.DateTimeFormat;
+import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -24,27 +25,26 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import lombok.experimental.SuperBuilder;
 
 @Getter 
 @Setter
-@EqualsAndHashCode(callSuper = true)
-@ToString(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
-@SuperBuilder
+@Builder
 @Entity
-public class Alumno extends DatosAlumno{
+public class Alumno{
 
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
+	
 	private double precioMatricula;
 	
 
-/* MTO (USUARIO) -----------------------------------------------------------------------------------
-	
-	@ManyToOne
-    @JoinColumn(foreignKey = @ForeignKey(name="fk_progenitor_alumno"))
-	private Usuario progenitor;*/
-	
+// MTO (USUARIO) -----------------------------------------------------------------------------------
+
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "datos_id", referencedColumnName = "id")
+	private DatosAlumno datos;
 	
 // OTM (OBSERVACION) -------------------------------------------------------------------------------	
 	
@@ -64,7 +64,7 @@ public class Alumno extends DatosAlumno{
 			inverseJoinColumns = @JoinColumn(name="actividad_id")
 	)
 	@Builder.Default
-	private List<ActividadComplementaria> horario = new ArrayList<>();
+	private Set<ActividadComplementaria> horario = new HashSet<>();
 
 	
 	

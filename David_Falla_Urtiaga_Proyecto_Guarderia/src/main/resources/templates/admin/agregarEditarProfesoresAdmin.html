@@ -65,7 +65,14 @@
                             <legend class="fw-bold border border-black border-3 border-start-0 border-end-0 border-top-0 text-white px-2 mb-3 bg-success">DATOS DEL NUEVO PROFESOR</legend>
                         </th:block>
                         <th:block th:if="${profesor.id != 0}">
-                            <legend class="fw-bold border border-black border-3 border-start-0 border-end-0 border-top-0 text-white px-2 mb-3" style="background-color: rgb(210, 122, 2);">EDITANDO DATOS DEL PROFESOR...</legend>
+
+                            <th:block th:if="${profesor.segundoApellido != null}">
+                                <legend class="fw-bold border border-black border-3 border-start-0 border-end-0 border-top-0 text-white px-2 mb-3" style="background-color: rgb(210, 122, 2);">EDITANDO DATOS DEL PROFESOR: <span style="text-transform: uppercase;" th:text="${profesor.nombre} + ' ' + ${profesor.primerApellido} + ' ' + ${profesor.segundoApellido}"></span></legend>
+                            </th:block>
+                            <th:block th:if="${profesor.segundoApellido == null}">
+                                <legend class="fw-bold border border-black border-3 border-start-0 border-end-0 border-top-0 text-white px-2 mb-3" style="background-color: rgb(210, 122, 2);">EDITANDO DATOS DEL PROFESOR: <span style="text-transform: uppercase;" th:text="${profesor.nombre} + ' ' + ${profesor.primerApellido}"></span></legend>
+                            </th:block>
+
                         </th:block>
 
                         <div class="mx-3 mb-3">
@@ -152,51 +159,6 @@
                 </form> 
 
     <!-------------------------------------------------------------------->
-
-		
-	<!-- Modal>
-				<div class="modal fade" id="modalConfirmacion" tabindex="-1" aria-labelledby="modalConfirmacionLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-                                
-                            <th:block th:if="${profesor.id == 0}">
-								<h1 class="modal-title fs-5 fw-bold" id="modalConfirmacionLabel"><i class="bi bi-exclamation-diamond-fill text-success"></i>&ensp;CONFIRMACIÓN&ensp;<i class="bi bi-exclamation-diamond-fill text-success"></i></h1>
-                            </th:block>
-
-                            <th:block th:if="${profesor.id != 0}">
-								<h1 class="modal-title fs-5 fw-bold" id="modalConfirmacionLabel"><i class="bi bi-exclamation-diamond-fill" style="color: rgb(210, 122, 2);"></i>&ensp;CONFIRMACIÓN&ensp;<i class="bi bi-exclamation-diamond-fill" style="color: rgb(210, 122, 2)"></i></h1>
-                            </th:block>
-                                
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-							</div>
-							<div class="modal-body">
-
-								<th:block th:if="${profesor.id == 0}">
-									<p class="m-0">SE VA A AÑADIR UN <span class="text-success fw-bold">NUEVO PROFESOR</span> CON LOS SIGUIENTES DATOS.<br><br><span class="fw-bold">¿DESEA CONTINUAR?</span></p>
-								</th:block>
-
-								<th:block th:if="${profesor.id != 0}">
-									<p class="m-0">SE VAN A <span class="fw-bold" style="color: rgb(210, 122, 2)">CAMBIAR LOS DATOS ANTIGUOS</span> DEL PROFESOR POR LOS <span class="fw-bold" style="color: rgb(210, 122, 2)">NUEVOS INTRODUCIDOS</span>.<br><br><span class="fw-bold">¿DESEA GUARDAR LOS CAMBIOS?</span></p>
-								</th:block>
-
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
-
-								<th:block th:if="${profesor.id == 0}">
-									<button type="button" id="botonConfirmar" class="btn btn-success fw-bold" data-bs-dismiss="modal">¡AÑADIR PROFESOR!</button>
-								</th:block>
-
-								<th:block th:if="${profesor.id != 0}">
-									<button type="button" id="botonConfirmar" class="btn fw-bold text-white" style="background-color: rgb(210, 122, 2);" data-bs-dismiss="modal">¡GUARDAR LOS CAMBIOS!</button>
-								</th:block>
-
-							</div>
-						</div>
-					</div>
-				</div-->
-	
 	
             </main>
 

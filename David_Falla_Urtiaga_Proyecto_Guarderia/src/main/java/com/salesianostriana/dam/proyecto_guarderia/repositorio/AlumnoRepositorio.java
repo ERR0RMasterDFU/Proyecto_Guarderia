@@ -20,10 +20,10 @@ public interface AlumnoRepositorio extends JpaRepository<Alumno, Long>{
 	@Query("""
 			SELECT a
 			FROM Alumno a
-			WHERE a.progenitor = :progenitor
+			WHERE a.datos.progenitor = ?1
 			ORDER BY a.curso.id asc 
 			""")
-	public List<Alumno> findAlumnoByUsuario(@Param("progenitor") Usuario usuario);
+	public List<Alumno> findAlumnoByUsuario(Usuario usuario);
 	
 // ---------------------------------------------------------------------------------------------------------------------------
 	
@@ -35,7 +35,7 @@ public interface AlumnoRepositorio extends JpaRepository<Alumno, Long>{
 			FROM Observacion o
 			WHERE o.alumno.id = ?1
 			""")
-	public List<Observacion> findObservacionesByAlumno(long idAlumno);
+	public List<Observacion> findObservacionesByAlumno(long id);
 	
 // ---------------------------------------------------------------------------------------------------------------------------
 	
@@ -43,11 +43,11 @@ public interface AlumnoRepositorio extends JpaRepository<Alumno, Long>{
 // BOTÓN TUTOR LEGAL (ALUMNO) ------------------------------------------------------------------------------------------------
 	
 	@Query("""
-			SELECT a.progenitor
+			SELECT a.datos.progenitor
 			FROM Alumno a
 			WHERE a.id = ?1
 			""")
-	public Usuario findUsuarioByAlumnoId(long idAlumno);
+	public Usuario findUsuarioByAlumnoId(long id);
 	
 // ---------------------------------------------------------------------------------------------------------------------------
 		
@@ -64,20 +64,15 @@ public interface AlumnoRepositorio extends JpaRepository<Alumno, Long>{
 // ---------------------------------------------------------------------------------------------------------------------------
 	
 	
-/* ---------------------------------------------------------------------------------------------------------------------------
+// NÚMERO DE HIJOS EN PANTALLA ALUMNOS (USUARIO) -----------------------------------------------------------------------------
 
 	@Query("""
-			SELECT t
-			FROM Alumno a JOIN a.horario h JOIN h.actividadComplementaria ac JOIN ac.profesores p JOIN p.profesor t 
-			WHERE a.id = ?1 AND a.curso.id = ?2
+			SELECT count(a)
+			FROM Alumno a JOIN a.datos d
+			WHERE d.progenitor = ?1
 			""")
-	public List<Profesor> findProfesoresByAlumno()
+	public int contarHijosMatriculadosPorUsuario(Usuario usuario);
 	
-	SELECT PROFESOR.* 
-	FROM ALUMNO JOIN HORARIO ON (ALUMNO.ID = ALUMNO_ID) JOIN ACTIVIDAD_COMPLEMENTARIA 
-		 ON (ACTIVIDAD_COMPLEMENTARIA.ID = ACTIVIDAD_ID) JOIN PROFESOR ON (ACTIVIDAD_ID=ENCARGADO_ID) 
-	WHERE ALUMNO.ID = 1 AND ALUMNO.CURSO_ID = PROFESOR.CURSO_ID
-
-// -------------------------------------------------------------------------------------------------------------------------*/
-
+// ---------------------------------------------------------------------------------------------------------------------------
+	
 }

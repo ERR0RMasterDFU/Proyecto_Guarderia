@@ -33,11 +33,7 @@
 
 <!---- CONTENIDO PRINCIPAL / MAIN ------------------------------------>
 
-            <main class="m-3 px-5 pt-4 pb-5 bg-white" style="flex: 1 1 81%; width: 75%; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
-                
-                <div class="py-0 my-4 w-100 ">
-                    <a type="button" href="" class="btn btn-success text-white fw-bold py-2 w-100" style="font-size: 25px;"><i class="bi bi-person-fill-add m-0"></i>&ensp;MATRICULAR ALUMNO</a>
-                </div>
+            <main class="m-3 p-5 bg-white" style="flex: 1 1 81%; width: 75%; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
 	
 				<div class="table-responsive">
 					<table class="table table-hover table-warning table-striped text-center">
@@ -58,20 +54,20 @@
 						<tbody>
 							<tr th:each="alumno : ${listaAlumnos}" class="align-middle">
 								<td th:text="${alumno.id}" class="border-2 border-end-0 border-black py-3 px-2"></td>
-								<td th:text="${alumno.nombre}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
-								<td	th:text="${alumno.primerApellido}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
-								<td th:text="${alumno.segundoApellido}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
-								<th:block th:if="${alumno.edad == 0}">
+								<td th:text="${alumno.datos.nombre}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+								<td	th:text="${alumno.datos.primerApellido}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+								<td th:text="${alumno.datos.segundoApellido}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+								<th:block th:if="${alumno.datos.edad == 0}">
 									<td class="border-2 border-start-0 border-end-0 border-black py-3 px-2">Menos de un año</td>
 								</th:block>
-								<th:block th:if="${alumno.edad == 1}">
-									<td th:text="${alumno.edad + ' año'}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+								<th:block th:if="${alumno.datos.edad == 1}">
+									<td th:text="${alumno.datos.edad + ' año'}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
 								</th:block>
-								<th:block th:if="${alumno.edad > 1}">
-									<td th:text="${alumno.edad + ' años'}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+								<th:block th:if="${alumno.datos.edad > 1}">
+									<td th:text="${alumno.datos.edad + ' años'}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
 								</th:block>
-								<td th:text="${alumno.direccion}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
-								<td th:text="${alumno.fechaNacimiento}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+								<td th:text="${alumno.datos.direccion}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+								<td th:text="${alumno.datos.fechaNacimiento}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
 								<td th:text="${alumno.curso.nombre}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
 								<td class="border-2 border-start-0 border-end-0 border-black py-2 px-3">
 									<div class="d-flex text-center align-middle">
@@ -89,15 +85,14 @@
 								<td class="border-2 border-start-0 border-start-0 border-black py-2 px-3">
 									<div class="d-flex justify-content-center flex-direction text-center align-middle">
 										<div class="text-center align-middle">
-											<div class="py-0">
-												<a type="button" href="../agregarEditarAlumnos.html" th:href="@{/admin/alumnos/editarAlumno/{id}(id=${alumno.id})}" class="btn text-white fw-bold w-100" style="background-color: rgb(210, 122, 2); font-size: 20px;"><i class="bi bi-person-fill-gear m-0"></i></a>
+											<div th:if="${cumpleanos == alumno.datos.fechaNacimiento}">
+												<div class="py-0">
+													<button type="button" data-bs-toggle="modal" data-bs-target="#modalCumple" class="btn text-white fw-bold w-100" style="background-color: rgb(218, 94, 187); font-size: 20px;"><i class="bi bi-cake2 m-0"></i></button>
+												</div>
 											</div>
 											<div class="mt-2 py-0">
 												<button type="button" data-bs-toggle="modal" data-bs-target="#modalBorrado" th:data-id="${alumno.id}" class="btn text-white fw-bold w-100" style="background-color: rgb(218, 63, 3); font-size: 20px;"><i class="bi bi-person-fill-dash m-0"></i></button>
 											</div>
-										</div>
-										<div th:if="${cumpleanos == alumno.fechaNacimiento}" class="ms-2 py-0 w-100">
-											<button type="button" data-bs-toggle="modal" data-bs-target="#modalCumple" class="btn text-white h-100" style="background-color: rgb(218, 94, 187);"><i class="bi bi-cake2" style="font-size: 30px;"></i></button>
 										</div>
 									</div>
 								</td>

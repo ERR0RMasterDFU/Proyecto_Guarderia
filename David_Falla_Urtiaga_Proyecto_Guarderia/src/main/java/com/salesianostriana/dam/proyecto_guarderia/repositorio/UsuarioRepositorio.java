@@ -20,9 +20,9 @@ public interface UsuarioRepositorio extends JpaRepository<Usuario, Long>{
 	@Query("""
 			SELECT count(a)
 			FROM Alumno a
-			WHERE a.progenitor.id = :progenitor
+			WHERE a.datos.progenitor.id = ?1
 			""")
-	public int findNumAlumnosByUsuario(@Param("progenitor") long id);
+	public int findNumAlumnosByUsuario(long id);
 	
 // ---------------------------------------------------------------------------------------------------------------------------
 	
@@ -32,7 +32,7 @@ public interface UsuarioRepositorio extends JpaRepository<Usuario, Long>{
 	@Query("""
 			SELECT a
 			FROM Alumno a
-			WHERE a.progenitor.id = ?1
+			WHERE a.datos.progenitor.id = ?1
 			""")
 	public List<Alumno> findAlumnosbyUsuario(long id);
 	

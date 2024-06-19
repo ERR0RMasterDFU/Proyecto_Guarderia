@@ -40,8 +40,8 @@ public class ProfesorServicio extends ServicioBaseImpl<Profesor, Long, ProfesorR
 
 // CUENTA CUÁNTAS OBSERVACIONES TIENE UN PROFESOR ----------------------------------------------------------------------------
 	
-	public int contarObservacionesPorProfesor (long idProfesor){
-		int obtenerObservaciones = repositorio.countObservacionesByProfesorId(idProfesor);
+	public int contarObservacionesPorProfesor (long id){
+		int obtenerObservaciones = repositorio.countObservacionesByProfesorId(id);
 		return obtenerObservaciones;
 	}
 	
@@ -50,8 +50,8 @@ public class ProfesorServicio extends ServicioBaseImpl<Profesor, Long, ProfesorR
 	
 // BOTÓN OBSERVACIONES (PROFESOR) --------------------------------------------------------------------------------------------
 	
-	public List<Observacion> filtrarObservacionesPorProfesor (long idProfesor) {
-		List <Observacion> obtenerObservacionesProfesor = repositorio.findObservacionesByProfesorId(idProfesor);
+	public List<Observacion> filtrarObservacionesPorProfesor (long id) {
+		List <Observacion> obtenerObservacionesProfesor = repositorio.findObservacionesByProfesorId(id);
 		return obtenerObservacionesProfesor;
 	}
 	

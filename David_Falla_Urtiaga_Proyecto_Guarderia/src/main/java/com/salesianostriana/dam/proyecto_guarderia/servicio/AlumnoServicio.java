@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import com.salesianostriana.dam.proyecto_guarderia.modelo.ActividadComplementaria;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Alumno;
-import com.salesianostriana.dam.proyecto_guarderia.modelo.DatosAlumno;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Observacion;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Profesor;
 import com.salesianostriana.dam.proyecto_guarderia.modelo.Usuario;
@@ -44,8 +44,8 @@ public class AlumnoServicio extends ServicioBaseImpl<Alumno, Long, AlumnoReposit
 
 // BOTÓN OBSERVACIONES (ALUMNO) ----------------------------------------------------------------------------------------------
 	
-	public List<Observacion> filtrarObservacionesPorAlumnoId (long idAlumno) {
-		List<Observacion> observacionesFiltradasAlumno = repositorio.findObservacionesByAlumno(idAlumno);
+	public List<Observacion> filtrarObservacionesPorAlumnoId (long id) {
+		List<Observacion> observacionesFiltradasAlumno = repositorio.findObservacionesByAlumno(id);
 		return observacionesFiltradasAlumno;
 	}
 	
@@ -54,8 +54,8 @@ public class AlumnoServicio extends ServicioBaseImpl<Alumno, Long, AlumnoReposit
 	
 // BOTÓN TUTOR LEGAL (ALUMNO) ------------------------------------------------------------------------------------------------
 	
-	public Usuario findUsuarioByAlumnoId (long idAlumno) {
-		Usuario obtenerUsuarioEncontrado = repositorio.findUsuarioByAlumnoId(idAlumno);
+	public Usuario findUsuarioByAlumnoId (long id) {
+		Usuario obtenerUsuarioEncontrado = repositorio.findUsuarioByAlumnoId(id);
 		return obtenerUsuarioEncontrado;
 	}
 	
@@ -69,6 +69,16 @@ public class AlumnoServicio extends ServicioBaseImpl<Alumno, Long, AlumnoReposit
 		return actividadesFiltradas;
 	}
 
+// ---------------------------------------------------------------------------------------------------------------------------
+	
+
+// NÚMERO DE HIJOS EN PANTALLA ALUMNOS (USUARIO) -----------------------------------------------------------------------------
+
+	public int contarHijosMatriculadosPorUsuario (Usuario usuario) {
+		int numHijos = repositorio.contarHijosMatriculadosPorUsuario(usuario);
+		return numHijos;
+	}
+	
 // ---------------------------------------------------------------------------------------------------------------------------
 	
 	
@@ -99,8 +109,8 @@ public class AlumnoServicio extends ServicioBaseImpl<Alumno, Long, AlumnoReposit
 		
 		for (Alumno alumno : repositorio.findAll()) {
 			
-			if(alumno.getFechaNacimiento() == cumple) {
-				alumno.setEdad(alumno.getEdad()+uno);
+			if(alumno.getDatos().getFechaNacimiento() == cumple) {
+				alumno.getDatos().setEdad(alumno.getDatos().getEdad()+uno);
 			}	
 		}
 	}
@@ -108,20 +118,50 @@ public class AlumnoServicio extends ServicioBaseImpl<Alumno, Long, AlumnoReposit
 // ---------------------------------------------------------------------------------------------------------------------------
 	
 	
-// MÉTODO QUE TRANSFORMA LOS DATOS A UN TIPO ALUMNO --------------------------------------------------------------------------
-	
-	public void cambioDeTipo (Optional<DatosAlumno> datos, Alumno alumno) {
-		alumno.setId(datos.get().getId());
-		alumno.setNombre(datos.get().getNombre());
-		alumno.setPrimerApellido(datos.get().getPrimerApellido());
-		alumno.setSegundoApellido(datos.get().getSegundoApellido());
-		alumno.setEdad(datos.get().getEdad());
-		alumno.setDireccion(datos.get().getDireccion());
-		alumno.setFechaNacimiento(datos.get().getFechaNacimiento());
-		alumno.setProgenitor(datos.get().getProgenitor());
+// MÉTODO QUE CAMBIA EL VALOR DEL PRECIO DE MATRÍCULA BASE A 300.00 € --------------------------------------------------------
+
+	public void resetearPrecioMatricula (Alumno alumno) {
+		double trescientos = 300.00;
+		alumno.setPrecioMatricula(trescientos);
 	}
 	
 // ---------------------------------------------------------------------------------------------------------------------------
-
+	
+	
+// MÉTODO QUE SUMA EL PRECIO DE LA MATRÍCULA BASE CON EL PRECIO EXTRA DE LAS ACTIVIDADES -------------------------------------
+	
+	public double calcularPrecioFinalMatricula (Alumno alumno) {
+		double precioBase = alumno.getPrecioMatricula();
+		double precioAct = 0.00;
+		
+		for (ActividadComplementaria ac : alumno.getHorario()) {
+			precioAct += ac.getPrecio();
+		}
+		
+		return precioBase + precioAct;
+	}
+	
+// ---------------------------------------------------------------------------------------------------------------------------
+	
+	
+// MÉTODO QUE REALIZA UN DESCUENTO AL PRECIO FINAL TENIENDO EN CUENTA EL NÚMERO DE HIJOS -------------------------------------
+	
+	public double calcularDescuento (Usuario usuario, double precioFinalMatricula) {
+	    double cero = 0.00, diez = 10.00, veinte = 20.00, treinta = 30.00, treintaYCinco = 35.00, cien = 100.00;
+	    
+	    double descuento = switch (usuario.getNumHijos()) {
+	        case 0 -> cero;
+	        case 1 -> diez;
+	        case 2 -> veinte;
+	        case 3 -> treinta;
+	        case 4 -> treintaYCinco;
+	        default -> treintaYCinco;
+	    };
+	    
+	    double precioConDescuento = precioFinalMatricula - (precioFinalMatricula * descuento/cien);
+	    return precioConDescuento;
+	}
+	
+// ---------------------------------------------------------------------------------------------------------------------------
 	
 }

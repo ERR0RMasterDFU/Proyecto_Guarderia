@@ -40,17 +40,7 @@ public class UsuarioServicio extends ServicioBaseImpl<Usuario, Long, UsuarioRepo
 	}
 	
 // ---------------------------------------------------------------------------------------------------------------------------
-	
-	/*public Usuario editarUsuario(Usuario u) {
-		
-		// Editar el usuario sin cambiarle la contraseña
-		
-		// 1. Rescato el usuario de la bd.
-		// 2. Actualizo "todos" los atributos menos el password.
-		// 3. Guardo el usuario en la base de datos.
-		// 4. Actualizo el contexto de seguridad con el nuevo usuario (Carlos Román)
-		
-	 }*/
+
 	
 // CUENTA LOS ALUMNOS QUE TIENE UN USUARIO -----------------------------------------------------------------------------------
 	
@@ -78,6 +68,26 @@ public class UsuarioServicio extends ServicioBaseImpl<Usuario, Long, UsuarioRepo
 		return todosUsuarios;
 	}
 		
+// ---------------------------------------------------------------------------------------------------------------------------
+	
+
+// MÉTODO QUE AUMENTA EN 1 EL NÚMERO DE HIJOS MATRICULADOS -------------------------------------------------------------------
+
+	public void aumentarNumHijos (Usuario usuario) {
+		int uno = 1;
+		usuario.setNumHijos(usuario.getNumHijos()+uno);
+	}
+	
+// ---------------------------------------------------------------------------------------------------------------------------
+	
+	
+// MÉTODO QUE DISMINUYE EN 1 EL NÚMERO DE HIJOS MATRICULADOS -----------------------------------------------------------------
+
+	public void restarNumHijos (Usuario usuario) {
+		int uno = 1;
+		usuario.setNumHijos(usuario.getNumHijos()-uno);
+	}
+	
 // ---------------------------------------------------------------------------------------------------------------------------
 	
 }

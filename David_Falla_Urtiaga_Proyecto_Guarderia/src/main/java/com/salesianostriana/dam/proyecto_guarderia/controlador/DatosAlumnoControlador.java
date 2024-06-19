@@ -16,6 +16,7 @@ import com.salesianostriana.dam.proyecto_guarderia.modelo.Usuario;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.DatosAlumnoServicio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.ObservacionServicio;
 
+
 @Controller
 public class DatosAlumnoControlador {
 
@@ -43,7 +44,7 @@ public class DatosAlumnoControlador {
 	@GetMapping("/admin/datosAlumnos/recibidos")
 	public String mostrarDatosEnviadosAdmin(Model model) {
 			
-		model.addAttribute("listaDatosAlumnos", servicio.findAll());
+		model.addAttribute("listaDatosAlumnos", servicio.filtrarDatosAdmin());
 		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
 			
 		return "admin/datosAlumnosAdmin";
@@ -114,6 +115,24 @@ public class DatosAlumnoControlador {
 			model.addAttribute("datos", datosAEditar.get());
 		}
 			return "usuario/agregarEditarDatosAlumnos";
+	}
+	
+// ---------------------------------------------------------------------------------------------------------------------------
+	
+	
+// BOTÓN VER DETALLES (USUARIO) ----------------------------------------------------------------------------------------------
+
+	@GetMapping("/usuario/matriculas/detalles/{id}")
+	public String verDetalles(@PathVariable("id") long id, Model model, @AuthenticationPrincipal Usuario usuario) {
+			
+		model.addAttribute("listaAsideUsuario", obServicio.tresObservacionesMasRecientesUsuario(usuario));
+		
+		Optional<DatosAlumno> datosAEditar = servicio.findById(id);
+			
+		if(datosAEditar.isPresent()) {
+			model.addAttribute("datos", datosAEditar.get());
+		}
+			return "usuario/datallesUsuario";
 	}
 	
 // ---------------------------------------------------------------------------------------------------------------------------

@@ -20,12 +20,16 @@ import com.salesianostriana.dam.proyecto_guarderia.servicio.AlumnoServicio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.CursoServicio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.DatosAlumnoServicio;
 import com.salesianostriana.dam.proyecto_guarderia.servicio.ObservacionServicio;
+import com.salesianostriana.dam.proyecto_guarderia.servicio.UsuarioServicio;
 
 @Controller
 public class AlumnoControlador {
 
 	@Autowired
 	private AlumnoServicio servicio;
+	
+	@Autowired
+	private UsuarioServicio userServicio;
 	
 	@Autowired
 	private CursoServicio cursoServicio;
@@ -51,6 +55,7 @@ public class AlumnoControlador {
 		
 		LocalDate cumpleanos = LocalDate.now();
 		model.addAttribute("cumpleanos", cumpleanos);
+		model.addAttribute("alumnos", servicio.contarHijosMatriculadosPorUsuario(usuario));
 	
 		return "usuario/alumnosUsuario";
 	}
@@ -70,78 +75,6 @@ public class AlumnoControlador {
 	}
 	
 // ---------------------------------------------------------------------------------------------------------------------------
-
-	
-/* FORMULARIO AÑADIR ALUMNOS -------------------------------------------------------------------------------------------------
-
-	@GetMapping("/usuario/matricula")
-	public String mostrarMatricula(Model model, @AuthenticationPrincipal Usuario usuario) {
-		
-		Alumno alumno = new Alumno();
-		model.addAttribute("alumno", alumno);
-		model.addAttribute("listaAsideUsuario", obServicio.tresObservacionesMasRecientesUsuario(usuario));
-		
-		model.addAttribute("listaCursos", cursoServicio.findAll()); 	//LISTA DE CURSOS PARA ALUMNO
-		model.addAttribute("listaActividades", actServicio.findAll());	//LISTA DE ACTIVIDADES PARA ALUMNO
-		
-		return "agregarEditarAlumnos";
-	}
-
-// ---------------------------------------------------------------------------------------------------------------------------
-	
-	
-// GUARDA EL ALUMNO EN LA BASE DE DATOS --------------------------------------------------------------------------------------
-	
-	@PostMapping("/usuario/matricula/submit")
-	public String registroMatriculaFormulario(@ModelAttribute("alumno") Alumno alumno, @AuthenticationPrincipal Usuario usuario) {
-				
-		alumno.setProgenitor(usuario);
-		servicio.save(alumno);		
-			
-		return "redirect:/usuario/alumnos";
-	}
-	
-// ---------------------------------------------------------------------------------------------------------------------------
-	
-	
-// FORMULARIO EDITAR ALUMNOS -------------------------------------------------------------------------------------------------
-
-	@GetMapping("/admin/alumnos/editarAlumno/{id}")
-	public String mostrarFormularioEdicion(@PathVariable("id") long id, Model model) {
-			
-		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
-		
-		Optional<Alumno> alumnoAEditar = servicio.findById(id);
-			
-		if(alumnoAEditar.isPresent()) {
-				
-			model.addAttribute("alumno", alumnoAEditar.get());
-				
-			model.addAttribute("listaCursos", cursoServicio.findAll()); 	//LISTA DE CURSOS PARA PROFESOR
-			model.addAttribute("listaActividades", actServicio.findAll());	//LISTA DE ACTIVIDADES PARA ALUMNO
-
-			return "agregarEditarAlumnos";
-				
-		} else {
-				
-			return "redirect:/admin/alumnos";
-		}
-	}
-	
-// ---------------------------------------------------------------------------------------------------------------------------
-		
-		
-// GUARDA LOS CAMBIOS REALIZADOS SOBRE EL ALUMNO EN LA BASE DE DATOS ---------------------------------------------------------
-		
-	@PostMapping("/admin/alumnos/editarAlumno/submit")
-	public String registrarAlumnoEditado(@ModelAttribute("alumno") Alumno alumno) {
-			
-		servicio.save(alumno);
-			
-		return "redirect:/admin/alumnos";	
-	}
-		
-// ---------------------------------------------------------------------------------------------------------------------------*/
 		
 		
 // BORRA AL ALUMNO POR ID ----------------------------------------------------------------------------------------------------
@@ -156,6 +89,7 @@ public class AlumnoControlador {
 		if(alumnoAEditar.isPresent()) {
 			
 			servicio.desvincularProfesoresDeObservacion(alumnoAEditar, id);
+			userServicio.restarNumHijos(alumnoAEditar.get().getDatos().getProgenitor());
 			servicio.delete(alumnoAEditar.get());
 				
 		} else {
@@ -247,21 +181,19 @@ public class AlumnoControlador {
 	public String mostrarMatricula(@PathVariable("id") long id, Model model, @AuthenticationPrincipal Usuario usuario) {
 		
 		model.addAttribute("listaAsideUsuario", obServicio.tresObservacionesMasRecientesUsuario(usuario));
+			
+		Alumno alumno = new Alumno();
 		
-		Optional<DatosAlumno> alumnoACrear = datosServicio.findById(id);
+		model.addAttribute("alumno", alumno);
+		model.addAttribute("numHijos", servicio.contarHijosMatriculadosPorUsuario(usuario));
+		model.addAttribute("datosAlumno", datosServicio.filtrarDatosPorId(id)); 	//DATOS DEL ALUMNO
+		model.addAttribute("listaCursos", cursoServicio.findAll()); 	//LISTA DE CURSOS PARA ALUMNO
+		model.addAttribute("listaActividades", actServicio.findAll());	//LISTA DE ACTIVIDADES PARA ALUMNO
 		
-		if(alumnoACrear.isPresent()) {
+		
+		servicio.resetearPrecioMatricula(alumno);
 			
-			Alumno alumno = new Alumno();
-
-			servicio.cambioDeTipo(alumnoACrear, alumno);
-			
-			model.addAttribute("alumno", alumno);
-			model.addAttribute("listaCursos", cursoServicio.findAll()); 	//LISTA DE CURSOS PARA ALUMNO
-			model.addAttribute("listaActividades", actServicio.findAll());	//LISTA DE ACTIVIDADES PARA ALUMNO
-			
-		}
-		return "usuario/agregarAlumnoUsuario";
+		return "usuario/agregarEditarAlumnoUsuario";
 	}
 
 // ---------------------------------------------------------------------------------------------------------------------------
@@ -272,43 +204,62 @@ public class AlumnoControlador {
 	@PostMapping("/usuario/nuevoAlumno/submit")
 	public String registroMatriculaFormulario(@ModelAttribute("alumno") Alumno alumno) {
 		
-		Optional<DatosAlumno> datos = datosServicio.findById(alumno.getId());
+		alumno.getDatos().setValidos(true);
+		alumno.getDatos().setMatriculado(true);
 		
-		//datosServicio.deleteById(datos.get().getId());
-		alumno.setValidos(true);
-		alumno.setMatriculado(true);
-		datos.get().setValidos(true);
-		datos.get().setMatriculado(true);
+		servicio.resetearPrecioMatricula(alumno);
+	
+		alumno.setPrecioMatricula(servicio.calcularDescuento(alumno.getDatos().getProgenitor(), servicio.calcularPrecioFinalMatricula(alumno)));
+		
+		userServicio.aumentarNumHijos(alumno.getDatos().getProgenitor());
 		
 		servicio.save(alumno);
 			
-		return "redirect:/usuario/datosAlumnos/enviados";
+		return "redirect:/usuario/alumnos";
 	}
 	
 // ---------------------------------------------------------------------------------------------------------------------------
 	
 	
+// PANTALLA DE MATRÍCULAS (USUARIO) ------------------------------------------------------------------------------------------
+
+	@GetMapping("/usuario/matriculas")
+	public String mostrarListaMatriculas(Model model, @AuthenticationPrincipal Usuario usuario) {
+		
+		model.addAttribute("listaAsideUsuario", obServicio.tresObservacionesMasRecientesUsuario(usuario));
+		
+		model.addAttribute("listaMatriculas", servicio.filtrarAlumnosPorUsuario(usuario)); 	//DATOS DEL ALUMNO
+		model.addAttribute("listaCursos", cursoServicio.findAll()); 	//LISTA DE CURSOS PARA ALUMNO
+		model.addAttribute("listaActividades", actServicio.findAll());	//LISTA DE ACTIVIDADES PARA ALUMNO
+			
+		return "usuario/matriculasUsuario";
+	}
+
+// ---------------------------------------------------------------------------------------------------------------------------
+	
+	
 // FORMULARIO EDITAR ALUMNOS -------------------------------------------------------------------------------------------------
 
-	@GetMapping("/admin/alumnos/editarAlumno/{id}")
-	public String mostrarFormularioEdicion(@PathVariable("id") long id, Model model) {
+	@GetMapping("/usuario/editarAlumno/{id}")
+	public String mostrarFormularioEdicion(@PathVariable("id") long id, Model model, @AuthenticationPrincipal Usuario usuario) {
 			
-		model.addAttribute("listaAsideAdmin", obServicio.tresObservacionesMasRecientes());
+		model.addAttribute("listaAsideUsuario", obServicio.tresObservacionesMasRecientesUsuario(usuario));
 		
 		Optional<Alumno> alumnoAEditar = servicio.findById(id);
 			
 		if(alumnoAEditar.isPresent()) {
 				
 			model.addAttribute("alumno", alumnoAEditar.get());
-				
-			model.addAttribute("listaCursos", cursoServicio.findAll()); 	//LISTA DE CURSOS PARA PROFESOR
+			model.addAttribute("numHijos", servicio.contarHijosMatriculadosPorUsuario(usuario));	
+			model.addAttribute("datosAlumno", datosServicio.filtrarDatosPorId(id)); 	//DATOS DEL ALUMNO
+			model.addAttribute("listaCursos", cursoServicio.findAll()); 	//LISTA DE CURSOS PARA ALUMNO
 			model.addAttribute("listaActividades", actServicio.findAll());	//LISTA DE ACTIVIDADES PARA ALUMNO
 
-			return "agregarEditarAlumnos";
+			return "usuario/agregarEditarAlumnoUsuario";
 				
 		} else {
 				
-			return "redirect:/admin/alumnos";
+			return "redirect:/usuario/matriculas";
 		}
 	}
 	
@@ -317,12 +268,16 @@ public class AlumnoControlador {
 		
 // GUARDA LOS CAMBIOS REALIZADOS SOBRE EL ALUMNO EN LA BASE DE DATOS ---------------------------------------------------------
 		
-	@PostMapping("/admin/alumnos/editarAlumno/submit")
+	@PostMapping("/usuario/editarAlumno/submit")
 	public String registrarAlumnoEditado(@ModelAttribute("alumno") Alumno alumno) {
-			
+		
+		servicio.resetearPrecioMatricula(alumno);
+		
+		alumno.setPrecioMatricula(servicio.calcularDescuento(alumno.getDatos().getProgenitor(), servicio.calcularPrecioFinalMatricula(alumno)));
+		
 		servicio.save(alumno);
 			
-		return "redirect:/admin/alumnos";	
+		return "redirect:/usuario/matriculas";	
 	}
 		
 // ---------------------------------------------------------------------------------------------------------------------------

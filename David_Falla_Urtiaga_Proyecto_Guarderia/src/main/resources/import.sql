@@ -1,9 +1,9 @@
 -- USUARIOS -----------------------------------------------------------------------------------------------------------------------------------------------
 
 INSERT INTO Usuario (id, username, dni, password, email, nombre, primer_apellido, segundo_apellido, num_telefono, num_hijos, progenitor, admin) VALUES (1, 'admin', 'null', '{noop}admin', 'null', 'null', 'null', 'null', 'null',  0, 'TUTORLEGAL', 'true');
-INSERT INTO Usuario (id, username, dni, password, email, nombre, primer_apellido, segundo_apellido, num_telefono, num_hijos, progenitor, admin) VALUES (2, 'user', '44923600T', '{noop}1234', 'usuario.salesianostriana@gmail.com', 'Luismi', 'López', 'Magaña', '676002840',  3, 'TUTORLEGAL', 'false');
-INSERT INTO Usuario (id, username, dni, password, email, nombre, primer_apellido, segundo_apellido, num_telefono, num_hijos, progenitor, admin) VALUES (3, 'Maksim', '43916709A', '{noop}juJan', 'nerer21078@gmail.com', 'Eneko', 'Sala', 'Carrero', '614030760', 4, 'PADRE', 'false');
-INSERT INTO Usuario (id, username, dni, password, email, nombre, primer_apellido, segundo_apellido, num_telefono, num_hijos, progenitor, admin) VALUES (4, 'Naaji', '83603799H', '{noop}BL453', 'Krak3nz0te@gmail.com', 'Maialen', 'Hidalgo', 'Mellado', '848917922',  6, 'MADRE', 'false');
+INSERT INTO Usuario (id, username, dni, password, email, nombre, primer_apellido, segundo_apellido, num_telefono, num_hijos, progenitor, admin) VALUES (2, 'user', '44923600T', '{noop}1234', 'usuario.salesianostriana@gmail.com', 'Luismi', 'López', 'Magaña', '676002840',  4, 'TUTORLEGAL', 'false');
+INSERT INTO Usuario (id, username, dni, password, email, nombre, primer_apellido, segundo_apellido, num_telefono, num_hijos, progenitor, admin) VALUES (3, 'Maksim', '43916709A', '{noop}juJan', 'nerer21078@gmail.com', 'Eneko', 'Sala', 'Carrero', '614030760', 5, 'PADRE', 'false');
+INSERT INTO Usuario (id, username, dni, password, email, nombre, primer_apellido, segundo_apellido, num_telefono, num_hijos, progenitor, admin) VALUES (4, 'Naaji', '83603799H', '{noop}BL453', 'Krak3nz0te@gmail.com', 'Maialen', 'Hidalgo', 'Mellado', '848917922',  3, 'MADRE', 'false');
 
 ALTER SEQUENCE usuario_seq RESTART WITH 54;
 
@@ -61,18 +61,18 @@ ALTER SEQUENCE datos_alumno_seq RESTART WITH 63;
 
 -- ALUMNOS ------------------------------------------------------------------------------------------------------------------------------------------------
 
-INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (1, 1, 314.99);
-INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (2, 1, 307.50);
-INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (3, 1, 332.79);
-INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (4, 2, 316.00);
-INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (5, 2, 311.08);
-INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (6, 2, 312.49);
-INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (7, 1, 310.00);
-INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (8, 1, 313.50);
-INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (9, 2, 323.50);
-INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (10, 2, 310.99);
-INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (11, 1, 314.29);
-INSERT INTO Alumno (id, curso_id, precio_matricula) VALUES (12, 2, 313.30);
+INSERT INTO Alumno (id, datos_id, curso_id, precio_matricula) VALUES (1, 1, 1, 314.99);
+INSERT INTO Alumno (id, datos_id, curso_id, precio_matricula) VALUES (2, 2, 1, 307.50);
+INSERT INTO Alumno (id, datos_id, curso_id, precio_matricula) VALUES (3, 3, 1, 332.79);
+INSERT INTO Alumno (id, datos_id, curso_id, precio_matricula) VALUES (4, 4, 2, 316.00);
+INSERT INTO Alumno (id, datos_id, curso_id, precio_matricula) VALUES (5, 5, 2, 311.08);
+INSERT INTO Alumno (id, datos_id, curso_id, precio_matricula) VALUES (6, 6, 2, 312.49);
+INSERT INTO Alumno (id, datos_id, curso_id, precio_matricula) VALUES (7, 7, 1, 310.00);
+INSERT INTO Alumno (id, datos_id, curso_id, precio_matricula) VALUES (8, 8, 1, 313.50);
+INSERT INTO Alumno (id, datos_id, curso_id, precio_matricula) VALUES (9, 9, 2, 323.50);
+INSERT INTO Alumno (id, datos_id, curso_id, precio_matricula) VALUES (10, 10, 2, 310.99);
+INSERT INTO Alumno (id, datos_id, curso_id, precio_matricula) VALUES (11, 11, 1, 314.29);
+INSERT INTO Alumno (id, datos_id, curso_id, precio_matricula) VALUES (12, 12, 2, 313.30);
 
 ALTER SEQUENCE alumno_seq RESTART WITH 62;
 
@@ -122,7 +122,7 @@ INSERT INTO Horario (alumno_id, actividad_id) VALUES (11, 6);
 INSERT INTO Horario (alumno_id, actividad_id) VALUES (12, 3);
 INSERT INTO Horario (alumno_id, actividad_id) VALUES (12, 6);
 
-ALTER SEQUENCE horario_seq RESTART WITH 78;
+--ALTER SEQUENCE horario_seq RESTART WITH 78;
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 

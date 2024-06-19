@@ -31,7 +31,7 @@ public interface ProfesorRepositorio extends JpaRepository<Profesor, Long>{
 			FROM Observacion o
 			WHERE o.profesor.id = ?1
 			""")
-	public int countObservacionesByProfesorId (long idProfesor);
+	public int countObservacionesByProfesorId (long id);
 	
 // ---------------------------------------------------------------------------------------------------------------------------
 
@@ -43,7 +43,7 @@ public interface ProfesorRepositorio extends JpaRepository<Profesor, Long>{
 			FROM Observacion o
 			WHERE o.profesor.id = ?1
 			""")
-	public List<Observacion> findObservacionesByProfesorId (long idProfesor);
+	public List<Observacion> findObservacionesByProfesorId (long id);
 	
 // ---------------------------------------------------------------------------------------------------------------------------
 	

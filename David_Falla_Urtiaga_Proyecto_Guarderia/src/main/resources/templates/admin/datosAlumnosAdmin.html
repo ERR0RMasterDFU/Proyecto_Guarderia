@@ -57,8 +57,7 @@
 								<th	class="bg-warning border-2 border-start-0 border-end-0 border-black">EDAD</th>
 								<th	class="bg-warning border-2 border-start-0 border-end-0 border-black">DIRECCIÓN</th>
 								<th	class="bg-warning border-2 border-start-0 border-end-0 border-black">FECHA DE<br>NACIMIENTO</th>
-								<th	class="bg-warning border-2 border-start-0 border-end-0 border-black">ESTADO DE<br>LOS DATOS</th>
-								<th	class="bg-warning border-2 border-start-0 border-black">ADMIN</th>
+								<th	class="bg-warning border-2 border-start-0 border-black">ESTADO DE LOS DATOS</th>
 							</tr>					
 						</thead>
 						<tbody>
@@ -82,23 +81,10 @@
 								<td th:text="${datos.fechaNacimiento}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
 
 								<th:block th:if="${datos.validos == true}">
-									<td class="border-2 border-start-0 border-end-0 border-black py-3 px-2"><button type="button" data-bs-toggle="modal" data-bs-target="#modalValidado" class="btn btn-dark text-white fw-bold w-100">DATOS VALIDADOS</button></td>
+									<td class="border-2 border-start-0 border-black py-3 px-2 text-center"><button type="button" data-bs-toggle="modal" data-bs-target="#modalValidado" class="btn btn-dark fw-bold w-100">DATOS VALIDADOS</button></td>
 								</th:block>
                                 <th:block th:if="${datos.validos == false}">
-									<td class="border-2 border-start-0 border-end-0 border-black py-3 px-2"><button type="button" data-bs-toggle="modal" data-bs-target="#modalPendiente" class="btn btn-danger text-white fw-bold w-100">DATOS SIN VALIDAR</button></td>
-								</th:block>
-
-								<th:block th:if="${datos.validos == true}">
-									<td class="border-2 border-start-0 border-black py-2 px-3"></td>
-								</th:block>
-								<th:block th:if="${datos.validos == false}">
-									<td class="border-2 border-start-0 border-black py-2 px-3">
-										<div class="text-center align-middle w-100">
-											<div class="py-0">
-												<a type="button" href="datosAlumnosAdmin.html" th:href="@{/admin/datosAlumnos/validarDatos/{id}(id=${datos.id})}" class="btn btn-success fw-bold w-100">¡VALIDAR DATOS!</a>
-											</div>
-										</div>
-									</td>
+									<td class="border-2 border-start-0 border-black py-3 px-2 text-center"><a type="button" href="datosAlumnosAdmin.html" th:href="@{/admin/datosAlumnos/validarDatos/{id}(id=${datos.id})}" class="btn btn-success fw-bold w-100">¡VALIDAR DATOS!</a></td>
 								</th:block>
 								
 							</tr>
@@ -107,31 +93,8 @@
 				</div>
 
 
-    <!-- MODAL DE INFORMACIÓN -------------------------------------------------------------------------------------------------------------------------------------------------------------->
-							
 
-				<div class="modal fade" id="modalPendiente" tabindex="-1" aria-labelledby="modalPendienteLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header bg-danger text-white">
-								<h1 class="modal-title fs-5 fw-bold" id="modalPendienteLabel"><i class="bi bi-hourglass-split"></i>&ensp;DATOS SIN VALIDAR&ensp;<i class="bi bi-hourglass-split"></i></h1>
-								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-							</div>
-							<div class="modal-body">
-								<p class="m-0">LOS DATOS DEL ALUMNO QUE HA RECIBIDO ESTÁN <span class="text-danger fw-bold">A LA ESPERA DE CONFIMARSE SI SON VÁLIDOS</span> PARA QUE EL TUTOR LEGAL PUEDA RELLENAR LA MATRÍCULA.<br><br><span class="fw-bold">SIMPLEMENTE PULSE A <span class="text-success fw-bold">¡VALIDAR DATOS!</span></span></p>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-danger fw-bold text-white" data-bs-dismiss="modal">¡A VALIDAR DATOS!</button>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				
-	<!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-
-
-	<!-- MODAL DE INFORMACIÓN 2 ------------------------------------------------------------------------------------------------------------------------------------------------------------>
+	<!-- MODAL DE INFORMACIÓN ------------------------------------------------------------------------------------------------------------------------------------------------------------>
 							
 
 				<div class="modal fade" id="modalValidado" tabindex="-1" aria-labelledby="modalValidadoLabel" aria-hidden="true">

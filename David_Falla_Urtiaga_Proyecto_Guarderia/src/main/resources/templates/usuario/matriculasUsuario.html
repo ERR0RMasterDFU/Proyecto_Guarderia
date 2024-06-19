@@ -3,8 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Matrículas</title>
-        <link rel="stylesheet" type="text/css" href="../../static/css/paginasPrincipales.css" th:href="@{/css/paginasPrincipales.css}"> 
+        <title>Matrículas de alumnos</title>
+        <link rel="stylesheet" type="text/css" href="../static/css/paginasPrincipales.css" th:href="@{/css/paginasPrincipales.css}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -12,176 +12,65 @@
     <body class="fondo">
 
 <!---- CABECERA / HEADER -------------------------------------------->
-		
+
 		<header th:replace="~{fragmentos/header::header}"></header>
-		
+
 <!------------------------------------------------------------------->
-		
+
 <!---- MENÚ NAVEGABLE / NAVBAR -------------------------------------->
-		    
+    
 		<nav th:replace="~{fragmentos/navUsuario::nav}"></nav>
-		
+
 <!-------------------------------------------------------------------->
 
-        <div class="container-fluid d-flex w-100 p-0">
+        <div class="container-fluid w-100 d-flex p-0">
 
 <!---- SECCIÓN DE ANUNCIOS / ASIDE ---------------------------------->
-			
+
 			<aside th:replace="~{fragmentos/asideUsuario::aside}"></aside>
-			
+
 <!------------------------------------------------------------------->
 
 <!---- CONTENIDO PRINCIPAL / MAIN ------------------------------------>
 
-            <main class="m-3 p-5 bg-white" style="flex: 1 1 81%; width: 75%; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
-                
-				
-			<!-- MENSAJE DE ERROR -------------------------------------------------------------------------------------------------------------------------------->
-								
-				<!--div class="alert alert-primary alert-dismissible fade show" role="alert" th:if="${param.error}">
-					<strong><i class="bi bi-exclamation-triangle-fill text-primary"></i>&ensp;¡NO SE PUEDEN BORRAR LOS PROFESORES QUE APAREZCAN EN ALGUNA OBSERVACIÓN!</strong>
-					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-				</div>
-					
-			<---------------------------------------------------------------------------------------------------------------------------------------------------->
-				
-				
-                <div class="py-0 mb-4 w-100 ">
-                    <a type="button" th:href="@{/usuario/datosAlumnos/nuevosDatosAlumno}" class="btn btn-success text-white fw-bold py-2 w-100" style="font-size: 25px;"><i class="bi bi-file-earmark-plus-fill"></i>&ensp;RELLENAR Y ENVIAR NUEVOS DATOS</a>
-                </div>
- 
+            <main class="m-3 p-5 bg-white text-black" style="flex: 1 1 81%; width: 75%; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
+
 				<div class="table-responsive">
 					<table class="table table-hover table-warning table-striped text-center">
-						<thead class="bg-warning">
-							<tr class="fw-bold text-black align-middle">
-								<th class="bg-warning border-2 border-end-0 border-black">NOMBRE</th>
-								<th class="bg-warning border-2 border-start-0 border-end-0 border-black">PRIMER<br>APELLIDO</th>
-								<th	class="bg-warning border-2 border-start-0 border-end-0 border-black">SEGUNDO<br>APELLIDO</th>
-								<th	class="bg-warning border-2 border-start-0 border-end-0 border-black">EDAD</th>
-								<th	class="bg-warning border-2 border-start-0 border-end-0 border-black">DIRECCIÓN</th>
-								<th	class="bg-warning border-2 border-start-0 border-end-0 border-black">FECHA DE<br>NACIMIENTO</th>
-                                <th	class="bg-warning border-2 border-start-0 border-end-0 border-black">FECHA DE<br>NACIMIENTO</th>
-								<th	class="bg-warning border-2 border-start-0 border-black">OPERACIONES</th>
-							</tr>					
-						</thead>
-						<tbody>
-							<tr th:each="datos : ${listaDatosAlumnos}" class="align-middle">
-								<td th:text="${datos.nombre}" class="border-2 border-end-0 border-black py-3 px-2"></td>
-								<td	th:text="${datos.primerApellido}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
-								<td th:text="${datos.segundoApellido}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
-								
-                                <th:block th:if="${datos.edad == 0}">
-									<td class="border-2 border-start-0 border-end-0 border-black py-3 px-2">Menos de un año</td>
-								</th:block>
-								<th:block th:if="${datos.edad == 1}">
-									<td th:text="${datos.edad + ' año'}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
-								</th:block>
-								<th:block th:if="${datos.edad > 1}">
-									<td th:text="${datos.edad + ' años'}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
-								</th:block>
-
-								<td th:text="${datos.direccion}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
-								<td th:text="${datos.fechaNacimiento}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
-								
-                                <th:block th:if="${datos.validos == false}">
-									<td class="border-2 border-start-0 border-end-0 border-black py-3 px-2"><button type="button" data-bs-toggle="modal" data-bs-target="#modalPendiente" class="btn btn-danger text-white fw-bold w-100">PENDIENTE<br>POR VALIDAR</button></td>
-								</th:block>
-								<th:block th:if="${datos.validos == true}">
-									<td class="border-2 border-start-0 border-end-0 border-black py-3 px-2"><button type="button" class="btn btn-success text-white fw-bold w-100">¡VALIDADOS!</button></td>
-								</th:block>
-
-								<!--td class="border-2 border-start-0 border-black py-2 px-3">
-
-									<div class="text-center align-middle m-0 p-0">	
-									    <button type="button" data-bs-toggle="modal" data-bs-target="#modalBorrado" th:data-id="${datos.id}" class="btn text-white fw-bold w-100" style="background-color: rgb(218, 63, 3); font-size: 20px;"><i class="bi bi-trash-fill"></i></button>
-									</div>
-								</td-->
-
-
-								<td class="border-2 border-start-0 border-black py-2 px-3">
-									<div class="text-center align-middle w-100">
-										<div class="py-0">
-											<a type="button" href="agregarEditarDatosAlumnos.html" th:href="@{/usuario/datosAlumnos/editarDatosAlumno/{id}(id=${datos.id})}" class="btn text-white fw-bold w-100" style="background-color: rgb(210, 122, 2); font-size: 20px;"><i class="bi bi-file-earmark-code-fill"></i></a>
-										</div>
-										<div class="mt-2 py-0">
-											<button type="button" data-bs-toggle="modal" data-bs-target="#modalBorrado" th:data-id="${datos.id}" class="btn text-white fw-bold w-100" style="background-color: rgb(218, 63, 3); font-size: 20px;"><i class="bi bi-file-earmark-minus-fill"></i></button>
-										</div>
-									</div>
-								</td>
-
-							</tr>
-						</tbody>
-					</table>
+				   		<thead class="bg-warning">
+				     		<tr class="fw-bold text-black align-middle">
+				               	<th class="bg-warning border-2 border-end-0 border-black">NOMBRE</th>
+				               	<th class="bg-warning border-2 border-start-0 border-end-0 border-black">PRIMER<br>APELLIDO</th>
+				               	<th	class="bg-warning border-2 border-start-0 border-end-0 border-black">SEGUNDO<br>APELLIDO</th>
+								<th	class="bg-warning border-2 border-start-0 border-end-0 border-black">PRECIO DE<br>LA MATRÍCULA</th>
+								<th	class="bg-warning border-2 border-start-0 border-end-0 border-black">VER DETALLES</th>
+				               	<th	class="bg-warning border-2 border-start-0 border-black">EDITAR MATRÍCULA</th>
+				         	</tr>					
+				 		</thead>
+				       	<tbody>
+				       		<tr th:each="alumno : ${listaMatriculas}" class="align-middle">
+				             	<td th:text="${alumno.datos.nombre}" class="border-2 border-end-0 border-black py-3 px-2"></td>
+				               	<td	th:text="${alumno.datos.primerApellido}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+				             	<td th:text="${alumno.datos.segundoApellido}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+				               	<td th:text="${#numbers.formatDecimal(alumno.precioMatricula,1,2,'COMMA') + ' €'}" class="border-2 border-start-0 border-end-0 border-black py-3 px-2"></td>
+								<td class="border-2 border-start-0 border-end-0 border-black py-3 px-2"><a type="button" th:href="@{/usuario/matriculas/detalles/{id}(id=${alumno.datos.id})}" class="btn btn-primary fw-bold w-50"><i class="bi bi-envelope-paper-fill" style="font-size: 23px;"></i></a></td>
+								<td class="border-2 border-start-0 border-black py-2 px-3"><a type="button" th:href="@{/usuario/editarAlumno/{id}(id=${alumno.id})}" class="btn text-white fw-bold w-25" style="background-color: rgb(210, 122, 2);"><i class="bi bi-person-fill-gear" style="font-size: 23px;"></i></a></td>
+				           	</tr>
+				       	</tbody>
+				  	</table>
 				</div>
-
-
-    <!-- MODAL DE INFORMACIÓN -------------------------------------------------------------------------------------------------------------------------------------------------------------->
-							
-
-				<div class="modal fade" id="modalPendiente" tabindex="-1" aria-labelledby="modalPendienteLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header bg-danger text-white">
-								<h1 class="modal-title fs-5 fw-bold" id="modalPendienteLabel"><i class="bi bi-hourglass-split"></i>&ensp;PENDIENTE POR VALIDAR&ensp;<i class="bi bi-hourglass-split"></i></h1>
-								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-							</div>
-							<div class="modal-body">
-								<p class="m-0">LOS DATOS DEL ALUMNO QUE HA ENVIADO ESTÁN <span class="text-danger fw-bold">A LA ESPERA DE CONFIMARSE SI SON VÁLIDOS</span> PARA QUE PUEDA RELLENAR LA MATRÍCULA.<br><br><span class="fw-bold">SIMPLEMENTE ESPERE HASTA QUE LE LLEGUE EL AVISO.</span></p>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-danger fw-bold text-white" data-bs-dismiss="modal">¡GRACIAS POR LA INFORMACIÓN!</button>
-							</div>
-						</div>
-					</div>
-				</div>
-
 				
-	<!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-
-
-	<!-- MODAL DE CONFIRMACIÓN DE BORRADO -------------------------------------------------------------------------------------------------------------------------------------------------------------->
-							
-
-				<div class="modal fade" id="modalBorrado" tabindex="-1" aria-labelledby="modalBorradoLabel" aria-hidden="true">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-							<div class="modal-header" style="background-color: rgb(218, 63, 3);">
-								<h1 class="modal-title fs-5 fw-bold text-white" id="modalBorradoLabel"><i class="bi bi-exclamation-diamond-fill"></i>&ensp;CONFIRMACIÓN&ensp;<i class="bi bi-exclamation-diamond-fill"></i></h1>
-								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-							</div>
-							<div class="modal-body">
-								<p class="m-0">¿SEGURO QUE QUIERE <span class="fw-bold" style="color: rgb(218, 63, 3);">ELIMINAR</span> LOS DATOS SELECCIONADOS?<br>TENGA EN CUENTA QUE SIN ELLOS EL ALUMNO <span class="fw-bold" style="color: rgb(218, 63, 3);">NO PODRÁ MATRICULARSE</span>.<br><br><span class="fw-bold">¿DESEA CONTINUAR?</span></p>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
-								<a type="button" id="confirmarEliminar" class="btn fw-bold text-white" style="background-color: rgb(218, 63, 3);">¡ELIMINAR DATOS!</a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				
-	<!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-
             </main>
 
-	<!-- LIBRERÍAS NECESARIAS PARA EL MODAL DE CONFIRMACIÓN DE BORRADO ------------------------------------------------------------>
-	
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"></script>
-			<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
-			<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-
-			<script src="../../static/js/modalBorrarDatos.js" th:src="@{/js/modalBorrarDatos.js}" defer></script>
-
-	<!---------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------>
 
         </div>
 
-<!---- PIE DE PÁGINA / FOOTER ---------------------------------------->
+<!---- PIE DE PÁGINA / FOOTER -------------------------------------->
 
 		<footer th:replace="~{fragmentos/footer::footer}"></footer>
 
-<!-------------------------------------------------------------------->
+<!------------------------------------------------------------------>
 
     </body>
 </html>

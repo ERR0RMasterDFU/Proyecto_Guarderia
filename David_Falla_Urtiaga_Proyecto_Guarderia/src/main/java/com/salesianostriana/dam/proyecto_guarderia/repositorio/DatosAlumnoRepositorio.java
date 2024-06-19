@@ -24,14 +24,26 @@ public interface DatosAlumnoRepositorio extends JpaRepository<DatosAlumno, Long>
 // --------------------------------------------------------------------------------------------------------------------------
 	
 	
-// CONSULTA QUE RETORNA LOS DATOS QUE TIENEN EL MISMO ID QUE UN ALUMNO ------------------------------------------------------
+// PANTALLA DE DATOS DE ALUMNOS (ADMIN) -------------------------------------------------------------------------------------
+
+	@Query("""
+			SELECT da
+			FROM DatosAlumno da 
+			WHERE da.matriculado = false
+			""")
+	public List<DatosAlumno> findDatosSinMatricularByValidadosYMatriculados();
+
+// --------------------------------------------------------------------------------------------------------------------------	
+
+		
+// CONSULTA QUE RETORNA LOS DATOS POR ID ------------------------------------------------------------------------------------
 	
 	@Query("""
 			SELECT da
 			FROM DatosAlumno da
 			WHERE da.id = ?1
 			""")
-	public DatosAlumno findDatosByIdAlumno(long id);
+	public DatosAlumno findDatosById(long id);
 	
 // --------------------------------------------------------------------------------------------------------------------------
 	
